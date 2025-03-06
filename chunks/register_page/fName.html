@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f8f8;
+      }
+
+      .smartcapture-controls {
+        max-width: 500px;  
+        width: 100%;       
+        margin: 10px auto 10px; 
+        display: flex;
+        flex-direction: column;
+      }
+
+
+      .sc-formfield-input input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        color: #333;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        transition: border-color 0.3s;
+      }
+
+      .sc-formfield-input input[type="text"]:focus {
+        outline: none;
+        border-color: #254a28; 
+      }
+
+      .sc-formfield-input input[type="text"]:hover {
+        border-color: #888;
+      }
+
+      @media (max-width: 480px) {
+        .sc-formfield-label label {
+          font-size: 0.9rem;
+        }
+        .sc-formfield-input input[type="text"] {
+          font-size: 0.95rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="smartcapture-controls">
+      <div class="sc-formfield-label">
+        <label for="FirstName">First Name *</label>
+      </div>
+      <div class="sc-formfield-input">
+        <input
+          type="text"
+          id="FirstName"
+          name="FirstName"
+          data-field-type="Text"
+          required="required"
+          data-validation-message="Please fill out this field."
+        />
+      </div>
+    </div>
+  </body>
+</html>

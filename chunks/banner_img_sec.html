@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .banner-heading-block {
+        max-width: 1000px;
+        margin: 10px auto;
+        padding: 0 20px;
+        text-align: center;
+      }
+      .banner-heading-block h2 {
+        font-size: 32px;
+        margin-bottom: 10px;
+        color: #000;
+      }
+      .banner-heading-block p {
+        font-size: 16px;
+        color: #444;
+        line-height: 1.5;
+      }
+
+      .webinar-section {
+        display: flex;
+        background: #fff;
+        max-width: 1000px;
+        margin: 10px auto;
+        gap: 1em;
+        overflow: hidden;
+        padding: 10px;
+      }
+
+      /* Left Column */
+      .left {
+        display: flex;
+        width: 50%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+        /* background-color: #fafafa; */
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      }
+      .left img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+
+      /* Right Column */
+      .right {
+        width: 50%;
+        padding-block: 30px;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      }
+      .right p {
+        font-size: 20px;
+        color: #000000;
+        line-height: 1.4;
+        margin: 0 20px 10px;
+      }
+      .right ul {
+        color: #555;
+        width: 80%;
+        list-style: disc;
+        text-align: left; /* left-align the list while overall text is centered */
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+      .right li {
+        margin-bottom: 8px;
+      }
+
+      /* Optional: Make columns stack on smaller screens */
+      @media (max-width: 768px) {
+        .webinar-section {
+          flex-direction: column;
+          align-items: center;
+        }
+        .left,
+        .right {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="banner-heading-block">
+      <h2>Webinar से जुड़ी कुछ जरुरी बातें।</h2>
+      <p>
+        वेबिनार में भाग लेने से पहले सुनिश्चित करें कि आप शांत जगह पर बैठें हों
+        एक अच्छे इंटरनेट कनेक्शन के साथ। अपने सवालों को पहले से तैयार रखें, ताकि
+        आप डॉक्टर या आचार्य मनीष जी से अधिकतम लाभ प्राप्त कर सकें। जब आपका नाम
+        लिया जाए तो अपना माइक अनम्यूट करें और आचार्य मनीष जी या हमारे डॉक्टर से
+        बात कर करें।
+      </p>
+    </div>
+    <section class="webinar-section">
+      <!-- Left side: Image -->
+      <div class="left">
+        <img
+          src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/40dbaf11-3753-4fe5-872f-d7cc13c487fb.png"
+          alt="Webinar Image"
+        />
+      </div>
+
+      <!-- Right side: Text -->
+      <div class="right">
+        <p>ये वेबिनार किसके लिए है ?</p>
+        <ul>
+          <li>
+            जो लोग <b>cancer reversal</b>, treatment solutions और natural
+            healing methods के बारे में जानना चाहते हैं।
+          </li>
+          <li>
+            जो <b>lifestyle changes</b> अपनाकर <b>cancer prevention</b> के उपाय
+            खोजना चाहते हैं।
+          </li>
+          <li>
+            जो mental & physical health को बेहतर बनाए रखना चाहते हैं during
+            cancer treatment।
+          </li>
+          <li>
+            जिनके परिवार में cancer patients हैं और वे <b>chemotherapy</b> या
+            <b>radiation</b> के side effects कम करने के तरीके जानना चाहते हैं।
+          </li>
+          <!-- <li>Point Five</li> -->
+        </ul>
+      </div>
+    </section>
+  </body>
+</html>

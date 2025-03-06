@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 20px;
+      }
+
+      .hero p {
+        font-size: 48px;
+        text-align: center;
+        color: #254a28;
+        font-family: "Times New Roman", Times, serif;
+      }
+
+      @media (max-width: 767px) {
+        .hero {
+          margin: 10px;
+        }
+        .hero p {
+          font-size: 32px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="hero">
+      <p>Join <i>Cancer</i> Webinar by <i>Acharya Manish Ji</i></p>
+    </section>
+  </body>
+</html>

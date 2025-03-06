@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+
+    <style>
+      /********************************************************
+       *                Global & Body Styles                  *
+       ********************************************************/
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        font-family: "Exo", serif; /* From your first snippet */
+      }
+      body {
+        /* Leaves space so content isn't hidden behind the fixed footer */
+        padding-bottom: 100px;
+        background-color: #f8f8f8;
+      }
+
+      /********************************************************
+       *              Webinar Section (First Snippet)         *
+       ********************************************************/
+      .webinar-section {
+        display: flex;
+        max-width: 1000px;
+        margin: 40px auto;
+        gap: 1em;
+        overflow: hidden;
+        padding: 10px;
+      }
+
+      .webinar-left {
+        display: flex;
+        width: 50%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-block: 40px;
+        background-color: #fafafa;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      }
+      .webinar-left img {
+        width: 300px;
+        height: auto;
+      }
+      .webinar-left div {
+        width: 100%;
+      }
+      .left-text-1 {
+        text-align: center;
+        font-size: 24px;
+        margin-block-start: 10px;
+        color: #254a28;
+      }
+
+      .webinar-right {
+        display: flex;
+        width: 50%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding-block: 40px;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      }
+      .right-txt-1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
+      .right-txt-1 span {
+        color: #254a28;
+      }
+      .right-txt-2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+      .right-txt-3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      .right-txt-4 {
+        font-size: 16px;
+        color: #254a28;
+      }
+
+      /* Timer container (main section) */
+      .timebox {
+        display: flex;
+        gap: 8px;
+        margin: 10px 0;
+      }
+      .time {
+        padding: 10px;
+        width: 80px;
+        font-weight: 600;
+        background-color: #f1f1f1;
+        border-radius: 10px;
+      }
+      .time-count {
+        font-size: 42px;
+      }
+      .time-txt {
+        font-size: 20px;
+      }
+
+      .timer-register-btn {
+        background-color: #254a28;
+        color: #ffed00;
+        padding: 15px 40px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 18px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
+      .timer-register-btn:hover {
+        box-shadow: 5px 8px 3px #d1d1d1;
+      }
+
+      /********************************************************
+       *            Fixed Footer (Second Snippet)             *
+       ********************************************************/
+      .fixed-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        border-top: 1px solid #ddd;
+        padding: 10px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 9999; /* Ensure it stays above other elements */
+      }
+
+      /* Left Section: Price & Timer */
+      .footer-left {
+        display: flex;
+        flex-direction: column;
+      }
+      .webinar-text {
+        font-size: 1rem;
+        margin-bottom: 5px;
+      }
+      .old-price {
+        text-decoration: line-through;
+        text-decoration-color: red; /* Keep the line red */
+        text-decoration-thickness: 3px; /* Make the line thicker */
+        text-decoration-style: solid;
+      }
+      .new-price {
+        color: #1f3d16; /* Dark green */
+        font-weight: bold;
+      }
+      .subtext {
+        font-size: 0.9rem;
+        color: #333;
+        margin-bottom: 5px;
+      }
+
+      /* Footer Timer Container */
+      .footer-timebox {
+        display: flex;
+        gap: 6px;
+      }
+      .footer-time {
+        text-align: center;
+        color: #254a28;
+      }
+      .footer-time-count {
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      /* Right Section: Register Button */
+      .footer-right .footer-register-btn {
+        background-color: #254a28;
+        color: #ffed00;
+        padding: 20px 30px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+      .footer-right .footer-register-btn:hover {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Responsive for the main webinar section */
+      @media (max-width: 768px) {
+        .webinar-section {
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+        }
+        .webinar-text {
+          font-size: 14px;
+          margin-bottom: 2px;
+        }
+        .subtext {
+          font-size: 14px;
+          margin-bottom: 2px;
+        }
+        .webinar-left {
+          width: 100%;
+        }
+        .webinar-right {
+          width: 100%;
+        }
+        .webinar-left img {
+          width: 250px;
+        }
+        .right-txt-1 {
+          font-size: 28px;
+        }
+        .right-txt-2 {
+          font-size: 16px;
+        }
+        .right-txt-3 {
+          font-size: 20px;
+        }
+        .time {
+          padding: 10px;
+          width: 65px;
+        }
+        .time-count {
+          font-size: 32px;
+        }
+        .time-txt {
+          font-size: 16px;
+        }
+      }
+
+      /* Responsive for the footer */
+      @media (max-width: 768px) {
+        .fixed-footer {
+          padding: 10px 10px;
+        }
+        .footer-right .footer-register-btn {
+          padding: 15px 20px;
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- MAIN WEBINAR SECTION (First Snippet) -->
+    <section class="webinar-section">
+      <div class="webinar-left">
+        <img
+          src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/08c5ae0d-2900-4c70-9ff4-c823dc367b9e.png"
+          alt="Acharya Manish Ji"
+        />
+        <div>
+          <p class="left-text-1">Acharya Manish Ji</p>
+        </div>
+      </div>
+
+      <div class="webinar-right">
+        <p class="right-txt-1">Join <span>Acharya Manish Ji</span></p>
+        <p class="right-txt-2">On</p>
+        <p class="right-txt-3">00 February 2025 | 00:00 A.M.</p>
+        <p class="right-txt-4">Time is Running Out</p>
+
+        <!-- MAIN TIMER -->
+        <div class="timebox">
+          <div class="time">
+            <p class="time-count" id="mainDays">00</p>
+            <p class="time-txt">Days</p>
+          </div>
+          <div class="time">
+            <p class="time-count" id="mainHours">00</p>
+            <p class="time-txt">Hours</p>
+          </div>
+          <div class="time">
+            <p class="time-count" id="mainMinutes">00</p>
+            <p class="time-txt">Mins</p>
+          </div>
+          <div class="time">
+            <p class="time-count" id="mainSeconds">00</p>
+            <p class="time-txt">Secs</p>
+          </div>
+        </div>
+
+        <button
+          onclick="window.open('https://cloud.marketing.jeenasikho.com/Register', '_blank')"
+          class="timer-register-btn"
+        >
+          Register Now
+        </button>
+
+        <p class="right-txt-4">
+          Don't Miss the Chance to Consult with Acharya Ji
+        </p>
+      </div>
+    </section>
+
+    <!-- FIXED FOOTER (Second Snippet) -->
+    <footer class="fixed-footer">
+      <!-- Left side: Strikethrough Price, Timer -->
+      <div class="footer-left">
+        <p class="webinar-text">
+          Webinar in
+          <span class="old-price">₹500</span>
+          <span class="new-price">₹49 Only</span>
+        </p>
+        <p class="subtext">Before it ends</p>
+        <div class="footer-timebox">
+          <div class="footer-time">
+            <p class="footer-time-count" id="footerDays">00</p>
+          </div>
+          <div class="footer-time">
+            <p class="footer-time-count" id="footerHours">00</p>
+          </div>
+          <div class="footer-time">
+            <p class="footer-time-count" id="footerMinutes">00</p>
+          </div>
+          <div class="footer-time">
+            <p class="footer-time-count" id="footerSeconds">00</p>
+          </div>
+        </div>
+      </div>
+      <!-- Right side: Register button -->
+      <div class="footer-right">
+        <button
+          onclick="window.open('https://cloud.marketing.jeenasikho.com/Register', '_blank')"
+          class="footer-register-btn"
+        >
+          Register Now
+        </button>
+      </div>
+    </footer>
+
+    <!-- UNIFIED TIMER SCRIPT (Updates both main & footer timers) -->
+    <script>
+      // Main Timer Elements
+      const mainDays = document.getElementById("mainDays");
+      const mainHours = document.getElementById("mainHours");
+      const mainMinutes = document.getElementById("mainMinutes");
+      const mainSeconds = document.getElementById("mainSeconds");
+
+      // Footer Timer Elements
+      const footerDays = document.getElementById("footerDays");
+      const footerHours = document.getElementById("footerHours");
+      const footerMinutes = document.getElementById("footerMinutes");
+      const footerSeconds = document.getElementById("footerSeconds");
+
+      // Helper function to add leading zero
+      function formatTime(num) {
+        return num < 10 ? "0" + num : num;
+      }
+
+      // Set your target date/time here (shared by both timers)
+      const targetDate = new Date("March 5, 2025 11:00:00").getTime();
+
+      function timer() {
+        const currentDate = new Date().getTime();
+        const distance = targetDate - currentDate;
+
+        // If countdown is over, set all to "00"
+        if (distance < 0) {
+          updateTimer("00", "00", "00", "00");
+        } else {
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+          const minutes = Math.floor((distance / (1000 * 60)) % 60);
+          const seconds = Math.floor((distance / 1000) % 60);
+
+          updateTimer(
+            formatTime(days),
+            formatTime(hours),
+            formatTime(minutes),
+            formatTime(seconds)
+          );
+        }
+      }
+
+      // Update both main & footer timers
+      function updateTimer(d, h, m, s) {
+        if (mainDays) mainDays.textContent = d;
+        if (mainHours) mainHours.textContent = h;
+        if (mainMinutes) mainMinutes.textContent = m;
+        if (mainSeconds) mainSeconds.textContent = s;
+
+        if (footerDays) footerDays.textContent = d;
+        if (footerHours) footerHours.textContent = h;
+        if (footerMinutes) footerMinutes.textContent = m;
+        if (footerSeconds) footerSeconds.textContent = s;
+      }
+
+      // Run timer every second
+      setInterval(timer, 1000);
+      timer(); // Initialize immediately
+    </script>
+  </body>
+</html>

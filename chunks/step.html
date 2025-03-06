@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f8f8; /* Optional page background */
+      }
+
+      .join-webinar {
+        max-width: 1000px;        /* Constrain the width on larger screens */
+        margin: 10px auto;        /* Center with vertical spacing */
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        padding: 30px 20px;
+        text-align: center;       /* Center the heading & button */
+      }
+
+      /* Heading */
+      .join-webinar h2 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        color: #1f3d16; /* Dark green color */
+      }
+
+      /* Steps Container (Ordered List) */
+      .step-list {
+        max-width: 800px;
+        margin: 0 auto 30px auto; /* Center & add spacing below */
+        list-style: none;         /* Remove default list styling */
+        counter-reset: step;      /* Initialize custom counter */
+        text-align: left;         /* Left-align step text */
+      }
+
+      /* Individual Step Items */
+      .step-list li {
+        position: relative;
+        padding-left: 50px;       /* Space for the circular number */
+        margin-bottom: 25px;
+      }
+
+      /* Circular Number */
+      .step-list li::before {
+        content: counter(step);   /* Display the counter value */
+        counter-increment: step;  /* Increment the counter for each li */
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 35px;
+        height: 35px;
+        border: 2px solid #1f3d16;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #1f3d16;
+        font-weight: bold;
+        background-color: #fff;
+      }
+
+      /* Step Titles */
+      .step-title {
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: #000;
+        margin-bottom: 5px;
+      }
+
+      /* Step Paragraph */
+      .step-text {
+        line-height: 1.6;
+        color: #333;
+      }
+
+      /* Register Button */
+      .step-register-btn {
+        background-color: #1f3d16; /* Dark green background */
+        color: #ffed00;           /* Yellow text */
+        padding: 15px 30px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: bold;
+        transition: box-shadow 0.3s;
+      }
+      .step-register-btn:hover {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Responsive Adjustments */
+      @media (max-width: 600px) {
+        .join-webinar h2 {
+          font-size: 1.4rem;
+        }
+        .step-list li {
+          padding-left: 40px;
+        }
+        .step-list li::before {
+          width: 30px;
+          height: 30px;
+          font-size: 0.9rem;
+        }
+        .step-title {
+          font-size: 1rem;
+        }
+        .step-text {
+          font-size: 0.9rem;
+        }
+        .step-register-btn {
+          font-size: 0.9rem;
+          padding: 12px 25px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="join-webinar">
+      <h2>वेबिनार को ज्वाइन करने की प्रक्रिया:</h2>
+      <ol class="step-list">
+        <!-- Step 1 -->
+        <li>
+          <div class="step-title">Registration Process</div>
+          <div class="step-text">
+            “Register” बटन पर क्लिक करें → “Book A Spot” पर क्लिक करें → “Enter
+            Coupon Code” में कोड डालें (अगर नहीं है तो इग्नोर करें)
+          </div>
+        </li>
+        <!-- Step 2 -->
+        <li>
+          <div class="step-title">Fill Details and Initiate Booking</div>
+          <div class="step-text">
+            अपना नाम (Name), ईमेल (Email), फ़ोन नंबर (Phone) और WhatsApp नंबर दर्ज
+            करें। पूरी जानकारी देने के बाद “Book” बटन पर क्लिक करें।
+          </div>
+        </li>
+        <!-- Step 3 -->
+        <li>
+          <div class="step-title">Payment & Confirmation</div>
+          <div class="step-text">
+            Payment Gateway से पेमेंट करें। “Purchase Successful” मैसेज मिलने के
+            बाद WhatsApp Number पर जॉइनिंग Zoom Link प्राप्त होगा।
+          </div>
+        </li>
+        <!-- Step 4 -->
+        <li>
+          <div class="step-title">Important!</div>
+          <div class="step-text">
+            कृपया WhatsApp Group जॉइन करना न भूलें। वहीं से आपको सारी अपडेट्स और
+            Zoom लिंक मिलेगी। <br />
+            • Phone में Webinar Join करने से पहले Zoom App इंस्टॉल कर लें।
+          </div>
+        </li>
+      </ol>
+      <button
+          onclick="window.open('https://cloud.marketing.jeenasikho.com/Register', '_blank')"
+          class="step-register-btn"
+        >
+          Register Now
+        </button>
+    </section>
+  </body>
+</html>

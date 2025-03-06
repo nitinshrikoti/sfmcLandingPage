@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      /* Basic Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f8f8;
+        padding: 20px;
+      }
+
+      /* Container for the label + input */
+      .smartcapture-controls {
+        max-width: 500px;  /* Constrain width on larger screens */
+        width: 100%;       /* Fill the container on smaller devices */
+        margin: 0 auto 20px; /* Center the element and add bottom spacing */
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Input styling */
+      .sc-formfield-input input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        color: #333;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        transition: border-color 0.3s;
+      }
+      .sc-formfield-input input[type="text"]:focus {
+        outline: none;
+        border-color: #254a28; /* Dark green on focus */
+      }
+      .sc-formfield-input input[type="text"]:hover {
+        border-color: #888;
+      }
+
+      /* Responsive font sizes for very small screens */
+      @media (max-width: 480px) {
+        .sc-formfield-label label {
+          font-size: 0.9rem;
+        }
+        .sc-formfield-input input[type="text"] {
+          font-size: 0.95rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="smartcapture-controls">
+      <div class="sc-formfield-label">
+        <label for="LastName">Last Name</label>
+      </div>
+      <div class="sc-formfield-input">
+        <input
+          type="text"
+          id="LastName"
+          name="LastName"
+          data-field-type="Text"
+        />
+      </div>
+    </div>
+  </body>
+</html>

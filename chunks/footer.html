@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        padding-bottom: 100px; /* Leaves space so content isn't hidden behind footer */
+      }
+
+      /* Fixed Footer Container */
+      .fixed-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #f8f8f8;
+        border-top: 1px solid #ddd;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 9999; /* Ensure it stays above other elements */
+      }
+
+      /* Left Section: Price & Timer */
+      .footer-left {
+        display: flex;
+        flex-direction: column;
+      }
+      .webinar-text {
+        font-size: 1rem;
+        margin-bottom: 5px;
+      }
+      /* Old Price with Strikethrough in Red */
+      .old-price {
+        text-decoration: line-through;
+        text-decoration-color: red; /* Keep the line red */
+        text-decoration-thickness: 3px; /* Make the line thicker */
+        text-decoration-style: solid;
+      }
+      /* New Price in a distinct color */
+      .new-price {
+        color: #1f3d16; /* Dark green */
+        font-weight: bold;
+      }
+      /* Small text before the timer */
+      .subtext {
+        font-size: 0.9rem;
+        color: #333;
+        margin-bottom: 5px;
+      }
+
+      /* Timer Container */
+      .footer-timebox {
+        display: flex;
+        gap: 6px;
+      }
+      .footer-time {
+        text-align: center;
+        color: #254a28;
+      }
+      .footer-time-count {
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      /* Right Section: Register Button */
+      .footer-right .footer-register-btn {
+        background-color: #254a28;
+        color: #ffed00;
+        padding: 20px 30px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+      .footer-right .footer-register-btn:hover {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Responsive: stack content in the footer on narrow screens */
+      @media (max-width: 768px) {
+        .fixed-footer {
+          gap: 10px;
+        }
+        .footer-right .footer-register-btn {
+          padding: 15px 25px;
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Your page content here... -->
+
+    <!-- Fixed Footer -->
+    <footer class="fixed-footer">
+      <!-- Left side: Strikethrough Price, Timer -->
+      <div class="footer-left">
+        <p class="webinar-text">
+          Webinar in
+          <span class="old-price">₹500</span>
+          <span class="new-price">₹49 Only</span>
+        </p>
+        <p class="subtext">Before it ends</p>
+        <div class="footer-timebox">
+          <div class="footer-time">
+            <p class="footer-time-count" id="days">00</p>
+          </div>
+          <div class="footer-time">
+            <p class="footer-time-count" id="hours">00</p>
+          </div>
+          <div class="footer-time">
+            <p class="footer-time-count" id="minutes">00</p>
+          </div>
+          <div class="footer-time">
+            <p class="footer-time-count" id="seconds">00</p>
+          </div>
+        </div>
+      </div>
+      <!-- Right side: Register button -->
+      <div class="footer-right">
+        <button
+          onclick="window.open('https://cloud.marketing.jeenasikho.com/Register', '_blank')"
+          class="footer-register-btn"
+        >
+          Register Now
+        </button>
+      </div>
+    </footer>
+
+    <!-- Timer Script -->
+    <script>
+      const Days = document.getElementById("days");
+      const Hours = document.getElementById("hours");
+      const Minutes = document.getElementById("minutes");
+      const Seconds = document.getElementById("seconds");
+
+      // Helper function to add leading zero
+      function formatTime(num) {
+        return num < 10 ? "0" + num : num;
+      }
+
+      // Set your target date/time here
+      const targetDate = new Date("February 27, 2025 20:00:00").getTime();
+
+      function timer() {
+        const currentDate = new Date().getTime();
+        const distance = targetDate - currentDate;
+
+        if (distance < 0) {
+          Days.innerHTML = "00";
+          Hours.innerHTML = "00";
+          Minutes.innerHTML = "00";
+          Seconds.innerHTML = "00";
+        } else {
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+          const minutes = Math.floor((distance / (1000 * 60)) % 60);
+          const seconds = Math.floor((distance / 1000) % 60);
+
+          Days.innerHTML = formatTime(days);
+          Hours.innerHTML = formatTime(hours);
+          Minutes.innerHTML = formatTime(minutes);
+          Seconds.innerHTML = formatTime(seconds);
+        }
+      }
+
+      setInterval(timer, 1000);
+      timer(); // Initialize the timer immediately
+    </script>
+  </body>
+</html>

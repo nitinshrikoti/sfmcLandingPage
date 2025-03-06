@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+      }
+
+      .brands-section {
+        max-width: 1200px;
+        margin: 40px auto;
+        text-align: center;
+        padding: 0 20px;
+      }
+
+      /* Heading */
+      .brands-section h2 {
+        font-size: 2rem;
+        color: #1f3d16;
+        margin-bottom: 30px;
+      }
+
+      .brands-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .brand-card {
+        background-color: #fff;
+        border-radius: 8px;
+        width: 200px;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .brand-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 8px;
+      }
+
+      @media (max-width: 768px) {
+        .brands-section h2 {
+          font-size: 1.5rem;
+        }
+        .brands-container {
+          gap: 10px;
+        }
+        .brand-card {
+          width: 130px;
+          height: 130px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="brands-section">
+      <h2>Proudly Representing Our Other Brands</h2>
+      <div class="brands-container">
+        <!-- Brand 1 -->
+        <div class="brand-card">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/dac32086-273a-490d-8790-326f19ec1a47.png"
+            alt="Shuddhi Brand"
+          />
+        </div>
+        <!-- Brand 2 -->
+        <div class="brand-card">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/09b32e30-c8b1-4499-8216-e2793e3aa65b.png"
+            alt="HHMS Brand"
+          />
+        </div>
+        <!-- Brand 3 -->
+        <div class="brand-card">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/71cd999b-b485-4024-b6d7-e1c2fcdf2d1d.png"
+            alt="Swami Om Brand"
+          />
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

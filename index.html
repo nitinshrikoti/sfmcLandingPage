@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CancerWebinar</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- script -->
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <!-- -------------------- NavBar -------------------- -->
+    <header>
+      <div class="nav-wrapper">
+        <div class="logo-container">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/cbf301aa-0b2b-4801-acad-d2ad99883567.png"
+            alt="Logo"
+            class="logo"
+          />
+        </div>
+        <nav>
+          <input class="hidden" type="checkbox" id="menuToggle" />
+          <label class="menu-btn" for="menuToggle">
+            <div class="menu"></div>
+            <div class="menu"></div>
+            <div class="menu"></div>
+          </label>
+          <div class="nav-container">
+            <ul class="nav-tabs" role="list">
+              <li class="nav-tab"><a href="#steps">Booking Steps</a></li>
+              <!-- <li class="nav-tab"><a href="#testimonials">Testimonials</a></li> -->
+              <li class="nav-tab"><a href="#faqs">Faqs</a></li>
+              <li class="nav-tab"><a href="#contactUs">Contact Us</a></li>
+              <li class="nav-tab">
+                <button
+                  onclick="window.open('https://cloud.marketing.jeenasikho.com/Register', '_blank')"
+                  class="navbar-register-btn"
+                >
+                  Register Now
+                </button>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- -------------------- Hero -------------------- -->
+    <section class="hero">
+      <p>Join <i>Cancer</i> Webinar by <i>Acharya Manish Ji</i></p>
+      <iframe
+        width="890"
+        height="500"
+        src="https://www.youtube.com/embed/xAYufd85eHg?si=l_D-AgKPJGP3tAeh&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=xAYufd85eHg"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen=""
+      ></iframe>
+    </section>
+
+    <!-- -------------------- Stats Section -------------------- -->
+
+    <div class="stats-container">
+      <div class="stat-box">
+        <img
+          src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f29240b6-31c3-48c7-83d5-606cc7a24835.png"
+          alt="Icon 1"
+        />
+      </div>
+      <div class="stat-box">
+        <img
+          src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/b43992eb-b602-4a91-adc5-f78bc266577f.png"
+          alt="Icon 2"
+        />
+      </div>
+      <div class="stat-box">
+        <img
+          src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/7e98c391-7d26-4138-bbed-e7844b55ec63.png"
+          alt="Icon 3"
+        />
+      </div>
+      <div class="stat-box">
+        <img
+          src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f24cb4b2-15a2-445a-a8b4-2aa66b1704fc.png"
+          alt="Icon 4"
+        />
+      </div>
+    </div>
+
+    <!-- -------------------- Mid Section -------------------- -->
+    <section class="webinar-section">
+      <div class="webinar-left">
+        <img
+          src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/08c5ae0d-2900-4c70-9ff4-c823dc367b9e.png"
+          alt="Acharya Manish Ji"
+        />
+        <div>
+          <p class="left-text-1">Acharya Manish Ji</p>
+        </div>
+      </div>
+
+      <div class="webinar-right">
+        <p class="right-txt-1">Join <span>Acharya Manish Ji</span></p>
+        <p class="right-txt-2">On</p>
+        <p class="right-txt-3">00 February 2025 | 00:00 A.M.</p>
+        <p class="right-txt-4">Time is Running Out</p>
+
+        <!-- MAIN TIMER -->
+        <div class="timebox">
+          <div class="time">
+            <p class="time-count" id="mainDays">00</p>
+            <p class="time-txt">Days</p>
+          </div>
+          <div class="time">
+            <p class="time-count" id="mainHours">00</p>
+            <p class="time-txt">Hours</p>
+          </div>
+          <div class="time">
+            <p class="time-count" id="mainMinutes">00</p>
+            <p class="time-txt">Mins</p>
+          </div>
+          <div class="time">
+            <p class="time-count" id="mainSeconds">00</p>
+            <p class="time-txt">Secs</p>
+          </div>
+        </div>
+
+        <button
+          onclick="window.open('https://cloud.marketing.jeenasikho.com/Register', '_blank')"
+          class="timer-register-btn"
+        >
+          Register Now
+        </button>
+
+        <p class="right-txt-4">
+          Don't Miss the Chance to Consult with Acharya Ji
+        </p>
+      </div>
+    </section>
+
+    <!-- -------------------- Instructions Section -------------------- -->
+
+    <section class="join-webinar">
+      <h2>वेबिनार को ज्वाइन करने की प्रक्रिया:</h2>
+      <ol class="step-list">
+        <!-- Step 1 -->
+        <li>
+          <div class="step-title">Registration Process</div>
+          <div class="step-text">
+            “Register” बटन पर क्लिक करें → “Book A Spot” पर क्लिक करें → “Enter
+            Coupon Code” में कोड डालें (अगर नहीं है तो इग्नोर करें)
+          </div>
+        </li>
+        <!-- Step 2 -->
+        <li>
+          <div class="step-title">Fill Details and Initiate Booking</div>
+          <div class="step-text">
+            अपना नाम (Name), ईमेल (Email), फ़ोन नंबर (Phone) और WhatsApp नंबर
+            दर्ज करें। पूरी जानकारी देने के बाद “Book” बटन पर क्लिक करें।
+          </div>
+        </li>
+        <!-- Step 3 -->
+        <li>
+          <div class="step-title">Payment & Confirmation</div>
+          <div class="step-text">
+            Payment Gateway से पेमेंट करें। “Purchase Successful” मैसेज मिलने के
+            बाद WhatsApp Number पर जॉइनिंग Zoom Link प्राप्त होगा।
+          </div>
+        </li>
+        <!-- Step 4 -->
+        <li>
+          <div class="step-title">Important!</div>
+          <div class="step-text">
+            कृपया WhatsApp Group जॉइन करना न भूलें। वहीं से आपको सारी अपडेट्स और
+            Zoom लिंक मिलेगी। <br />
+            • Phone में Webinar Join करने से पहले Zoom App इंस्टॉल कर लें।
+          </div>
+        </li>
+      </ol>
+      <button
+        onclick="window.open('https://cloud.marketing.jeenasikho.com/Register', '_blank')"
+        class="step-register-btn"
+      >
+        Register Now
+      </button>
+    </section>
+
+    <!-- -------------------- Testinomial Section -------------------- -->
+    <section class="testimonial-section">
+      <h2>Testimonial</h2>
+      <div class="testimonials-container">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
+            alt="User Photo"
+          />
+          <p class="testimonial-quote">
+            “I had a fantastic experience! The webinar was well-organized and
+            very informative. I highly recommend it.”
+          </p>
+          <p class="testimonial-author">— John Doe</p>
+        </div>
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
+            alt="User Photo"
+          />
+          <p class="testimonial-quote">
+            “This session answered all my questions. I feel more confident now
+            about taking the next steps in my health journey.”
+          </p>
+          <p class="testimonial-author">— Jane Smith</p>
+        </div>
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
+            alt="User Photo"
+          />
+          <p class="testimonial-quote">
+            “The speakers were incredibly knowledgeable and friendly. Thank you
+            for such a great webinar!”
+          </p>
+          <p class="testimonial-author">— Alex Lee</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------------------- BrandLogo Section -------------------- -->
+    <section class="brands-section">
+      <h2>Proudly Representing Our Other Brands</h2>
+      <div class="brands-container">
+        <!-- Brand 1 -->
+        <div class="brand-card">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/dac32086-273a-490d-8790-326f19ec1a47.png"
+            alt="Shuddhi Brand"
+          />
+        </div>
+        <!-- Brand 2 -->
+        <div class="brand-card">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/09b32e30-c8b1-4499-8216-e2793e3aa65b.png"
+            alt="HHMS Brand"
+          />
+        </div>
+        <!-- Brand 3 -->
+        <div class="brand-card">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/71cd999b-b485-4024-b6d7-e1c2fcdf2d1d.png"
+            alt="Swami Om Brand"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- -------------------- Faqs Section -------------------- -->
+    <section class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-container">
+        <!-- FAQ Item 1 -->
+        <div class="faq-item">
+          <input type="checkbox" id="faq1" />
+          <label class="faq-title" for="faq1">
+            <span>What is this webinar about?</span>
+            <div class="faq-arrow"></div>
+          </label>
+          <div class="faq-content">
+            <p>
+              This webinar covers essential health tips, lifestyle guidance, and
+              expert insights to help you stay fit and informed.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="faq-item">
+          <input type="checkbox" id="faq2" />
+          <label class="faq-title" for="faq2">
+            <span>How long will the webinar last?</span>
+            <div class="faq-arrow"></div>
+          </label>
+          <div class="faq-content">
+            <p>
+              The webinar typically runs for about 60 minutes, followed by a Q&A
+              session where you can ask any questions you have.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="faq-item">
+          <input type="checkbox" id="faq3" />
+          <label class="faq-title" for="faq3">
+            <span>Is there any cost to join?</span>
+            <div class="faq-arrow"></div>
+          </label>
+          <div class="faq-content">
+            <p>
+              The webinar is completely free of charge. Simply register, and
+              we'll send you all the details to join.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="faq-item">
+          <input type="checkbox" id="faq4" />
+          <label class="faq-title" for="faq4">
+            <span>Will I receive a recording?</span>
+            <div class="faq-arrow"></div>
+          </label>
+          <div class="faq-content">
+            <p>
+              Yes, all registered participants will receive a link to the
+              recorded session within 24 hours after the webinar concludes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------------------- Footer Section -------------------- -->
+    <footer class="fixed-footer">
+      <!-- Left side: Strikethrough Price, Timer -->
+      <div class="footer-left">
+        <p class="webinar-text">
+          Webinar in
+          <span class="old-price">₹500</span>
+          <span class="new-price">₹49 Only</span>
+        </p>
+        <p class="subtext">Before it ends</p>
+        <div class="footer-timebox">
+          <div class="footer-time">
+            <p class="footer-time-count" id="footerDays">00</p>
+          </div>
+          <div class="footer-time">
+            <p class="footer-time-count" id="footerHours">00</p>
+          </div>
+          <div class="footer-time">
+            <p class="footer-time-count" id="footerMinutes">00</p>
+          </div>
+          <div class="footer-time">
+            <p class="footer-time-count" id="footerSeconds">00</p>
+          </div>
+        </div>
+      </div>
+      <!-- Right side: Register button -->
+      <div class="footer-right">
+        <button
+          onclick="window.open('https://cloud.marketing.jeenasikho.com/Register', '_blank')"
+          class="footer-register-btn"
+        >
+          Register Now
+        </button>
+      </div>
+    </footer>
+  </body>
+</html>

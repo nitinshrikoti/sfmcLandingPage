@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background: #f8f8f8;
+      }
+
+      .testimonial-section {
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
+        text-align: center;
+      }
+
+      .testimonial-section h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      .testimonials-container {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .testimonial-card {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        flex: 1 1 300px;
+        max-width: 350px;
+        padding: 20px;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: left;
+      }
+
+      .testimonial-card img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+      }
+
+      .testimonial-quote {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 15px;
+        line-height: 1.5;
+      }
+
+      .testimonial-author {
+        font-weight: bold;
+        color: #333;
+      }
+
+      @media (max-width: 768px) {
+        .testimonial-section h2 {
+          font-size: 1.5rem;
+        }
+        .testimonial-card {
+          margin: 10px auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="testimonial-section">
+      <h2>Testimonial</h2>
+      <div class="testimonials-container">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
+            alt="User Photo"
+          />
+          <p class="testimonial-quote">
+            “I had a fantastic experience! The webinar was well-organized and
+            very informative. I highly recommend it.”
+          </p>
+          <p class="testimonial-author">— John Doe</p>
+        </div>
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
+            alt="User Photo"
+          />
+          <p class="testimonial-quote">
+            “This session answered all my questions. I feel more confident now
+            about taking the next steps in my health journey.”
+          </p>
+          <p class="testimonial-author">— Jane Smith</p>
+        </div>
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
+            alt="User Photo"
+          />
+          <p class="testimonial-quote">
+            “The speakers were incredibly knowledgeable and friendly. Thank you
+            for such a great webinar!”
+          </p>
+          <p class="testimonial-author">— Alex Lee</p>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

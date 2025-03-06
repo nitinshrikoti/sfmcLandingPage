@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Ensures proper scaling on mobile devices -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Select Field Example</title>
+    <style>
+      /* Basic Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f8f8;
+        padding: 20px;
+      }
+
+      /* Container for label + select */
+      .smartcapture-controls {
+        max-width: 500px; /* Constrain width on larger screens */
+        width: 100%;      /* Fill the container on smaller devices */
+        margin: 0 auto 20px; /* Center and add spacing at the bottom */
+        display: flex;
+        flex-direction: column;
+      }
+
+      .sc-formfield-label label {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+      }
+
+      /* Select field styling */
+      .sc-formfield-input select {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        color: #333;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        transition: border-color 0.3s;
+        background-color: #fff;
+      }
+
+      .sc-formfield-input select:focus {
+        outline: none;
+        border-color: #254a28; /* Dark green on focus */
+      }
+
+      .sc-formfield-input select:hover {
+        border-color: #888;
+      }
+
+      /* Responsive font sizes for very small screens */
+      @media (max-width: 480px) {
+        .sc-formfield-label label {
+          font-size: 0.9rem;
+        }
+        .sc-formfield-input select {
+          font-size: 0.95rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="smartcapture-controls">
+      <div class="sc-formfield-label">
+        <label for="LastName">LastName</label>
+      </div>
+      <div class="sc-formfield-input">
+        <select name="LastName" id="LastName" data-field-type="Text">
+          <option value="" id="Select" selected="selected">Select</option>
+          <option value="" id=""></option>
+        </select>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: #fff;
+        padding: 10px;
+      }
+
+      .navbar-left img {
+        height: 50px;
+        width: auto;
+      }
+
+      .navbar-register-btn {
+        background-color: #254a28;
+        color: #ffed00;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          padding: 5px;
+        }
+        .navbar-register-btn {
+          padding: 10px 25px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="navbar-left">
+        <img
+          src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/cbf301aa-0b2b-4801-acad-d2ad99883567.png"
+          alt="Logo"
+        />
+      </div>
+      <div class="navbar-right">
+        <button
+          onclick="window.open('https://cloud.marketing.jeenasikho.com/Register', '_blank')"
+          class="navbar-register-btn"
+        >
+          Register Now
+        </button>
+      </div>
+    </header>
+  </body>
+</html>

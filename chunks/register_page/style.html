@@ -1,0 +1,99 @@
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+  }
+
+  /* form start */
+  .smartcapture-controls {
+    max-width: 500px;
+    width: 100%;
+    margin: 10px auto 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sc-formfield-input input[type="text"] {
+    width: 50%;
+    margin-top: 5px;
+    padding: 10px;
+    font-size: 1rem;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+  }
+
+  .sc-formfield-input input[type="text"]:focus {
+    outline: none;
+    border-color: #254a28;
+  }
+
+  .sc-formfield-input input[type="text"]:hover {
+    border-color: #888;
+  }
+
+  .sc-formfield-input input[type="email"] {
+    width: 50%;
+    margin-top: 5px;
+    padding: 10px;
+    font-size: 1rem;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+  }
+
+  .sc-formfield-input input[type="email"]:focus {
+    outline: none;
+    border-color: #254a28;
+  }
+
+  .sc-formfield-input input[type="email"]:hover {
+    border-color: #888;
+  }
+
+  .sc-formfield-input select {
+    width: 50%;
+    margin-top: 5px;
+    padding: 10px;
+    font-size: 1rem;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s;
+    background-color: #fff;
+  }
+
+  .sc-formfield-input select:focus {
+    outline: none;
+    border-color: #254a28; /* Dark green on focus */
+  }
+
+  .sc-formfield-input select:hover {
+    border-color: #888;
+  }
+
+  /* form end */
+
+  @media (max-width: 767px) {
+    .sc-formfield-label label {
+      font-size: 0.9rem;
+    }
+    .sc-formfield-input input[type="text"] {
+      font-size: 0.95rem;
+    }
+    .sc-formfield-input input[type="email"] {
+      font-size: 0.95rem;
+    }
+    .sc-formfield-input select {
+      font-size: 0.95rem;
+    }
+  }
+</style>

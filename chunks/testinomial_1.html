@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+        <link rel="stylesheet" href="./cssgridpractice.css">
+        <link rel="stylesheet" href="./cssgridpracticeresponsive.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        <style>
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+html{
+    font-size: 62.5%;
+}
+section.testimonials{
+    background-color: #ECF2F7;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    right: 0;
+    left: 0;
+}
+section.heading{
+    font-size: 1.6rem;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    margin: 5rem 3rem 3rem 3rem;
+    font-size: 3rem;
+    font-weight: 700;
+}
+section.container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 1fr;
+    width: 95%;
+    gap: 1.5rem;
+    max-width: 1280px;
+    margin: auto;
+    grid-template-areas:
+    "item1 item1 item2 item3"
+    "item4 item5 item5 item3";
+}
+
+.item{
+    padding: 1.5rem;
+    display: grid;
+    grid-template-areas:
+    "img name"
+    "title title"
+    "description description";
+    grid-template-columns: 50px 1fr;
+    row-gap: 1.5rem;
+    align-content: start;
+}
+
+
+img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    grid-area: img;
+    margin-bottom: 1rem;
+}
+
+.name{
+    font-size: 1.6rem;
+    font-weight: 600;
+    grid-area: name;
+    display: grid;
+    align-content: center;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+}
+.title{
+    font-weight: 600;
+    font-size: 1.8rem;
+    grid-area: title;
+    margin-bottom: 1rem;
+}
+.description{
+    font-size: 1.6rem;
+    word-spacing: 0.5rem;
+    grid-area: description;
+    margin-bottom: 1rem;
+}
+.description::after{
+    content: '"';
+}
+.description::before{
+    content: '"';
+}
+.item1{
+    background-color: #733FC7;
+    background-image: url(https://i.ibb.co/wNRBz1D/quotation.png);
+    background-position: top 10% right 5%;
+    background-size: 50px;
+    background-repeat: no-repeat;
+    color: #ffffff;
+    grid-area: item1;
+}
+.item2{
+    background-color: #49556C;
+    color: #ffffff;
+    grid-area: item2;
+}
+.item3{
+    background-color: #FEFEFE;
+    color: #000000;
+    grid-area: item3;
+}
+.item4{
+    background-color: #FEFEFE;
+    color: #000000;
+    grid-area: item4;
+}
+.item5{
+    background-color: #181F2C;
+    color: white;
+    grid-area: item5;
+}
+
+
+
+@media (max-width: 768px){
+    section.container{
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5, 1fr);
+        grid-template-areas: 
+        "item1"
+        "item2"
+        "item3"
+        "item4"
+        "item5";
+        gap: 1.5rem;
+    }
+}
+        </style>
+      </head>
+    <body>
+        <section class="testimonials">
+            <section class="heading">Testimonials &#128203</section>
+            <section class="container">
+                <div class="item item1">
+                    <img src="https://i.ibb.co/SsyV7sf/testimonials-1.png" alt="Picture of Owner">
+                    <div class="name">Kelly Sikkema</div>
+                    <div class="title">Lorem ipsum dolor sit amet consectetur adipisicing</div>
+                    <div class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Non voluptate numquam doloribus placeat quia natus dolor! Expedita sint nobis vero eligendi, nemo consectetur, voluptas voluptatibus dignissimos in ullam inventore distinctio maxime dolorem omnis. Unde, odit commodi itaque vero accusantium amet quisquam dignissimos maxime, placeat culpa modi iusto totam cum magnam. </div>
+                </div>
+                <div class="item item2">
+                    <img src="https://i.ibb.co/98DW2mz/testimonials-2.png" alt="Picture of Owner">
+                    <div class="name">Ethan Hoover</div>
+                    <div class="title">Lorem ipsum dolor sit</div>
+                    <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ratione aliquam voluptate alias error consequuntur fugiat suscipit perspiciatis velit dolore.</div>
+                </div>
+                <div class="item item3">
+                    <img src="https://i.ibb.co/xHsLjSZ/testimonials-3.png" alt="Picture of Owner">
+                    <div class="name">Joseph Pearson</div>
+                    <div class="title">Lorem ipsum dolor sit amet consectetur adipisicing</div>
+                    <div class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tempora unde ducimus ab nisi asperiores quaerat debitis repudiandae officiis vero recusandae deleniti culpa quos deserunt nam quibusdam dicta, ullam nostrum aperiam aliquam dolorem hic, iste alias sit eligendi. Deleniti eos labore nulla dolorum nobis commodi aut officiis! Ipsa veritatis atque quis similique placeat pariatur repellendus assumenda quo a soluta rem accusantium voluptatum laborum excepturi exercitationem ab, eveniet facilis doloribus sunt? Optio!</div>
+                </div>
+                <div class="item item4">
+                    <img src="https://i.ibb.co/fqz3jGL/testimonials-4.png" alt="Picture of Owner">
+                    <div class="name">Daniel Lincoln</div>
+                    <div class="title">Lorem ipsum dolor sit</div>
+                    <div class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium ratione aliquam voluptate alias error consequuntur fugiat suscipit perspiciatis velit dolore.</div>
+                </div>
+                <div class="item item5">
+                    <img src="https://i.ibb.co/LzdgpPg/testimonials-5.png" alt="Picture of Owner">
+                    <div class="name">Mike Austin</div>
+                    <div class="title">Lorem ipsum dolor sit amet consectetur adipisicing.</div>
+                    <div class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, fugiat! Odio blanditiis aspernatur nesciunt quo dolorem asperiores atque, non reiciendis exercitationem velit debitis voluptate, cumque excepturi. Itaque, iure non perspiciatis repellendus necessitatibus vel distinctio corrupti consequuntur doloremque recusandae alias, nulla impedit, tempora nisi dolorum. Suscipit, eveniet? Dolorum, pariatur. Consequuntur, eum.</div> 
+                </div>
+            </section>
+        </section>
+    </body>
+</html>
