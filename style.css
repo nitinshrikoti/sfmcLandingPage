@@ -168,7 +168,7 @@ textarea:not([rows]) {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 20px;
+  margin: 20px 20px 10px;
 }
 
 .hero p {
@@ -181,6 +181,7 @@ textarea:not([rows]) {
 .hero iframe {
   border: 0;
   border-radius: 20px;
+  margin-top: 10px;
 }
 
 /* -------------------- Stats Section -------------------- */
@@ -194,8 +195,8 @@ textarea:not([rows]) {
 }
 
 .stat-box img {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   object-fit: contain;
   border-radius: 10px;
 }
@@ -206,7 +207,7 @@ textarea:not([rows]) {
 .webinar-section {
   display: flex;
   max-width: 1000px;
-  margin: 40px auto;
+  margin: 0px auto;
   gap: 1em;
   overflow: hidden;
   padding: 10px;
@@ -466,12 +467,12 @@ textarea:not([rows]) {
 .brand-card {
   background-color: #fff;
   border-radius: 8px;
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0px 4px rgba(0, 0, 0, 0.2);
 }
 
 .brand-card img {
@@ -577,7 +578,7 @@ textarea:not([rows]) {
   background-color: #fff;
   border-radius: 15px 15px 0 0;
   margin-inline: auto;
-  padding: 10px 40px;
+  padding: 10px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -737,6 +738,13 @@ textarea:not([rows]) {
     }
   }
 
+  .nav-tabs .nav-tab:nth-child(1) {
+    display: none;
+  }
+  .nav-tabs .nav-tab:nth-child(2) {
+    display: none;
+  }
+
   /* ---------- Hero Section ---------- */
 
   .hero {
@@ -748,7 +756,7 @@ textarea:not([rows]) {
 
   .hero iframe {
     width: 100%;
-    height: 270px;
+    height: 220px;
   }
 
   /* ---------- Mid Section ---------- */
@@ -796,9 +804,13 @@ textarea:not([rows]) {
   }
 
   /* ---------- Stats Section ---------- */
+
+  .stats-container {
+    gap: 8px;
+  }
   .stat-box img {
-    width: 150px;
-    height: 150px;
+    width: 140px;
+    height: 140px;
   }
 
   /* ---------- Instructions Section ---------- */
@@ -846,7 +858,7 @@ textarea:not([rows]) {
 
   /* ---------- Faqs Section ---------- */
   .faq-section {
-    margin: 40px auto 120px;
+    margin: 40px auto;
   }
   .faq-section h2 {
     font-size: 1.5rem;
