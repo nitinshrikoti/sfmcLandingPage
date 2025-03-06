@@ -201,7 +201,7 @@ textarea:not([rows]) {
   border-radius: 10px;
 }
 
-/* -------------------- Mid Section -------------------- */
+/* -------------------- Mid-1 Section -------------------- */
 
 /*  Webinar Section (First Snippet) */
 .webinar-section {
@@ -248,6 +248,7 @@ textarea:not([rows]) {
   padding-block: 40px;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  font-family: var(--ff-exo);
 }
 .right-txt-1 {
   font-size: 28px;
@@ -302,6 +303,77 @@ textarea:not([rows]) {
 }
 .timer-register-btn:hover {
   box-shadow: 5px 8px 3px #d1d1d1;
+}
+
+/* -------------------- Mid-2 Section -------------------- */
+.banner-heading-block {
+  max-width: 1000px;
+  margin: 10px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+.banner-heading-block h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  color: #000;
+}
+.banner-heading-block p {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.5;
+}
+
+.banner-webinar-section {
+  display: flex;
+  background: #fff;
+  max-width: 1000px;
+  margin: 10px auto;
+  gap: 1em;
+  overflow: hidden;
+  padding: 10px;
+}
+
+/* banner-Left Column */
+.banner-left {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  /* background-color: #fafafa; */
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.banner-left img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* banner-Right Column */
+.banner-right {
+  width: 50%;
+  padding-block: 30px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.banner-right p {
+  font-size: 20px;
+  color: #000000;
+  line-height: 1.4;
+  margin: 0 20px 10px;
+}
+.banner-right ul {
+  color: #555;
+  width: 80%;
+  list-style: disc;
+  text-align: banner-left; /* banner-left-align the list while overall text is centered */
+  margin: 0 auto;
+  line-height: 1.6;
+}
+.banner-right li {
+  margin-bottom: 8px;
 }
 
 /* -------------------- Instructions Section -------------------- */
@@ -592,8 +664,8 @@ textarea:not([rows]) {
   flex-direction: column;
 }
 .webinar-text {
-  font-size: 1rem;
-  margin-bottom: 5px;
+  font-size: 18px;
+  margin-bottom: 2px;
 }
 .old-price {
   text-decoration: line-through;
@@ -606,9 +678,9 @@ textarea:not([rows]) {
   font-weight: bold;
 }
 .subtext {
-  font-size: 0.9rem;
+  font-size: 16px;
   color: #333;
-  margin-bottom: 5px;
+  margin-bottom: 2px;
 }
 
 /* Footer Timer Container */
@@ -759,7 +831,17 @@ textarea:not([rows]) {
     height: 220px;
   }
 
-  /* ---------- Mid Section ---------- */
+  /* ---------- Stats Section ---------- */
+
+  .stats-container {
+    gap: 8px;
+  }
+  .stat-box img {
+    width: 140px;
+    height: 140px;
+  }
+
+  /* ---------- Mid-1 Section ---------- */
 
   .webinar-section {
     flex-direction: column;
@@ -803,17 +885,18 @@ textarea:not([rows]) {
     font-size: 16px;
   }
 
-  /* ---------- Stats Section ---------- */
-
-  .stats-container {
-    gap: 8px;
+  /* ---------- Mid-2 Section ---------- */
+  .banner-webinar-section {
+    flex-direction: column;
+    align-items: center;
   }
-  .stat-box img {
-    width: 140px;
-    height: 140px;
+  .banner-left,
+  .banner-right {
+    width: 100%;
   }
 
   /* ---------- Instructions Section ---------- */
+
   .join-webinar h2 {
     font-size: 1.4rem;
   }

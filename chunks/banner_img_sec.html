@@ -28,7 +28,7 @@
         line-height: 1.5;
       }
 
-      .webinar-section {
+      .banner-webinar-section {
         display: flex;
         background: #fff;
         max-width: 1000px;
@@ -38,8 +38,8 @@
         padding: 10px;
       }
 
-      /* Left Column */
-      .left {
+      /* banner-Left Column */
+      .banner-left {
         display: flex;
         width: 50%;
         flex-direction: column;
@@ -50,45 +50,45 @@
         border-radius: 10px;
         box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
       }
-      .left img {
+      .banner-left img {
         width: 100%;
         height: auto;
         border-radius: 10px;
       }
 
-      /* Right Column */
-      .right {
+      /* banner-Right Column */
+      .banner-right {
         width: 50%;
         padding-block: 30px;
         border-radius: 10px;
         box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
       }
-      .right p {
+      .banner-right p {
         font-size: 20px;
         color: #000000;
         line-height: 1.4;
         margin: 0 20px 10px;
       }
-      .right ul {
+      .banner-right ul {
         color: #555;
         width: 80%;
         list-style: disc;
-        text-align: left; /* left-align the list while overall text is centered */
+        text-align: banner-left; /* banner-left-align the list while overall text is centered */
         margin: 0 auto;
         line-height: 1.6;
       }
-      .right li {
+      .banner-right li {
         margin-bottom: 8px;
       }
 
       /* Optional: Make columns stack on smaller screens */
       @media (max-width: 768px) {
-        .webinar-section {
+        .banner-webinar-section {
           flex-direction: column;
           align-items: center;
         }
-        .left,
-        .right {
+        .banner-left,
+        .banner-right {
           width: 100%;
         }
       }
@@ -105,17 +105,17 @@
         बात कर करें।
       </p>
     </div>
-    <section class="webinar-section">
-      <!-- Left side: Image -->
-      <div class="left">
+    <section class="banner-webinar-section">
+      <!-- banner-Left side: Image -->
+      <div class="banner-left">
         <img
           src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/40dbaf11-3753-4fe5-872f-d7cc13c487fb.png"
           alt="Webinar Image"
         />
       </div>
 
-      <!-- Right side: Text -->
-      <div class="right">
+      <!-- banner-Right side: Text -->
+      <div class="banner-right">
         <p>ये वेबिनार किसके लिए है ?</p>
         <ul>
           <li>
