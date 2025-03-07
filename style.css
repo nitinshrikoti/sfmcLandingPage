@@ -308,7 +308,7 @@ textarea:not([rows]) {
 /* -------------------- Mid-2 Section -------------------- */
 .banner-heading-block {
   max-width: 1000px;
-  margin: 10px auto;
+  margin: 40px auto 10px;
   padding: 0 20px;
   text-align: center;
 }
@@ -330,7 +330,7 @@ textarea:not([rows]) {
   margin: 10px auto;
   gap: 1em;
   overflow: hidden;
-  padding: 10px;
+  padding: 10px 2px;
 }
 
 /* banner-Left Column */
@@ -383,7 +383,8 @@ textarea:not([rows]) {
   margin: 10px auto; /* Center with vertical spacing */
   background-color: #ffffff;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   padding: 30px 20px;
   text-align: center;
 }
@@ -889,6 +890,7 @@ textarea:not([rows]) {
   .banner-webinar-section {
     flex-direction: column;
     align-items: center;
+    margin: 10px;
   }
   .banner-left,
   .banner-right {
@@ -896,6 +898,10 @@ textarea:not([rows]) {
   }
 
   /* ---------- Instructions Section ---------- */
+
+  .join-webinar {
+    margin: 10px;
+  }
 
   .join-webinar h2 {
     font-size: 1.4rem;
