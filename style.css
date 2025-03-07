@@ -386,6 +386,7 @@ textarea:not([rows]) {
   font-size: 20px;
   line-height: 1.4;
   margin: 0 20px 10px;
+  font-weight: bold;
 }
 .banner-right ul {
   width: 80%;
