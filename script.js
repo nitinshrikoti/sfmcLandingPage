@@ -1,3 +1,5 @@
+// -------------------- Timer Script --------------------
+
 // Main Timer Elements
 const mainDays = document.getElementById("mainDays");
 const mainHours = document.getElementById("mainHours");
