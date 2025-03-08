@@ -585,7 +585,7 @@ textarea:not([rows]) {
 .faq-section {
   max-width: 1000px;
   width: 90%;
-  margin: 40px auto;
+  margin: 40px auto 100px;
 }
 
 .faq-section h2 {
@@ -666,11 +666,15 @@ textarea:not([rows]) {
 
 /* -------------------- Footer Section -------------------- */
 
-/* Fixed Footer (Second Snippet) */
-.fixed-footer {
-  position: sticky;
+.footer-container {
+  position: fixed;
   bottom: 0;
   left: 0;
+  width: 100%;
+}
+
+/* Fixed Footer (Second Snippet) */
+.fixed-footer {
   width: 90%;
   background-color: #fff;
   border-radius: 15px 15px 0 0;
@@ -972,9 +976,7 @@ textarea:not([rows]) {
   }
 
   /* ---------- Faqs Section ---------- */
-  .faq-section {
-    margin: 40px auto;
-  }
+  
   .faq-section h2 {
     font-size: 28px;
   }
