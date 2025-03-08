@@ -911,6 +911,11 @@ textarea:not([rows]) {
     align-items: center;
     margin: 10px;
   }
+
+  .banner-heading-block p {
+    font-size: 14px;
+  }
+
   .banner-left,
   .banner-right {
     width: 100%;
@@ -940,7 +945,6 @@ textarea:not([rows]) {
   .step-text {
     font-size: 0.9rem;
   }
-
 
   /* ---------- Testinomial Section ---------- */
   .testimonial-section h2 {
