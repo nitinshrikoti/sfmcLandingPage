@@ -104,6 +104,11 @@ textarea:not([rows]) {
   scroll-margin-block: 5ex;
 }
 
+/* -------------------- mc-default -------------------- */
+.layout-canvas-g > .section {
+    margin: 0px;
+}
+
 /* -------------------- Utilities -------------------- */
 .bg-green {
   background-color: var(--bg-green);
