@@ -1,0 +1,237 @@
+%%[
+ RequestParameter("submitted") == "true" THEN
+
+  InsertDE(
+    "WebinarFormData",               
+    "FirstName",       RequestParameter("FirstName"),
+    "LastName",        RequestParameter("LastName"),
+    "Phone",           RequestParameter("Phone"),
+    "Email",           RequestParameter("Email"),
+    "Country",         RequestParameter("Country"),
+    "OldSlotD",        RequestParameter("OldSlotD"),
+    "OldSlotT",        RequestParameter("OldSlotT"),
+    "NewSlotD",        RequestParameter("NewSlotD"),
+    "NewSlotT",        RequestParameter("NewSlotT"),
+    "OfferingTitle",   RequestParameter("OfferingTitle"),
+    "OfferingName",    RequestParameter("OfferingName"),
+    "WebinarLink",     RequestParameter("WebinarLink"),
+    "WhatsAppLink",    RequestParameter("WhatsAppLink")
+  )
+
+ENDIF
+]%%
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        padding: 20px;
+      }
+
+      /* Button to open the modal */
+      .open-modal-btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+      .open-modal-btn:hover {
+        background-color: #0056b3;
+      }
+
+      /* The Modal (background) */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+      }
+
+      /* Modal Content Box */
+      .modal-content {
+        background-color: #fff;
+        margin: 10% auto; /* Centered */
+        max-width: 400px; /* Adjust as needed */
+        padding: 20px;
+        border-radius: 8px;
+        position: relative;
+      }
+
+      /* Close Button (X) */
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .close:hover,
+      .close:focus {
+        color: #000;
+      }
+
+      /* Form inside the modal */
+      .form-container {
+        margin-top: 10px;
+      }
+      .form-container h2 {
+        margin-bottom: 15px;
+        font-size: 32px;
+      }
+      .form-container label {
+        font-weight: bold;
+        display: block;
+        margin: 10px 0 5px;
+      }
+      .form-container input[type="text"],
+      .form-container input[type="email"],
+      .form-container select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .form-container button {
+        background: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 60px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1em;
+        width: 100%;
+      }
+      .form-container button:hover {
+        background: #0056b3;
+      }
+      .form-submit-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* Responsive for smaller screens */
+      @media (max-width: 600px) {
+        .modal-content {
+          margin: 20% auto;
+          width: 90%;
+          max-width: 90%;
+        }
+        .form-container h2 {
+          font-size: 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Success Message If Inserted -->
+    %%[ 
+      IF RequestParameter("submitted") == "true" THEN
+    ]%%
+      <p style="color: green; text-align: center;">
+        Thank you! Your information has been submitted.
+      </p>
+    %%[ ENDIF ]%%
+
+    <!-- Button to open the modal -->
+    <button class="open-modal-btn" id="openModalBtn">Register</button>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeModalBtn">&times;</span>
+
+        <div class="form-container">
+          <h2>Registration Form</h2>
+          
+            <input type="hidden" name="submitted" value="true" />
+            <input type="hidden" name="OldSlotD" value="" />
+            <input type="hidden" name="OldSlotT" value="" />
+            <input type="hidden" name="NewSlotD" value="7 March 2025" />
+            <input type="hidden" name="NewSlotT" value="11:00 AM" />
+            <input type="hidden" name="OfferingTitle" value="My Offering Title" />
+            <input type="hidden" name="OfferingName" value="My Offering Name" />
+            <input type="hidden" name="WebinarLink" value="https://example.com/webinar" />
+            <input type="hidden" name="WhatsAppLink" value="https://wa.me/1234567890" />
+
+            <!-- Visible fields for user -->
+            <label for="FirstName">First Name</label>
+            <input type="text" id="FirstName" name="FirstName" required />
+
+            <label for="LastName">Last Name</label>
+            <input type="text" id="LastName" name="LastName" required />
+
+            <label for="Phone">Phone</label>
+            <input type="text" id="Phone" name="Phone" required />
+
+            <label for="Email">Email</label>
+            <input type="email" id="Email" name="Email" required />
+
+            <label for="Country">Country</label>
+            <select id="Country" name="Country" required>
+              <option value="">-- Select a Country --</option>
+              <option value="India">India</option>
+              <option value="United States">United States</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Canada">Canada</option>
+              <option value="Australia">Australia</option>
+              <option value="Germany">Germany</option>
+              <option value="France">France</option>
+              <option value="Japan">Japan</option>
+              <option value="Brazil">Brazil</option>
+              <option value="Mexico">Mexico</option>
+            </select>
+
+            <div class="form-submit-btn">
+              <button type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Modal references
+      const modal = document.getElementById("myModal");
+      const openModalBtn = document.getElementById("openModalBtn");
+      const closeModalBtn = document.getElementById("closeModalBtn");
+
+      // Show modal on "Register" button click
+      openModalBtn.addEventListener("click", function() {
+        modal.style.display = "block";
+      });
+
+      // Close modal on "x" click
+      closeModalBtn.addEventListener("click", function() {
+        modal.style.display = "none";
+      });
+
+      // Close modal if user clicks outside the modal content
+      window.addEventListener("click", function(event) {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>
