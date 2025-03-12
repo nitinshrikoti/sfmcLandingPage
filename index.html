@@ -1,3 +1,39 @@
+%%[
+IF RequestParameter("submitted") == "true" THEN
+
+  InsertDE(
+    "WebinarFormData",         
+    "FirstName",  RequestParameter("FirstName"),
+    "LastName",   RequestParameter("LastName"),
+    "Phone",      RequestParameter("Phone"),
+    "Email",      RequestParameter("Email"),
+    "Country",    RequestParameter("Country"),
+    "OldSlotD",   RequestParameter("OldSlotD"),
+    "OldSlotT",   RequestParameter("OldSlotT"),
+    "NewSlotD",   RequestParameter("NewSlotD"),
+    "NewSlotT",   RequestParameter("NewSlotT"),
+    "OfferingTitle",   RequestParameter("OfferingTitle"),
+    "OfferingName",    RequestParameter("OfferingName"),
+    "WebinarLink",     RequestParameter("WebinarLink"),
+    "WhatsAppLink",    RequestParameter("WhatsAppLink")
+  )
+
+ENDIF
+]%%
+
+<!-- We set a JS variable (isSubmitted) based on whether the form was posted -->
+%%[ 
+  IF RequestParameter("submitted") == "true" THEN
+]%%
+<script>
+  var isSubmitted = true;
+</script>
+%%[ ELSE ]%%
+<script>
+  var isSubmitted = false;
+</script>
+%%[ ENDIF ]%%
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -42,10 +78,7 @@
               <li class="nav-tab"><a href="#faqs">Faqs</a></li>
               <li class="nav-tab"><a href="#contactUs">Contact Us</a></li>
               <li class="nav-tab">
-                <button
-                  onclick="window.open('https://cloud.marketing.jeenasikho.com/Register', '_blank')"
-                  class="navbar-register-btn"
-                >
+                <button class="navbar-register-btn" onclick="newopenmodal()">
                   Register Now
                 </button>
               </li>
@@ -139,10 +172,7 @@
           </div>
         </div>
 
-        <button
-          onclick="window.open('https://cloud.marketing.jeenasikho.com/Register', '_blank')"
-          class="timer-register-btn"
-        >
+        <button class="timer-register-btn" onclick="newopenmodal()">
           Register Now
         </button>
 
@@ -236,10 +266,7 @@
           </div>
         </li>
       </ol>
-      <button
-        onclick="window.open('https://cloud.marketing.jeenasikho.com/Register', '_blank')"
-        class="step-register-btn"
-      >
+      <button class="step-register-btn" onclick="newopenmodal()">
         Register Now
       </button>
     </section>
@@ -409,14 +436,85 @@
         </div>
         <!-- Right side: Register button -->
         <div class="footer-right">
-          <button
-            onclick="window.open('https://cloud.marketing.jeenasikho.com/Register', '_blank')"
-            class="footer-register-btn"
-          >
+          <button class="footer-register-btn" onclick="newopenmodal()">
             Register Now
           </button>
         </div>
       </div>
     </footer>
+
+    <!-- -------------------- Fill Form -------------------- -->
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeModalBtn">&times;</span>
+
+        <!-- Success Container -->
+        <div class="success-container" id="successContainer">
+          <p>Thank you! Your information has been submitted.</p>
+        </div>
+
+        <!-- Registration Form Container -->
+        <div class="form-container" id="formContainer">
+          <h2>Fill Your Details!</h2>
+          <form action="%%=RequestParameter('PAGEURL')=%%" method="post">
+            <input type="hidden" name="submitted" value="true" />
+
+            <!-- Hidden fields (empty or default) -->
+            <input type="hidden" name="OldSlotD" value="" />
+            <input type="hidden" name="OldSlotT" value="" />
+            <input type="hidden" name="NewSlotD" value="5 March 2025" />
+            <input type="hidden" name="NewSlotT" value="11:00 AM" />
+            <input type="hidden" name="OfferingTitle" value="Cancer" />
+            <input
+              type="hidden"
+              name="OfferingName"
+              value="CancerWebinarOn17Mar"
+            />
+            <input
+              type="hidden"
+              name="WebinarLink"
+              value="https://us06web.zoom.us/j/87291277350"
+            />
+            <input
+              type="hidden"
+              name="WhatsAppLink"
+              value="https://chat.whatsapp.com/KMVPle9sfypA5QDRIJvCtb"
+            />
+
+            <!-- Visible fields -->
+            <label for="FirstName">First Name</label>
+            <input type="text" id="FirstName" name="FirstName" required />
+
+            <label for="LastName">Last Name</label>
+            <input type="text" id="LastName" name="LastName" required />
+
+            <label for="Phone">Phone</label>
+            <input type="text" id="Phone" name="Phone" required />
+
+            <label for="Email">Email</label>
+            <input type="email" id="Email" name="Email" required />
+
+            <label for="Country">Country</label>
+            <select id="Country" name="Country" required>
+              <option value="">-- Select a Country --</option>
+              <option value="India">India</option>
+              <option value="United States">United States</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Canada">Canada</option>
+              <option value="Australia">Australia</option>
+              <option value="Germany">Germany</option>
+              <option value="France">France</option>
+              <option value="Japan">Japan</option>
+              <option value="Brazil">Brazil</option>
+              <option value="Mexico">Mexico</option>
+            </select>
+
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
