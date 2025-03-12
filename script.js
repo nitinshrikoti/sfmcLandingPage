@@ -57,3 +57,39 @@ function updateTimer(d, h, m, s) {
 // Run timer every second
 setInterval(timer, 1000);
 timer(); // Initialize immediately
+
+// -------------------- Timer Script --------------------
+
+var modal = document.getElementById("myModal");
+var openModalBtn = document.getElementsByClassName("openModalBtn");
+var closeModalBtn = document.getElementById("closeModalBtn");
+var formContainer = document.getElementById("formContainer");
+var successContainer = document.getElementById("successContainer");
+
+// On page load, check if isSubmitted was set to true by AMPscript
+document.addEventListener("DOMContentLoaded", function () {
+  if (typeof isSubmitted !== "undefined" && isSubmitted === true) {
+    // Show the modal with success message
+    modal.style.display = "block";
+    successContainer.style.display = "block";
+    formContainer.style.display = "none";
+  }
+});
+
+function newopenmodal(){
+modal.style.display = "block";
+successContainer.style.display = "none";
+formContainer.style.display = "block";
+}
+
+// Close modal on "x" click
+closeModalBtn.addEventListener("click", function () {
+  modal.style.display = "none";
+});
+
+// Close modal if user clicks outside modal content
+window.addEventListener("click", function (event) {
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+});
