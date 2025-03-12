@@ -58,7 +58,7 @@ function updateTimer(d, h, m, s) {
 setInterval(timer, 1000);
 timer(); // Initialize immediately
 
-// -------------------- Timer Script --------------------
+// -------------------- Fill Form Script --------------------
 
 var modal = document.getElementById("myModal");
 var openModalBtn = document.getElementsByClassName("openModalBtn");
@@ -77,9 +77,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function newopenmodal(){
-modal.style.display = "block";
-successContainer.style.display = "none";
-formContainer.style.display = "block";
+  modal.style.display = "block";
+  successContainer.style.display = "none";
+  formContainer.style.display = "block";
 }
 
 // Close modal on "x" click
@@ -92,4 +92,19 @@ window.addEventListener("click", function (event) {
   if (event.target === modal) {
     modal.style.display = "none";
   }
+});
+
+
+// -------------------- Close Nav container Script --------------------
+document.addEventListener("DOMContentLoaded", function () {
+  const menuToggle = document.getElementById("menuToggle");
+  // Select all links or buttons inside .nav-tab elements
+  const navTabs = document.querySelectorAll(".nav-tab a, .nav-tab button");
+
+  navTabs.forEach((tab) => {
+    tab.addEventListener("click", function () {
+      // Uncheck the checkbox to close the nav-container
+      menuToggle.checked = false;
+    });
+  });
 });

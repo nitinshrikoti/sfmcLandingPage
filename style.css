@@ -834,14 +834,14 @@ textarea:not([rows]) {
   }
 
   .nav-container {
-    position: fixed;
+    position: absolute;
     display: none;
     overflow-y: auto;
     z-index: -1;
     top: 0;
     right: 0;
     width: 280px;
-    height: 100%;
+    border-radius: 10px 0 0 10px;
     background: #fff;
     box-shadow: -1px 0 2px rgba(0, 0, 0, 0.2);
   }
@@ -879,7 +879,7 @@ textarea:not([rows]) {
   .menu-btn .menu {
     display: block;
     width: 100%;
-    height: 4px;
+    height: 5px;
     border-radius: 2px;
     background: #111;
   }
@@ -922,13 +922,6 @@ textarea:not([rows]) {
     to {
       transform: translateX(0);
     }
-  }
-
-  .nav-tabs .nav-tab:nth-child(1) {
-    display: none;
-  }
-  .nav-tabs .nav-tab:nth-child(2) {
-    display: none;
   }
 
   /* ---------- Hero Section ---------- */

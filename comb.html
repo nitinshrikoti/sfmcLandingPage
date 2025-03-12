@@ -877,14 +877,15 @@ RequestParameter("WhatsAppLink") ) ENDIF ]%%
         }
 
         .nav-container {
-          position: fixed;
+          position: absolute;
           display: none;
           overflow-y: auto;
           z-index: -1;
           top: 0;
           right: 0;
           width: 280px;
-          height: 100%;
+          /* height: 100%; */
+          border-radius: 10px 0 0 10px;
           background: #fff;
           box-shadow: -1px 0 2px rgba(0, 0, 0, 0.2);
         }
@@ -922,7 +923,7 @@ RequestParameter("WhatsAppLink") ) ENDIF ]%%
         .menu-btn .menu {
           display: block;
           width: 100%;
-          height: 4px;
+          height: 5px;
           border-radius: 2px;
           background: #111;
         }
@@ -965,13 +966,6 @@ RequestParameter("WhatsAppLink") ) ENDIF ]%%
           to {
             transform: translateX(0);
           }
-        }
-
-        .nav-tabs .nav-tab:nth-child(1) {
-          display: none;
-        }
-        .nav-tabs .nav-tab:nth-child(2) {
-          display: none;
         }
 
         /* ---------- Hero Section ---------- */
@@ -1657,7 +1651,7 @@ RequestParameter("WhatsAppLink") ) ENDIF ]%%
       setInterval(timer, 1000);
       timer(); // Initialize immediately
 
-      // -------------------- Timer Script --------------------
+      // -------------------- Fill Form Script --------------------
 
       var modal = document.getElementById("myModal");
       var openModalBtn = document.getElementsByClassName("openModalBtn");
@@ -1691,6 +1685,22 @@ RequestParameter("WhatsAppLink") ) ENDIF ]%%
         if (event.target === modal) {
           modal.style.display = "none";
         }
+      });
+
+      // -------------------- Close Nav container Script --------------------
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuToggle = document.getElementById("menuToggle");
+        // Select all links or buttons inside .nav-tab elements
+        const navTabs = document.querySelectorAll(
+          ".nav-tab a, .nav-tab button"
+        );
+
+        navTabs.forEach((tab) => {
+          tab.addEventListener("click", function () {
+            // Uncheck the checkbox to close the nav-container
+            menuToggle.checked = false;
+          });
+        });
       });
     </script>
   </body>
