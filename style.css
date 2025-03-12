@@ -106,7 +106,7 @@ textarea:not([rows]) {
 
 /* -------------------- mc-default -------------------- */
 .layout-canvas-g > .section {
-    margin: 0px;
+  margin: 0px;
 }
 
 /* -------------------- Utilities -------------------- */
@@ -137,7 +137,7 @@ textarea:not([rows]) {
   justify-content: space-between;
   margin: auto;
   width: 90%;
-  height: 80px;
+  height: 70px;
   border-radius: 0 0 15px 15px;
   padding: 0 25px;
   z-index: 2;
@@ -204,7 +204,7 @@ textarea:not([rows]) {
 }
 
 .hero p {
-  font-size: 48px;
+  font-size: 42px;
   text-align: center;
   font-family: var(--ff-timesRoman);
 }
@@ -333,7 +333,7 @@ textarea:not([rows]) {
   margin-bottom: 20px;
 }
 .timer-register-btn:hover {
-  box-shadow: 5px 8px 3px #d1d1d1;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
 /* -------------------- Mid-2 Section -------------------- */
@@ -679,7 +679,7 @@ textarea:not([rows]) {
   background-color: #fff;
   border-radius: 15px 15px 0 0;
   margin-inline: auto;
-  padding: 10px 30px;
+  padding: 5px 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -738,6 +738,91 @@ textarea:not([rows]) {
 }
 .footer-right .footer-register-btn:hover {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* -------------------- Fill Form  -------------------- */
+
+/* The Modal (background overlay) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  font-family: var(--ff-exo);
+}
+
+/* Modal Content Box */
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  max-width: 400px;
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+}
+
+/* Close Button (X) */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.close:hover,
+.close:focus {
+  color: #000;
+}
+
+/* Two containers in the modal: success vs. form */
+.success-container,
+.form-container {
+  display: none; /* We'll show/hide these via JS */
+}
+
+/* Form and success message styling */
+.success-container p {
+  text-align: center;
+  color: green;
+  font-size: 1.1rem;
+  margin-top: 20px;
+}
+.form-container h2 {
+  margin-bottom: 15px;
+  font-size: 28px;
+  text-align: center;
+}
+.form-container label {
+  font-size: 16px;
+  display: block;
+  margin: 10px 0 5px;
+}
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.form-container button {
+  background: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  width: 100%;
+}
+.form-container button:hover {
+  background: #0056b3;
 }
 
 /* -------------------- Responsive Code -------------------- */
@@ -976,7 +1061,7 @@ textarea:not([rows]) {
   }
 
   /* ---------- Faqs Section ---------- */
-  
+
   .faq-section h2 {
     font-size: 28px;
   }
@@ -995,5 +1080,12 @@ textarea:not([rows]) {
   .footer-right .footer-register-btn {
     padding: 15px 20px;
     font-size: 14px;
+  }
+
+  /* ---------- Fill Form ---------- */
+  .modal-content {
+    margin: 20% auto;
+    width: 90%;
+    max-width: 90%;
   }
 }
