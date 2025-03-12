@@ -684,7 +684,7 @@ textarea:not([rows]) {
   align-items: center;
   justify-content: space-between;
   box-shadow: 0 0px 4px rgba(0, 0, 0, 0.2);
-  z-index: 9999;
+  z-index: 8888;
 }
 
 /* Left Section: Price & Timer */
@@ -748,9 +748,10 @@ textarea:not([rows]) {
   position: fixed;
   z-index: 9999;
   left: 0;
-  top: -30px;
+  top: 0;
   width: 100%;
-  overflow: auto;
+  height: 100%;
+  overflow: hidden;
   background-color: rgba(0, 0, 0, 0.5);
   font-family: var(--ff-exo);
 }
