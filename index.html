@@ -2,7 +2,7 @@
 IF RequestParameter("submitted") == "true" THEN
 
   Set @uniqueID = Concat(
-    Format(SystemDateToLocalDate(Now()), "yyyyMMdd"),
+    Format(SystemDateToLocalDate(Now()), "yyyyMMddHHmmss"),
     "_",
     RequestParameter("Phone")
   )
