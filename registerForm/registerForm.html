@@ -1,6 +1,7 @@
 %%[
+/* ========== AMPscript for Registration Form ========== */
 IF RequestParameter("submitted") == "true" THEN
-
+  /* Insert user data into "WebinarFormData" (no primary key) */
   InsertDE(
     "WebinarFormData",         
     "FirstName",  RequestParameter("FirstName"),
@@ -17,13 +18,10 @@ IF RequestParameter("submitted") == "true" THEN
     "WebinarLink",     RequestParameter("WebinarLink"),
     "WhatsAppLink",    RequestParameter("WhatsAppLink")
   )
-
 ENDIF
-]%%
 
-<!-- We set a JS variable (isSubmitted) based on whether the form was posted -->
-%%[ 
-  IF RequestParameter("submitted") == "true" THEN
+/* Set a JS variable (isSubmitted) if the registration form was posted */
+IF RequestParameter("submitted") == "true" THEN
 ]%%
 <script>
   var isSubmitted = true;
@@ -34,13 +32,38 @@ ENDIF
 </script>
 %%[ ENDIF ]%%
 
+
+%%[
+/* ========== AMPscript for Contact Me Form ========== */
+IF RequestParameter("submittedContact") == "true" THEN
+  /* Insert contact form data into "WebinarFormData" as well (or a different DE if desired) */
+  InsertDE(
+    "WebinarFormData", 
+    "ContactName",    RequestParameter("ContactName"),
+    "ContactEmail",   RequestParameter("ContactEmail"),
+    "ContactMessage", RequestParameter("ContactMessage")
+  )
+ENDIF
+
+/* Set a JS variable (isContactSubmitted) if the contact form was posted */
+IF RequestParameter("submittedContact") == "true" THEN
+]%%
+<script>
+  var isContactSubmitted = true;
+</script>
+%%[ ELSE ]%%
+<script>
+  var isContactSubmitted = false;
+</script>
+%%[ ENDIF ]%%
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <!-- Ensures proper scaling on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pop-up Form with Success in Modal</title>
+    <title>Pop-up Forms with Success in Modals</title>
     <style>
       /* Basic Reset */
       * {
@@ -55,21 +78,29 @@ ENDIF
         padding: 20px;
       }
 
-      /* Button to open the modal */
-      .open-modal-btn {
-        background-color: #007bff;
+      /* Nav tabs or links */
+      .nav-tabs {
+        list-style: none;
+        display: flex;
+        gap: 15px;
+      }
+      .nav-tab {
+        cursor: pointer;
+      }
+      .nav-tab button {
+        background: #007bff;
         color: #fff;
         border: none;
-        padding: 12px 20px;
+        padding: 10px 16px;
         border-radius: 4px;
-        cursor: pointer;
         font-size: 1rem;
+        cursor: pointer;
       }
-      .open-modal-btn:hover {
-        background-color: #0056b3;
+      .nav-tab button:hover {
+        background: #0056b3;
       }
 
-      /* The Modal (background overlay) */
+      /* ========== Shared Modal Styles ========== */
       .modal {
         display: none; /* Hidden by default */
         position: fixed;
@@ -81,8 +112,6 @@ ENDIF
         overflow: auto;
         background-color: rgba(0, 0, 0, 0.5);
       }
-
-      /* Modal Content Box */
       .modal-content {
         background-color: #fff;
         margin: 10% auto;
@@ -91,8 +120,6 @@ ENDIF
         border-radius: 8px;
         position: relative;
       }
-
-      /* Close Button (X) */
       .close {
         color: #aaa;
         float: right;
@@ -104,14 +131,10 @@ ENDIF
       .close:focus {
         color: #000;
       }
-
-      /* Two containers in the modal: success vs. form */
       .success-container,
       .form-container {
         display: none; /* We'll show/hide these via JS */
       }
-
-      /* Form and success message styling */
       .success-container p {
         text-align: center;
         color: green;
@@ -120,7 +143,7 @@ ENDIF
       }
       .form-container h2 {
         margin-bottom: 15px;
-        font-size: 28px;
+        font-size: 1.8rem;
         text-align: center;
       }
       .form-container label {
@@ -130,7 +153,8 @@ ENDIF
       }
       .form-container input[type="text"],
       .form-container input[type="email"],
-      .form-container select {
+      .form-container select,
+      .form-container textarea {
         width: 100%;
         padding: 8px;
         margin-bottom: 15px;
@@ -150,8 +174,6 @@ ENDIF
       .form-container button:hover {
         background: #0056b3;
       }
-
-      /* Responsive for smaller screens */
       @media (max-width: 600px) {
         .modal-content {
           margin: 20% auto;
@@ -162,21 +184,28 @@ ENDIF
     </style>
   </head>
   <body>
-    <!-- Button to open the modal -->
-    <button class="open-modal-btn" id="openModalBtn">Register</button>
+    <!-- Example NavBar with two items: "Register" and "Contact Me" -->
+    <ul class="nav-tabs">
+      <li class="nav-tab">
+        <button onclick="openRegisterModal()">Register</button>
+      </li>
+      <li class="nav-tab">
+        <button onclick="openContactModal()">Contact Me</button>
+      </li>
+    </ul>
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
+    <!-- ================== REGISTER MODAL ================== -->
+    <div id="registerModal" class="modal">
       <div class="modal-content">
-        <span class="close" id="closeModalBtn">&times;</span>
-
-        <!-- Success Container -->
-        <div class="success-container" id="successContainer">
+        <span class="close" id="closeRegisterModalBtn">&times;</span>
+        
+        <!-- Register Success -->
+        <div class="success-container" id="registerSuccessContainer">
           <p>Thank you! Your information has been submitted.</p>
         </div>
 
-        <!-- Registration Form Container -->
-        <div class="form-container" id="formContainer">
+        <!-- Register Form -->
+        <div class="form-container" id="registerFormContainer">
           <h2>Fill Your Details!</h2>
           <form action="%%=RequestParameter('PAGEURL')=%%" method="post">
             <input type="hidden" name="submitted" value="true" />
@@ -225,42 +254,106 @@ ENDIF
       </div>
     </div>
 
-    <script>
-      // We read the isSubmitted variable from AMPscript
-      // (already defined in the <script> blocks above)
-      // but in some browsers, it might need to be global:
-      var modal = document.getElementById("myModal");
-      var openModalBtn = document.getElementById("openModalBtn");
-      var closeModalBtn = document.getElementById("closeModalBtn");
-      var formContainer = document.getElementById("formContainer");
-      var successContainer = document.getElementById("successContainer");
+    <!-- ================== CONTACT MODAL ================== -->
+    <div id="contactModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeContactModalBtn">&times;</span>
 
-      // On page load, check if isSubmitted was set to true by AMPscript
+        <!-- Contact Success -->
+        <div class="success-container" id="contactSuccessContainer">
+          <p>Thank you! We will get in touch soon.</p>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="form-container" id="contactFormContainer">
+          <h2>Contact Me</h2>
+          <form action="%%=RequestParameter('PAGEURL')=%%" method="post">
+            <input type="hidden" name="submittedContact" value="true" />
+
+            <label for="ContactName">Name</label>
+            <input type="text" id="ContactName" name="ContactName" required />
+
+            <label for="ContactEmail">Email</label>
+            <input type="email" id="ContactEmail" name="ContactEmail" required />
+
+            <label for="ContactMessage">Message</label>
+            <textarea id="ContactMessage" name="ContactMessage" rows="4" required></textarea>
+
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // ====== Variables for Register Modal ======
+      const registerModal = document.getElementById("registerModal");
+      const closeRegisterModalBtn = document.getElementById("closeRegisterModalBtn");
+      const registerSuccessContainer = document.getElementById("registerSuccessContainer");
+      const registerFormContainer = document.getElementById("registerFormContainer");
+
+      // ====== Variables for Contact Modal ======
+      const contactModal = document.getElementById("contactModal");
+      const closeContactModalBtn = document.getElementById("closeContactModalBtn");
+      const contactSuccessContainer = document.getElementById("contactSuccessContainer");
+      const contactFormContainer = document.getElementById("contactFormContainer");
+
+      // ========== On page load, check if isSubmitted or isContactSubmitted were set to true ==========
       document.addEventListener("DOMContentLoaded", function() {
+        // If registration form was submitted
         if (typeof isSubmitted !== 'undefined' && isSubmitted === true) {
-          // Show the modal with success message
-          modal.style.display = "block";
-          successContainer.style.display = "block";
-          formContainer.style.display = "none";
+          // Show the register modal with success message
+          registerModal.style.display = "block";
+          registerSuccessContainer.style.display = "block";
+          registerFormContainer.style.display = "none";
+        }
+
+        // If contact form was submitted
+        if (typeof isContactSubmitted !== 'undefined' && isContactSubmitted === true) {
+          // Show the contact modal with success message
+          contactModal.style.display = "block";
+          contactSuccessContainer.style.display = "block";
+          contactFormContainer.style.display = "none";
         }
       });
 
-      // When user clicks "Register", open the modal with the form
-      openModalBtn.addEventListener("click", function() {
-        modal.style.display = "block";
-        successContainer.style.display = "none";
-        formContainer.style.display = "block";
+      // ========== Functions to open each modal with the form ==========
+
+      function openRegisterModal() {
+        // Show register modal form
+        registerModal.style.display = "block";
+        registerSuccessContainer.style.display = "none";
+        registerFormContainer.style.display = "block";
+      }
+
+      function openContactModal() {
+        // Show contact modal form
+        contactModal.style.display = "block";
+        contactSuccessContainer.style.display = "none";
+        contactFormContainer.style.display = "block";
+      }
+
+      // ========== Close each modal when clicking the "x" ==========
+
+      // Register
+      closeRegisterModalBtn.addEventListener("click", function() {
+        registerModal.style.display = "none";
       });
 
-      // Close modal on "x" click
-      closeModalBtn.addEventListener("click", function() {
-        modal.style.display = "none";
+      // Contact
+      closeContactModalBtn.addEventListener("click", function() {
+        contactModal.style.display = "none";
       });
 
-      // Close modal if user clicks outside modal content
+      // ========== Close if user clicks outside modal content ==========
       window.addEventListener("click", function(event) {
-        if (event.target === modal) {
-          modal.style.display = "none";
+        // Register modal
+        if (event.target === registerModal) {
+          registerModal.style.display = "none";
+        }
+        // Contact modal
+        if (event.target === contactModal) {
+          contactModal.style.display = "none";
         }
       });
     </script>
