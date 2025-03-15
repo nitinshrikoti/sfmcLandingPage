@@ -759,7 +759,7 @@ textarea:not([rows]) {
 /* Modal Content Box */
 .modal-content {
   background-color: #fff;
-  margin: 10% auto;
+  margin: 5% auto;
   max-width: 400px;
   padding: 20px;
   border-radius: 8px;
@@ -1077,7 +1077,7 @@ textarea:not([rows]) {
 
   /* ---------- Fill Form ---------- */
   .modal-content {
-    margin: 20% auto;
+    margin: 10% auto;
     width: 90%;
     max-width: 90%;
   }

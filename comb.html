@@ -1,41 +1,19 @@
-%%[
-IF RequestParameter("submitted") == "true" THEN
-
-  Set @uniqueID = Concat(
-    Format(SystemDateToLocalDate(Now()), "yyyyMMddHHmmss"),
-    "_",
-    RequestParameter("Phone")
-  )
-
-  Set @BookingDate = Format(SystemDateToLocalDate(Now()), "yyyy-MM-dd")
-  Set @BookingTime = Format(SystemDateToLocalDate(Now()), "HH:mm:ss")
-
-  InsertDE(
-    "WebinarFormData",
-    
-    "UniqueID",        @uniqueID,
-
-    "FirstName",       RequestParameter("FirstName"),
-    "LastName",        RequestParameter("LastName"),
-    "Phone",           RequestParameter("Phone"),
-    "Email",           RequestParameter("Email"),
-    "Country",         RequestParameter("Country"),
-
-    "BookingDate",        @BookingDate,
-    "BookingTime",        @BookingTime,
-
-    "OldSlotDate",        RequestParameter("OldSlotDate"),
-    "OldSlotTime",        RequestParameter("OldSlotTime"),
-    "NewSlotDate",        RequestParameter("NewSlotDate"),
-    "NewSlotTime",        RequestParameter("NewSlotTime"),
-    "OfferingTitle",   RequestParameter("OfferingTitle"),
-    "OfferingName",    RequestParameter("OfferingName"),
-    "WebinarLink",     RequestParameter("WebinarLink"),
-    "WhatsAppLink",    RequestParameter("WhatsAppLink")
-  )
-
-ENDIF
-]%%
+%%[ IF RequestParameter("submitted") == "true" THEN Set @uniqueID = Concat(
+Format(SystemDateToLocalDate(Now()), "yyyyMMddHHmmss"), "_",
+RequestParameter("Phone") ) Set @BookingDate =
+Format(SystemDateToLocalDate(Now()), "yyyy-MM-dd") Set @BookingTime =
+Format(SystemDateToLocalDate(Now()), "HH:mm:ss") InsertDE( "WebinarFormData",
+"UniqueID", @uniqueID, "FirstName", RequestParameter("FirstName"), "LastName",
+RequestParameter("LastName"), "Phone", RequestParameter("Phone"), "Email",
+RequestParameter("Email"), "Country", RequestParameter("Country"),
+"BookingDate", @BookingDate, "BookingTime", @BookingTime, "OldSlotDate",
+RequestParameter("OldSlotDate"), "OldSlotTime", RequestParameter("OldSlotTime"),
+"NewSlotDate", RequestParameter("NewSlotDate"), "NewSlotTime",
+RequestParameter("NewSlotTime"), "OfferingTitle",
+RequestParameter("OfferingTitle"), "OfferingName",
+RequestParameter("OfferingName"), "WebinarLink",
+RequestParameter("WebinarLink"), "WhatsAppLink",
+RequestParameter("WhatsAppLink") ) ENDIF ]%%
 
 <!-- We set a JS variable (isSubmitted) based on whether the form was posted -->
 %%[ IF RequestParameter("submitted") == "true" THEN ]%%
@@ -829,7 +807,7 @@ ENDIF
       /* Modal Content Box */
       .modal-content {
         background-color: #fff;
-        margin: 10% auto;
+        margin: 5% auto;
         max-width: 400px;
         padding: 20px;
         border-radius: 8px;
@@ -911,7 +889,6 @@ ENDIF
           top: 0;
           right: 0;
           width: 280px;
-          /* height: 100%; */
           border-radius: 10px 0 0 10px;
           background: #fff;
           box-shadow: -1px 0 2px rgba(0, 0, 0, 0.2);
@@ -1148,7 +1125,7 @@ ENDIF
 
         /* ---------- Fill Form ---------- */
         .modal-content {
-          margin: 20% auto;
+          margin: 10% auto;
           width: 90%;
           max-width: 90%;
         }
@@ -1249,7 +1226,7 @@ ENDIF
       <div class="webinar-right text-gray">
         <p class="right-txt-1">Join <span>Acharya Manish Ji</span></p>
         <p class="right-txt-2">On</p>
-        <p class="right-txt-3">00 February 2025 | 00:00 A.M.</p>
+        <p class="right-txt-3">25 March 2025 | 11:00 A.M.</p>
         <p class="right-txt-4">Time is Running Out</p>
 
         <!-- MAIN TIMER -->
@@ -1336,33 +1313,35 @@ ENDIF
         <li>
           <div class="step-title">Registration Process</div>
           <div class="step-text">
-            “Register” बटन पर क्लिक करें → “Book A Spot” पर क्लिक करें → “Enter
-            Coupon Code” में कोड डालें (अगर नहीं है तो इग्नोर करें)
+            <b>"Register"</b> बटन click करें। बटन पर क्लिक करने के बाद आपकी
+            screen पर pop-up खुलेगा।
           </div>
         </li>
         <!-- Step 2 -->
         <li>
-          <div class="step-title">Fill Details and Initiate Booking</div>
+          <div class="step-title">Fill Details and Submit</div>
           <div class="step-text">
-            अपना नाम (Name), ईमेल (Email), फ़ोन नंबर (Phone) और WhatsApp नंबर
-            दर्ज करें। पूरी जानकारी देने के बाद “Book” बटन पर क्लिक करें।
+            वहाँ अपना <b>Name</b>, <b>WhatsApp Number</b>, <b>ईमेल (Email)</b>,
+            <b>Country</b> डालें और <b>"Submit"</b> बटन पर click करें।
           </div>
         </li>
         <!-- Step 3 -->
-        <li>
+        <!-- <li>
           <div class="step-title">Payment & Confirmation</div>
           <div class="step-text">
             Payment Gateway से पेमेंट करें। “Purchase Successful” मैसेज मिलने के
             बाद WhatsApp Number पर जॉइनिंग Zoom Link प्राप्त होगा।
           </div>
-        </li>
+        </li> -->
         <!-- Step 4 -->
         <li>
           <div class="step-title">Important!</div>
           <div class="step-text">
-            कृपया WhatsApp Group जॉइन करना न भूलें। वहीं से आपको सारी अपडेट्स और
-            Zoom लिंक मिलेगी। <br />
-            • Phone में Webinar Join करने से पहले Zoom App इंस्टॉल कर लें।
+            <b>Form submit</b> krne के बाद आपके <b>WhatsApp Number</b> पर Webinar की Details भेज दी जाएंगी। <br>
+            <b>Mobile</b> पर <b>Webinar Join</b> करने के लिए <b>Zoom App</b> Download करके रखें। <br>
+            Webinar वाले दिन <b>Joining Link</b> पर click करें, <br>
+            Zoom App पर अपना  Name और Email डालें फिर Continue पर Click करें। <br>
+            हमारे <b>WhatsApp Group</b> को ज्वाइन करना न भूलें। अगर किसी कारणवश आपको वेबिनार का लिंक प्राप्त नहीं होता तो आप Group के माध्यम से वेबिनार का लिंक ले सकते हैं। 
           </div>
         </li>
       </ol>
@@ -1382,10 +1361,11 @@ ENDIF
             alt="User Photo"
           />
           <p class="testimonial-quote">
-            “I had a fantastic experience! The webinar was well-organized and
-            very informative. I highly recommend it.”
+            “Got valuable guidance from Acharya Manish Ji in the webinar!
+            Learned natural ways to support breast cancer recovery with
+            Ayurveda.”
           </p>
-          <p class="testimonial-author">— John Doe</p>
+          <p class="testimonial-author">— Roshni Singh</p>
         </div>
         <!-- Testimonial 2 -->
         <div class="testimonial-card">
@@ -1394,10 +1374,11 @@ ENDIF
             alt="User Photo"
           />
           <p class="testimonial-quote">
-            “This session answered all my questions. I feel more confident now
-            about taking the next steps in my health journey.”
+            “Very informative session! Understood how Ayurveda helps in managing
+            skin cancer. Actually i was planning for chemo but now only
+            Ayurveda.”
           </p>
-          <p class="testimonial-author">— Jane Smith</p>
+          <p class="testimonial-author">— Jagmeet Kaur</p>
         </div>
         <!-- Testimonial 3 -->
         <div class="testimonial-card">
@@ -1406,14 +1387,13 @@ ENDIF
             alt="User Photo"
           />
           <p class="testimonial-quote">
-            “The speakers were incredibly knowledgeable and friendly. Thank you
-            for such a great webinar!”
+            “The diet and lifestyle tips shared were really helpful. Its a new
+            hope for me now for my blood cancer treatment.”
           </p>
-          <p class="testimonial-author">— Alex Lee</p>
+          <p class="testimonial-author">— Preetinder</p>
         </div>
       </div>
     </section>
-
     <!-- -------------------- BrandLogo Section -------------------- -->
     <section class="brands-section">
       <h2 class="text-green">Proudly Representing Our Other Brands</h2>
@@ -1470,7 +1450,7 @@ ENDIF
           </label>
           <div class="faq-content">
             <p>
-              The webinar typically runs for about 60 minutes, followed by a Q&A
+              The webinar typically runs for about 1-2 hours, followed by a Q&A
               session where you can ask any questions you have.
             </p>
           </div>
@@ -1485,14 +1465,14 @@ ENDIF
           </label>
           <div class="faq-content">
             <p>
-              The webinar is completely free of charge. Simply register, and
-              we'll send you all the details to join.
+              The webinar is completely free of charge for now. Simply register,
+              and we'll send you all the details to join.
             </p>
           </div>
         </div>
 
         <!-- FAQ Item 4 -->
-        <div class="faq-item">
+        <!-- <div class="faq-item">
           <input type="checkbox" id="faq4" />
           <label class="faq-title" for="faq4">
             <span>Will I receive a recording?</span>
@@ -1504,7 +1484,7 @@ ENDIF
               recorded session within 24 hours after the webinar concludes.
             </p>
           </div>
-        </div>
+        </div> -->
       </div>
     </section>
 
@@ -1516,7 +1496,7 @@ ENDIF
           <p class="webinar-text">
             Webinar in
             <span class="old-price">₹500</span>
-            <span class="new-price">₹49 Only</span>
+            <span class="new-price">₹0 Only</span>
           </p>
           <p class="subtext">Before it ends</p>
           <div class="footer-timebox">
@@ -1584,19 +1564,19 @@ ENDIF
             />
 
             <!-- Visible fields -->
-            <label for="FirstName">First Name</label>
+            <label for="FirstName">First Name*</label>
             <input type="text" id="FirstName" name="FirstName" required />
 
             <label for="LastName">Last Name</label>
-            <input type="text" id="LastName" name="LastName" required />
+            <input type="text" id="LastName" name="LastName" />
 
-            <label for="Phone">Phone</label>
+            <label for="Phone">WhatsApp Number*</label>
             <input type="text" id="Phone" name="Phone" required />
 
-            <label for="Email">Email</label>
+            <label for="Email">Email*</label>
             <input type="email" id="Email" name="Email" required />
 
-            <label for="Country">Country</label>
+            <label for="Country">Country*</label>
             <select id="Country" name="Country" required>
               <option value="">-- Select a Country --</option>
               <option value="India">India</option>
@@ -1616,6 +1596,7 @@ ENDIF
         </div>
       </div>
     </div>
+
     <script>
       // -------------------- Timer Script --------------------
       // Main Timer Elements
@@ -1636,7 +1617,7 @@ ENDIF
       }
 
       // Set your target date/time here (shared by both timers)
-      const targetDate = new Date("March 21, 2025 15:00:00").getTime();
+      const targetDate = new Date("March 25, 2025 11:00:00").getTime();
 
       function timer() {
         const currentDate = new Date().getTime();
