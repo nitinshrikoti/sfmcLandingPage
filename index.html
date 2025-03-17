@@ -1,31 +1,3 @@
-%%[ IF RequestParameter("submitted") == "true" THEN Set @uniqueID = Concat(
-Format(SystemDateToLocalDate(Now()), "yyyyMMddHHmmss"), "_",
-RequestParameter("Phone") ) Set @BookingDate =
-Format(SystemDateToLocalDate(Now()), "yyyy-MM-dd") Set @BookingTime =
-Format(SystemDateToLocalDate(Now()), "HH:mm:ss") InsertDE( "WebinarFormData",
-"UniqueID", @uniqueID, "FirstName", RequestParameter("FirstName"), "LastName",
-RequestParameter("LastName"), "Phone", RequestParameter("Phone"), "Email",
-RequestParameter("Email"), "Country", RequestParameter("Country"),
-"BookingDate", @BookingDate, "BookingTime", @BookingTime, "OldSlotDate",
-RequestParameter("OldSlotDate"), "OldSlotTime", RequestParameter("OldSlotTime"),
-"NewSlotDate", RequestParameter("NewSlotDate"), "NewSlotTime",
-RequestParameter("NewSlotTime"), "OfferingTitle",
-RequestParameter("OfferingTitle"), "OfferingName",
-RequestParameter("OfferingName"), "WebinarLink",
-RequestParameter("WebinarLink"), "WhatsAppLink",
-RequestParameter("WhatsAppLink") ) ENDIF ]%%
-
-<!-- We set a JS variable (isSubmitted) based on whether the form was posted -->
-%%[ IF RequestParameter("submitted") == "true" THEN ]%%
-<script>
-  var isSubmitted = true;
-</script>
-%%[ ELSE ]%%
-<script>
-  var isSubmitted = false;
-</script>
-%%[ ENDIF ]%%
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -466,14 +438,16 @@ RequestParameter("WhatsAppLink") ) ENDIF ]%%
             <input type="hidden" name="NewSlotDate" value="5 March 2025" />
             <input type="hidden" name="NewSlotTime" value="11:00 AM" />
             <input type="hidden" name="OfferingTitle" value="Cancer" />
+            <input type="hidden" name="WaitUntillDate" value="2025-03-25" />
+            <input type="hidden" name="ContactNumber" value="8270482704" />
             <input
               type="hidden"
               name="OfferingName"
-              value="CancerWebinarOn17Mar"
+              value="CancerWebinarOn25Mar"
             />
             <input
               type="hidden"
-              name="WebinarLink"
+              name="JoiningLink"
               value="https://us06web.zoom.us/j/87291277350"
             />
             <input
