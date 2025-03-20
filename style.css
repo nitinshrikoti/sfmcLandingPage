@@ -685,6 +685,7 @@ textarea:not([rows]) {
   justify-content: space-between;
   box-shadow: 0 0px 4px rgba(0, 0, 0, 0.2);
   z-index: 8888;
+  font-family: var(--ff-exo);
 }
 
 /* Left Section: Price & Timer */
@@ -1071,7 +1072,7 @@ textarea:not([rows]) {
     width: 95%;
   }
   .footer-right .footer-register-btn {
-    padding: 15px 20px;
+    padding: 20px 15px;
     font-size: 14px;
   }
 

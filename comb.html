@@ -45,7 +45,7 @@ ENDIF ]%%
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CancerWebinar</title>
 
-    <link rel="stylesheet" href="style.css" />
+    <!-- <link rel="stylesheet" href="style.css" /> -->
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -56,7 +56,7 @@ ENDIF ]%%
     />
 
     <!-- script -->
-    <script src="script.js" defer></script>
+    <!-- <script src="script.js" defer></script> -->
 
     <style>
       :root {
@@ -746,6 +746,7 @@ ENDIF ]%%
         justify-content: space-between;
         box-shadow: 0 0px 4px rgba(0, 0, 0, 0.2);
         z-index: 8888;
+        font-family: var(--ff-exo);
       }
 
       /* Left Section: Price & Timer */
@@ -1132,7 +1133,7 @@ ENDIF ]%%
           width: 95%;
         }
         .footer-right .footer-register-btn {
-          padding: 15px 20px;
+          padding: 20px 15px;
           font-size: 14px;
         }
 
@@ -1238,7 +1239,7 @@ ENDIF ]%%
       <div class="webinar-right text-gray">
         <p class="right-txt-1">Join <span>Acharya Manish Ji</span></p>
         <p class="right-txt-2">On</p>
-        <p class="right-txt-3">25 March 2025 | 11:00 A.M.</p>
+        <p class="right-txt-3">28 March 2025 | 3:00 PM</p>
         <p class="right-txt-4">Time is Running Out</p>
 
         <!-- MAIN TIMER -->
@@ -1508,7 +1509,7 @@ ENDIF ]%%
 
     <!-- -------------------- Footer Section -------------------- -->
     <footer class="footer-container">
-      <div class="fixed-footer">
+      <div class="fixed-footer text-gray">
         <!-- Left side: Strikethrough Price, Timer -->
         <div class="footer-left">
           <p class="webinar-text">
@@ -1562,25 +1563,25 @@ ENDIF ]%%
             <!-- Hidden fields (empty or default) -->
             <input type="hidden" name="OldSlotDate" value="" />
             <input type="hidden" name="OldSlotTime" value="" />
-            <input type="hidden" name="NewSlotDate" value="19 March 2025" />
-            <input type="hidden" name="NewSlotTime" value="11:00 AM" />
+            <input type="hidden" name="NewSlotDate" value="28 March 2025" />
+            <input type="hidden" name="NewSlotTime" value="3:00 PM" />
             <input type="hidden" name="OfferingTitle" value="Cancer" />
-            <input type="hidden" name="WaitUntillDate" value="2025-03-19" />
+            <input type="hidden" name="WaitUntillDate" value="2025-03-28" />
             <input type="hidden" name="ContactNumber" value="917710371037" />
             <input
               type="hidden"
               name="OfferingName"
-              value="CancerWebinarOn25Mar"
+              value="CancerWebinarOn28Mar"
             />
             <input
               type="hidden"
               name="JoiningLink"
-              value="https://us06web.zoom.us/j/83457190943"
+              value="https://us06web.zoom.us/j/87851396551"
             />
             <input
               type="hidden"
               name="WhatsAppLink"
-              value="https://chat.whatsapp.com/BWL9OOGFmxLHtLsq3I44vg"
+              value="https://chat.whatsapp.com/KePeCD4jO3qCfgvX3EvaMS"
             />
 
             <!-- Visible fields -->
@@ -1836,7 +1837,7 @@ ENDIF ]%%
       }
 
       // Set your target date/time here (shared by both timers)
-      const targetDate = new Date("March 25, 2025 11:00:00").getTime();
+      const targetDate = new Date("March 28, 2025 15:00:00").getTime();
 
       function timer() {
         const currentDate = new Date().getTime();
