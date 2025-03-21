@@ -1,0 +1,604 @@
+%%[
+IF RequestParameter("submitted") == "true" THEN
+
+  Set @uniqueID = Concat(
+    Format(SystemDateToLocalDate(Now()), "yyyyMMddHHmmss"),
+    "_",
+    RequestParameter("Phone")
+  )
+
+  Set @BookingDate = Format(SystemDateToLocalDate(Now()), "yyyy-MM-dd")
+  Set @BookingTime = Format(SystemDateToLocalDate(Now()), "HH:mm:ss")
+
+  InsertDE(
+    "WebinarFormData",
+    "UniqueID",       @uniqueID,
+    "FirstName",      RequestParameter("FirstName"),
+    "LastName",       RequestParameter("LastName"),
+    "Phone",          RequestParameter("Phone"),
+    "Email",          RequestParameter("Email"),
+    "Country",        RequestParameter("Country"),
+    "BookingDate",    @BookingDate,
+    "BookingTime",    @BookingTime,
+    "OldSlotDate",    RequestParameter("OldSlotDate"),
+    "OldSlotTime",    RequestParameter("OldSlotTime"),
+    "NewSlotDate",    RequestParameter("NewSlotDate"),
+    "NewSlotTime",    RequestParameter("NewSlotTime"),
+    "OfferingTitle",  RequestParameter("OfferingTitle"),
+    "OfferingName",   RequestParameter("OfferingName"),
+    "JoiningLink",    RequestParameter("JoiningLink"),
+    "WhatsAppLink",   RequestParameter("WhatsAppLink"),
+    "WaitUntillDate", RequestParameter("WaitUntillDate"),
+    "ContactNumber",  RequestParameter("ContactNumber")
+  )
+
+ENDIF
+
+/* Pass a JS variable isSubmitted if the form was posted */
+IF RequestParameter("submitted") == "true" THEN
+]%%
+<script>
+  var isSubmitted = true;
+</script>
+%%[ ELSE ]%%
+<script>
+  var isSubmitted = false;
+</script>
+%%[ ENDIF ]%%
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WhatPageLinkTest</title>
+    <!-- (Your existing styles, fonts, etc. remain unchanged) -->
+    <style>
+      :root {
+        --ff-exo: "Exo", serif;
+        --ff-timesRoman: "Times New Roman", Times, serif;
+
+        --text-black: #44403b;
+        --text-gray: #787878;
+        --text-yellow: #ffed00;
+        --text-green: #254a28;
+
+        --bg-green: #254a28;
+      }
+
+      /* -------------------- Reset -------------------- */
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body,
+      h1,
+      h2,
+      h3,
+      h4,
+      p,
+      a,
+      li,
+      ul,
+      ol,
+      span,
+      strong,
+      em,
+      figure,
+      picture,
+      blockquote,
+      dl,
+      dd {
+        padding: 0;
+        margin: 0;
+        /* margin-block-end: 0; */
+      }
+
+      ul[role="list"],
+      ol[role="list"] {
+        list-style: none;
+      }
+
+      body {
+        min-height: 100vh;
+        /* line-height: 1.6; */
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      button,
+      input,
+      label {
+        line-height: 1.1;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        text-wrap: balance;
+      }
+
+      /* A elements that don't have a class get default styles */
+      /* a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+} */
+      a {
+        text-decoration: none;
+        color: currentColor;
+      }
+
+      input,
+      button,
+      textarea,
+      select {
+        font-family: inherit;
+        font-size: inherit;
+      }
+
+      img,
+      picture {
+        max-width: 100%;
+        display: block;
+      }
+
+      textarea:not([rows]) {
+        min-height: 10em;
+      }
+
+      :target {
+        scroll-margin-block: 5ex;
+      }
+
+      /* -------------------- mc-default -------------------- */
+      .layout-canvas-g > .section {
+        margin: 0px;
+      }
+
+      /* -------------------- Utilities -------------------- */
+      .bg-green {
+        background-color: var(--bg-green);
+      }
+
+      .text-yellow {
+        color: var(--text-yellow);
+      }
+      .text-black {
+        color: var(--text-black);
+      }
+      .text-gray {
+        color: var(--text-gray);
+      }
+      .text-green {
+        color: var(--text-green);
+      }
+
+      /* -------------------- Navbar -------------------- */
+      .nav-wrapper {
+        display: flex;
+        position: relative;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
+        margin: auto;
+        width: 90%;
+        height: 70px;
+        border-radius: 0 0 15px 15px;
+        padding: 0 25px;
+        z-index: 2;
+        background: #fff;
+        box-shadow: 0 0px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .logo {
+        height: 50px;
+        width: auto;
+      }
+
+      .nav-tabs {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        font-family: var(--ff-exo);
+      }
+
+      .nav-tab:not(:last-child) {
+        padding: 10px 25px;
+        margin: 0;
+        border-right: 1px solid #eee;
+      }
+
+      .nav-tab:last-child {
+        padding: 5px 10px;
+      }
+
+      .nav-tab,
+      .menu-btn {
+        cursor: pointer;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .navbar-register-btn {
+        background-color: #254a28;
+        color: #ffed00;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      /* -------------------- Fill Form  -------------------- */
+
+      /* The Modal (background overlay) */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: rgba(0, 0, 0, 0.5);
+        font-family: var(--ff-exo);
+      }
+
+      /* Modal Content Box */
+      .modal-content {
+        background-color: #fff;
+        margin: 5% auto;
+        max-width: 400px;
+        padding: 20px;
+        border-radius: 8px;
+        position: relative;
+      }
+
+      /* Close Button (X) */
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .close:hover,
+      .close:focus {
+        color: #000;
+      }
+
+      /* Two containers in the modal: success vs. form */
+      .success-container,
+      .form-container {
+        display: none; /* We'll show/hide these via JS */
+      }
+
+      /* Form and success message styling */
+      .success-container p {
+        text-align: center;
+        color: green;
+        font-size: 1.1rem;
+        margin-top: 20px;
+      }
+      .form-container h2 {
+        margin-bottom: 15px;
+        font-size: 28px;
+        text-align: center;
+      }
+      .form-container label {
+        font-size: 16px;
+        display: block;
+        margin: 10px 0 5px;
+      }
+      .form-container input[type="text"],
+      .form-container input[type="email"],
+      .form-container select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .form-container button {
+        background: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1em;
+        width: 100%;
+      }
+      .form-container button:hover {
+        background: #0056b3;
+      }
+
+      /* -------------------- Responsive Code -------------------- */
+
+      @media (max-width: 767px) {
+        /* ---------- NavBar ---------- */
+        .nav-wrapper {
+          width: 95%;
+        }
+
+        .nav-container {
+          position: absolute;
+          display: none;
+          overflow-y: auto;
+          z-index: -1;
+          top: 0;
+          right: 0;
+          width: 280px;
+          border-radius: 10px 0 0 10px;
+          background: #fff;
+          box-shadow: -1px 0 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-tabs {
+          text-align: center;
+          display: block;
+          margin-top: 80px;
+          width: 100%;
+        }
+
+        .nav-tab:not(:last-child) {
+          padding: 20px 25px;
+          margin: 0;
+          border-right: unset;
+          border-bottom: 1px solid #f5f5f5;
+        }
+
+        .nav-tab:last-child {
+          padding: 15px 25px;
+        }
+
+        .menu-btn {
+          position: relative;
+          display: block;
+          margin: 0;
+          width: 35px;
+          height: 30px;
+          cursor: pointer;
+          z-index: 2;
+          padding: 5px;
+          border-radius: 2px;
+        }
+
+        .menu-btn .menu {
+          display: block;
+          width: 100%;
+          height: 5px;
+          border-radius: 2px;
+          background: #111;
+        }
+
+        .menu-btn .menu:nth-child(2) {
+          margin-top: 4px;
+          opacity: 1;
+        }
+
+        .menu-btn .menu:nth-child(3) {
+          margin-top: 4px;
+        }
+
+        #menuToggle:checked + .menu-btn .menu {
+          transition: transform 0.2s ease;
+        }
+
+        #menuToggle:checked + .menu-btn .menu:nth-child(1) {
+          transform: translate3d(0, 7px, 0) rotate(45deg);
+        }
+
+        #menuToggle:checked + .menu-btn .menu:nth-child(2) {
+          transform: rotate(-45deg) translate3d(-5.71429px, -6px, 0);
+          opacity: 0;
+        }
+
+        #menuToggle:checked + .menu-btn .menu:nth-child(3) {
+          transform: translate3d(0, -11px, 0) rotate(-45deg);
+        }
+
+        #menuToggle:checked ~ .nav-container {
+          z-index: 1;
+          display: flex;
+          animation: menu-slide-left 0.3s ease;
+        }
+        @keyframes menu-slide-left {
+          0% {
+            transform: translateX(200px);
+          }
+          to {
+            transform: translateX(0);
+          }
+        }
+
+        /* ---------- Fill Form ---------- */
+        .modal-content {
+          margin: 10% auto;
+          width: 90%;
+          max-width: 90%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- -------------------- NavBar -------------------- -->
+    <header>
+      <div class="nav-wrapper">
+        <div class="logo-container">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/cbf301aa-0b2b-4801-acad-d2ad99883567.png"
+            alt="Logo"
+            class="logo"
+          />
+        </div>
+        <nav>
+          <input class="hidden" type="checkbox" id="menuToggle" />
+          <label class="menu-btn" for="menuToggle">
+            <div class="menu"></div>
+            <div class="menu"></div>
+            <div class="menu"></div>
+          </label>
+          <div class="nav-container">
+            <ul class="nav-tabs text-black" role="list">
+              <li class="nav-tab"><a href="#steps">Booking Steps</a></li>
+              <li class="nav-tab"><a href="#faqs">Faqs</a></li>
+              <li class="nav-tab">
+                <button class="navbar-register-btn" onclick="newopenmodal()">
+                  Register Now
+                </button>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeModalBtn">&times;</span>
+
+        <!-- Success Container -->
+        <div class="success-container" id="successContainer">
+          <p>Thank you! Your information has been submitted.</p>
+        </div>
+
+        <!-- Registration Form Container -->
+        <div class="form-container" id="formContainer">
+          <h2>Fill Your Details!</h2>
+          <form action="%%=RequestParameter('PAGEURL')=%%" method="post">
+            <input type="hidden" name="submitted" value="true" />
+
+            <!-- Hidden fields -->
+            <input type="hidden" name="OldSlotDate" value="" />
+            <input type="hidden" name="OldSlotTime" value="" />
+            <input type="hidden" name="NewSlotDate" value="28 March 2025" />
+            <input type="hidden" name="NewSlotTime" value="3:00 PM" />
+            <input type="hidden" name="OfferingTitle" value="Cancer" />
+            <input type="hidden" name="WaitUntillDate" value="2025-03-28" />
+            <input type="hidden" name="ContactNumber" value="917710371037" />
+            <input type="hidden" name="OfferingName" value="CancerWebinarOn28Mar" />
+            <input type="hidden" name="JoiningLink" value="https://us06web.zoom.us/j/87851396551" />
+            <input type="hidden" name="WhatsAppLink" value="https://chat.whatsapp.com/KePeCD4jO3qCfgvX3EvaMS" />
+
+            <!-- Visible fields -->
+            <label for="FirstName">First Name*</label>
+            <input type="text" id="FirstName" name="FirstName" required />
+
+            <label for="LastName">Last Name</label>
+            <input type="text" id="LastName" name="LastName" />
+
+            <label for="Phone">WhatsApp Number*</label>
+            <input type="text" id="Phone" name="Phone" required />
+
+            <label for="Email">Email*</label>
+            <input type="email" id="Email" name="Email" required />
+
+            <label for="Country">Country*</label>
+            <select id="Country" name="Country" required>
+              <option value="">-- Select a Country --</option>
+              <option value="Afghanistan">Afghanistan</option>
+              <option value="Albania">Albania</option>
+              <option value="Algeria">Algeria</option>
+              <option value="Andorra">Andorra</option>
+              <option value="Angola">Angola</option>
+              <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Armenia">Armenia</option>
+              <option value="Australia">Australia</option>
+              <option value="Austria">Austria</option>
+              <option value="Azerbaijan">Azerbaijan</option>
+              <option value="Bahamas">Bahamas</option>
+              <option value="Bahrain">Bahrain</option>
+              <option value="Bangladesh">Bangladesh</option>
+              <option value="Barbados">Barbados</option>
+              <option value="Belarus">Belarus</option>
+              <option value="Belgium">Belgium</option>
+              <option value="Belize">Belize</option>
+              <option value="Benin">Benin</option>
+              <option value="Bhutan">Bhutan</option>
+              <option value="Bolivia">Bolivia</option>
+            </select>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Reference to the modal
+      var modal = document.getElementById("myModal");
+      var closeModalBtn = document.getElementById("closeModalBtn");
+      var formContainer = document.getElementById("formContainer");
+      var successContainer = document.getElementById("successContainer");
+
+      // On page load
+      document.addEventListener("DOMContentLoaded", function() {
+        // If isSubmitted is true, we open a new tab for WhatsApp
+        if (typeof isSubmitted !== 'undefined' && isSubmitted === true) {
+          // Open WhatsApp link in a new tab
+          window.open("https://chat.whatsapp.com/KePeCD4jO3qCfgvX3EvaMS", "_blank");
+          // Optionally, show success modal
+          modal.style.display = "block";
+          successContainer.style.display = "block";
+          formContainer.style.display = "none";
+        }
+      });
+
+      // Function to open the modal with the form
+      function newopenmodal() {
+        modal.style.display = "block";
+        successContainer.style.display = "none";
+        formContainer.style.display = "block";
+      }
+
+      // Close the modal on "x"
+      closeModalBtn.addEventListener("click", function() {
+        modal.style.display = "none";
+      });
+
+      // Close if user clicks outside modal content
+      window.addEventListener("click", function(event) {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      });
+
+      // Example nav close script if you have a hamburger menu
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuToggle = document.getElementById("menuToggle");
+        const navTabs = document.querySelectorAll(".nav-tab a, .nav-tab button");
+
+        navTabs.forEach((tab) => {
+          tab.addEventListener("click", function () {
+            menuToggle.checked = false;
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
