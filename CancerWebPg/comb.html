@@ -67,7 +67,9 @@ ENDIF ]%%
         --text-gray: #787878;
         --text-yellow: #ffed00;
         --text-green: #254a28;
+        --color-white: #ffffff;
 
+        --color-liteGreen: #25D366;
         --bg-green: #254a28;
       }
 
@@ -897,26 +899,19 @@ ENDIF ]%%
         justify-content: space-around;
         align-items: center;
       }
-      .whatsapp-button-container div {
-        width: 70%;
-      }
-      .whatsapp-button-container img {
-        border-radius: 100%;
-        height: 70px;
-        width: 70px;
-      }
+
       .whatsapp-button {
         position: relative;
-        color: var(--text-yellow);
-        background: var(--bg-green);
+        color: var(--color-white);
+        background: var(--color-liteGreen);
         font-size: 20px;
         text-decoration: none;
         display: inline-block;
-        text-transform: uppercase;
+        /*text-transform: uppercase;*/
         letter-spacing: 1px;
         border: 2px solid white;
-        border-radius: 100%;
-        /*padding: 20px 30px;*/
+        border-radius: 50px;
+        padding: 20px 30px;
         margin: 20px 0 20px;
         box-shadow: 0 2px 5px 0 rgba(3, 6, 26, 0.15);
         transition: 0.5s all ease-in-out;
@@ -928,8 +923,8 @@ ENDIF ]%%
       }
 
       .whatsapp-button-pulse {
-        animation: pulse 2s infinite .5s cubic-bezier(0.25, 0, 0, 1);
-        box-shadow: 0 0 0 0 var(--bg-green);
+        animation: pulse 2s infinite 0.5s cubic-bezier(0.25, 0, 0, 1);
+        box-shadow: 0 0 0 0 var(--color-liteGreen);
       }
       @keyframes pulse {
         to {
@@ -1200,16 +1195,7 @@ ENDIF ]%%
         .success-container > p {
           font-size: 14px;
         }
-        .whatsapp-button-container > div > p {
-          font-size: 16px;
-        }
-        .whatsapp-button-container div {
-        width: 75%;
-      }
-      .whatsapp-button-container img {
-        height: 60px;
-        width: 60px;
-      }
+        
       }
     </style>
   </head>
@@ -1406,14 +1392,6 @@ ENDIF ]%%
           </div>
         </li>
         <!-- Step 3 -->
-        <!-- <li>
-          <div class="step-title">Payment & Confirmation</div>
-          <div class="step-text">
-            Payment Gateway से पेमेंट करें। “Purchase Successful” मैसेज मिलने के
-            बाद WhatsApp Number पर जॉइनिंग Zoom Link प्राप्त होगा।
-          </div>
-        </li> -->
-        <!-- Step 4 -->
         <li>
           <div class="step-title">Important!</div>
           <div class="step-text">
@@ -1617,63 +1595,52 @@ ENDIF ]%%
 
         <!-- Success Container -->
         <div class="success-container" id="successContainer">
-          <p>Thank you!</p>
-          <p>Your information has been submitted.</p>
+          <p class="text-center">Thank you!</p>
+          <p class="text-center">Your information has been submitted.</p>
           <div class="whatsapp-button-container">
             <a
-              href="https://chat.whatsapp.com/KePeCD4jO3qCfgvX3EvaMS"
-              target="_blank"
-              class="whatsapp-button whatsapp-button-pulse"
-              >Join WhatsApp Group</a
+            href="https://chat.whatsapp.com/KePeCD4jO3qCfgvX3EvaMS"
+            target="_blank"
+            class="whatsapp-button whatsapp-button-pulse"
+            >Join our WhatsApp Group</a
             >
           </div>
+          <p class="text-center">To stay informed about your upcoming webinar.</p>
         </div>
 
         <!-- Registration Form Container -->
         <div class="form-container" id="formContainer">
           <h2>Fill Your Details!</h2>
           <form action="%%=RequestParameter('PAGEURL')=%%" method="post">
-            <input type="hidden" name="submitted" value="true" />
+            <input type="hidden" name="submitted" value="true">
 
             <!-- Hidden fields (empty or default) -->
-            <input type="hidden" name="OldSlotDate" value="" />
-            <input type="hidden" name="OldSlotTime" value="" />
-            <input type="hidden" name="NewSlotDate" value="28 March 2025" />
-            <input type="hidden" name="NewSlotTime" value="3:00 PM" />
-            <input type="hidden" name="OfferingTitle" value="Cancer" />
-            <input type="hidden" name="WaitUntillDate" value="2025-03-28" />
-            <input type="hidden" name="ContactNumber" value="917710371037" />
-            <input
-              type="hidden"
-              name="OfferingName"
-              value="CancerWebinarOn28Mar"
-            />
-            <input
-              type="hidden"
-              name="JoiningLink"
-              value="https://us06web.zoom.us/j/87851396551"
-            />
-            <input
-              type="hidden"
-              name="WhatsAppLink"
-              value="https://chat.whatsapp.com/KePeCD4jO3qCfgvX3EvaMS"
-            />
+            <input type="hidden" name="OldSlotDate" value="">
+            <input type="hidden" name="OldSlotTime" value="">
+            <input type="hidden" name="NewSlotDate" value="28 March 2025">
+            <input type="hidden" name="NewSlotTime" value="3:00 PM">
+            <input type="hidden" name="OfferingTitle" value="Cancer">
+            <input type="hidden" name="WaitUntillDate" value="2025-03-28">
+            <input type="hidden" name="ContactNumber" value="917710371037">
+            <input type="hidden" name="OfferingName" value="CancerWebinarOn28Mar">
+            <input type="hidden" name="JoiningLink" value="https://us06web.zoom.us/j/87851396551">
+            <input type="hidden" name="WhatsAppLink" value="https://chat.whatsapp.com/KePeCD4jO3qCfgvX3EvaMS">
 
             <!-- Visible fields -->
             <label for="FirstName">First Name*</label>
-            <input type="text" id="FirstName" name="FirstName" required />
+            <input type="text" id="FirstName" name="FirstName" required="">
 
             <label for="LastName">Last Name</label>
-            <input type="text" id="LastName" name="LastName" />
+            <input type="text" id="LastName" name="LastName">
 
             <label for="Phone">WhatsApp Number*</label>
-            <input type="text" id="Phone" name="Phone" required />
+            <input type="text" id="Phone" name="Phone" required="">
 
             <label for="Email">Email*</label>
-            <input type="email" id="Email" name="Email" required />
+            <input type="email" id="Email" name="Email" required="">
 
             <label for="Country">Country*</label>
-            <select id="Country" name="Country" required>
+            <select id="Country" name="Country" required="">
               <option value="">-- Select a Country --</option>
               <option value="Afghanistan">Afghanistan</option>
               <option value="Albania">Albania</option>

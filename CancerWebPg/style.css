@@ -6,7 +6,9 @@
   --text-gray: #787878;
   --text-yellow: #ffed00;
   --text-green: #254a28;
+  --color-white: #ffffff;
 
+  --color-liteGreen: #25d366;
   --bg-green: #254a28;
 }
 
@@ -836,26 +838,19 @@ textarea:not([rows]) {
   justify-content: space-around;
   align-items: center;
 }
-.whatsapp-button-container div {
-  width: 70%;
-}
-.whatsapp-button-container img {
-  border-radius: 100%;
-  height: 70px;
-  width: 70px;
-}
+
 .whatsapp-button {
   position: relative;
-  color: var(--text-yellow);
-  background: var(--bg-green);
+  color: var(--color-white);
+  background: var(--color-liteGreen);
   font-size: 20px;
   text-decoration: none;
   display: inline-block;
-  text-transform: uppercase;
+  /*text-transform: uppercase;*/
   letter-spacing: 1px;
   border: 2px solid white;
-  border-radius: 100%;
-  /*padding: 20px 30px;*/
+  border-radius: 50px;
+  padding: 20px 30px;
   margin: 20px 0 20px;
   box-shadow: 0 2px 5px 0 rgba(3, 6, 26, 0.15);
   transition: 0.5s all ease-in-out;
@@ -868,7 +863,7 @@ textarea:not([rows]) {
 
 .whatsapp-button-pulse {
   animation: pulse 2s infinite 0.5s cubic-bezier(0.25, 0, 0, 1);
-  box-shadow: 0 0 0 0 var(--bg-green);
+  box-shadow: 0 0 0 0 var(--color-liteGreen);
 }
 @keyframes pulse {
   to {
@@ -1138,15 +1133,5 @@ textarea:not([rows]) {
   }
   .success-container > p {
     font-size: 14px;
-  }
-  .whatsapp-button-container > div > p {
-    font-size: 16px;
-  }
-  .whatsapp-button-container div {
-    width: 75%;
-  }
-  .whatsapp-button-container img {
-    height: 60px;
-    width: 60px;
   }
 }
