@@ -187,6 +187,9 @@ ENDIF ]%%
       .text-green {
         color: var(--text-green);
       }
+      .text-center {
+        text-align: center;
+      }
 
       /* -------------------- Navbar -------------------- */
       .nav-wrapper {
@@ -850,7 +853,6 @@ ENDIF ]%%
 
       /* Form and success message styling */
       .success-container p {
-        text-align: center;
         color: green;
         font-size: 20px;
         margin-bottom: 10px;
@@ -892,10 +894,17 @@ ENDIF ]%%
       .whatsapp-button-container {
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
       }
-
+      .whatsapp-button-container div {
+        width: 70%;
+      }
+      .whatsapp-button-container img {
+        border-radius: 100%;
+        height: 70px;
+        width: 70px;
+      }
       .whatsapp-button {
         position: relative;
         color: var(--text-yellow);
@@ -906,8 +915,8 @@ ENDIF ]%%
         text-transform: uppercase;
         letter-spacing: 1px;
         border: 2px solid white;
-        border-radius: 50px;
-        padding: 20px 30px;
+        border-radius: 100%;
+        /*padding: 20px 30px;*/
         margin: 20px 0 20px;
         box-shadow: 0 2px 5px 0 rgba(3, 6, 26, 0.15);
         transition: 0.5s all ease-in-out;
@@ -1188,9 +1197,19 @@ ENDIF ]%%
         .whatsapp-button {
           font-size: 14px;
         }
-        .success-container p {
+        .success-container > p {
           font-size: 14px;
         }
+        .whatsapp-button-container > div > p {
+          font-size: 16px;
+        }
+        .whatsapp-button-container div {
+        width: 75%;
+      }
+      .whatsapp-button-container img {
+        height: 60px;
+        width: 60px;
+      }
       }
     </style>
   </head>
