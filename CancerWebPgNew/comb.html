@@ -52,7 +52,9 @@ ENDIF
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CancerWebinarOn7April</title>
+    <title>CancerWebinarOn1April</title>
+
+    <!-- <link rel="stylesheet" href="style.css" /> -->
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -61,6 +63,9 @@ ENDIF
       href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
+
+    <!-- script -->
+    <!-- <script src="script.js" defer></script> -->
 
     <style>
       :root {
@@ -73,7 +78,7 @@ ENDIF
         --text-green: #254a28;
         --color-white: #ffffff;
 
-        --color-liteGreen: #25d366;
+        --color-liteGreen: #25D366;
         --bg-green: #254a28;
       }
 
@@ -1199,9 +1204,9 @@ ENDIF
         .success-container > p {
           font-size: 14px;
         }
+        
       }
     </style>
-    <!-- script -->
   </head>
   <body>
     <!-- -------------------- NavBar -------------------- -->
@@ -1296,7 +1301,7 @@ ENDIF
       <div class="webinar-right text-gray">
         <p class="right-txt-1">Join <span>Acharya Manish Ji</span></p>
         <p class="right-txt-2">On</p>
-        <p class="right-txt-3">7 April 2025 | 1:00 PM</p>
+        <p class="right-txt-3">1 April 2025 | 10:00 AM</p>
         <p class="right-txt-4">Time is Running Out</p>
 
         <!-- MAIN TIMER -->
@@ -1538,6 +1543,21 @@ ENDIF
             </p>
           </div>
         </div>
+
+        <!-- FAQ Item 4 -->
+        <!-- <div class="faq-item">
+          <input type="checkbox" id="faq4" />
+          <label class="faq-title" for="faq4">
+            <span>Will I receive a recording?</span>
+            <div class="faq-arrow"></div>
+          </label>
+          <div class="faq-content">
+            <p>
+              Yes, all registered participants will receive a link to the
+              recorded session within 24 hours after the webinar concludes.
+            </p>
+          </div>
+        </div> -->
       </div>
     </section>
 
@@ -1588,82 +1608,45 @@ ENDIF
           <p class="text-center">Your information has been submitted.</p>
           <div class="whatsapp-button-container">
             <a
-              href="https://chat.whatsapp.com/CxUmvWAxvx9Hh5L8CWnIJU"
-              target="_blank"
-              class="whatsapp-button whatsapp-button-pulse"
-              >Join our WhatsApp Group</a
+            href="https://chat.whatsapp.com/JU8TmwN2nLhCHqCN1zKqqb"
+            target="_blank"
+            class="whatsapp-button whatsapp-button-pulse"
+            >Join our WhatsApp Group</a
             >
           </div>
-          <p class="text-center">
-            To stay informed about your upcoming webinar.
-          </p>
+          <p class="text-center">To stay informed about your upcoming webinar.</p>
         </div>
 
         <!-- Registration Form Container -->
         <div class="form-container" id="formContainer">
           <h2>Fill Your Details!</h2>
           <form action="%%=RequestParameter('PAGEURL')=%%" method="post">
-            <input type="hidden" name="submitted" value="true" />
+            <input type="hidden" name="submitted" value="true">
 
             <!-- Hidden fields (empty or default) -->
-            <input type="hidden" name="OldSlotDate" value="" />
-            <input type="hidden" name="OldSlotTime" value="" />
-            <input type="hidden" name="NewSlotDate" value="7 April 2025" />
-            <input type="hidden" name="NewSlotTime" value="1:00 PM" />
-            <input type="hidden" name="OfferingTitle" value="Cancer" />
-            <input type="hidden" name="WaitUntillDate" value="2025-04-07" />
-            <input type="hidden" name="ContactNumber" value="917710371037" />
-            <input
-              type="hidden"
-              name="OfferingName"
-              value="CancerWebinarOn28Mar"
-            />
-            <input
-              type="hidden"
-              name="JoiningLink"
-              value="https://us06web.zoom.us/j/82555489871"
-            />
-            <input
-              type="hidden"
-              name="WhatsAppLink"
-              value="https://chat.whatsapp.com/CxUmvWAxvx9Hh5L8CWnIJU"
-            />
+            <input type="hidden" name="OldSlotDate" value="">
+            <input type="hidden" name="OldSlotTime" value="">
+            <input type="hidden" name="NewSlotDate" value="1 April 2025">
+            <input type="hidden" name="NewSlotTime" value="10:00 AM">
+            <input type="hidden" name="OfferingTitle" value="Cancer">
+            <input type="hidden" name="WaitUntillDate" value="2025-04-01">
+            <input type="hidden" name="ContactNumber" value="917710371037">
+            <input type="hidden" name="OfferingName" value="CancerWebinarOn1April">
+            <input type="hidden" name="JoiningLink" value="https://us06web.zoom.us/j/85053054131">
+            <input type="hidden" name="WhatsAppLink" value="https://chat.whatsapp.com/JU8TmwN2nLhCHqCN1zKqqb">
 
             <!-- Visible fields -->
             <label for="FirstName">First Name*</label>
-            <input
-              type="text"
-              id="FirstName"
-              name="FirstName"
-              required=""
-              placeholder="Bharat"
-            />
+            <input type="text" id="FirstName" name="FirstName" required="" placeholder="Bharat">
 
             <label for="LastName">Last Name</label>
-            <input
-              type="text"
-              id="LastName"
-              name="LastName"
-              placeholder="Singh"
-            />
+            <input type="text" id="LastName" name="LastName" placeholder="Singh">
 
             <label for="Phone">WhatsApp Number*</label>
-            <input
-              type="text"
-              id="Phone"
-              name="Phone"
-              required=""
-              placeholder="8866558472 (10 Digit No Space)"
-            />
+            <input type="text" id="Phone" name="Phone" required="" placeholder="8866558472 (10 Digit No Space)">
 
             <label for="Email">Email*</label>
-            <input
-              type="email"
-              id="Email"
-              name="Email"
-              required=""
-              placeholder="example@gmail.com"
-            />
+            <input type="email" id="Email" name="Email" required="" placeholder="example@gmail.com">
 
             <label for="Country">Country*</label>
             <select id="Country" name="Country" required="">
@@ -1905,7 +1888,7 @@ ENDIF
       }
 
       // Set your target date/time here (shared by both timers)
-      const targetDate = new Date("April 7, 2025 13:00:00").getTime();
+      const targetDate = new Date("April 1, 2025 10:00:00").getTime();
 
       function timer() {
         const currentDate = new Date().getTime();
