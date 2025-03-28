@@ -161,6 +161,24 @@ textarea:not([rows]) {
   width: auto;
 }
 
+.nav-tab > a:after {    
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  background: var(--bg-green);
+  transition: opacity 300ms, transform 300ms;
+  width: 0;
+}
+.nav-tab > a:hover:after { 
+  width: 100%; 
+  left: 0; 
+  opacity: 1;
+  transform: translate3d(0, 0.2em, 0);
+}
+
 .nav-tabs {
   display: flex;
   align-items: center;
