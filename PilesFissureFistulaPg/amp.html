@@ -1,0 +1,47 @@
+%%[
+IF RequestParameter("submitted") == "true" THEN
+
+  Set @uniqueID = Concat(
+    Format(SystemDateToLocalDate(Now()), "yyyyMMddHHmmss"),
+    "_",
+    RequestParameter("Phone")
+  )
+
+  Set @BookingDate = Format(SystemDateToLocalDate(Now()), "yyyy-MM-dd")
+  Set @BookingTime = Format(SystemDateToLocalDate(Now()), "HH:mm:ss")
+
+  UpsertDE(
+    "WebinarFormData",    
+    1,                    
+    "UniqueID",       @uniqueID,
+    "FirstName",      RequestParameter("FirstName"),
+    "LastName",       RequestParameter("LastName"),
+    "Phone",          RequestParameter("Phone"),
+    "Email",          RequestParameter("Email"),
+    "Country",        RequestParameter("Country"),
+    "BookingDate",    @BookingDate,
+    "BookingTime",    @BookingTime,
+    "OldSlotDate",    RequestParameter("OldSlotDate"),
+    "OldSlotTime",    RequestParameter("OldSlotTime"),
+    "NewSlotDate",    RequestParameter("NewSlotDate"),
+    "NewSlotTime",    RequestParameter("NewSlotTime"),
+    "OfferingTitle",  RequestParameter("OfferingTitle"),
+    "JoiningLink",    RequestParameter("JoiningLink"),
+    "WhatsAppLink",   RequestParameter("WhatsAppLink"),
+    "WaitUntillDate", RequestParameter("WaitUntillDate"),
+    "ContactNumber",  RequestParameter("ContactNumber")
+  )
+
+ENDIF
+]%%
+
+<!-- We set a JS variable (isSubmitted) based on whether the form was posted -->
+%%[ IF RequestParameter("submitted") == "true" THEN ]%%
+<script>
+  var isSubmitted = true;
+</script>
+%%[ ELSE ]%%
+<script>
+  var isSubmitted = false;
+</script>
+%%[ ENDIF ]%%
