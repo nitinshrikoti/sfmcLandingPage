@@ -1,6 +1,7 @@
 :root {
   --ff-exo: "Exo", serif;
   --ff-timesRoman: "Times New Roman", Times, serif;
+  --ff-poppins: "Poppins", sans-serif;
 
   --text-black: #44403b;
   --text-gray: #787878;
@@ -279,10 +280,10 @@ textarea:not([rows]) {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 .webinar-left img {
-  width: 300px;
+  width: 220px;
   height: auto;
 }
-.webinar-left div {
+.webinar-left > div {
   width: 100%;
 }
 .left-text-1 {
@@ -290,6 +291,13 @@ textarea:not([rows]) {
   font-size: 24px;
   margin-block-start: 10px;
   color: #254a28;
+}
+
+.dr-details {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  margin: 5px auto;
 }
 
 .webinar-right {
@@ -361,6 +369,7 @@ textarea:not([rows]) {
 
 /* -------------------- Mid-2 Section -------------------- */
 .banner-heading-block {
+  font-family: var(--ff-poppins);
   max-width: 1000px;
   margin: 40px auto 10px;
   padding: 0 20px;
@@ -376,6 +385,7 @@ textarea:not([rows]) {
 }
 
 .banner-webinar-section {
+  font-family: var(--ff-poppins);
   display: flex;
   background: #fff;
   max-width: 1000px;
@@ -430,6 +440,7 @@ textarea:not([rows]) {
 /* -------------------- Instructions Section -------------------- */
 
 .join-webinar {
+  font-family: var(--ff-poppins);
   max-width: 1000px; /* Constrain the width on larger screens */
   margin: 10px auto; /* Center with vertical spacing */
   background-color: #ffffff;
