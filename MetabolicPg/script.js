@@ -1,35 +1,50 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "AllJointPainWebinarOn3Apr";
+const title = "MetabolicWebinarOn3Apr";
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2a06da4f-2205-458e-a16f-fb3d4d65e198.png";
-const drName = "Dr. DivyaDeep";
-const webDate = "3 April 2025 | 10:00 AM";
-const joiningLink = "https://us06web.zoom.us/j/89034420947";
-const whatsappLink = "https://jeenasikho.com/webinar/?page=joint";
-const newSlotDate = "3 April 2025";
-const newSlotTime = "10:00 AM";
-const offeringTitle = "All Joint Pain";
-const waitUntillDate = "2025-04-03";
-const targetDate = new Date("April 3, 2025 10:00:00").getTime();
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/540c60d3-7b05-4859-b63b-27c34da6ba93.png";
 
-const heroHeading = "Join <i>All Joint Pain</i> Webinar by <i>Acharya Manish Ji</i>";
+const drName = "Dr. Geetika";
+const webDate = "3 April 2025 | 1:00 PM";
+
+const joiningLink = "https://us06web.zoom.us/j/89237691413";
+const whatsappLink = "https://jeenasikho.com/webinar/?page=metabolic-disorders";
+
+const newSlotDate = "3 April 2025";
+const newSlotTime = "1:00 PM";
+const offeringTitle = "Metabolic Disorder";
+const waitUntillDate = "2025-04-03";
+const targetDate = new Date("April 3, 2025 13:00:00").getTime();
+const contactNumber = "917710371037";
+
+const heroHeading =
+  "Join <i>Metabolic Disorder</i> Webinar by <i>Acharya Manish Ji</i>";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Diploma in Naturopathy and Diploma in Yoga",
-  "Chronic Diseases, Metabolic Disorders",
-  "16+ Years Of Experience",
+  "PGDIP (PG. Diploma in Panchakarma)",
+  "M.S. (Ay.) Master of Surgery",
+  "15+ Years of Experience",
 ];
 const bannerImage =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/ffec998a-5356-47d9-b86a-882e4cd865ea.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e6cabbf5-0635-43f1-801f-0ac0ad688f98.png";
+
 // Why Join Content
-const why1 = "जो लोग <b>arthritis</b> या <b>joint pain</b> से जूझ रहे हैं।";
-const why2 = "जिन्हें <b>bone swelling</b> या <b>stiffness</b> की समस्या हो।";
-const why3 = "जिन्हें <b>walking, sitting, moving</b> में दिक्कत हो रही है।";
-const why4 = "जो <b>severe joint pain</b> और <b></b> से राहत पाना चाहते हैं।";
+const why1 =
+  "जो लोग <b>metabolic disorders</b> जैसे <b>diabetes, hypertension, thyroid</b> की समस्या से जूझ रहे हैं।";
+const why2 =
+  "जिन्हें <b>weight gain, fatigue, या weakness</b> महसूस हो रही है।";
+const why3 =
+  "जो <b>physical</b> और <b>mental weakness</b> या सुस्ती का सामना कर रहे हैं।";
+const why4 =
+  "जिन्हें <b>blood sugar</b> और <b>cholesterol levels</b> कंट्रोल करने में दिक्कत हो रही है।";
 const why5 =
-  "जो <b>natural remedies</b> से <b>joint health</b> सुधारना चाहते हैं।";
-const contactNumber = "917710371037";
+  "जो <b>natural remedies</b> से <b>metabolic health improve</b> करना चाहते हैं और <b>energy boost</b> करना चाहते हैं।";
+const Testi1 =
+  '"The webinar was very informative! I learned practical tips to manage my diabetes better. Highly recommend it!"';
+const Testi2 =
+  '"The expert tips on mental wellness were easy to apply and made a real difference."';
+const Testi3 =
+  '"Great session! The explanations were clear, and I feel more confident about reversing my blood sugar levels & diabetes"';
 
 // Selectors for the dynamic content
 document.title = title;
@@ -68,6 +83,10 @@ document.getElementById("NewSlotTime").value = newSlotTime;
 document.getElementById("OfferingTitle").value = offeringTitle;
 document.getElementById("WaitUntillDate").value = waitUntillDate;
 document.getElementById("ContactNumber").value = contactNumber;
+
+document.getElementById("testi1").innerHTML = Testi1;
+document.getElementById("testi2").innerHTML = Testi2;
+document.getElementById("testi3").innerHTML = Testi3;
 
 // Selectors for the dynamic content end
 
