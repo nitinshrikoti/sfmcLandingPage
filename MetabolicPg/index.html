@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Title</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&amp;display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- script -->
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <!-- -------------------- NavBar -------------------- -->
+    <header>
+      <div class="nav-wrapper">
+        <div class="logo-container">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/cbf301aa-0b2b-4801-acad-d2ad99883567.png"
+            alt="Logo"
+            class="logo"
+          />
+        </div>
+        <nav>
+          <input class="hidden" type="checkbox" id="menuToggle" />
+          <label class="menu-btn" for="menuToggle">
+            <div class="menu"></div>
+            <div class="menu"></div>
+            <div class="menu"></div>
+          </label>
+          <div class="nav-container">
+            <ul class="nav-tabs text-black" role="list">
+              <li class="nav-tab"><a href="#steps">Booking Steps</a></li>
+              <li class="nav-tab"><a href="#faqs">Faqs</a></li>
+              <li class="nav-tab">
+                <button class="navbar-register-btn" onclick="newopenmodal()">
+                  Register Now
+                </button>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- -------------------- Hero -------------------- -->
+    <section class="hero">
+      <p id="heroHeading" class="text-green"></p>
+      <iframe
+        width="750"
+        height="425"
+        src="https://www.youtube.com/embed/xAYufd85eHg?si=l_D-AgKPJGP3tAeh&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=xAYufd85eHg"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen=""
+      ></iframe>
+    </section>
+
+    <!-- -------------------- Stats Section -------------------- -->
+    <div class="stats-container">
+      <div class="stat-box">
+        <img
+          src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f29240b6-31c3-48c7-83d5-606cc7a24835.png"
+          alt="Icon 1"
+        />
+      </div>
+      <div class="stat-box">
+        <img
+          src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/b43992eb-b602-4a91-adc5-f78bc266577f.png"
+          alt="Icon 2"
+        />
+      </div>
+      <div class="stat-box">
+        <img
+          src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/7e98c391-7d26-4138-bbed-e7844b55ec63.png"
+          alt="Icon 3"
+        />
+      </div>
+      <div class="stat-box">
+        <img
+          src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f24cb4b2-15a2-445a-a8b4-2aa66b1704fc.png"
+          alt="Icon 4"
+        />
+      </div>
+    </div>
+
+    <!-- -------------------- Mid-1 Section -------------------- -->
+    <section class="webinar-section">
+      <div class="webinar-left">
+        <img
+          id="drImg"
+          src=""
+          alt="Img of person who will be conducting webinar"
+        />
+        <div>
+          <p id="drName1" class="left-text-1"></p>
+          <div id="drDetails" class="dr-details"></div>
+        </div>
+      </div>
+
+      <div class="webinar-right text-gray">
+        <p class="right-txt-1">Join <span id="drName2"></span></p>
+        <p class="right-txt-2">On</p>
+        <p id="webDate" class="right-txt-3"></p>
+        <p class="right-txt-4">Time is Running Out</p>
+
+        <!-- MAIN TIMER -->
+        <div class="timebox">
+          <div class="time">
+            <p class="time-count" id="mainDays">00</p>
+            <p class="time-txt">Days</p>
+          </div>
+          <div class="time">
+            <p class="time-count" id="mainHours">00</p>
+            <p class="time-txt">Hours</p>
+          </div>
+          <div class="time">
+            <p class="time-count" id="mainMinutes">00</p>
+            <p class="time-txt">Mins</p>
+          </div>
+          <div class="time">
+            <p class="time-count" id="mainSeconds">00</p>
+            <p class="time-txt">Secs</p>
+          </div>
+        </div>
+
+        <button class="timer-register-btn" onclick="newopenmodal()">
+          Register Now
+        </button>
+
+        <p class="right-txt-4">
+          Don't Miss the Chance to Consult with Acharya Ji
+        </p>
+      </div>
+    </section>
+
+    <!-- -------------------- Mid-2 Section -------------------- -->
+    <div class="banner-heading-block text-black">
+      <h2 class="text-green">Webinar से जुड़ी कुछ जरुरी बातें।</h2>
+      <p>
+        वेबिनार में भाग लेने से पहले सुनिश्चित करें कि आप शांत जगह पर बैठें हों
+        एक अच्छे इंटरनेट कनेक्शन के साथ। अपने सवालों को पहले से तैयार रखें, ताकि
+        आप डॉक्टर या आचार्य मनीष जी से अधिकतम लाभ प्राप्त कर सकें। जब आपका नाम
+        लिया जाए तो अपना माइक अनम्यूट करें और आचार्य मनीष जी या हमारे डॉक्टर से
+        बात कर करें।
+      </p>
+    </div>
+
+    <section class="banner-webinar-section">
+      <!-- banner-Left side: Image -->
+      <div class="banner-left">
+        <img
+          id="BannerImg"
+          src=""
+          alt="Webinar Image"
+        />
+      </div>
+
+      <!-- banner-Right side: Text -->
+      <div class="banner-right text-black">
+        <p>ये वेबिनार किसके लिए है ?</p>
+        <ul>
+          <li id="why1"></li>
+          <li id="why2"></li>
+          <li id="why3"></li>
+          <li id="why4"></li>
+          <li id="why5"></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- -------------------- Instructions Section -------------------- -->
+    <section id="steps" class="join-webinar">
+      <h2 class="text-green">वेबिनार को ज्वाइन करने की प्रक्रिया:</h2>
+      <ol class="step-list">
+        <!-- Step 1 -->
+        <li>
+          <div class="step-title">Registration Process</div>
+          <div class="step-text">
+            <b>"Register"</b> बटन click करें। बटन पर क्लिक करने के बाद आपकी
+            screen पर pop-up खुलेगा।
+          </div>
+        </li>
+        <!-- Step 2 -->
+        <li>
+          <div class="step-title">Fill Details and Submit</div>
+          <div class="step-text">
+            वहाँ अपना <b>Name</b>, <b>WhatsApp Number</b>, <b>ईमेल (Email)</b>,
+            <b>Country</b> डालें और <b>"Submit"</b> बटन पर click करें।
+          </div>
+        </li>
+        <!-- Step 3 -->
+        <li>
+          <div class="step-title">Important!</div>
+          <div class="step-text">
+            <b>Form submit</b> krne के बाद आपके <b>WhatsApp Number</b> पर
+            Webinar की Details भेज दी जाएंगी। <br />
+            <b>Mobile</b> पर <b>Webinar Join</b> करने के लिए
+            <b>Zoom App</b> Download करके रखें। <br />
+            Webinar वाले दिन <b>Joining Link</b> पर click करें, <br />
+            Zoom App पर अपना Name और Email डालें फिर Continue पर Click करें।
+            <br />
+            हमारे <b></b> को ज्वाइन करना न भूलें। अगर किसी कारणवश आपको वेबिनार
+            का लिंक प्राप्त नहीं होता तो आप Group के माध्यम से वेबिनार का लिंक
+            ले सकते हैं।
+          </div>
+        </li>
+      </ol>
+      <button class="step-register-btn" onclick="newopenmodal()">
+        Register Now
+      </button>
+    </section>
+
+    <!-- -------------------- Testinomial Section -------------------- -->
+    <section class="testimonial-section">
+      <h2 class="text-green">Testimonial</h2>
+      <div class="testimonials-container">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
+            alt="User Photo"
+          />
+          <p class="testimonial-quote">
+            “Thanks Doctor. I learned effective ways to manage arthritis pain and improve joint health naturally.”
+          </p>
+          <p class="testimonial-author">— Saheb</p>
+        </div>
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
+            alt="User Photo"
+          />
+          <p class="testimonial-quote">
+            “Great!The tips on diet and exercise for arthritis were practical and easy to follow.”
+          </p>
+          <p class="testimonial-author">— Pryanka</p>
+        </div>
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
+            alt="User Photo"
+          />
+          <p class="testimonial-quote">
+            “Great insights on arthritis treatment options! Helped me understand how to reduce stiffness and inflammation."
+          </p>
+          <p class="testimonial-author">— Sidharth</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------------------- BrandLogo Section -------------------- -->
+    <section class="brands-section">
+      <h2 class="text-green">Proudly Representing Our Other Brands</h2>
+      <div class="brands-container">
+        <!-- Brand 1 -->
+        <div class="brand-card">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/dac32086-273a-490d-8790-326f19ec1a47.png"
+            alt="Shuddhi Brand"
+          />
+        </div>
+        <!-- Brand 2 -->
+        <div class="brand-card">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/09b32e30-c8b1-4499-8216-e2793e3aa65b.png"
+            alt="HHMS Brand"
+          />
+        </div>
+        <!-- Brand 3 -->
+        <div class="brand-card">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/71cd999b-b485-4024-b6d7-e1c2fcdf2d1d.png"
+            alt="Swami Om Brand"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- -------------------- Faqs Section -------------------- -->
+    <section id="faqs" class="faq-section">
+      <h2 class="text-green">Frequently Asked Questions</h2>
+      <div class="faq-container">
+        <!-- FAQ Item 1 -->
+        <div class="faq-item">
+          <input type="checkbox" id="faq1" />
+          <label class="faq-title" for="faq1">
+            <span>What is this webinar about?</span>
+            <div class="faq-arrow"></div>
+          </label>
+          <div class="faq-content">
+            <p>
+              This webinar covers essential health tips, lifestyle guidance, and
+              expert insights to help you stay fit and informed.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="faq-item">
+          <input type="checkbox" id="faq2" />
+          <label class="faq-title" for="faq2">
+            <span>How long will the webinar last?</span>
+            <div class="faq-arrow"></div>
+          </label>
+          <div class="faq-content">
+            <p>
+              The webinar typically runs for about 1-2 hours, followed by a Q&A
+              session where you can ask any questions you have.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="faq-item">
+          <input type="checkbox" id="faq3" />
+          <label class="faq-title" for="faq3">
+            <span>Is there any cost to join?</span>
+            <div class="faq-arrow"></div>
+          </label>
+          <div class="faq-content">
+            <p>
+              The webinar is completely free of charge for now. Simply register,
+              and we'll send you all the details to join.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------------------- Footer Section -------------------- -->
+    <footer class="footer-container">
+      <div class="fixed-footer text-gray">
+        <!-- Left side: Strikethrough Price, Timer -->
+        <div class="footer-left">
+          <p class="webinar-text">
+            Webinar in
+            <span class="old-price">₹500</span>
+            <span class="new-price">₹0 Only</span>
+          </p>
+          <p class="subtext">Before it ends</p>
+          <div class="footer-timebox">
+            <div class="footer-time">
+              <p class="footer-time-count" id="footerDays">00</p>
+            </div>
+            <div class="footer-time">
+              <p class="footer-time-count" id="footerHours">00</p>
+            </div>
+            <div class="footer-time">
+              <p class="footer-time-count" id="footerMinutes">00</p>
+            </div>
+            <div class="footer-time">
+              <p class="footer-time-count" id="footerSeconds">00</p>
+            </div>
+          </div>
+        </div>
+        <!-- Right side: Register button -->
+        <div class="footer-right">
+          <button class="footer-register-btn" onclick="newopenmodal()">
+            Register Now
+          </button>
+        </div>
+      </div>
+    </footer>
+
+    <!-- -------------------- Fill Form -------------------- -->
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close" id="closeModalBtn">&times;</span>
+
+        <!-- Success Container -->
+        <div class="success-container" id="successContainer">
+          <p class="text-center">Thank you!</p>
+          <p class="text-center">Your information has been submitted.</p>
+          <div class="whatsapp-button-container">
+            <a
+              id="whatsappLink1"
+              href=""
+              target="_blank"
+              class="whatsapp-button whatsapp-button-pulse"
+              >Join our WhatsApp Group</a
+            >
+          </div>
+          <p class="text-center">
+            To stay informed about your upcoming webinar.
+          </p>
+        </div>
+
+        <!-- Registration Form Container -->
+        <div class="form-container" id="formContainer">
+          <h2>Fill Your Details!</h2>
+          <form action="%%=RequestParameter('PAGEURL')=%%" method="post">
+            <input type="hidden" name="submitted" value="true" />
+
+            <!-- Hidden fields (empty or default) -->
+            <input type="hidden" name="OldSlotDate" value="" />
+            <input type="hidden" name="OldSlotTime" value="" />
+            <input id="NewSlotDate" type="hidden" name="NewSlotDate" value="" />
+            <input id="NewSlotTime" type="hidden" name="NewSlotTime" value="" />
+            <input id="OfferingTitle" type="hidden" name="OfferingTitle" value="" />
+            <input id="WaitUntillDate" type="hidden" name="WaitUntillDate" value="" />
+            <input id="ContactNumber" type="hidden" name="ContactNumber" value="" />
+            <input id="joiningLink" type="hidden" name="JoiningLink" value="" />
+            <input
+              id="whatsappLink2"
+              type="hidden"
+              name="WhatsAppLink"
+              value=""
+            />
+
+            <!-- Visible fields -->
+            <label for="FirstName">First Name*</label>
+            <input
+              type="text"
+              id="FirstName"
+              name="FirstName"
+              required=""
+              placeholder="Bharat"
+            />
+
+            <label for="LastName">Last Name</label>
+            <input
+              type="text"
+              id="LastName"
+              name="LastName"
+              placeholder="Singh"
+            />
+
+            <label for="Phone">WhatsApp Number*</label>
+            <input
+              type="text"
+              id="Phone"
+              name="Phone"
+              required=""
+              placeholder="8866558472 (10 Digit No Space)"
+            />
+
+            <label for="Email">Email</label>
+            <input
+              type="email"
+              id="Email"
+              name="Email"
+              placeholder="example@gmail.com"
+            />
+
+            <label for="Country">Country*</label>
+            <select id="Country" name="Country" required="">
+              <option value="">-- Select a Country --</option>
+              <option value="India">India</option>
+              <option value="Afghanistan">Afghanistan</option>
+              <option value="Albania">Albania</option>
+              <option value="Algeria">Algeria</option>
+              <option value="Andorra">Andorra</option>
+              <option value="Angola">Angola</option>
+              <option value="Antigua and Barbuda">Antigua and Barbuda</option>
+              <option value="Argentina">Argentina</option>
+              <option value="Armenia">Armenia</option>
+              <option value="Australia">Australia</option>
+              <option value="Austria">Austria</option>
+              <option value="Azerbaijan">Azerbaijan</option>
+              <option value="Bahamas">Bahamas</option>
+              <option value="Bahrain">Bahrain</option>
+              <option value="Bangladesh">Bangladesh</option>
+              <option value="Barbados">Barbados</option>
+              <option value="Belarus">Belarus</option>
+              <option value="Belgium">Belgium</option>
+              <option value="Belize">Belize</option>
+              <option value="Benin">Benin</option>
+              <option value="Bhutan">Bhutan</option>
+              <option value="Bolivia">Bolivia</option>
+              <option value="Bosnia and Herzegovina">
+                Bosnia and Herzegovina
+              </option>
+              <option value="Botswana">Botswana</option>
+              <option value="Brazil">Brazil</option>
+              <option value="Brunei">Brunei</option>
+              <option value="Bulgaria">Bulgaria</option>
+              <option value="Burkina Faso">Burkina Faso</option>
+              <option value="Burundi">Burundi</option>
+              <option value="Côte d’Ivoire">Côte d’Ivoire</option>
+              <option value="Cabo Verde">Cabo Verde</option>
+              <option value="Cambodia">Cambodia</option>
+              <option value="Cameroon">Cameroon</option>
+              <option value="Canada">Canada</option>
+              <option value="Central African Republic">
+                Central African Republic
+              </option>
+              <option value="Chad">Chad</option>
+              <option value="Chile">Chile</option>
+              <option value="China">China</option>
+              <option value="Colombia">Colombia</option>
+              <option value="Comoros">Comoros</option>
+              <option value="Congo, Democratic Republic of the">
+                Congo, Democratic Republic of the
+              </option>
+              <option value="Congo, Republic of the">
+                Congo, Republic of the
+              </option>
+              <option value="Costa Rica">Costa Rica</option>
+              <option value="Croatia">Croatia</option>
+              <option value="Cuba">Cuba</option>
+              <option value="Cyprus">Cyprus</option>
+              <option value="Czech Republic">Czech Republic</option>
+              <option value="Denmark">Denmark</option>
+              <option value="Djibouti">Djibouti</option>
+              <option value="Dominica">Dominica</option>
+              <option value="Dominican Republic">Dominican Republic</option>
+              <option value="Ecuador">Ecuador</option>
+              <option value="Egypt">Egypt</option>
+              <option value="El Salvador">El Salvador</option>
+              <option value="Equatorial Guinea">Equatorial Guinea</option>
+              <option value="Eritrea">Eritrea</option>
+              <option value="Estonia">Estonia</option>
+              <option value="Eswatini">Eswatini</option>
+              <option value="Ethiopia">Ethiopia</option>
+              <option value="Federated States of Micronesia">
+                Federated States of Micronesia
+              </option>
+              <option value="Fiji">Fiji</option>
+              <option value="Finland">Finland</option>
+              <option value="France">France</option>
+              <option value="Gabon">Gabon</option>
+              <option value="Gambia">Gambia</option>
+              <option value="Georgia">Georgia</option>
+              <option value="Germany">Germany</option>
+              <option value="Ghana">Ghana</option>
+              <option value="Greece">Greece</option>
+              <option value="Grenada">Grenada</option>
+              <option value="Guatemala">Guatemala</option>
+              <option value="Guinea">Guinea</option>
+              <option value="Guinea-Bissau">Guinea-Bissau</option>
+              <option value="Guyana">Guyana</option>
+              <option value="Haiti">Haiti</option>
+              <option value="Honduras">Honduras</option>
+              <option value="Hungary">Hungary</option>
+              <option value="Iceland">Iceland</option>
+              <option value="Indonesia">Indonesia</option>
+              <option value="Iran">Iran</option>
+              <option value="Iraq">Iraq</option>
+              <option value="Ireland">Ireland</option>
+              <option value="Israel">Israel</option>
+              <option value="Italy">Italy</option>
+              <option value="Jamaica">Jamaica</option>
+              <option value="Japan">Japan</option>
+              <option value="Jordan">Jordan</option>
+              <option value="Kazakhstan">Kazakhstan</option>
+              <option value="Kenya">Kenya</option>
+              <option value="Kiribati">Kiribati</option>
+              <option value="Kosovo">Kosovo</option>
+              <option value="Kuwait">Kuwait</option>
+              <option value="Kyrgyzstan">Kyrgyzstan</option>
+              <option value="Laos">Laos</option>
+              <option value="Latvia">Latvia</option>
+              <option value="Lebanon">Lebanon</option>
+              <option value="Lesotho">Lesotho</option>
+              <option value="Liberia">Liberia</option>
+              <option value="Libya">Libya</option>
+              <option value="Liechtenstein">Liechtenstein</option>
+              <option value="Lithuania">Lithuania</option>
+              <option value="Luxembourg">Luxembourg</option>
+              <option value="Madagascar">Madagascar</option>
+              <option value="Malawi">Malawi</option>
+              <option value="Malaysia">Malaysia</option>
+              <option value="Maldives">Maldives</option>
+              <option value="Mali">Mali</option>
+              <option value="Malta">Malta</option>
+              <option value="Marshall Islands">Marshall Islands</option>
+              <option value="Mauritania">Mauritania</option>
+              <option value="Mauritius">Mauritius</option>
+              <option value="Mexico">Mexico</option>
+              <option value="Moldova">Moldova</option>
+              <option value="Monaco">Monaco</option>
+              <option value="Mongolia">Mongolia</option>
+              <option value="Montenegro">Montenegro</option>
+              <option value="Morocco">Morocco</option>
+              <option value="Mozambique">Mozambique</option>
+              <option value="Myanmar (Burma)">Myanmar (Burma)</option>
+              <option value="Namibia">Namibia</option>
+              <option value="Nauru">Nauru</option>
+              <option value="Nepal">Nepal</option>
+              <option value="Netherlands">Netherlands</option>
+              <option value="New Zealand">New Zealand</option>
+              <option value="Nicaragua">Nicaragua</option>
+              <option value="Niger">Niger</option>
+              <option value="Nigeria">Nigeria</option>
+              <option value="North Korea">North Korea</option>
+              <option value="North Macedonia">North Macedonia</option>
+              <option value="Norway">Norway</option>
+              <option value="Oman">Oman</option>
+              <option value="Pakistan">Pakistan</option>
+              <option value="Palau">Palau</option>
+              <option value="Panama">Panama</option>
+              <option value="Papua New Guinea">Papua New Guinea</option>
+              <option value="Paraguay">Paraguay</option>
+              <option value="Peru">Peru</option>
+              <option value="Philippines">Philippines</option>
+              <option value="Poland">Poland</option>
+              <option value="Portugal">Portugal</option>
+              <option value="Qatar">Qatar</option>
+              <option value="Romania">Romania</option>
+              <option value="Russia">Russia</option>
+              <option value="Rwanda">Rwanda</option>
+              <option value="St Kitts and Nevis">St Kitts and Nevis</option>
+              <option value="St Lucia">St Lucia</option>
+              <option value="St Vincent and the Grenadines">
+                St Vincent and the Grenadines
+              </option>
+              <option value="Samoa">Samoa</option>
+              <option value="San Marino">San Marino</option>
+              <option value="Sao Tome and Principe">
+                Sao Tome and Principe
+              </option>
+              <option value="Saudi Arabia">Saudi Arabia</option>
+              <option value="Senegal">Senegal</option>
+              <option value="Serbia">Serbia</option>
+              <option value="Seychelles">Seychelles</option>
+              <option value="Sierra Leone">Sierra Leone</option>
+              <option value="Singapore">Singapore</option>
+              <option value="Slovakia">Slovakia</option>
+              <option value="Slovenia">Slovenia</option>
+              <option value="Solomon Islands">Solomon Islands</option>
+              <option value="Somalia">Somalia</option>
+              <option value="South Africa">South Africa</option>
+              <option value="South Korea">South Korea</option>
+              <option value="South Sudan">South Sudan</option>
+              <option value="Spain">Spain</option>
+              <option value="Sri Lanka">Sri Lanka</option>
+              <option value="Sudan">Sudan</option>
+              <option value="Suriname">Suriname</option>
+              <option value="Sweden">Sweden</option>
+              <option value="Switzerland">Switzerland</option>
+              <option value="Syria">Syria</option>
+              <option value="Taiwan">Taiwan</option>
+              <option value="Tajikistan">Tajikistan</option>
+              <option value="Tanzania">Tanzania</option>
+              <option value="Thailand">Thailand</option>
+              <option value="Timor-Leste">Timor-Leste</option>
+              <option value="Togo">Togo</option>
+              <option value="Tonga">Tonga</option>
+              <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+              <option value="Tunisia">Tunisia</option>
+              <option value="Turkey">Turkey</option>
+              <option value="Turkmenistan">Turkmenistan</option>
+              <option value="Tuvalu">Tuvalu</option>
+              <option value="Uganda">Uganda</option>
+              <option value="Ukraine">Ukraine</option>
+              <option value="United Arab Emirates">United Arab Emirates</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="United States">United States</option>
+              <option value="Uruguay">Uruguay</option>
+              <option value="Uzbekistan">Uzbekistan</option>
+              <option value="Vanuatu">Vanuatu</option>
+              <option value="Vatican City">Vatican City</option>
+              <option value="Venezuela">Venezuela</option>
+              <option value="Vietnam">Vietnam</option>
+              <option value="Yemen">Yemen</option>
+              <option value="Zambia">Zambia</option>
+              <option value="Zimbabwe">Zimbabwe</option>
+            </select>
+
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
