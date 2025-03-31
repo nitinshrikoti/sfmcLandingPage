@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ObesityWebinarOn2Apr</title>
+    <title>Title</title>
 
     <link rel="stylesheet" href="style.css" />
 
@@ -57,9 +57,7 @@
 
     <!-- -------------------- Hero -------------------- -->
     <section class="hero">
-      <p class="text-green">
-        Join <i>Obesity</i> Webinar by <i>Acharya Manish Ji</i>
-      </p>
+      <p id="heroHeading" class="text-green"></p>
       <iframe
         width="750"
         height="425"
@@ -104,24 +102,20 @@
     <section class="webinar-section">
       <div class="webinar-left">
         <img
-          src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2a06da4f-2205-458e-a16f-fb3d4d65e198.png"
+          id="drImg"
+          src=""
           alt="Img of person who will be conducting webinar"
         />
         <div>
-          <p class="left-text-1">Dr. Divyadeep</p>
-          <div class="dr-details">
-            <li>Bachelor of Ayurvedic Medicine and Surgery</li>
-            <li>Diploma in Naturopathy and Diploma in Yoga</li>
-            <li>Chronic Diseases, Metabolic Disorders</li>
-            <li>16+ Years Of Experience</li>
-          </div>
+          <p id="drName1" class="left-text-1"></p>
+          <div id="drDetails" class="dr-details"></div>
         </div>
       </div>
 
       <div class="webinar-right text-gray">
-        <p class="right-txt-1">Join <span>Dr. Divyadeep</span></p>
+        <p class="right-txt-1">Join <span id="drName2"></span></p>
         <p class="right-txt-2">On</p>
-        <p class="right-txt-3">2 April 2025 | 4:00 PM</p>
+        <p id="webDate" class="right-txt-3"></p>
         <p class="right-txt-4">Time is Running Out</p>
 
         <!-- MAIN TIMER -->
@@ -179,11 +173,11 @@
       <div class="banner-right text-black">
         <p>ये वेबिनार किसके लिए है ?</p>
         <ul>
-          <li>Non-Alcoholic Fatty Liver Disease (NAFLD) से राहत पाना और स्वस्थ लिवर बनाना।</li>
-          <li>Osteoarthritis में जोड़ों के दर्द और अकड़न से आराम प्राप्त करना।</li>
-          <li>Sleep Apnea से छुटकारा पाकर बेहतर नींद और श्वसन प्रणाली सुधारना।</li>
-          <li>Metabolic Syndrome से बचाव और वजन को नियंत्रित करना।</li>
-          <li>Hormonal Imbalance को संतुलित कर स्वास्थ्य और जीवनशैली में सुधार करना।</li>
+          <li id="why1"></li>
+          <li id="why2"></li>
+          <li id="why3"></li>
+          <li id="why4"></li>
+          <li id="why5"></li>
         </ul>
       </div>
     </section>
@@ -241,7 +235,8 @@
             alt="User Photo"
           />
           <p class="testimonial-quote">
-            “Eye-opening webinar! The expert advice on diet and lifestyle changes was really helpful for my diabetes management.”
+            “Eye-opening webinar! The expert advice on diet and lifestyle
+            changes was really helpful for my diabetes management.”
           </p>
           <p class="testimonial-author">— Shweta</p>
         </div>
@@ -252,7 +247,8 @@
             alt="User Photo"
           />
           <p class="testimonial-quote">
-            “Great insights on arthritis treatment options! Helped me understand how to reduce stiffness and inflammation.”
+            “Great insights on arthritis treatment options! Helped me understand
+            how to reduce stiffness and inflammation.”
           </p>
           <p class="testimonial-author">— Preetinder Kaur</p>
         </div>
@@ -263,7 +259,8 @@
             alt="User Photo"
           />
           <p class="testimonial-quote">
-            “The webinar was very informative! I learned practical tips to manage my diabetes better. Highly recommend it!"
+            “The webinar was very informative! I learned practical tips to
+            manage my diabetes better. Highly recommend it!"
           </p>
           <p class="testimonial-author">— Suraj</p>
         </div>
@@ -396,7 +393,8 @@
           <p class="text-center">Your information has been submitted.</p>
           <div class="whatsapp-button-container">
             <a
-              href="https://jeenasikho.com/webinar/?page=obesity"
+              id="whatsappLink1"
+              href=""
               target="_blank"
               class="whatsapp-button whatsapp-button-pulse"
               >Join our WhatsApp Group</a
@@ -416,24 +414,17 @@
             <!-- Hidden fields (empty or default) -->
             <input type="hidden" name="OldSlotDate" value="" />
             <input type="hidden" name="OldSlotTime" value="" />
-            <input type="hidden" name="NewSlotDate" value="2 April 2025" />
-            <input type="hidden" name="NewSlotTime" value="4:00 PM" />
+            <input id="NewSlotDate" type="hidden" name="NewSlotDate" value="" />
+            <input id="NewSlotTime" type="hidden" name="NewSlotTime" value="" />
+            <input id="OfferingTitle" type="hidden" name="OfferingTitle" value="" />
+            <input id="WaitUntillDate" type="hidden" name="WaitUntillDate" value="" />
+            <input id="ContactNumber" type="hidden" name="ContactNumber" value="" />
+            <input id="joiningLink" type="hidden" name="JoiningLink" value="" />
             <input
-              type="hidden"
-              name="OfferingTitle"
-              value="Obesity"
-            />
-            <input type="hidden" name="WaitUntillDate" value="2025-04-02" />
-            <input type="hidden" name="ContactNumber" value="917710371037" />
-            <input
-              type="hidden"
-              name="JoiningLink"
-              value="https://us06web.zoom.us/j/81295367591"
-            />
-            <input
+              id="whatsappLink2"
               type="hidden"
               name="WhatsAppLink"
-              value="https://jeenasikho.com/webinar/?page=obesity"
+              value=""
             />
 
             <!-- Visible fields -->

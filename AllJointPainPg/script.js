@@ -1,3 +1,71 @@
+// -------------------- Dynamic Content Update --------------------
+
+const title = "AllJointPainWebinarOn3Apr";
+const docImg =
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2a06da4f-2205-458e-a16f-fb3d4d65e198.png";
+const drName = "Dr. DivyaDeep";
+const webDate = "2 April 2025 | 4:00 PM";
+const joiningLink = "https://us06web.zoom.us/j/81295367591";
+const whatsappLink = "https://jeenasikho.com/webinar/?page=obesity";
+const newSlotDate = "2 April 2025";
+const newSlotTime = "4:00 PM";
+const offeringTitle = "Obesity";
+const waitUntillDate = "2025-04-02";
+const targetDate = new Date("April 3, 2025 10:00:00").getTime();
+
+const heroHeading = "Join <i>Obesity</i> Webinar by <i>Acharya Manish Ji</i>";
+const drDetails = [
+  "Bachelor of Ayurvedic Medicine and Surgery",
+  "Diploma in Naturopathy and Diploma in Yoga",
+  "Chronic Diseases, Metabolic Disorders",
+  "16+ Years Of Experience",
+];
+// Why Join Content
+const why1 =
+  "Non-Alcoholic Fatty Liver Disease (NAFLD) से राहत पाना और स्वस्थ लिवर बनाना।";
+const why2 = "Osteoarthritis में जोड़ों के दर्द और अकड़न से आराम प्राप्त करना।";
+const why3 = "Sleep Apnea से छुटकारा पाकर बेहतर नींद और श्वसन प्रणाली सुधारना।";
+const why4 = "Metabolic Syndrome से बचाव और वजन को नियंत्रित करना।";
+const why5 =
+  "Hormonal Imbalance को संतुलित कर स्वास्थ्य और जीवनशैली में सुधार करना।";
+const contactNumber = "917710371037";
+
+// Selectors for the dynamic content
+document.title = title;
+document.getElementById("heroHeading").innerHTML = heroHeading;
+if (document.getElementById("drImg")) {
+  drImg.src = docImg;
+}
+document.getElementById("drName1").innerHTML = drName;
+document.getElementById("drName2").innerHTML = drName;
+document.getElementById("webDate").innerHTML = webDate;
+
+// Dr. Details
+const ulElement = document.createElement("ul");
+drDetails.forEach((item) => {
+  const liElement = document.createElement("li");
+  liElement.textContent = item;
+  ulElement.appendChild(liElement);
+});
+document.getElementById("drDetails").appendChild(ulElement);
+
+document.getElementById("why1").innerHTML = why1;
+document.getElementById("why2").innerHTML = why2;
+document.getElementById("why3").innerHTML = why3;
+document.getElementById("why4").innerHTML = why4;
+document.getElementById("why5").innerHTML = why5;
+
+document.getElementById("whatsappLink1").href = whatsappLink;
+document.getElementById("whatsappLink2").value = whatsappLink;
+document.getElementById("joiningLink").value = joiningLink;
+document.getElementById("NewSlotDate").value = newSlotDate;
+document.getElementById("NewSlotTime").value = newSlotTime;
+document.getElementById("OfferingTitle").value = offeringTitle;
+document.getElementById("WaitUntillDate").value = waitUntillDate;
+document.getElementById("ContactNumber").value = contactNumber;
+
+// Selectors for the dynamic content end
+
 // -------------------- Timer Script --------------------
 // Main Timer Elements
 const mainDays = document.getElementById("mainDays");
@@ -17,7 +85,7 @@ function formatTime(num) {
 }
 
 // Set your target date/time here (shared by both timers)
-const targetDate = new Date("April 2, 2025 16:00:00").getTime();
+// const targetDate = new Date("April 3, 2025 10:00:00").getTime();
 
 function timer() {
   const currentDate = new Date().getTime();
