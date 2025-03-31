@@ -4,30 +4,31 @@ const title = "AllJointPainWebinarOn3Apr";
 const docImg =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2a06da4f-2205-458e-a16f-fb3d4d65e198.png";
 const drName = "Dr. DivyaDeep";
-const webDate = "2 April 2025 | 4:00 PM";
-const joiningLink = "https://us06web.zoom.us/j/81295367591";
-const whatsappLink = "https://jeenasikho.com/webinar/?page=obesity";
-const newSlotDate = "2 April 2025";
-const newSlotTime = "4:00 PM";
-const offeringTitle = "Obesity";
-const waitUntillDate = "2025-04-02";
+const webDate = "3 April 2025 | 10:00 AM";
+const joiningLink = "https://us06web.zoom.us/j/89034420947";
+const whatsappLink = "https://jeenasikho.com/webinar/?page=joint";
+const newSlotDate = "3 April 2025";
+const newSlotTime = "10:00 AM";
+const offeringTitle = "All Joint Pain";
+const waitUntillDate = "2025-04-03";
 const targetDate = new Date("April 3, 2025 10:00:00").getTime();
 
-const heroHeading = "Join <i>Obesity</i> Webinar by <i>Acharya Manish Ji</i>";
+const heroHeading = "Join <i>All Joint Pain</i> Webinar by <i>Acharya Manish Ji</i>";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
   "Diploma in Naturopathy and Diploma in Yoga",
   "Chronic Diseases, Metabolic Disorders",
   "16+ Years Of Experience",
 ];
+const bannerImage =
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/ffec998a-5356-47d9-b86a-882e4cd865ea.png";
 // Why Join Content
-const why1 =
-  "Non-Alcoholic Fatty Liver Disease (NAFLD) से राहत पाना और स्वस्थ लिवर बनाना।";
-const why2 = "Osteoarthritis में जोड़ों के दर्द और अकड़न से आराम प्राप्त करना।";
-const why3 = "Sleep Apnea से छुटकारा पाकर बेहतर नींद और श्वसन प्रणाली सुधारना।";
-const why4 = "Metabolic Syndrome से बचाव और वजन को नियंत्रित करना।";
+const why1 = "जो लोग <b>arthritis</b> या <b>joint pain</b> से जूझ रहे हैं।";
+const why2 = "जिन्हें <b>bone swelling</b> या <b>stiffness</b> की समस्या हो।";
+const why3 = "जिन्हें <b>walking, sitting, moving</b> में दिक्कत हो रही है।";
+const why4 = "जो <b>severe joint pain</b> और <b></b> से राहत पाना चाहते हैं।";
 const why5 =
-  "Hormonal Imbalance को संतुलित कर स्वास्थ्य और जीवनशैली में सुधार करना।";
+  "जो <b>natural remedies</b> से <b>joint health</b> सुधारना चाहते हैं।";
 const contactNumber = "917710371037";
 
 // Selectors for the dynamic content
@@ -35,6 +36,10 @@ document.title = title;
 document.getElementById("heroHeading").innerHTML = heroHeading;
 if (document.getElementById("drImg")) {
   drImg.src = docImg;
+}
+
+if (document.getElementById("BannerImg")) {
+  BannerImg.src = bannerImage;
 }
 document.getElementById("drName1").innerHTML = drName;
 document.getElementById("drName2").innerHTML = drName;
