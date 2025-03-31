@@ -1,49 +1,50 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "LiverWebinarOn3Apr";
+const title = "DiabetesWebinarOn3Apr";
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/37df16f7-b445-48cc-8828-e327a4f1002b.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6de07489-5caa-4c98-b41f-60660aefa45c.png";
 
-const drName = "Dr. Pooja";
-const webDate = "3 April 2025 | 4:00 PM";
+const drName = "Dr. Ankita";
+const webDate = "4 April 2025 | 10:00 AM";
 
-const joiningLink = "https://us06web.zoom.us/j/85424366955";
-const whatsappLink = "https://jeenasikho.com/webinar/?page=liver";
+const joiningLink = "https://us06web.zoom.us/j/83632687304";
+const whatsappLink = "https://jeenasikho.com/webinar/?page=mmb";
 
-const newSlotDate = "3 April 2025";
-const newSlotTime = "4:00 PM";
-const offeringTitle = "Liver";
-const waitUntillDate = "2025-04-03";
-const targetDate = new Date("April 3, 2025 16:00:00").getTime();
+const newSlotDate = "4 April 2025";
+const newSlotTime = "10:00 AM";
+const offeringTitle = "Diabetes";
+const waitUntillDate = "2025-04-04";
+const targetDate = new Date("April 4, 2025 10:00:00").getTime();
 const contactNumber = "917710371037";
 
-const heroHeading = "Join <i>Liver</i> Webinar by <i>Acharya Manish Ji</i>";
+const heroHeading = "Join <i>Diabetes</i> Webinar by <i>Acharya Manish Ji</i>";
+
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Certificate of Rashtriya Ayurveda Vidyapeeth",
-  "Diploma in Panchakarma Chikitsa",
-  "5+ Years of Experience",
+  "Chronic Liver and Kidney Diseases",
+  "Expertise in Arthritis, Mental Health",
+  "2+ Years of Experience",
 ];
+
 const bannerImage =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/1e0f9aef-c15f-403b-b5f5-73c34ac9b657.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/766d2799-154f-4dee-bab1-0a358411bb5e.png";
 
 // Why Join Content
 const why1 =
-  "जो लोग <b>liver cirrhosis, fatty liver, liver fibrosis, या liver failure</b> जैसी समस्याओं से जूझ रहे हैं।";
-const why2 = "जो लगातार <b>fatigue</b> और <b>weakness</b> महसूस कर रहे हैं।";
-const why3 =
-  "जो <b>liver health improve</b> करने के लिए प्राकृतिक उपाय ढूंढ रहे हैं।";
-const why4 =
-  "जो <b>weight gain</b> और <b>fat accumulation</b> की समस्या से परेशान हैं।";
+  "जो लोग <b>diabetes</b> (मधुमेह) को नियंत्रित करना या ठीक करना चाहते हैं।";
+const why2 =
+  "जिनकी <b>eyesight weak</b> हो रही है या <b>wounds heal</b> होने में समय लग रहा है।";
+const why3 = "जिन्हें <b>heart disease या kidney problems</b> की परेशानी हो रही है।";
+const why4 = "जिन्हें <b>frequent urination या excessive fatigue</b> की समस्या है।";
 const why5 =
-  "जिन्हें <b>mental stress</b> है या ध्यान केंद्रित करने में कठिनाई हो रही है।";
+  "जो <b>natural remedies</b> से </b>blood sugar control</b> और overall health improve करना चाहते हैं।";
 
 const Testi1 =
-  '"Jaswinder Kaur from Amritsar, who struggled with sugar, thyroid, and fatty liver grade 2, now feels much better after attending the 72-hour camp. She recommends switching from allopathic medicine to treatment with Acharya Manish Ji and BRC."';
+  '"Eye-opening webinar! The expert advice on diet and lifestyle changes was really helpful for my diabetes management."';
 const Testi2 =
-  '"Vipin Kumar Jain shared that after attending the camp, he experienced relief from liver cirrhosis and joint-muscle pain. He appreciates Ayurvedic treatment and Acharya Manish Jis good nature."';
+  '"Great session! The explanations were clear, and I feel more confident about reversing my blood sugar levels & diabetes"';
 const Testi3 =
-  '"Gautam Jain, admitted for liver issues, experienced significant relief in swelling and digestion after just three days of Ayurvedic treatment. He highly recommends Acharya Manish Ji’s hospital for better results."';
+  '"The webinar was very informative! I learned practical tips to manage my diabetes better. Highly recommend it!"';
 
 // Selectors for the dynamic content
 document.title = title;
