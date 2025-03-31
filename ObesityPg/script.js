@@ -17,7 +17,7 @@ function formatTime(num) {
 }
 
 // Set your target date/time here (shared by both timers)
-const targetDate = new Date("April 2, 2025 13:00:00").getTime();
+const targetDate = new Date("April 2, 2025 16:00:00").getTime();
 
 function timer() {
   const currentDate = new Date().getTime();
