@@ -1,50 +1,49 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "MetabolicWebinarOn3Apr";
+const title = "LiverWebinarOn3Apr";
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/540c60d3-7b05-4859-b63b-27c34da6ba93.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/37df16f7-b445-48cc-8828-e327a4f1002b.png";
 
-const drName = "Dr. Geetika";
-const webDate = "3 April 2025 | 1:00 PM";
+const drName = "Dr. Pooja";
+const webDate = "3 April 2025 | 4:00 PM";
 
-const joiningLink = "https://us06web.zoom.us/j/89237691413";
-const whatsappLink = "https://jeenasikho.com/webinar/?page=metabolic-disorders";
+const joiningLink = "https://us06web.zoom.us/j/85424366955";
+const whatsappLink = "https://jeenasikho.com/webinar/?page=liver";
 
 const newSlotDate = "3 April 2025";
-const newSlotTime = "1:00 PM";
-const offeringTitle = "Metabolic Disorder";
+const newSlotTime = "4:00 PM";
+const offeringTitle = "Liver";
 const waitUntillDate = "2025-04-03";
-const targetDate = new Date("April 3, 2025 13:00:00").getTime();
+const targetDate = new Date("April 3, 2025 16:00:00").getTime();
 const contactNumber = "917710371037";
 
-const heroHeading =
-  "Join <i>Metabolic Disorder</i> Webinar by <i>Acharya Manish Ji</i>";
+const heroHeading = "Join <i>Liver</i> Webinar by <i>Acharya Manish Ji</i>";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "PGDIP (PG. Diploma in Panchakarma)",
-  "M.S. (Ay.) Master of Surgery",
-  "15+ Years of Experience",
+  "Certificate of Rashtriya Ayurveda Vidyapeeth",
+  "Diploma in Panchakarma Chikitsa",
+  "5+ Years of Experience",
 ];
 const bannerImage =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e6cabbf5-0635-43f1-801f-0ac0ad688f98.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/1e0f9aef-c15f-403b-b5f5-73c34ac9b657.png";
 
 // Why Join Content
 const why1 =
-  "जो लोग <b>metabolic disorders</b> जैसे <b>diabetes, hypertension, thyroid</b> की समस्या से जूझ रहे हैं।";
-const why2 =
-  "जिन्हें <b>weight gain, fatigue, या weakness</b> महसूस हो रही है।";
+  "जो लोग <b>liver cirrhosis, fatty liver, liver fibrosis, या liver failure</b> जैसी समस्याओं से जूझ रहे हैं।";
+const why2 = "जो लगातार <b>fatigue</b> और <b>weakness</b> महसूस कर रहे हैं।";
 const why3 =
-  "जो <b>physical</b> और <b>mental weakness</b> या सुस्ती का सामना कर रहे हैं।";
+  "जो <b>liver health improve</b> करने के लिए प्राकृतिक उपाय ढूंढ रहे हैं।";
 const why4 =
-  "जिन्हें <b>blood sugar</b> और <b>cholesterol levels</b> कंट्रोल करने में दिक्कत हो रही है।";
+  "जो <b>weight gain</b> और <b>fat accumulation</b> की समस्या से परेशान हैं।";
 const why5 =
-  "जो <b>natural remedies</b> से <b>metabolic health improve</b> करना चाहते हैं और <b>energy boost</b> करना चाहते हैं।";
+  "जिन्हें <b>mental stress</b> है या ध्यान केंद्रित करने में कठिनाई हो रही है।";
+
 const Testi1 =
-  '"The webinar was very informative! I learned practical tips to manage my diabetes better. Highly recommend it!"';
+  '"Jaswinder Kaur from Amritsar, who struggled with sugar, thyroid, and fatty liver grade 2, now feels much better after attending the 72-hour camp. She recommends switching from allopathic medicine to treatment with Acharya Manish Ji and BRC."';
 const Testi2 =
-  '"The expert tips on mental wellness were easy to apply and made a real difference."';
+  '"Vipin Kumar Jain shared that after attending the camp, he experienced relief from liver cirrhosis and joint-muscle pain. He appreciates Ayurvedic treatment and Acharya Manish Jis good nature."';
 const Testi3 =
-  '"Great session! The explanations were clear, and I feel more confident about reversing my blood sugar levels & diabetes"';
+  '"Gautam Jain, admitted for liver issues, experienced significant relief in swelling and digestion after just three days of Ayurvedic treatment. He highly recommends Acharya Manish Ji’s hospital for better results."';
 
 // Selectors for the dynamic content
 document.title = title;
