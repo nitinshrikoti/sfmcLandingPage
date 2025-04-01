@@ -1,9 +1,10 @@
 // -------------------- Dynamic Content Update --------------------
 
 const title = "InfertilityWebinarOn5Apr";
-// const docImg = "";
+const docImg =
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f6e16a88-067f-41f4-a7ec-abd014ecaacc.png";
 
-// const drName = "Dr. Sonali";
+const drName = "Dr. Sonali";
 const webDate = "5 April 2025 | 1:00 PM";
 
 const joiningLink = "https://us06web.zoom.us/j/83914567937";
@@ -19,33 +20,25 @@ const contactNumber = "917710371037";
 const heroHeading =
   "Webinar on <b><i>Infertility</i></b> by <i>Team Acharya Manish Ji</i>";
 
-// const drDetails = [
-//   "Bachelor of Ayurvedic Medicine and Surgery",
-//   "CERTIFIED in Psychosomatic Disorders",
-//   "4+ Years of Experience",
-// ];
+const drDetails = [
+  "Bachelor of Ayurvedic Medicine and Surgery",
+  "CERTIFIED in Psychosomatic Disorders",
+  "4+ Years of Experience",
+];
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6c462340-eb4d-428b-b6f0-008d2b6292b0.png";
 
 // Why Join Content
-const why1 =
-  "<b>Insomnia</b> से छुटकारा पाकर बेहतर नींद और मानसिक शांति पाना चाहते हैं।";
-const why2 =
-  "<b>Parkinson's</b> में कंपन, संतुलन और मूवमेंट की समस्या को कम करना चाहते हैं।";
-const why3 =
-  "<b>Cervical Spondylosis<b> में गर्दन के दर्द और अकड़न से राहत पाना चाहते हैं।";
-const why4 =
-  "<b>Lumbar Spondylosis</b> में पीठ दर्द और चलने में कठिनाई को दूर करना चाहते हैं।";
-const why5 =
-  "आयुर्वेदिक और प्राकृतिक तरीकों से तंत्रिका तंत्र को मजबूत बनाना चाहते हैं।";
+const why1 = "";
+const why2 = "";
+const why3 = "";
+const why4 = "";
+const why5 = "";
 
-const Testi1 =
-  '"The webinar provided clear insights on managing nerve disorders with practical tips. Very informative!""';
-const Testi2 =
-  '"Great session on brain health! Learned useful strategies to improve memory and prevent neurological issues."';
-const Testi3 =
-  '"Well-explained and engaging! Helped me understand nerve disorders and available treatment options better."';
+const Testi1 = '""';
+const Testi2 = '""';
+const Testi3 = '""';
 
 // Selectors for the dynamic content
 document.title = title;
