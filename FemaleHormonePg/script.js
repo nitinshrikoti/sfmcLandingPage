@@ -2,49 +2,43 @@
 
 const title = "FemaleHormoneWebinarOn4Apr";
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6de07489-5caa-4c98-b41f-60660aefa45c.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f6e16a88-067f-41f4-a7ec-abd014ecaacc.png";
 
-const drName = "Dr. ";
-const webDate = "4 April 2025 | 10:00 AM";
+const drName = "Dr. Sonali";
+const webDate = "4 April 2025 | 1:00 PM";
 
-const joiningLink = "https://us06web.zoom.us/j/83632687304";
-const whatsappLink = "https://jeenasikho.com/webinar/?page=mmb";
+const joiningLink = "https://us06web.zoom.us/j/84023399855";
+const whatsappLink = "https://jeenasikho.com/webinar/?page=female-sexual";
 
 const newSlotDate = "4 April 2025";
-const newSlotTime = "10:00 AM";
-const offeringTitle = "Diabetes";
+const newSlotTime = "1:00 PM";
+const offeringTitle = "Female Sexual & Hormonal Disorder";
 const waitUntillDate = "2025-04-04";
-const targetDate = new Date("April 4, 2025 10:00:00").getTime();
+const targetDate = new Date("April 4, 2025 13:00:00").getTime();
 const contactNumber = "917710371037";
 
-const heroHeading = "Join <i>Diabetes</i> Webinar by <i>Acharya Manish Ji</i>";
+const heroHeading =
+  "Join <i>Female Sexual Disorder</i> Webinar by <i>Acharya Manish Ji</i>";
 
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Chronic Liver and Kidney Diseases",
-  "Expertise in Arthritis, Mental Health",
-  "2+ Years of Experience",
+  "CERTIFIED in Psychosomatic Disorders",
+  "4+ Years of Experience",
 ];
 
 const bannerImage =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/766d2799-154f-4dee-bab1-0a358411bb5e.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/4e666290-5329-4c7b-a389-7a8c41f4103e.png";
 
 // Why Join Content
-const why1 =
-  "जो लोग <b>diabetes</b> (मधुमेह) को नियंत्रित करना या ठीक करना चाहते हैं।";
-const why2 =
-  "जिनकी <b>eyesight weak</b> हो रही है या <b>wounds heal</b> होने में समय लग रहा है।";
-const why3 = "जिन्हें <b>heart disease या kidney problems</b> की परेशानी हो रही है।";
-const why4 = "जिन्हें <b>frequent urination या excessive fatigue</b> की समस्या है।";
-const why5 =
-  "जो <b>natural remedies</b> से </b>blood sugar control</b> और overall health improve करना चाहते हैं।";
+const why1 = "जो महिलाएं <b>irregular periods</b> को <b>regular</b> करना चाहती हैं।";
+const why2 = "जिन्हें <b>mood swings, weight changes, और sleep issues</b> हो रही हैं।";
+const why3 = "जो skin problems, hair fall, और fatigue से परेशान हैं।";
+const why4 = "जो <b>infertility</b> को दूर कर motherhood का अनुभव करना चाहती हैं।";
+const why5 = "जिन्हें <b>focus issues या fast heartbeat</b> की समस्या हो रही है।";
 
-const Testi1 =
-  '"Eye-opening webinar! The expert advice on diet and lifestyle changes was really helpful for my diabetes management."';
-const Testi2 =
-  '"Great session! The explanations were clear, and I feel more confident about reversing my blood sugar levels & diabetes"';
-const Testi3 =
-  '"The webinar was very informative! I learned practical tips to manage my diabetes better. Highly recommend it!"';
+const Testi1 = '""PCOS troubled me for years, but a webinar by Acharya Manish Ji’s team changed everything. After HiiMS consultation, I feel energetic, and my reports improved. Grateful for this life-changing experience""';
+const Testi2 = '""PCOD ne mujhe stress diya, medicines bas symptoms control karti thi. HiiMS webinar attend kiya, Ayurveda treatment shuru kiya. 3 mahine me hi periods regular, acne kam, aur energy badh gayi""';
+const Testi3 = '""Hormonal imbalance caused mood swings, weight gain, and fatigue. HiiMS webinar was eye-opening. After consultation, my energy returned, sleep improved, and I feel like myself again.""';
 
 // Selectors for the dynamic content
 document.title = title;
