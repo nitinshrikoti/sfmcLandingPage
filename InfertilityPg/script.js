@@ -1,30 +1,29 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "BrainRelatedWebinarOn4Apr";
-const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f6e16a88-067f-41f4-a7ec-abd014ecaacc.png";
+const title = "InfertilityWebinarOn5Apr";
+// const docImg = "";
 
-const drName = "Dr. Sonali";
-const webDate = "5 April 2025 | 4:00 PM";
+// const drName = "Dr. Sonali";
+const webDate = "5 April 2025 | 1:00 PM";
 
 const joiningLink = "https://us06web.zoom.us/j/83914567937";
 const whatsappLink = "https://jeenasikho.com/webinar/?page=mind-related";
 
 const newSlotDate = "5 April 2025";
-const newSlotTime = "4:00 PM";
-const offeringTitle = "Brain Related Disorder";
+const newSlotTime = "1:00 PM";
+const offeringTitle = "Infertility";
 const waitUntillDate = "2025-04-05";
-const targetDate = new Date("April 5, 2025 16:00:00").getTime();
+const targetDate = new Date("April 5, 2025 13:00:00").getTime();
 const contactNumber = "917710371037";
 
 const heroHeading =
-  "Webinar on <b><i>Brain Related Disorders</i></b> by <i>Team Acharya Manish Ji</i>";
+  "Webinar on <b><i>Infertility</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drDetails = [
-  "Bachelor of Ayurvedic Medicine and Surgery",
-  "CERTIFIED in Psychosomatic Disorders",
-  "4+ Years of Experience",
-];
+// const drDetails = [
+//   "Bachelor of Ayurvedic Medicine and Surgery",
+//   "CERTIFIED in Psychosomatic Disorders",
+//   "4+ Years of Experience",
+// ];
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6c462340-eb4d-428b-b6f0-008d2b6292b0.png";
