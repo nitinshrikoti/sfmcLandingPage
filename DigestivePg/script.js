@@ -31,17 +31,20 @@ const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/c0ea5ffe-bed6-45c1-aaa3-c13bac55fb1e.png";
 
 // Why Join Content
-const why1 = "जो अपने digestion system को स्वस्थ और सुचारू रखना चाहते हैं।";
+const why1 = "जो अपने <b>digestion system</b> को स्वस्थ और सुचारू रखना चाहते हैं।";
 const why2 =
-  "जो ulcerative colitis और GERD से होने वाली असुविधा को कम करना चाहते हैं।";
-const why3 = "जो piles या fissure की जलन और दर्द से परेशान हैं।";
+  "जो <b>ulcerative colitis</b> और <b>GERD</b> से होने वाली असुविधा को कम करना चाहते हैं।";
+const why3 = "जो <b>piles या fissure</b> की जलन और दर्द से परेशान हैं।";
 const why4 =
-  "जिन्हें IBS के कारण stomach pain और irregular digestion की समस्या हो।";
-const why5 = "जो अपने digestion system को स्वस्थ और सुचारू रखना चाहते हैं।";
+  "जिन्हें <b>IBS</b> के कारण <b>stomach pain</b> और <b>irregular digestion</b> की समस्या हो।";
+const why5 = "जो अपने <b>digestion system</b> को स्वस्थ और सुचारू रखना चाहते हैं।";
 
-const Testi1 = '""Suffered from gastric issues for 5 years, relying on acidity meds daily.HiiMS webinar guided me to natural remedies. After following them, I’m off medicines for 2 months and feel great.""';
-const Testi2 = '""Kai salon se gas ki problem thi. HiiMS webinar ne sahi guidance di, treatment start kiya. Sirf 5 din me acidity aur gas se relief mil gaya. Ab bilkul theek hoon.""';
-const Testi3 = '""HiiMS gastric webinar was life-changing. Consulted their doctors, followed their guidance, and now I’m free from gastric issues. No more discomfort, just a healthier and happier life.""';
+const Testi1 =
+  '""Suffered from gastric issues for 5 years, relying on acidity meds daily.HiiMS webinar guided me to natural remedies. After following them, I’m off medicines for 2 months and feel great.""';
+const Testi2 =
+  '""Kai salon se gas ki problem thi. HiiMS webinar ne sahi guidance di, treatment start kiya. Sirf 5 din me acidity aur gas se relief mil gaya. Ab bilkul theek hoon.""';
+const Testi3 =
+  '""HiiMS gastric webinar was life-changing. Consulted their doctors, followed their guidance, and now I’m free from gastric issues. No more discomfort, just a healthier and happier life.""';
 
 // Selectors for the dynamic content
 document.title = title;
