@@ -1,44 +1,47 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "FemaleHormoneWebinarOn4Apr";
+const title = "DigestiveWebinarOn4Apr";
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f6e16a88-067f-41f4-a7ec-abd014ecaacc.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6de07489-5caa-4c98-b41f-60660aefa45c.png";
 
-const drName = "Dr. Sonali";
-const webDate = "4 April 2025 | 1:00 PM";
+const drName = "Dr. Ankita";
+const webDate = "5 April 2025 | 10:00 AM";
 
-const joiningLink = "https://us06web.zoom.us/j/84023399855";
-const whatsappLink = "https://jeenasikho.com/webinar/?page=female-sexual";
+const joiningLink = "https://us06web.zoom.us/j/83625120142";
+const whatsappLink = "https://jeenasikho.com/webinar/?page=gastric-issues";
 
-const newSlotDate = "4 April 2025";
-const newSlotTime = "1:00 PM";
-const offeringTitle = "Female Sexual & Hormonal Disorder";
-const waitUntillDate = "2025-04-04";
-const targetDate = new Date("April 4, 2025 13:00:00").getTime();
+const newSlotDate = "5 April 2025";
+const newSlotTime = "10:00 AM";
+const offeringTitle = "Gas, Acidity, Constipation";
+const waitUntillDate = "2025-04-05";
+const targetDate = new Date("April 5, 2025 10:00:00").getTime();
 const contactNumber = "917710371037";
 
 const heroHeading =
-  "Join <i>Female Sexual Disorder</i> Webinar by <i>Acharya Manish Ji</i>";
+  "Webinar on Gas, Acidity & Constipation by Team Acharya Manish Ji";
 
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "CERTIFIED in Psychosomatic Disorders",
-  "4+ Years of Experience",
+  "Chronic Liver & Kidney Disease",
+  "Expertise in Arthritis, Mental Health",
+  "2+ Years of Experience",
 ];
 
 const bannerImage =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/4e666290-5329-4c7b-a389-7a8c41f4103e.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/c0ea5ffe-bed6-45c1-aaa3-c13bac55fb1e.png";
 
 // Why Join Content
-const why1 = "जो महिलाएं <b>irregular periods</b> को <b>regular</b> करना चाहती हैं।";
-const why2 = "जिन्हें <b>mood swings, weight changes, और sleep issues</b> हो रही हैं।";
-const why3 = "जो skin problems, hair fall, और fatigue से परेशान हैं।";
-const why4 = "जो <b>infertility</b> को दूर कर motherhood का अनुभव करना चाहती हैं।";
-const why5 = "जिन्हें <b>focus issues या fast heartbeat</b> की समस्या हो रही है।";
+const why1 = "जो अपने digestion system को स्वस्थ और सुचारू रखना चाहते हैं।";
+const why2 =
+  "जो ulcerative colitis और GERD से होने वाली असुविधा को कम करना चाहते हैं।";
+const why3 = "जो piles या fissure की जलन और दर्द से परेशान हैं।";
+const why4 =
+  "जिन्हें IBS के कारण stomach pain और irregular digestion की समस्या हो।";
+const why5 = "जो अपने digestion system को स्वस्थ और सुचारू रखना चाहते हैं।";
 
-const Testi1 = '""PCOS troubled me for years, but a webinar by Acharya Manish Ji’s team changed everything. After HiiMS consultation, I feel energetic, and my reports improved. Grateful for this life-changing experience""';
-const Testi2 = '""PCOD ne mujhe stress diya, medicines bas symptoms control karti thi. HiiMS webinar attend kiya, Ayurveda treatment shuru kiya. 3 mahine me hi periods regular, acne kam, aur energy badh gayi""';
-const Testi3 = '""Hormonal imbalance caused mood swings, weight gain, and fatigue. HiiMS webinar was eye-opening. After consultation, my energy returned, sleep improved, and I feel like myself again.""';
+const Testi1 = '""Suffered from gastric issues for 5 years, relying on acidity meds daily.HiiMS webinar guided me to natural remedies. After following them, I’m off medicines for 2 months and feel great.""';
+const Testi2 = '""Kai salon se gas ki problem thi. HiiMS webinar ne sahi guidance di, treatment start kiya. Sirf 5 din me acidity aur gas se relief mil gaya. Ab bilkul theek hoon.""';
+const Testi3 = '""HiiMS gastric webinar was life-changing. Consulted their doctors, followed their guidance, and now I’m free from gastric issues. No more discomfort, just a healthier and happier life.""';
 
 // Selectors for the dynamic content
 document.title = title;
