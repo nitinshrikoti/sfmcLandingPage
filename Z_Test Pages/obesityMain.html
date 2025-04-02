@@ -1,31 +1,39 @@
-%%[ 
-IF RequestParameter("submitted") == "true" THEN 
-  Set @uniqueID = Concat(Format(SystemDateToLocalDate(Now()), "yyyyMMddHHmmss"), "_",
-  RequestParameter("Phone") ) 
-  Set @BookingDate = Format(SystemDateToLocalDate(Now()), "yyyy-MM-dd") 
-  Set @BookingTime =Format(SystemDateToLocalDate(Now()), "HH:mm:ss") 
+%%[
+IF RequestParameter("submitted") == "true" THEN
 
-  InsertDE( "WebinarFormData",
-    "UniqueID",       @uniqueID, 
-    "FirstName",      RequestParameter("FirstName"), 
-    "LastName",       RequestParameter("LastName"), 
-    "Phone",          RequestParameter("Phone"), 
-    "Email",          RequestParameter("Email"), 
+  Set @uniqueID = Concat(
+    Format(SystemDateToLocalDate(Now()), "yyyyMMddHHmmss"),
+    "_",
+    RequestParameter("Phone")
+  )
+
+  Set @BookingDate = Format(SystemDateToLocalDate(Now()), "yyyy-MM-dd")
+  Set @BookingTime = Format(SystemDateToLocalDate(Now()), "HH:mm:ss")
+
+  UpsertDE(
+    "WebinarFormData",    
+    1,                    
+    "UniqueID",       @uniqueID,
+    "FirstName",      RequestParameter("FirstName"),
+    "LastName",       RequestParameter("LastName"),
+    "Phone",          RequestParameter("Phone"),
+    "Email",          RequestParameter("Email"),
     "Country",        RequestParameter("Country"),
-    "BookingDate",    @BookingDate, 
-    "BookingTime",    @BookingTime, 
-    "OldSlotDate",    RequestParameter("OldSlotDate"), 
+    "BookingDate",    @BookingDate,
+    "BookingTime",    @BookingTime,
+    "OldSlotDate",    RequestParameter("OldSlotDate"),
     "OldSlotTime",    RequestParameter("OldSlotTime"),
-    "NewSlotDate",    RequestParameter("NewSlotDate"), 
-    "NewSlotTime",    RequestParameter("NewSlotTime"), 
-    "OfferingTitle",  RequestParameter("OfferingTitle"), 
-    "OfferingName",   RequestParameter("OfferingName"), 
-    "JoiningLink",    RequestParameter("JoiningLink"), 
+    "NewSlotDate",    RequestParameter("NewSlotDate"),
+    "NewSlotTime",    RequestParameter("NewSlotTime"),
+    "OfferingTitle",  RequestParameter("OfferingTitle"),
+    "JoiningLink",    RequestParameter("JoiningLink"),
     "WhatsAppLink",   RequestParameter("WhatsAppLink"),
     "WaitUntillDate", RequestParameter("WaitUntillDate"),
     "ContactNumber",  RequestParameter("ContactNumber")
-  ) 
-ENDIF ]%%
+  )
+
+ENDIF
+]%%
 
 <!-- We set a JS variable (isSubmitted) based on whether the form was posted -->
 %%[ IF RequestParameter("submitted") == "true" THEN ]%%
@@ -37,30 +45,44 @@ ENDIF ]%%
   var isSubmitted = false;
 </script>
 %%[ ENDIF ]%%
+
+<!-- We set a JS variable (isSubmitted) based on whether the form was posted -->
+%%[ IF RequestParameter("submitted") == "true" THEN ]%%
+<script>
+  var isSubmitted = true;
+</script>
+%%[ ELSE ]%%
+<script>
+  var isSubmitted = false;
+</script>
+%%[ ENDIF ]%%
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CancerWebinarOn28Mar</title>
+    <title>ObesityWebinarOn2Apr</title>
 
     <!-- <link rel="stylesheet" href="style.css" /> -->
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&amp;display=swap"
       rel="stylesheet"
     />
-
-    <!-- script -->
-    <!-- <script src="script.js" defer></script> -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&amp;display=swap"
+      rel="stylesheet"
+    />
 
     <style>
       :root {
         --ff-exo: "Exo", serif;
         --ff-timesRoman: "Times New Roman", Times, serif;
+        --ff-poppins: "Poppins", sans-serif;
 
         --text-black: #44403b;
         --text-gray: #787878;
@@ -68,7 +90,7 @@ ENDIF ]%%
         --text-green: #254a28;
         --color-white: #ffffff;
 
-        --color-liteGreen: #25D366;
+        --color-liteGreen: #25d366;
         --bg-green: #254a28;
       }
 
@@ -221,6 +243,24 @@ ENDIF ]%%
         width: auto;
       }
 
+      .nav-tab > a:after {
+        background: none repeat scroll 0 0 transparent;
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 2px;
+        left: 50%;
+        background: var(--bg-green);
+        transition: opacity 300ms, transform 300ms;
+        width: 0;
+      }
+      .nav-tab > a:hover:after {
+        width: 100%;
+        left: 0;
+        opacity: 1;
+        transform: translate3d(0, 0.2em, 0);
+      }
+
       .nav-tabs {
         display: flex;
         align-items: center;
@@ -321,10 +361,10 @@ ENDIF ]%%
         box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
       }
       .webinar-left img {
-        width: 300px;
+        width: 220px;
         height: auto;
       }
-      .webinar-left div {
+      .webinar-left > div {
         width: 100%;
       }
       .left-text-1 {
@@ -332,6 +372,13 @@ ENDIF ]%%
         font-size: 24px;
         margin-block-start: 10px;
         color: #254a28;
+      }
+
+      .dr-details {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        margin: 5px auto;
       }
 
       .webinar-right {
@@ -403,6 +450,7 @@ ENDIF ]%%
 
       /* -------------------- Mid-2 Section -------------------- */
       .banner-heading-block {
+        font-family: var(--ff-poppins);
         max-width: 1000px;
         margin: 40px auto 10px;
         padding: 0 20px;
@@ -418,6 +466,7 @@ ENDIF ]%%
       }
 
       .banner-webinar-section {
+        font-family: var(--ff-poppins);
         display: flex;
         background: #fff;
         max-width: 1000px;
@@ -472,6 +521,7 @@ ENDIF ]%%
       /* -------------------- Instructions Section -------------------- */
 
       .join-webinar {
+        font-family: var(--ff-poppins);
         max-width: 1000px; /* Constrain the width on larger screens */
         margin: 10px auto; /* Center with vertical spacing */
         background-color: #ffffff;
@@ -1194,9 +1244,10 @@ ENDIF ]%%
         .success-container > p {
           font-size: 14px;
         }
-        
       }
     </style>
+    <!-- script -->
+    <!-- <script src="script.js" defer></script> -->
   </head>
   <body>
     <!-- -------------------- NavBar -------------------- -->
@@ -1234,11 +1285,11 @@ ENDIF ]%%
     <!-- -------------------- Hero -------------------- -->
     <section class="hero">
       <p class="text-green">
-        Join <i>Cancer</i> Webinar by <i>Acharya Manish Ji</i>
+        Join <i>Obesity</i> Webinar by <i>Acharya Manish Ji</i>
       </p>
       <iframe
-        width="890"
-        height="500"
+        width="750"
+        height="425"
         src="https://www.youtube.com/embed/xAYufd85eHg?si=l_D-AgKPJGP3tAeh&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=xAYufd85eHg"
         title="YouTube video player"
         frameborder="0"
@@ -1280,18 +1331,24 @@ ENDIF ]%%
     <section class="webinar-section">
       <div class="webinar-left">
         <img
-          src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/08c5ae0d-2900-4c70-9ff4-c823dc367b9e.png"
-          alt="Acharya Manish Ji"
+          src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2a06da4f-2205-458e-a16f-fb3d4d65e198.png"
+          alt="Img of person who will be conducting webinar"
         />
         <div>
-          <p class="left-text-1">Acharya Manish Ji</p>
+          <p class="left-text-1">Dr. Divyadeep</p>
+          <div class="dr-details">
+            <li>Bachelor of Ayurvedic Medicine and Surgery</li>
+            <li>Diploma in Naturopathy and Diploma in Yoga</li>
+            <li>Chronic Diseases, Metabolic Disorders</li>
+            <li>16+ Years Of Experience</li>
+          </div>
         </div>
       </div>
 
       <div class="webinar-right text-gray">
-        <p class="right-txt-1">Join <span>Acharya Manish Ji</span></p>
+        <p class="right-txt-1">Join <span>Dr. Divyadeep</span></p>
         <p class="right-txt-2">On</p>
-        <p class="right-txt-3">28 March 2025 | 3:00 PM</p>
+        <p class="right-txt-3">2 April 2025 | 4:00 PM</p>
         <p class="right-txt-4">Time is Running Out</p>
 
         <!-- MAIN TIMER -->
@@ -1321,6 +1378,214 @@ ENDIF ]%%
         <p class="right-txt-4">
           Don't Miss the Chance to Consult with Acharya Ji
         </p>
+      </div>
+    </section>
+
+    <!-- -------------------- Mid-2 Section -------------------- -->
+    <div class="banner-heading-block text-black">
+      <h2 class="text-green">Webinar से जुड़ी कुछ जरुरी बातें।</h2>
+      <p>
+        वेबिनार में भाग लेने से पहले सुनिश्चित करें कि आप शांत जगह पर बैठें हों
+        एक अच्छे इंटरनेट कनेक्शन के साथ। अपने सवालों को पहले से तैयार रखें, ताकि
+        आप डॉक्टर या आचार्य मनीष जी से अधिकतम लाभ प्राप्त कर सकें। जब आपका नाम
+        लिया जाए तो अपना माइक अनम्यूट करें और आचार्य मनीष जी या हमारे डॉक्टर से
+        बात कर करें।
+      </p>
+    </div>
+
+    <section class="banner-webinar-section">
+      <!-- banner-Left side: Image -->
+      <div class="banner-left">
+        <img
+          src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e6cabbf5-0635-43f1-801f-0ac0ad688f98.png"
+          alt="Webinar Image"
+        />
+      </div>
+
+      <!-- banner-Right side: Text -->
+      <div class="banner-right text-black">
+        <p>ये वेबिनार किसके लिए है ?</p>
+        <ul>
+          <li>
+            Non-Alcoholic Fatty Liver Disease (NAFLD) से राहत पाना और स्वस्थ
+            लिवर बनाना।
+          </li>
+          <li>
+            Osteoarthritis में जोड़ों के दर्द और अकड़न से आराम प्राप्त करना।
+          </li>
+          <li>
+            Sleep Apnea से छुटकारा पाकर बेहतर नींद और श्वसन प्रणाली सुधारना।
+          </li>
+          <li>Metabolic Syndrome से बचाव और वजन को नियंत्रित करना।</li>
+          <li>
+            Hormonal Imbalance को संतुलित कर स्वास्थ्य और जीवनशैली में सुधार
+            करना।
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- -------------------- Instructions Section -------------------- -->
+    <section id="steps" class="join-webinar">
+      <h2 class="text-green">वेबिनार को ज्वाइन करने की प्रक्रिया:</h2>
+      <ol class="step-list">
+        <!-- Step 1 -->
+        <li>
+          <div class="step-title">Registration Process</div>
+          <div class="step-text">
+            <b>"Register"</b> बटन click करें। बटन पर क्लिक करने के बाद आपकी
+            screen पर pop-up खुलेगा।
+          </div>
+        </li>
+        <!-- Step 2 -->
+        <li>
+          <div class="step-title">Fill Details and Submit</div>
+          <div class="step-text">
+            वहाँ अपना <b>Name</b>, <b>WhatsApp Number</b>, <b>ईमेल (Email)</b>,
+            <b>Country</b> डालें और <b>"Submit"</b> बटन पर click करें।
+          </div>
+        </li>
+        <!-- Step 3 -->
+        <li>
+          <div class="step-title">Important!</div>
+          <div class="step-text">
+            <b>Form submit</b> krne के बाद आपके <b>WhatsApp Number</b> पर
+            Webinar की Details भेज दी जाएंगी। <br />
+            <b>Mobile</b> पर <b>Webinar Join</b> करने के लिए
+            <b>Zoom App</b> Download करके रखें। <br />
+            Webinar वाले दिन <b>Joining Link</b> पर click करें, <br />
+            Zoom App पर अपना Name और Email डालें फिर Continue पर Click करें।
+            <br />
+            हमारे <b></b> को ज्वाइन करना न भूलें। अगर किसी कारणवश आपको वेबिनार
+            का लिंक प्राप्त नहीं होता तो आप Group के माध्यम से वेबिनार का लिंक
+            ले सकते हैं।
+          </div>
+        </li>
+      </ol>
+      <button class="step-register-btn" onclick="newopenmodal()">
+        Register Now
+      </button>
+    </section>
+
+    <!-- -------------------- Testinomial Section -------------------- -->
+    <section class="testimonial-section">
+      <h2 class="text-green">Testimonial</h2>
+      <div class="testimonials-container">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
+            alt="User Photo"
+          />
+          <p class="testimonial-quote">
+            “Eye-opening webinar! The expert advice on diet and lifestyle
+            changes was really helpful for my diabetes management.”
+          </p>
+          <p class="testimonial-author">— Shweta</p>
+        </div>
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
+            alt="User Photo"
+          />
+          <p class="testimonial-quote">
+            “Great insights on arthritis treatment options! Helped me understand
+            how to reduce stiffness and inflammation.”
+          </p>
+          <p class="testimonial-author">— Preetinder Kaur</p>
+        </div>
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
+            alt="User Photo"
+          />
+          <p class="testimonial-quote">
+            “The webinar was very informative! I learned practical tips to
+            manage my diabetes better. Highly recommend it!"
+          </p>
+          <p class="testimonial-author">— Suraj</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------------------- BrandLogo Section -------------------- -->
+    <section class="brands-section">
+      <h2 class="text-green">Proudly Representing Our Other Brands</h2>
+      <div class="brands-container">
+        <!-- Brand 1 -->
+        <div class="brand-card">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/dac32086-273a-490d-8790-326f19ec1a47.png"
+            alt="Shuddhi Brand"
+          />
+        </div>
+        <!-- Brand 2 -->
+        <div class="brand-card">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/09b32e30-c8b1-4499-8216-e2793e3aa65b.png"
+            alt="HHMS Brand"
+          />
+        </div>
+        <!-- Brand 3 -->
+        <div class="brand-card">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/71cd999b-b485-4024-b6d7-e1c2fcdf2d1d.png"
+            alt="Swami Om Brand"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- -------------------- Faqs Section -------------------- -->
+    <section id="faqs" class="faq-section">
+      <h2 class="text-green">Frequently Asked Questions</h2>
+      <div class="faq-container">
+        <!-- FAQ Item 1 -->
+        <div class="faq-item">
+          <input type="checkbox" id="faq1" />
+          <label class="faq-title" for="faq1">
+            <span>What is this webinar about?</span>
+            <div class="faq-arrow"></div>
+          </label>
+          <div class="faq-content">
+            <p>
+              This webinar covers essential health tips, lifestyle guidance, and
+              expert insights to help you stay fit and informed.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="faq-item">
+          <input type="checkbox" id="faq2" />
+          <label class="faq-title" for="faq2">
+            <span>How long will the webinar last?</span>
+            <div class="faq-arrow"></div>
+          </label>
+          <div class="faq-content">
+            <p>
+              The webinar typically runs for about 1-2 hours, followed by a Q&A
+              session where you can ask any questions you have.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="faq-item">
+          <input type="checkbox" id="faq3" />
+          <label class="faq-title" for="faq3">
+            <span>Is there any cost to join?</span>
+            <div class="faq-arrow"></div>
+          </label>
+          <div class="faq-content">
+            <p>
+              The webinar is completely free of charge for now. Simply register,
+              and we'll send you all the details to join.
+            </p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1371,49 +1636,81 @@ ENDIF ]%%
           <p class="text-center">Your information has been submitted.</p>
           <div class="whatsapp-button-container">
             <a
-            href="https://chat.whatsapp.com/KePeCD4jO3qCfgvX3EvaMS"
-            target="_blank"
-            class="whatsapp-button whatsapp-button-pulse"
-            >Join our WhatsApp Group</a
+              href="https://jeenasikho.com/webinar/?page=obesity"
+              target="_blank"
+              class="whatsapp-button whatsapp-button-pulse"
+              >Join our WhatsApp Group</a
             >
           </div>
-          <p class="text-center">To stay informed about your upcoming webinar.</p>
+          <p class="text-center">
+            To stay informed about your upcoming webinar.
+          </p>
         </div>
 
         <!-- Registration Form Container -->
         <div class="form-container" id="formContainer">
           <h2>Fill Your Details!</h2>
           <form action="%%=RequestParameter('PAGEURL')=%%" method="post">
-            <input type="hidden" name="submitted" value="true">
+            <input type="hidden" name="submitted" value="true" />
 
             <!-- Hidden fields (empty or default) -->
-            <input type="hidden" name="OldSlotDate" value="">
-            <input type="hidden" name="OldSlotTime" value="">
-            <input type="hidden" name="NewSlotDate" value="28 March 2025">
-            <input type="hidden" name="NewSlotTime" value="3:00 PM">
-            <input type="hidden" name="OfferingTitle" value="Cancer">
-            <input type="hidden" name="WaitUntillDate" value="2025-03-28">
-            <input type="hidden" name="ContactNumber" value="917710371037">
-            <input type="hidden" name="OfferingName" value="CancerWebinarOn28Mar">
-            <input type="hidden" name="JoiningLink" value="https://us06web.zoom.us/j/87851396551">
-            <input type="hidden" name="WhatsAppLink" value="https://chat.whatsapp.com/KePeCD4jO3qCfgvX3EvaMS">
+            <input type="hidden" name="OldSlotDate" value="" />
+            <input type="hidden" name="OldSlotTime" value="" />
+            <input type="hidden" name="NewSlotDate" value="2 April 2025" />
+            <input type="hidden" name="NewSlotTime" value="4:00 PM" />
+            <input type="hidden" name="OfferingTitle" value="Obesity" />
+            <input type="hidden" name="WaitUntillDate" value="2025-04-02" />
+            <input type="hidden" name="ContactNumber" value="917710371037" />
+            <input
+              type="hidden"
+              name="JoiningLink"
+              value="https://us06web.zoom.us/j/81295367591"
+            />
+            <input
+              type="hidden"
+              name="WhatsAppLink"
+              value="https://jeenasikho.com/webinar/?page=obesity"
+            />
 
             <!-- Visible fields -->
             <label for="FirstName">First Name*</label>
-            <input type="text" id="FirstName" name="FirstName" required="">
+            <input
+              type="text"
+              id="FirstName"
+              name="FirstName"
+              required=""
+              placeholder="Bharat"
+            />
 
             <label for="LastName">Last Name</label>
-            <input type="text" id="LastName" name="LastName">
+            <input
+              type="text"
+              id="LastName"
+              name="LastName"
+              placeholder="Singh"
+            />
 
             <label for="Phone">WhatsApp Number*</label>
-            <input type="text" id="Phone" name="Phone" required="">
+            <input
+              type="text"
+              id="Phone"
+              name="Phone"
+              required=""
+              placeholder="8866558472 (10 Digit No Space)"
+            />
 
-            <label for="Email">Email*</label>
-            <input type="email" id="Email" name="Email" required="">
+            <label for="Email">Email</label>
+            <input
+              type="email"
+              id="Email"
+              name="Email"
+              placeholder="example@gmail.com"
+            />
 
             <label for="Country">Country*</label>
             <select id="Country" name="Country" required="">
               <option value="">-- Select a Country --</option>
+              <option value="India">India</option>
               <option value="Afghanistan">Afghanistan</option>
               <option value="Albania">Albania</option>
               <option value="Algeria">Algeria</option>
@@ -1501,7 +1798,6 @@ ENDIF ]%%
               <option value="Honduras">Honduras</option>
               <option value="Hungary">Hungary</option>
               <option value="Iceland">Iceland</option>
-              <option value="India">India</option>
               <option value="Indonesia">Indonesia</option>
               <option value="Iran">Iran</option>
               <option value="Iraq">Iraq</option>
@@ -1651,7 +1947,7 @@ ENDIF ]%%
       }
 
       // Set your target date/time here (shared by both timers)
-      const targetDate = new Date("March 28, 2025 15:00:00").getTime();
+      const targetDate = new Date("April 2, 2025 16:00:00").getTime();
 
       function timer() {
         const currentDate = new Date().getTime();

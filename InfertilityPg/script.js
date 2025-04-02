@@ -1,24 +1,24 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "InfertilityWebinarOn5Apr";
+const title = "BrainRelatedWebinarOn4Apr";
 const docImg =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f6e16a88-067f-41f4-a7ec-abd014ecaacc.png";
 
 const drName = "Dr. Sonali";
-const webDate = "5 April 2025 | 1:00 PM";
+const webDate = "5 April 2025 | 4:00 PM";
 
 const joiningLink = "https://us06web.zoom.us/j/83914567937";
 const whatsappLink = "https://jeenasikho.com/webinar/?page=mind-related";
 
 const newSlotDate = "5 April 2025";
-const newSlotTime = "1:00 PM";
-const offeringTitle = "Infertility";
+const newSlotTime = "4:00 PM";
+const offeringTitle = "Brain Related Disorder";
 const waitUntillDate = "2025-04-05";
-const targetDate = new Date("April 5, 2025 13:00:00").getTime();
+const targetDate = new Date("April 5, 2025 16:00:00").getTime();
 const contactNumber = "917710371037";
 
 const heroHeading =
-  "Webinar on <b><i>Infertility</i></b> by <i>Team Acharya Manish Ji</i>";
+  "Webinar on <b><i>Brain Related Disorders</i></b> by <i>Team Acharya Manish Ji</i>";
 
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
@@ -30,15 +30,23 @@ const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6c462340-eb4d-428b-b6f0-008d2b6292b0.png";
 
 // Why Join Content
-const why1 = "";
-const why2 = "";
-const why3 = "";
-const why4 = "";
-const why5 = "";
+const why1 =
+  "<b>Insomnia</b> से छुटकारा पाकर बेहतर नींद और मानसिक शांति पाना चाहते हैं।";
+const why2 =
+  "<b>Parkinson's</b> में कंपन, संतुलन और मूवमेंट की समस्या को कम करना चाहते हैं।";
+const why3 =
+  "<b>Cervical Spondylosis<b> में गर्दन के दर्द और अकड़न से राहत पाना चाहते हैं।";
+const why4 =
+  "<b>Lumbar Spondylosis</b> में पीठ दर्द और चलने में कठिनाई को दूर करना चाहते हैं।";
+const why5 =
+  "आयुर्वेदिक और प्राकृतिक तरीकों से तंत्रिका तंत्र को मजबूत बनाना चाहते हैं।";
 
-const Testi1 = '""';
-const Testi2 = '""';
-const Testi3 = '""';
+const Testi1 =
+  '"The webinar provided clear insights on managing nerve disorders with practical tips. Very informative!""';
+const Testi2 =
+  '"Great session on brain health! Learned useful strategies to improve memory and prevent neurological issues."';
+const Testi3 =
+  '"Well-explained and engaging! Helped me understand nerve disorders and available treatment options better."';
 
 // Selectors for the dynamic content
 document.title = title;
