@@ -1,3 +1,96 @@
+// -------------------- Dynamic Content Update --------------------
+
+const title = "PilesFissureFistulaWebinarOn8Apr";
+const docImg =
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/0798e2b6-3bdc-4f73-9a6a-9ad04bf56d84.png";
+
+const drName = "Vaidya Navneet";
+const webDate = "9 April 2025 | 10:00 AM";
+
+const joiningLink = "https://us06web.zoom.us/j/87869383139";
+const whatsappLink =
+  "https://jeenasikho.com/webinar/?page=piles-fissure-fistula";
+
+const newSlotDate = "9 April 2025";
+const newSlotTime = "10:00 AM";
+const offeringTitle = "Piles, Fissure, Fistula";
+const waitUntillDate = "2025-04-09";
+const targetDate = new Date("April 9, 2025 10:00:00").getTime();
+const contactNumber = "917710371037";
+
+const heroHeading =
+  "Webinar on <b><i>Piles, Fissure, Fistula</i></b> by <i>Team Acharya Manish Ji</i>";
+const drDetails = [
+  "Bachelor of Ayurvedic Medicine and Surgery",
+  "Doctor of Medicine (MD)",
+  "Certified Yoga Practitioner (CYP)",
+  "5+ Years of Experience",
+];
+const bannerImage =
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/c1e47bea-97ea-4da9-bb7a-64b00f32ca01.png";
+
+// Why Join Content
+const why1 =
+  "जो लोग <b>constipation, acidity,</b> और <b>indigestion</b> से राहत पाना चाहते हैं।";
+const why2 =
+  "जिन्हें <b>IBS</b> के कारण <b>stomach pain</b> और <b>irregular digestion</b> की समस्या हो।";
+const why3 = "जो <b>piles</b> या <b>fissure</b> की जलन और दर्द से परेशान हैं।";
+const why4 =
+  "जो <b>ulcerative colitis</b> और <b>GERD</b> से होने वाली असुविधा को कम करना चाहते हैं।";
+const why5 =
+  "जो अपने <b>digestion system</b> को स्वस्थ और सुचारू रखना चाहते हैं।";
+
+const Testi1 =
+  '"Very insightful webinar by Dr Navneet! I now understand how to manage piles with simple lifestyle changes. Extremely helpful!"';
+const Testi2 =
+  '"Informative and well-explained! The webinar cleared many doubts about piles and how to prevent flare-ups."';
+const Testi3 =
+  '"Great session! The tips on diet and treatment options for piles were practical and easy to follow"';
+
+// Selectors for the dynamic content
+document.title = title;
+document.getElementById("heroHeading").innerHTML = heroHeading;
+if (document.getElementById("drImg")) {
+  drImg.src = docImg;
+}
+
+if (document.getElementById("BannerImg")) {
+  BannerImg.src = bannerImage;
+}
+document.getElementById("drName1").innerHTML = drName;
+document.getElementById("drName2").innerHTML = drName;
+document.getElementById("webDate").innerHTML = webDate;
+
+// Dr. Details
+const ulElement = document.createElement("ul");
+drDetails.forEach((item) => {
+  const liElement = document.createElement("li");
+  liElement.textContent = item;
+  ulElement.appendChild(liElement);
+});
+document.getElementById("drDetails").appendChild(ulElement);
+
+document.getElementById("why1").innerHTML = why1;
+document.getElementById("why2").innerHTML = why2;
+document.getElementById("why3").innerHTML = why3;
+document.getElementById("why4").innerHTML = why4;
+document.getElementById("why5").innerHTML = why5;
+
+document.getElementById("whatsappLink1").href = whatsappLink;
+document.getElementById("whatsappLink2").value = whatsappLink;
+document.getElementById("joiningLink").value = joiningLink;
+document.getElementById("NewSlotDate").value = newSlotDate;
+document.getElementById("NewSlotTime").value = newSlotTime;
+document.getElementById("OfferingTitle").value = offeringTitle;
+document.getElementById("WaitUntillDate").value = waitUntillDate;
+document.getElementById("ContactNumber").value = contactNumber;
+
+document.getElementById("testi1").innerHTML = Testi1;
+document.getElementById("testi2").innerHTML = Testi2;
+document.getElementById("testi3").innerHTML = Testi3;
+
+// Selectors for the dynamic content end
+
 // -------------------- Timer Script --------------------
 // Main Timer Elements
 const mainDays = document.getElementById("mainDays");
@@ -17,7 +110,7 @@ function formatTime(num) {
 }
 
 // Set your target date/time here (shared by both timers)
-const targetDate = new Date("April 2, 2025 10:00:00").getTime();
+// const targetDate = new Date("April 3, 2025 10:00:00").getTime();
 
 function timer() {
   const currentDate = new Date().getTime();

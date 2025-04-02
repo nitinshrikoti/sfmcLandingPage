@@ -18,7 +18,7 @@ const targetDate = new Date("April 3, 2025 13:00:00").getTime();
 const contactNumber = "917710371037";
 
 const heroHeading =
-  "Join <i>Metabolic Disorder</i> Webinar by <i>Acharya Manish Ji</i>";
+  "Webinar on <b><i>Metabolic Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
   "PGDIP (PG. Diploma in Panchakarma)",
