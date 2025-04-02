@@ -1,25 +1,25 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "AllJointPainWebinarOn3Apr";
+const title = "KneePainWebinarOn8Apr";
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2a06da4f-2205-458e-a16f-fb3d4d65e198.png";
-const drName = "Dr. DivyaDeep";
-const webDate = "3 April 2025 | 10:00 AM";
-const joiningLink = "https://us06web.zoom.us/j/89034420947";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6de07489-5caa-4c98-b41f-60660aefa45c.png";
+const drName = "Dr. Ankita";
+const webDate = "8 April 2025 | 10:00 AM";
+const joiningLink = "https://us06web.zoom.us/j/87411795895";
 const whatsappLink = "https://jeenasikho.com/webinar/?page=joint";
-const newSlotDate = "3 April 2025";
+const newSlotDate = "8 April 2025";
 const newSlotTime = "10:00 AM";
-const offeringTitle = "All Joint Pain";
-const waitUntillDate = "2025-04-03";
-const targetDate = new Date("April 3, 2025 10:00:00").getTime();
+const offeringTitle = "Knee Pain";
+const waitUntillDate = "2025-04-08";
+const targetDate = new Date("April 8, 2025 10:00:00").getTime();
 
 const heroHeading =
-  "Join <i>All Joint Pain</i> Webinar by <i>Acharya Manish Ji</i>";
+  "Webinar on <b><i>Knee Pain</i></b> by <i>Team Acharya Manish Ji</i>";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Diploma in Naturopathy and Diploma in Yoga",
-  "Chronic Diseases, Metabolic Disorders",
-  "16+ Years Of Experience",
+  "Chronic Liver & Kidney Disease",
+  "Expertise in Arthritis, Mental Health",
+  "2+ Years Of Experience",
 ];
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/ffec998a-5356-47d9-b86a-882e4cd865ea.png";
