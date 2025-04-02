@@ -228,7 +228,7 @@ textarea:not([rows]) {
 }
 
 .hero p {
-  font-size: 42px;
+  font-size: 36px;
   text-align: center;
   font-family: var(--ff-timesRoman);
 }
@@ -291,6 +291,13 @@ textarea:not([rows]) {
   font-size: 24px;
   margin-block-start: 10px;
   color: #254a28;
+}
+
+.dr-details {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  margin: 5px auto;
 }
 
 .webinar-right {

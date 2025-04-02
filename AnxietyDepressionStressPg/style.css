@@ -228,7 +228,7 @@ textarea:not([rows]) {
 }
 
 .hero p {
-  font-size: 42px;
+  font-size: 36px;
   text-align: center;
   font-family: var(--ff-timesRoman);
 }
