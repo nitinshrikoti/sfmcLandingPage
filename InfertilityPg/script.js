@@ -1,52 +1,41 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "BrainRelatedWebinarOn4Apr";
-const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f6e16a88-067f-41f4-a7ec-abd014ecaacc.png";
+const title = "InfertilityWebinarOn5Apr";
 
-const drName = "Dr. Sonali";
-const webDate = "5 April 2025 | 4:00 PM";
+// const drName = "Dr. Sonali";
+const webDate = "5 April 2025 | 1:00 PM";
 
-const joiningLink = "https://us06web.zoom.us/j/83914567937";
-const whatsappLink = "https://jeenasikho.com/webinar/?page=mind-related";
+const joiningLink = "https://us06web.zoom.us/j/84772919760";
+const whatsappLink = "https://jeenasikho.com/webinar/?page=infertility-issues";
 
 const newSlotDate = "5 April 2025";
-const newSlotTime = "4:00 PM";
-const offeringTitle = "Brain Related Disorder";
+const newSlotTime = "1:00 PM";
+const offeringTitle = "Infertility";
 const waitUntillDate = "2025-04-05";
-const targetDate = new Date("April 5, 2025 16:00:00").getTime();
+const targetDate = new Date("April 5, 2025 13:00:00").getTime();
 const contactNumber = "917710371037";
 
 const heroHeading =
-  "Webinar on <b><i>Brain Related Disorders</i></b> by <i>Team Acharya Manish Ji</i>";
-
-const drDetails = [
-  "Bachelor of Ayurvedic Medicine and Surgery",
-  "CERTIFIED in Psychosomatic Disorders",
-  "4+ Years of Experience",
-];
+  "Webinar on <b><i>Infertility</i></b> by <i>Team Acharya Manish Ji</i>";
 
 const bannerImage =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6c462340-eb4d-428b-b6f0-008d2b6292b0.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/38a78d85-9024-44c6-b2ca-0255b66ef18d.png";
 
 // Why Join Content
 const why1 =
-  "<b>Insomnia</b> से छुटकारा पाकर बेहतर नींद और मानसिक शांति पाना चाहते हैं।";
-const why2 =
-  "<b>Parkinson's</b> में कंपन, संतुलन और मूवमेंट की समस्या को कम करना चाहते हैं।";
-const why3 =
-  "<b>Cervical Spondylosis<b> में गर्दन के दर्द और अकड़न से राहत पाना चाहते हैं।";
-const why4 =
-  "<b>Lumbar Spondylosis</b> में पीठ दर्द और चलने में कठिनाई को दूर करना चाहते हैं।";
+  "जो लोग <b>infertility</b> की समस्या के कारण माता-पिता नहीं बन पा रहे हैं।";
+const why2 = "<b>PCOD/PCOS</b> से परेशान महिलाएं जो संतान सुख पाना चाहती हैं।";
+const why3 = "जिन पुरुषों का <b>sperm count low<b> है या नहीं है।";
+const why4 = "जो <b>IVF failure या low AMH levels</b> की समस्या से जूझ रहे हैं।";
 const why5 =
-  "आयुर्वेदिक और प्राकृतिक तरीकों से तंत्रिका तंत्र को मजबूत बनाना चाहते हैं।";
+  "जो <b>newly married couples</b> सही तरीके से <b>family planning</b> करना चाहते हैं।";
 
 const Testi1 =
-  '"The webinar provided clear insights on managing nerve disorders with practical tips. Very informative!""';
+  '"यह वेबिनार दिखाता है कि कैसे आयुर्वेदिक उपचार ने IVF के बिना जोड़ों को गर्भधारण में सफलता दिलाई, प्राकृतिक प्रजनन को बढ़ावा देते हुए और साइड इफेक्ट्स को कम किया। जानिए कैसे आयुर्वेद स्वस्थ और प्रभावी रास्ते से मातृत्व प्राप्त करने में मदद कर सकता है।"';
 const Testi2 =
-  '"Great session on brain health! Learned useful strategies to improve memory and prevent neurological issues."';
+  '"रवि तीन महीने से हमारे क्लिनिक पर इलाज करा रहे थे, जिनकी सpermia की समस्या थी और सर्जरी के बारे में सोचा था। अब उनका स्पर्म काउंट 60 मिलियन हो गया है, और वे अब पिता बनने की उम्मीद रखते हैं।"';
 const Testi3 =
-  '"Well-explained and engaging! Helped me understand nerve disorders and available treatment options better."';
+  '"ज्योति, जो एक डे केयर टीचर हैं, ने शुद्धि आयुर्वेदा में इलाज करवाकर अपने पीसीओएस को रिवर्स किया और अब वह एक बच्चे की मां बन चुकी हैं। शुद्धि आयुर्वेदा ने उनका सपना सच किया और अब वह वेट लॉस पर भी ध्यान दे रही हैं।"';
 
 // Selectors for the dynamic content
 document.title = title;
@@ -58,18 +47,8 @@ if (document.getElementById("drImg")) {
 if (document.getElementById("BannerImg")) {
   BannerImg.src = bannerImage;
 }
-document.getElementById("drName1").innerHTML = drName;
-document.getElementById("drName2").innerHTML = drName;
-document.getElementById("webDate").innerHTML = webDate;
 
-// Dr. Details
-const ulElement = document.createElement("ul");
-drDetails.forEach((item) => {
-  const liElement = document.createElement("li");
-  liElement.textContent = item;
-  ulElement.appendChild(liElement);
-});
-document.getElementById("drDetails").appendChild(ulElement);
+document.getElementById("webDate").innerHTML = webDate;
 
 document.getElementById("why1").innerHTML = why1;
 document.getElementById("why2").innerHTML = why2;
