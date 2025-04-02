@@ -1,35 +1,37 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "AutoImmuneWebinarOn8Apr";
+const title = "InfertilityWebinarOn8Apr";
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f6e16a88-067f-41f4-a7ec-abd014ecaacc.png";
-const drName = "Dr. Sonali";
-const webDate = "8 April 2025 | 1:00 PM";
-const joiningLink = "https://us06web.zoom.us/j/83678910019";
-const whatsappLink = "https://jeenasikho.com/webinar/?page=auto-immune";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/121dab33-39a6-4863-91de-4ed0356eeeff.png";
+const drName = "Dr. Meetali";
+const webDate = "8 April 2025 | 4:00 PM";
+const joiningLink = "https://us06web.zoom.us/j/83077930120";
+const whatsappLink = "https://jeenasikho.com/webinar/?page=infertility-issues";
 const newSlotDate = "8 April 2025";
-const newSlotTime = "1:00 PM";
-const offeringTitle = "Auto Immune Disorder";
+const newSlotTime = "4:00 PM";
+const offeringTitle = "Infertility";
 const waitUntillDate = "2025-04-08";
-const targetDate = new Date("April 8, 2025 13:00:00").getTime();
+const targetDate = new Date("April 8, 2025 16:00:00").getTime();
 
 const heroHeading =
-  "Webinar on <b><i>Auto Immune Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
+  "Webinar on <b><i>Infertility</i></b> by <i>Team Acharya Manish Ji</i>";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "CERTIFIED in Psychosomatic Disorders",
-  "4+ Years Of Experience",
+  "Specialization in Panchkarma",
+  "8+ Years Of Experience",
 ];
 const bannerImage =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6365c39c-91b5-4ddd-8d6a-4687462688b0.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/38a78d85-9024-44c6-b2ca-0255b66ef18d.png";
 // Why Join Content
 const why1 =
-  "<b>Systemic Lupus Erythematosus (SLE)</b> में जोड़ों, त्वचा, किडनी और मस्तिष्क की सूजन से राहत पाना चाहते हैं।";
-const why2 =
-  "<b>Rheumatoid और Psoriatic Arthritis</b> में जोड़ों के दर्द और अकड़न को कम करना चाहते हैं।";
-const why3 = "<b>Multiple Sclerosis</b> में नसों की कमजोरी और संतुलन की समस्या से बचाव करना चाहते हैं।";
-const why4 = "<b>Myasthenia Gravis</b> में मांसपेशियों की ताकत बढ़ाना और थकान कम करना चाहते हैं।";
-const why5 = "<b>Autoimmune Disorders</b> को प्राकृतिक और आयुर्वेदिक तरीकों से मैनेज करना चाहते हैं।";
+  "जो लोग <b>infertility</b> की समस्या के कारण माता-पिता नहीं बन पा रहे हैं।";
+const why2 = "<b>PCOD/PCOS</b> से परेशान महिलाएं जो संतान सुख पाना चाहती हैं।";
+const why3 = "जिन पुरुषों का <b>sperm count low<b> है या नहीं है।";
+const why4 =
+  "जो <b>IVF failure या low AMH levels</b> की समस्या से जूझ रहे हैं।";
+const why5 =
+  "जो <b>newly married couples</b> सही तरीके से <b>family planning</b> करना चाहते हैं।";
+
 const contactNumber = "917710371037";
 
 // Selectors for the dynamic content
