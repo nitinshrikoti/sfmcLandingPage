@@ -1,52 +1,36 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "BrainRelatedWebinarOn4Apr";
+const title = "AllJointPainWebinarOn3Apr";
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f6e16a88-067f-41f4-a7ec-abd014ecaacc.png";
-
-const drName = "Dr. Sonali";
-const webDate = "5 April 2025 | 4:00 PM";
-
-const joiningLink = "https://us06web.zoom.us/j/83914567937";
-const whatsappLink = "https://jeenasikho.com/webinar/?page=mind-related";
-
-const newSlotDate = "5 April 2025";
-const newSlotTime = "4:00 PM";
-const offeringTitle = "Brain Related Disorder";
-const waitUntillDate = "2025-04-05";
-const targetDate = new Date("April 5, 2025 16:00:00").getTime();
-const contactNumber = "917710371037";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2a06da4f-2205-458e-a16f-fb3d4d65e198.png";
+const drName = "Dr. DivyaDeep";
+const webDate = "3 April 2025 | 10:00 AM";
+const joiningLink = "https://us06web.zoom.us/j/89034420947";
+const whatsappLink = "https://jeenasikho.com/webinar/?page=joint";
+const newSlotDate = "3 April 2025";
+const newSlotTime = "10:00 AM";
+const offeringTitle = "All Joint Pain";
+const waitUntillDate = "2025-04-03";
+const targetDate = new Date("April 3, 2025 10:00:00").getTime();
 
 const heroHeading =
-  "Webinar on <b><i>Brain Related Disorders</i></b> by <i>Team Acharya Manish Ji</i>";
-
+  "Join <i>All Joint Pain</i> Webinar by <i>Acharya Manish Ji</i>";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "CERTIFIED in Psychosomatic Disorders",
-  "4+ Years of Experience",
+  "Diploma in Naturopathy and Diploma in Yoga",
+  "Chronic Diseases, Metabolic Disorders",
+  "16+ Years Of Experience",
 ];
-
 const bannerImage =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6c462340-eb4d-428b-b6f0-008d2b6292b0.png";
-
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/ffec998a-5356-47d9-b86a-882e4cd865ea.png";
 // Why Join Content
-const why1 =
-  "<b>Insomnia</b> से छुटकारा पाकर बेहतर नींद और मानसिक शांति पाना चाहते हैं।";
-const why2 =
-  "<b>Parkinson's</b> में कंपन, संतुलन और मूवमेंट की समस्या को कम करना चाहते हैं।";
-const why3 =
-  "<b>Cervical Spondylosis<b> में गर्दन के दर्द और अकड़न से राहत पाना चाहते हैं।";
-const why4 =
-  "<b>Lumbar Spondylosis</b> में पीठ दर्द और चलने में कठिनाई को दूर करना चाहते हैं।";
+const why1 = "जो लोग <b>arthritis</b> या <b>joint pain</b> से जूझ रहे हैं।";
+const why2 = "जिन्हें <b>bone swelling</b> या <b>stiffness</b> की समस्या हो।";
+const why3 = "जिन्हें <b>walking, sitting, moving</b> में दिक्कत हो रही है।";
+const why4 = "जो <b>severe joint pain</b> और <b></b> से राहत पाना चाहते हैं।";
 const why5 =
-  "आयुर्वेदिक और प्राकृतिक तरीकों से तंत्रिका तंत्र को मजबूत बनाना चाहते हैं।";
-
-const Testi1 =
-  '"The webinar provided clear insights on managing nerve disorders with practical tips. Very informative!""';
-const Testi2 =
-  '"Great session on brain health! Learned useful strategies to improve memory and prevent neurological issues."';
-const Testi3 =
-  '"Well-explained and engaging! Helped me understand nerve disorders and available treatment options better."';
+  "जो <b>natural remedies</b> से <b>joint health</b> सुधारना चाहते हैं।";
+const contactNumber = "917710371037";
 
 // Selectors for the dynamic content
 document.title = title;
@@ -85,10 +69,6 @@ document.getElementById("NewSlotTime").value = newSlotTime;
 document.getElementById("OfferingTitle").value = offeringTitle;
 document.getElementById("WaitUntillDate").value = waitUntillDate;
 document.getElementById("ContactNumber").value = contactNumber;
-
-document.getElementById("testi1").innerHTML = Testi1;
-document.getElementById("testi2").innerHTML = Testi2;
-document.getElementById("testi3").innerHTML = Testi3;
 
 // Selectors for the dynamic content end
 
