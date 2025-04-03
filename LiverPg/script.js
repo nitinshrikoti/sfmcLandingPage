@@ -1,28 +1,29 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "LiverWebinarOn3Apr";
+const title = "LiverWebinarOn10Apr";
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/37df16f7-b445-48cc-8828-e327a4f1002b.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/540c60d3-7b05-4859-b63b-27c34da6ba93.png";
 
-const drName = "Dr. Pooja";
-const webDate = "3 April 2025 | 4:00 PM";
+const drName = "Dr. Geetika";
+const webDate = "10 April 2025 | 1:00 PM";
 
-const joiningLink = "https://us06web.zoom.us/j/85424366955";
+const joiningLink = "https://us06web.zoom.us/j/89377911510";
 const whatsappLink = "https://jeenasikho.com/webinar/?page=liver";
 
-const newSlotDate = "3 April 2025";
-const newSlotTime = "4:00 PM";
+const newSlotDate = "10 April 2025";
+const newSlotTime = "1:00 PM";
 const offeringTitle = "Liver";
-const waitUntillDate = "2025-04-03";
-const targetDate = new Date("April 3, 2025 16:00:00").getTime();
+const waitUntillDate = "2025-04-10";
+const targetDate = new Date("April 10, 2025 13:00:00").getTime();
 const contactNumber = "917710371037";
 
-const heroHeading = "Join <i>Liver</i> Webinar by <i>Acharya Manish Ji</i>";
+const heroHeading =
+  "Webinar on <b><i>Liver</i></b> by <i>Team Acharya Manish Ji</i>";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Certificate of Rashtriya Ayurveda Vidyapeeth",
-  "Diploma in Panchakarma Chikitsa",
-  "5+ Years of Experience",
+  "PGDIP (PG. Diploma in Panchakarma)",
+  "M.S. (Ay.) Master of Surgery",
+  "15+ Years of Experience",
 ];
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/1e0f9aef-c15f-403b-b5f5-73c34ac9b657.png";
