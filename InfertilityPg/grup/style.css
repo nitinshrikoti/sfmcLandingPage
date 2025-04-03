@@ -372,6 +372,7 @@ textarea:not([rows]) {
   font-weight: 600;
   background-color: #f1f1f1;
   border-radius: 10px;
+  text-align: center;
 }
 .time-count {
   font-size: 42px;
