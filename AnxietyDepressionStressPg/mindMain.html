@@ -51,7 +51,7 @@ ENDIF
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AnxietyDepressionStressOn2Apr</title>
+    <title>Title</title>
 
     <!-- <link rel="stylesheet" href="style.css" /> -->
 
@@ -298,7 +298,7 @@ ENDIF
       }
 
       .hero p {
-        font-size: 42px;
+        font-size: 36px;
         text-align: center;
         font-family: var(--ff-timesRoman);
       }
@@ -1273,9 +1273,7 @@ ENDIF
 
     <!-- -------------------- Hero -------------------- -->
     <section class="hero">
-      <p class="text-green">
-        Join <i>Piles/Fissure/Fistula</i> Webinar by <i>Acharya Manish Ji</i>
-      </p>
+      <p id="heroHeading" class="text-green"></p>
       <iframe
         width="750"
         height="425"
@@ -1320,23 +1318,20 @@ ENDIF
     <section class="webinar-section">
       <div class="webinar-left">
         <img
-          src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f6e16a88-067f-41f4-a7ec-abd014ecaacc.png"
+          id="drImg"
+          src=""
           alt="Img of person who will be conducting webinar"
         />
         <div>
-          <p class="left-text-1">Dr. Sonali</p>
-          <div class="dr-details">
-            <li>Bachelor of Ayurvedic Medicine and Surgery (BAMS)</li>
-            <li>CERTIFIED in Psychosomatic Disorders</li>
-            <li>4+ Years of Experience</li>
-          </div>
+          <p id="drName1" class="left-text-1"></p>
+          <div id="drDetails" class="dr-details"></div>
         </div>
       </div>
 
       <div class="webinar-right text-gray">
-        <p class="right-txt-1">Join <span>Dr. Sonali</span></p>
+        <p class="right-txt-1">Connect with <span id="drName2"></span></p>
         <p class="right-txt-2">On</p>
-        <p class="right-txt-3">2 April 2025 | 1:00 PM</p>
+        <p id="webDate" class="right-txt-3"></p>
         <p class="right-txt-4">Time is Running Out</p>
 
         <!-- MAIN TIMER -->
@@ -1384,29 +1379,18 @@ ENDIF
     <section class="banner-webinar-section">
       <!-- banner-Left side: Image -->
       <div class="banner-left">
-        <img
-          src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6c462340-eb4d-428b-b6f0-008d2b6292b0.png"
-          alt="Webinar Image"
-        />
+        <img id="BannerImg" src="" alt="Webinar Image" />
       </div>
 
       <!-- banner-Right side: Text -->
       <div class="banner-right text-black">
         <p>ये वेबिनार किसके लिए है ?</p>
         <ul>
-          <li>
-            जो <b>Anxiety</b> और <b>panic disorder</b> से राहत पाना चाहते हैं।
-          </li>
-          <li>जो <b>Depression</b> से उबरकर mental peace चाहते हैं।</li>
-          <li>जो <b>Insomnia</b> से छुटकारा पाकर बेहतर नींद चाहते हैं।</li>
-          <li>
-            जो <b>Emotional balance</b> और <b>mental clarity</b> बढ़ाना चाहते
-            हैं।
-          </li>
-          <li>
-            जो <b>Lifestyle</b> changes से <b>stress-free</b> और healthy life
-            चाहते हैं।
-          </li>
+          <li id="why1"></li>
+          <li id="why2"></li>
+          <li id="why3"></li>
+          <li id="why4"></li>
+          <li id="why5"></li>
         </ul>
       </div>
     </section>
@@ -1463,11 +1447,8 @@ ENDIF
             src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
             alt="User Photo"
           />
-          <p class="testimonial-quote">
-            “The webinar provided practical strategies to manage anxiety and
-            stress. I feel more confident in handling my emotions now!”
-          </p>
-          <p class="testimonial-author">— Atul Joshi</p>
+          <p id="testi1" class="testimonial-quote"></p>
+          <p class="testimonial-author">— Saheb</p>
         </div>
         <!-- Testimonial 2 -->
         <div class="testimonial-card">
@@ -1475,11 +1456,8 @@ ENDIF
             src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
             alt="User Photo"
           />
-          <p class="testimonial-quote">
-            “The expert tips on mental wellness were easy to apply and made a
-            real difference.”
-          </p>
-          <p class="testimonial-author">— Preetinder Kaur</p>
+          <p id="testi2" class="testimonial-quote"></p>
+          <p class="testimonial-author">— Pryanka</p>
         </div>
         <!-- Testimonial 3 -->
         <div class="testimonial-card">
@@ -1487,11 +1465,8 @@ ENDIF
             src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
             alt="User Photo"
           />
-          <p class="testimonial-quote">
-            “Insightful session! Helped me understand depression better and gave
-            me useful coping techniques for daily life with ayurvedic remedies
-          </p>
-          <p class="testimonial-author">— Suraj</p>
+          <p id="testi3" class="testimonial-quote"></p>
+          <p class="testimonial-author">— Sidharth</p>
         </div>
       </div>
     </section>
@@ -1622,7 +1597,8 @@ ENDIF
           <p class="text-center">Your information has been submitted.</p>
           <div class="whatsapp-button-container">
             <a
-              href="https://jeenasikho.com/webinar/?page=mind-related"
+              id="whatsappLink1"
+              href=""
               target="_blank"
               class="whatsapp-button whatsapp-button-pulse"
               >Join our WhatsApp Group</a
@@ -1642,24 +1618,32 @@ ENDIF
             <!-- Hidden fields (empty or default) -->
             <input type="hidden" name="OldSlotDate" value="" />
             <input type="hidden" name="OldSlotTime" value="" />
-            <input type="hidden" name="NewSlotDate" value="2 April 2025" />
-            <input type="hidden" name="NewSlotTime" value="1:00 PM" />
+            <input id="NewSlotDate" type="hidden" name="NewSlotDate" value="" />
+            <input id="NewSlotTime" type="hidden" name="NewSlotTime" value="" />
             <input
+              id="OfferingTitle"
               type="hidden"
               name="OfferingTitle"
-              value="Anxiety, Depression, Stress"
+              value=""
             />
-            <input type="hidden" name="WaitUntillDate" value="2025-04-02" />
-            <input type="hidden" name="ContactNumber" value="917710371037" />
             <input
+              id="WaitUntillDate"
               type="hidden"
-              name="JoiningLink"
-              value="https://us06web.zoom.us/j/88993576870"
+              name="WaitUntillDate"
+              value=""
             />
             <input
+              id="ContactNumber"
+              type="hidden"
+              name="ContactNumber"
+              value=""
+            />
+            <input id="joiningLink" type="hidden" name="JoiningLink" value="" />
+            <input
+              id="whatsappLink2"
               type="hidden"
               name="WhatsAppLink"
-              value="https://jeenasikho.com/webinar/?page=mind-related"
+              value=""
             />
 
             <!-- Visible fields -->
@@ -1918,6 +1902,96 @@ ENDIF
       </div>
     </div>
     <script>
+      // -------------------- Dynamic Content Update --------------------
+
+      const title = "AnxietyStressDepressionWebinarOn9Apr";
+      const docImg =
+        "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f6e16a88-067f-41f4-a7ec-abd014ecaacc.png";
+
+      const drName = "Dr. Sonali";
+      const webDate = "9 April 2025 | 1:00 PM";
+
+      const joiningLink = "https://us06web.zoom.us/j/84447223844";
+      const whatsappLink = "https://jeenasikho.com/webinar/?page=mind-related";
+
+      const newSlotDate = "9 April 2025";
+      const newSlotTime = "1:00 PM";
+      const offeringTitle = "Anxiety, Depression, Stress";
+      const waitUntillDate = "2025-04-09";
+      const targetDate = new Date("April 9, 2025 13:00:00").getTime();
+      const contactNumber = "917710371037";
+
+      const heroHeading =
+        "Webinar on <b><i>Anxiety, Depression, Stress</i></b> by <i>Team Acharya Manish Ji</i>";
+      const drDetails = [
+        "Bachelor of Ayurvedic Medicine and Surgery",
+        "CERTIFIED in Psychosomatic Disorders",
+        "4+ Years of Experience",
+      ];
+      const bannerImage =
+        "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6c462340-eb4d-428b-b6f0-008d2b6292b0.png";
+
+      // Why Join Content
+      const why1 =
+        "जो <b>Anxiety</b> और <b>panic disorder</b> से राहत पाना चाहते हैं।";
+      const why2 = "जो <b>Depression</b> से उबरकर mental peace चाहते हैं।";
+      const why3 = "जो <b>Insomnia</b> से छुटकारा पाकर बेहतर नींद चाहते हैं।";
+      const why4 =
+        "जो <b>Emotional balance</b> और <b>mental clarity</b> बढ़ाना चाहते हैं।";
+      const why5 =
+        " जो <b>Lifestyle</b> changes से <b>stress-free</b> और healthy life चाहते हैं।";
+
+      const Testi1 =
+        '"The webinar provided practical strategies to manage anxiety and stress. I feel more confident in handling my emotions now!"';
+      const Testi2 =
+        '"The expert tips on mental wellness were easy to apply and made a real difference."';
+      const Testi3 =
+        '"Insightful session! Helped me understand depression better and gave me useful coping techniques for daily life with ayurvedic remedies"';
+
+      // Selectors for the dynamic content
+      document.title = title;
+      document.getElementById("heroHeading").innerHTML = heroHeading;
+      if (document.getElementById("drImg")) {
+        drImg.src = docImg;
+      }
+
+      if (document.getElementById("BannerImg")) {
+        BannerImg.src = bannerImage;
+      }
+      document.getElementById("drName1").innerHTML = drName;
+      document.getElementById("drName2").innerHTML = drName;
+      document.getElementById("webDate").innerHTML = webDate;
+
+      // Dr. Details
+      const ulElement = document.createElement("ul");
+      drDetails.forEach((item) => {
+        const liElement = document.createElement("li");
+        liElement.textContent = item;
+        ulElement.appendChild(liElement);
+      });
+      document.getElementById("drDetails").appendChild(ulElement);
+
+      document.getElementById("why1").innerHTML = why1;
+      document.getElementById("why2").innerHTML = why2;
+      document.getElementById("why3").innerHTML = why3;
+      document.getElementById("why4").innerHTML = why4;
+      document.getElementById("why5").innerHTML = why5;
+
+      document.getElementById("whatsappLink1").href = whatsappLink;
+      document.getElementById("whatsappLink2").value = whatsappLink;
+      document.getElementById("joiningLink").value = joiningLink;
+      document.getElementById("NewSlotDate").value = newSlotDate;
+      document.getElementById("NewSlotTime").value = newSlotTime;
+      document.getElementById("OfferingTitle").value = offeringTitle;
+      document.getElementById("WaitUntillDate").value = waitUntillDate;
+      document.getElementById("ContactNumber").value = contactNumber;
+
+      document.getElementById("testi1").innerHTML = Testi1;
+      document.getElementById("testi2").innerHTML = Testi2;
+      document.getElementById("testi3").innerHTML = Testi3;
+
+      // Selectors for the dynamic content end
+
       // -------------------- Timer Script --------------------
       // Main Timer Elements
       const mainDays = document.getElementById("mainDays");
@@ -1937,7 +2011,7 @@ ENDIF
       }
 
       // Set your target date/time here (shared by both timers)
-      const targetDate = new Date("April 2, 2025 13:00:00").getTime();
+      // const targetDate = new Date("April 3, 2025 10:00:00").getTime();
 
       function timer() {
         const currentDate = new Date().getTime();

@@ -1,3 +1,91 @@
+// -------------------- Dynamic Content Update --------------------
+
+const title = "AnxietyStressDepressionWebinarOn9Apr";
+const docImg =
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f6e16a88-067f-41f4-a7ec-abd014ecaacc.png";
+
+const drName = "Dr. Sonali";
+const webDate = "9 April 2025 | 1:00 PM";
+
+const joiningLink = "https://us06web.zoom.us/j/84447223844";
+const whatsappLink = "https://jeenasikho.com/webinar/?page=mind-related";
+
+const newSlotDate = "9 April 2025";
+const newSlotTime = "1:00 PM";
+const offeringTitle = "Anxiety, Depression, Stress";
+const waitUntillDate = "2025-04-09";
+const targetDate = new Date("April 9, 2025 13:00:00").getTime();
+const contactNumber = "917710371037";
+
+const heroHeading =
+  "Webinar on <b><i>Anxiety, Depression, Stress</i></b> by <i>Team Acharya Manish Ji</i>";
+const drDetails = [
+  "Bachelor of Ayurvedic Medicine and Surgery",
+  "CERTIFIED in Psychosomatic Disorders",
+  "4+ Years of Experience",
+];
+const bannerImage =
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6c462340-eb4d-428b-b6f0-008d2b6292b0.png";
+
+// Why Join Content
+const why1 =
+  "जो <b>Anxiety</b> और <b>panic disorder</b> से राहत पाना चाहते हैं।";
+const why2 = "जो <b>Depression</b> से उबरकर mental peace चाहते हैं।";
+const why3 = "जो <b>Insomnia</b> से छुटकारा पाकर बेहतर नींद चाहते हैं।";
+const why4 = "जो <b>Emotional balance</b> और <b>mental clarity</b> बढ़ाना चाहते हैं।";
+const why5 = " जो <b>Lifestyle</b> changes से <b>stress-free</b> और healthy life चाहते हैं।";
+
+const Testi1 =
+  '"The webinar provided practical strategies to manage anxiety and stress. I feel more confident in handling my emotions now!"';
+const Testi2 =
+  '"The expert tips on mental wellness were easy to apply and made a real difference."';
+const Testi3 =
+  '"Insightful session! Helped me understand depression better and gave me useful coping techniques for daily life with ayurvedic remedies"';
+
+// Selectors for the dynamic content
+document.title = title;
+document.getElementById("heroHeading").innerHTML = heroHeading;
+if (document.getElementById("drImg")) {
+  drImg.src = docImg;
+}
+
+if (document.getElementById("BannerImg")) {
+  BannerImg.src = bannerImage;
+}
+document.getElementById("drName1").innerHTML = drName;
+document.getElementById("drName2").innerHTML = drName;
+document.getElementById("webDate").innerHTML = webDate;
+
+// Dr. Details
+const ulElement = document.createElement("ul");
+drDetails.forEach((item) => {
+  const liElement = document.createElement("li");
+  liElement.textContent = item;
+  ulElement.appendChild(liElement);
+});
+document.getElementById("drDetails").appendChild(ulElement);
+
+document.getElementById("why1").innerHTML = why1;
+document.getElementById("why2").innerHTML = why2;
+document.getElementById("why3").innerHTML = why3;
+document.getElementById("why4").innerHTML = why4;
+document.getElementById("why5").innerHTML = why5;
+
+document.getElementById("whatsappLink1").href = whatsappLink;
+document.getElementById("whatsappLink2").value = whatsappLink;
+document.getElementById("joiningLink").value = joiningLink;
+document.getElementById("NewSlotDate").value = newSlotDate;
+document.getElementById("NewSlotTime").value = newSlotTime;
+document.getElementById("OfferingTitle").value = offeringTitle;
+document.getElementById("WaitUntillDate").value = waitUntillDate;
+document.getElementById("ContactNumber").value = contactNumber;
+
+document.getElementById("testi1").innerHTML = Testi1;
+document.getElementById("testi2").innerHTML = Testi2;
+document.getElementById("testi3").innerHTML = Testi3;
+
+// Selectors for the dynamic content end
+
 // -------------------- Timer Script --------------------
 // Main Timer Elements
 const mainDays = document.getElementById("mainDays");
@@ -17,7 +105,7 @@ function formatTime(num) {
 }
 
 // Set your target date/time here (shared by both timers)
-const targetDate = new Date("April 2, 2025 13:00:00").getTime();
+// const targetDate = new Date("April 3, 2025 10:00:00").getTime();
 
 function timer() {
   const currentDate = new Date().getTime();
