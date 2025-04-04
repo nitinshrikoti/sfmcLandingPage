@@ -1,43 +1,45 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "DigestiveWebinarOn4Apr";
+const title = "DigestiveWebinarOn16Apr";
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6de07489-5caa-4c98-b41f-60660aefa45c.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2a06da4f-2205-458e-a16f-fb3d4d65e198.png";
 
-const drName = "Dr. Ankita";
-const webDate = "5 April 2025 | 10:00 AM";
+const drName = "Dr. Divyadeep";
+const webDate = "16 April 2025 | 10:00 AM";
 
-const joiningLink = "https://us06web.zoom.us/j/83625120142";
+const joiningLink = "https://us06web.zoom.us/j/83675298433";
 const whatsappLink = "https://jeenasikho.com/webinar/?page=gastric-issues";
 
-const newSlotDate = "5 April 2025";
+const newSlotDate = "16 April 2025";
 const newSlotTime = "10:00 AM";
 const offeringTitle = "Gas, Acidity, Constipation";
-const waitUntillDate = "2025-04-05";
-const targetDate = new Date("April 5, 2025 10:00:00").getTime();
+const waitUntillDate = "2025-04-16";
+const targetDate = new Date("April 16, 2025 10:00:00").getTime();
 const contactNumber = "917710371037";
 
 const heroHeading =
-  "Webinar on Gas, Acidity & Constipation by Team Acharya Manish Ji";
+  "Webinar on <b><i>Gas, Acidity & Constipation</b></i> by <i>Team Acharya Manish Ji</i>";
 
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Chronic Liver & Kidney Disease",
-  "Expertise in Arthritis, Mental Health",
-  "2+ Years of Experience",
+  "Diploma in Naturopathy and Diploma in Yoga",
+  "Expertise in Chronic Diseases, Metabolic, Skin Disorders and Infertility",
+  "16+ Years of Experience",
 ];
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/c0ea5ffe-bed6-45c1-aaa3-c13bac55fb1e.png";
 
 // Why Join Content
-const why1 = "जो अपने <b>digestion system</b> को स्वस्थ और सुचारू रखना चाहते हैं।";
+const why1 =
+  "जो अपने <b>digestion system</b> को स्वस्थ और सुचारू रखना चाहते हैं।";
 const why2 =
   "जो <b>ulcerative colitis</b> और <b>GERD</b> से होने वाली असुविधा को कम करना चाहते हैं।";
 const why3 = "जो <b>piles या fissure</b> की जलन और दर्द से परेशान हैं।";
 const why4 =
   "जिन्हें <b>IBS</b> के कारण <b>stomach pain</b> और <b>irregular digestion</b> की समस्या हो।";
-const why5 = "जो अपने <b>digestion system</b> को स्वस्थ और सुचारू रखना चाहते हैं।";
+const why5 =
+  "जो अपने <b>digestion system</b> को स्वस्थ और सुचारू रखना चाहते हैं।";
 
 const Testi1 =
   '""Suffered from gastric issues for 5 years, relying on acidity meds daily.HiiMS webinar guided me to natural remedies. After following them, I’m off medicines for 2 months and feel great.""';
@@ -45,6 +47,10 @@ const Testi2 =
   '""Kai salon se gas ki problem thi. HiiMS webinar ne sahi guidance di, treatment start kiya. Sirf 5 din me acidity aur gas se relief mil gaya. Ab bilkul theek hoon.""';
 const Testi3 =
   '""HiiMS gastric webinar was life-changing. Consulted their doctors, followed their guidance, and now I’m free from gastric issues. No more discomfort, just a healthier and happier life.""';
+
+const TestiNam1 = "— Shubham";
+const TestiNam2 = "— Aman";
+const TestiNam3 = "— Payal Jain";
 
 // Selectors for the dynamic content
 document.title = title;
@@ -87,6 +93,10 @@ document.getElementById("ContactNumber").value = contactNumber;
 document.getElementById("testi1").innerHTML = Testi1;
 document.getElementById("testi2").innerHTML = Testi2;
 document.getElementById("testi3").innerHTML = Testi3;
+
+document.getElementById("testiNam1").innerHTML = TestiNam1;
+document.getElementById("testiNam2").innerHTML = TestiNam2;
+document.getElementById("testiNam3").innerHTML = TestiNam3;
 
 // Selectors for the dynamic content end
 
