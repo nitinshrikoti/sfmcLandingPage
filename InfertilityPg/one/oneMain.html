@@ -11,7 +11,7 @@ IF RequestParameter("submitted") == "true" THEN
   Set @BookingTime = Format(SystemDateToLocalDate(Now()), "HH:mm:ss")
 
   UpsertDE(
-    "WebinarFormData",    
+    "WebinarFormDataTest",    
     1,                    
     "UniqueID",       @uniqueID,
     "FirstName",      RequestParameter("FirstName"),
@@ -1329,7 +1329,7 @@ ENDIF
       </div>
 
       <div class="webinar-right text-gray">
-        <p class="right-txt-1">Join <span id="drName2"></span></p>
+        <p class="right-txt-1">Connect with <span id="drName2"></span></p>
         <p class="right-txt-2">On</p>
         <p id="webDate" class="right-txt-3"></p>
         <p class="right-txt-4">Time is Running Out</p>
@@ -1447,13 +1447,8 @@ ENDIF
             src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
             alt="User Photo"
           />
-          <p class="testimonial-quote">
-            "यह वेबिनार दिखाता है कि कैसे आयुर्वेदिक उपचार ने IVF के बिना जोड़ों
-            को गर्भधारण में सफलता दिलाई, प्राकृतिक प्रजनन को बढ़ावा देते हुए और
-            साइड इफेक्ट्स को कम किया। जानिए कैसे आयुर्वेद स्वस्थ और प्रभावी
-            रास्ते से मातृत्व प्राप्त करने में मदद कर सकता है।"
-          </p>
-          <p class="testimonial-author">— Pregnancy in a month</p>
+          <p id="testi1" class="testimonial-quote"></p>
+          <p id="testiNam1" class="testimonial-author"></p>
         </div>
         <!-- Testimonial 2 -->
         <div class="testimonial-card">
@@ -1461,12 +1456,8 @@ ENDIF
             src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
             alt="User Photo"
           />
-          <p class="testimonial-quote">
-            "रवि तीन महीने से हमारे क्लिनिक पर इलाज करा रहे थे, जिनकी सpermia की
-            समस्या थी और सर्जरी के बारे में सोचा था। अब उनका स्पर्म काउंट 60
-            मिलियन हो गया है, और वे अब पिता बनने की उम्मीद रखते हैं।"
-          </p>
-          <p class="testimonial-author">— Ravi</p>
+          <p id="testi2" class="testimonial-quote"></p>
+          <p id="testiNam2" class="testimonial-author"></p>
         </div>
         <!-- Testimonial 3 -->
         <div class="testimonial-card">
@@ -1474,13 +1465,8 @@ ENDIF
             src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
             alt="User Photo"
           />
-          <p class="testimonial-quote">
-            "ज्योति, जो एक डे केयर टीचर हैं, ने शुद्धि आयुर्वेदा में इलाज करवाकर
-            अपने पीसीओएस को रिवर्स किया और अब वह एक बच्चे की मां बन चुकी हैं।
-            शुद्धि आयुर्वेदा ने उनका सपना सच किया और अब वह वेट लॉस पर भी ध्यान
-            दे रही हैं।"
-          </p>
-          <p class="testimonial-author">— Jyoti</p>
+          <p id="testi3" class="testimonial-quote"></p>
+          <p id="testiNam3" class="testimonial-author"></p>
         </div>
       </div>
     </section>
@@ -1918,190 +1904,211 @@ ENDIF
     <script>
       // -------------------- Dynamic Content Update --------------------
 
-const title = "InfertilityWebinarOn8Apr";
-const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/121dab33-39a6-4863-91de-4ed0356eeeff.png";
-const drName = "Dr. Meetali";
-const webDate = "8 April 2025 | 4:00 PM";
-const joiningLink = "https://us06web.zoom.us/j/83077930120";
-const whatsappLink = "https://jeenasikho.com/webinar/?page=infertility-issues";
-const newSlotDate = "8 April 2025";
-const newSlotTime = "4:00 PM";
-const offeringTitle = "Infertility";
-const waitUntillDate = "2025-04-08";
-const targetDate = new Date("April 8, 2025 16:00:00").getTime();
+      const title = "InfertilityWebinarOn15Apr";
+      const docImg =
+        "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/121dab33-39a6-4863-91de-4ed0356eeeff.png";
+      const drName = "Dr. Meetali";
+      const webDate = "15 April 2025 | 4:00 PM";
+      const joiningLink = "https://us06web.zoom.us/j/81828189116";
+      const whatsappLink =
+        "https://jeenasikho.com/webinar/?page=infertility-issues";
+      const newSlotDate = "15 April 2025";
+      const newSlotTime = "4:00 PM";
+      const offeringTitle = "Infertility";
+      const waitUntillDate = "2025-04-15";
+      const targetDate = new Date("April 15, 2025 16:00:00").getTime();
+      const contactNumber = "917710371037";
 
-const heroHeading =
-  "Webinar on <b><i>Infertility</i></b> by <i>Team Acharya Manish Ji</i>";
-const drDetails = [
-  "Bachelor of Ayurvedic Medicine and Surgery",
-  "Specialization in Panchkarma",
-  "8+ Years Of Experience",
-];
-const bannerImage =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/38a78d85-9024-44c6-b2ca-0255b66ef18d.png";
-// Why Join Content
-const why1 =
-  "जो लोग <b>infertility</b> की समस्या के कारण माता-पिता नहीं बन पा रहे हैं।";
-const why2 = "<b>PCOD/PCOS</b> से परेशान महिलाएं जो संतान सुख पाना चाहती हैं।";
-const why3 = "जिन पुरुषों का <b>sperm count low<b> है या नहीं है।";
-const why4 =
-  "जो <b>IVF failure या low AMH levels</b> की समस्या से जूझ रहे हैं।";
-const why5 =
-  "जो <b>newly married couples</b> सही तरीके से <b>family planning</b> करना चाहते हैं।";
+      const heroHeading =
+        "Webinar on <b><i>Infertility</i></b> by <i>Team Acharya Manish Ji</i>";
+      const drDetails = [
+        "Bachelor of Ayurvedic Medicine and Surgery",
+        "Specialization in Panchkarma",
+        "8+ Years Of Experience",
+      ];
+      const bannerImage =
+        "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/38a78d85-9024-44c6-b2ca-0255b66ef18d.png";
+      // Why Join Content
+      const why1 =
+        "जो लोग <b>infertility</b> की समस्या के कारण माता-पिता नहीं बन पा रहे हैं।";
+      const why2 =
+        "<b>PCOD/PCOS</b> से परेशान महिलाएं जो संतान सुख पाना चाहती हैं।";
+      const why3 = "जिन पुरुषों का <b>sperm count low<b> है या नहीं है।";
+      const why4 =
+        "जो <b>IVF failure या low AMH levels</b> की समस्या से जूझ रहे हैं।";
+      const why5 =
+        "जो <b>newly married couples</b> सही तरीके से <b>family planning</b> करना चाहते हैं।";
 
-const contactNumber = "917710371037";
+      const Testi1 =
+        '"यह वेबिनार दिखाता है कि कैसे आयुर्वेदिक उपचार ने IVF के बिना जोड़ों को गर्भधारण में सफलता दिलाई, प्राकृतिक प्रजनन को बढ़ावा देते हुए और साइड इफेक्ट्स को कम किया। जानिए कैसे आयुर्वेद स्वस्थ और प्रभावी रास्ते से मातृत्व प्राप्त करने में मदद कर सकता है।"';
+      const Testi2 =
+        '"रवि तीन महीने से हमारे क्लिनिक पर इलाज करा रहे थे, जिनकी सpermia की समस्या थी और सर्जरी के बारे में सोचा था। अब उनका स्पर्म काउंट 60 मिलियन हो गया है, और वे अब पिता बनने की उम्मीद रखते हैं।"';
+      const Testi3 =
+        '"ज्योति, जो एक डे केयर टीचर हैं, ने शुद्धि आयुर्वेदा में इलाज करवाकर अपने पीसीओएस को रिवर्स किया और अब वह एक बच्चे की मां बन चुकी हैं। शुद्धि आयुर्वेदा ने उनका सपना सच किया और अब वह वेट लॉस पर भी ध्यान दे रही हैं।"';
 
-// Selectors for the dynamic content
-document.title = title;
-document.getElementById("heroHeading").innerHTML = heroHeading;
-if (document.getElementById("drImg")) {
-  drImg.src = docImg;
-}
+      const TestiNam1 = "— Pregnancy in a month";
+      const TestiNam2 = "— Ravi";
+      const TestiNam3 = "— Jyoti";
 
-if (document.getElementById("BannerImg")) {
-  BannerImg.src = bannerImage;
-}
-document.getElementById("drName1").innerHTML = drName;
-document.getElementById("drName2").innerHTML = drName;
-document.getElementById("webDate").innerHTML = webDate;
+      // Selectors for the dynamic content
+      document.title = title;
+      document.getElementById("heroHeading").innerHTML = heroHeading;
+      if (document.getElementById("drImg")) {
+        drImg.src = docImg;
+      }
 
-// Dr. Details
-const ulElement = document.createElement("ul");
-drDetails.forEach((item) => {
-  const liElement = document.createElement("li");
-  liElement.textContent = item;
-  ulElement.appendChild(liElement);
-});
-document.getElementById("drDetails").appendChild(ulElement);
+      if (document.getElementById("BannerImg")) {
+        BannerImg.src = bannerImage;
+      }
+      document.getElementById("drName1").innerHTML = drName;
+      document.getElementById("drName2").innerHTML = drName;
+      document.getElementById("webDate").innerHTML = webDate;
 
-document.getElementById("why1").innerHTML = why1;
-document.getElementById("why2").innerHTML = why2;
-document.getElementById("why3").innerHTML = why3;
-document.getElementById("why4").innerHTML = why4;
-document.getElementById("why5").innerHTML = why5;
+      // Dr. Details
+      const ulElement = document.createElement("ul");
+      drDetails.forEach((item) => {
+        const liElement = document.createElement("li");
+        liElement.textContent = item;
+        ulElement.appendChild(liElement);
+      });
+      document.getElementById("drDetails").appendChild(ulElement);
 
-document.getElementById("whatsappLink1").href = whatsappLink;
-document.getElementById("whatsappLink2").value = whatsappLink;
-document.getElementById("joiningLink").value = joiningLink;
-document.getElementById("NewSlotDate").value = newSlotDate;
-document.getElementById("NewSlotTime").value = newSlotTime;
-document.getElementById("OfferingTitle").value = offeringTitle;
-document.getElementById("WaitUntillDate").value = waitUntillDate;
-document.getElementById("ContactNumber").value = contactNumber;
+      document.getElementById("why1").innerHTML = why1;
+      document.getElementById("why2").innerHTML = why2;
+      document.getElementById("why3").innerHTML = why3;
+      document.getElementById("why4").innerHTML = why4;
+      document.getElementById("why5").innerHTML = why5;
 
-// Selectors for the dynamic content end
+      document.getElementById("whatsappLink1").href = whatsappLink;
+      document.getElementById("whatsappLink2").value = whatsappLink;
+      document.getElementById("joiningLink").value = joiningLink;
+      document.getElementById("NewSlotDate").value = newSlotDate;
+      document.getElementById("NewSlotTime").value = newSlotTime;
+      document.getElementById("OfferingTitle").value = offeringTitle;
+      document.getElementById("WaitUntillDate").value = waitUntillDate;
+      document.getElementById("ContactNumber").value = contactNumber;
 
-// -------------------- Timer Script --------------------
-// Main Timer Elements
-const mainDays = document.getElementById("mainDays");
-const mainHours = document.getElementById("mainHours");
-const mainMinutes = document.getElementById("mainMinutes");
-const mainSeconds = document.getElementById("mainSeconds");
+      document.getElementById("testi1").innerHTML = Testi1;
+      document.getElementById("testi2").innerHTML = Testi2;
+      document.getElementById("testi3").innerHTML = Testi3;
 
-// Footer Timer Elements
-const footerDays = document.getElementById("footerDays");
-const footerHours = document.getElementById("footerHours");
-const footerMinutes = document.getElementById("footerMinutes");
-const footerSeconds = document.getElementById("footerSeconds");
+      document.getElementById("testiNam1").innerHTML = TestiNam1;
+      document.getElementById("testiNam2").innerHTML = TestiNam2;
+      document.getElementById("testiNam3").innerHTML = TestiNam3;
 
-// Helper function to add leading zero
-function formatTime(num) {
-  return num < 10 ? "0" + num : num;
-}
+      // Selectors for the dynamic content end
 
-// Set your target date/time here (shared by both timers)
-// const targetDate = new Date("April 3, 2025 10:00:00").getTime();
+      // -------------------- Timer Script --------------------
+      // Main Timer Elements
+      const mainDays = document.getElementById("mainDays");
+      const mainHours = document.getElementById("mainHours");
+      const mainMinutes = document.getElementById("mainMinutes");
+      const mainSeconds = document.getElementById("mainSeconds");
 
-function timer() {
-  const currentDate = new Date().getTime();
-  const distance = targetDate - currentDate;
+      // Footer Timer Elements
+      const footerDays = document.getElementById("footerDays");
+      const footerHours = document.getElementById("footerHours");
+      const footerMinutes = document.getElementById("footerMinutes");
+      const footerSeconds = document.getElementById("footerSeconds");
 
-  // If countdown is over, set all to "00"
-  if (distance < 0) {
-    updateTimer("00", "00", "00", "00");
-  } else {
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((distance / (1000 * 60)) % 60);
-    const seconds = Math.floor((distance / 1000) % 60);
+      // Helper function to add leading zero
+      function formatTime(num) {
+        return num < 10 ? "0" + num : num;
+      }
 
-    updateTimer(
-      formatTime(days),
-      formatTime(hours),
-      formatTime(minutes),
-      formatTime(seconds)
-    );
-  }
-}
+      // Set your target date/time here (shared by both timers)
+      // const targetDate = new Date("April 3, 2025 10:00:00").getTime();
 
-// Update both main & footer timers
-function updateTimer(d, h, m, s) {
-  if (mainDays) mainDays.textContent = d;
-  if (mainHours) mainHours.textContent = h;
-  if (mainMinutes) mainMinutes.textContent = m;
-  if (mainSeconds) mainSeconds.textContent = s;
+      function timer() {
+        const currentDate = new Date().getTime();
+        const distance = targetDate - currentDate;
 
-  if (footerDays) footerDays.textContent = d;
-  if (footerHours) footerHours.textContent = h;
-  if (footerMinutes) footerMinutes.textContent = m;
-  if (footerSeconds) footerSeconds.textContent = s;
-}
+        // If countdown is over, set all to "00"
+        if (distance < 0) {
+          updateTimer("00", "00", "00", "00");
+        } else {
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+          const minutes = Math.floor((distance / (1000 * 60)) % 60);
+          const seconds = Math.floor((distance / 1000) % 60);
 
-// Run timer every second
-setInterval(timer, 1000);
-timer(); // Initialize immediately
+          updateTimer(
+            formatTime(days),
+            formatTime(hours),
+            formatTime(minutes),
+            formatTime(seconds)
+          );
+        }
+      }
 
-// -------------------- Fill Form Script --------------------
+      // Update both main & footer timers
+      function updateTimer(d, h, m, s) {
+        if (mainDays) mainDays.textContent = d;
+        if (mainHours) mainHours.textContent = h;
+        if (mainMinutes) mainMinutes.textContent = m;
+        if (mainSeconds) mainSeconds.textContent = s;
 
-var modal = document.getElementById("myModal");
-var openModalBtn = document.getElementsByClassName("openModalBtn");
-var closeModalBtn = document.getElementById("closeModalBtn");
-var formContainer = document.getElementById("formContainer");
-var successContainer = document.getElementById("successContainer");
+        if (footerDays) footerDays.textContent = d;
+        if (footerHours) footerHours.textContent = h;
+        if (footerMinutes) footerMinutes.textContent = m;
+        if (footerSeconds) footerSeconds.textContent = s;
+      }
 
-// On page load, check if isSubmitted was set to true by AMPscript
-document.addEventListener("DOMContentLoaded", function () {
-  if (typeof isSubmitted !== "undefined" && isSubmitted === true) {
-    // Show the modal with success message
-    modal.style.display = "block";
-    successContainer.style.display = "block";
-    formContainer.style.display = "none";
-  }
-});
+      // Run timer every second
+      setInterval(timer, 1000);
+      timer(); // Initialize immediately
 
-function newopenmodal() {
-  modal.style.display = "block";
-  successContainer.style.display = "none";
-  formContainer.style.display = "block";
-}
+      // -------------------- Fill Form Script --------------------
 
-// Close modal on "x" click
-closeModalBtn.addEventListener("click", function () {
-  modal.style.display = "none";
-});
+      var modal = document.getElementById("myModal");
+      var openModalBtn = document.getElementsByClassName("openModalBtn");
+      var closeModalBtn = document.getElementById("closeModalBtn");
+      var formContainer = document.getElementById("formContainer");
+      var successContainer = document.getElementById("successContainer");
 
-// Close modal if user clicks outside modal content
-window.addEventListener("click", function (event) {
-  if (event.target === modal) {
-    modal.style.display = "none";
-  }
-});
+      // On page load, check if isSubmitted was set to true by AMPscript
+      document.addEventListener("DOMContentLoaded", function () {
+        if (typeof isSubmitted !== "undefined" && isSubmitted === true) {
+          // Show the modal with success message
+          modal.style.display = "block";
+          successContainer.style.display = "block";
+          formContainer.style.display = "none";
+        }
+      });
 
-// -------------------- Close Nav container Script --------------------
-document.addEventListener("DOMContentLoaded", function () {
-  const menuToggle = document.getElementById("menuToggle");
-  // Select all links or buttons inside .nav-tab elements
-  const navTabs = document.querySelectorAll(".nav-tab a, .nav-tab button");
+      function newopenmodal() {
+        modal.style.display = "block";
+        successContainer.style.display = "none";
+        formContainer.style.display = "block";
+      }
 
-  navTabs.forEach((tab) => {
-    tab.addEventListener("click", function () {
-      // Uncheck the checkbox to close the nav-container
-      menuToggle.checked = false;
-    });
-  });
-});
+      // Close modal on "x" click
+      closeModalBtn.addEventListener("click", function () {
+        modal.style.display = "none";
+      });
 
+      // Close modal if user clicks outside modal content
+      window.addEventListener("click", function (event) {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      });
+
+      // -------------------- Close Nav container Script --------------------
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuToggle = document.getElementById("menuToggle");
+        // Select all links or buttons inside .nav-tab elements
+        const navTabs = document.querySelectorAll(
+          ".nav-tab a, .nav-tab button"
+        );
+
+        navTabs.forEach((tab) => {
+          tab.addEventListener("click", function () {
+            // Uncheck the checkbox to close the nav-container
+            menuToggle.checked = false;
+          });
+        });
+      });
     </script>
   </body>
 </html>

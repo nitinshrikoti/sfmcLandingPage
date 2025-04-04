@@ -1,17 +1,18 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "InfertilityWebinarOn8Apr";
+const title = "InfertilityWebinarOn15Apr";
 const docImg =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/121dab33-39a6-4863-91de-4ed0356eeeff.png";
 const drName = "Dr. Meetali";
-const webDate = "8 April 2025 | 4:00 PM";
-const joiningLink = "https://us06web.zoom.us/j/83077930120";
+const webDate = "15 April 2025 | 4:00 PM";
+const joiningLink = "https://us06web.zoom.us/j/81828189116";
 const whatsappLink = "https://jeenasikho.com/webinar/?page=infertility-issues";
-const newSlotDate = "8 April 2025";
+const newSlotDate = "15 April 2025";
 const newSlotTime = "4:00 PM";
 const offeringTitle = "Infertility";
-const waitUntillDate = "2025-04-08";
-const targetDate = new Date("April 8, 2025 16:00:00").getTime();
+const waitUntillDate = "2025-04-15";
+const targetDate = new Date("April 15, 2025 16:00:00").getTime();
+const contactNumber = "917710371037";
 
 const heroHeading =
   "Webinar on <b><i>Infertility</i></b> by <i>Team Acharya Manish Ji</i>";
@@ -32,7 +33,16 @@ const why4 =
 const why5 =
   "जो <b>newly married couples</b> सही तरीके से <b>family planning</b> करना चाहते हैं।";
 
-const contactNumber = "917710371037";
+const Testi1 =
+  '"यह वेबिनार दिखाता है कि कैसे आयुर्वेदिक उपचार ने IVF के बिना जोड़ों को गर्भधारण में सफलता दिलाई, प्राकृतिक प्रजनन को बढ़ावा देते हुए और साइड इफेक्ट्स को कम किया। जानिए कैसे आयुर्वेद स्वस्थ और प्रभावी रास्ते से मातृत्व प्राप्त करने में मदद कर सकता है।"';
+const Testi2 =
+  '"रवि तीन महीने से हमारे क्लिनिक पर इलाज करा रहे थे, जिनकी सpermia की समस्या थी और सर्जरी के बारे में सोचा था। अब उनका स्पर्म काउंट 60 मिलियन हो गया है, और वे अब पिता बनने की उम्मीद रखते हैं।"';
+const Testi3 =
+  '"ज्योति, जो एक डे केयर टीचर हैं, ने शुद्धि आयुर्वेदा में इलाज करवाकर अपने पीसीओएस को रिवर्स किया और अब वह एक बच्चे की मां बन चुकी हैं। शुद्धि आयुर्वेदा ने उनका सपना सच किया और अब वह वेट लॉस पर भी ध्यान दे रही हैं।"';
+
+const TestiNam1 = "— Pregnancy in a month";
+const TestiNam2 = "— Ravi";
+const TestiNam3 = "— Jyoti";
 
 // Selectors for the dynamic content
 document.title = title;
@@ -71,6 +81,14 @@ document.getElementById("NewSlotTime").value = newSlotTime;
 document.getElementById("OfferingTitle").value = offeringTitle;
 document.getElementById("WaitUntillDate").value = waitUntillDate;
 document.getElementById("ContactNumber").value = contactNumber;
+
+document.getElementById("testi1").innerHTML = Testi1;
+document.getElementById("testi2").innerHTML = Testi2;
+document.getElementById("testi3").innerHTML = Testi3;
+
+document.getElementById("testiNam1").innerHTML = TestiNam1;
+document.getElementById("testiNam2").innerHTML = TestiNam2;
+document.getElementById("testiNam3").innerHTML = TestiNam3;
 
 // Selectors for the dynamic content end
 
