@@ -11,7 +11,7 @@ IF RequestParameter("submitted") == "true" THEN
   Set @BookingTime = Format(SystemDateToLocalDate(Now()), "HH:mm:ss")
 
   UpsertDE(
-    "WebinarFormDataTest",    
+    "WebinarFormData",    
     1,                    
     "UniqueID",       @uniqueID,
     "FirstName",      RequestParameter("FirstName"),
