@@ -1,25 +1,24 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "KneePainWebinarOn8Apr";
+const title = "KneePainWebinarOn15Apr";
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6de07489-5caa-4c98-b41f-60660aefa45c.png";
-const drName = "Dr. Ankita";
-const webDate = "8 April 2025 | 10:00 AM";
-const joiningLink = "https://us06web.zoom.us/j/87411795895";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/aeb9ac0d-ef59-4b4d-9f8e-0bbf4eac6c40.png";
+const drName = "Dr. Ritu";
+const webDate = "15 April 2025 | 1:00 PM";
+const joiningLink = "https://us06web.zoom.us/j/83106414993";
 const whatsappLink = "https://jeenasikho.com/webinar/?page=joint";
-const newSlotDate = "8 April 2025";
-const newSlotTime = "10:00 AM";
+const newSlotDate = "15 April 2025";
+const newSlotTime = "1:00 PM";
 const offeringTitle = "Knee Pain";
-const waitUntillDate = "2025-04-08";
-const targetDate = new Date("April 8, 2025 10:00:00").getTime();
+const waitUntillDate = "2025-04-15";
+const targetDate = new Date("April 15, 2025 13:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Knee Pain</i></b> by <i>Team Acharya Manish Ji</i>";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Chronic Liver & Kidney Disease",
-  "Expertise in Arthritis, Mental Health",
-  "2+ Years Of Experience",
+  "Diploma in Naturopathy and Diploma in Yoga",
+  "7+ Years Of Experience",
 ];
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/ffec998a-5356-47d9-b86a-882e4cd865ea.png";
@@ -31,6 +30,17 @@ const why4 = "जो <b>severe joint pain</b> और <b></b> से राहत
 const why5 =
   "जो <b>natural remedies</b> से <b>joint health</b> सुधारना चाहते हैं।";
 const contactNumber = "917710371037";
+
+const Testi1 =
+  "“Thanks Doctor. I learned effective ways to manage arthritis pain and improve joint health naturally.”";
+const Testi2 =
+  "“Great!The tips on diet and exercise for arthritis were practical and easy to follow.”";
+const Testi3 =
+  '“Great insights on arthritis treatment options! Helped me understand how to reduce stiffness and inflammation."';
+
+const TestiNam1 = "— Saheb";
+const TestiNam2 = "— Pryanka";
+const TestiNam3 = "— Sidharth";
 
 // Selectors for the dynamic content
 document.title = title;
@@ -69,6 +79,14 @@ document.getElementById("NewSlotTime").value = newSlotTime;
 document.getElementById("OfferingTitle").value = offeringTitle;
 document.getElementById("WaitUntillDate").value = waitUntillDate;
 document.getElementById("ContactNumber").value = contactNumber;
+
+document.getElementById("testi1").innerHTML = Testi1;
+document.getElementById("testi2").innerHTML = Testi2;
+document.getElementById("testi3").innerHTML = Testi3;
+
+document.getElementById("testiNam1").innerHTML = TestiNam1;
+document.getElementById("testiNam2").innerHTML = TestiNam2;
+document.getElementById("testiNam3").innerHTML = TestiNam3;
 
 // Selectors for the dynamic content end
 
