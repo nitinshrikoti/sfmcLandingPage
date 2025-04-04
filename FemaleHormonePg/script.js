@@ -1,20 +1,20 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "HormonalWebinarOn10Apr";
+const title = "HormonalWebinarOn16Apr";
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6cb716c2-70df-44ec-a741-2f9c745de282.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6de07489-5caa-4c98-b41f-60660aefa45c.png";
 
-const drName = "Dr. Megha";
-const webDate = "10 April 2025 | 4:00 PM";
+const drName = "Dr. Ankita";
+const webDate = "16 April 2025 | 1:00 PM";
 
-const joiningLink = "https://us06web.zoom.us/j/85115250243";
+const joiningLink = "https://us06web.zoom.us/j/88404667061";
 const whatsappLink = "https://jeenasikho.com/webinar/?page=female-sexual";
 
-const newSlotDate = "10 April 2025";
-const newSlotTime = "4:00 PM";
+const newSlotDate = "16 April 2025";
+const newSlotTime = "1:00 PM";
 const offeringTitle = "Hormonal Disorder";
-const waitUntillDate = "2025-04-10";
-const targetDate = new Date("April 10, 2025 16:00:00").getTime();
+const waitUntillDate = "2025-04-16";
+const targetDate = new Date("April 16, 2025 13:00:00").getTime();
 const contactNumber = "917710371037";
 
 const heroHeading =
@@ -22,23 +22,35 @@ const heroHeading =
 
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Bachelor Of Naturopathy and Yogic Sciences",
-  "4+ Years of Experience",
+  "Chronic Liver & Kidney Disease",
+  "Expertise in Arthritis, Mental Health",
+  "2+ Years of Experience",
 ];
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/4e666290-5329-4c7b-a389-7a8c41f4103e.png";
 
 // Why Join Content
-const why1 = "जो महिलाएं <b>irregular periods</b> को <b>regular</b> करना चाहती हैं।";
-const why2 = "जिन्हें <b>mood swings, weight changes, और sleep issues</b> हो रही हैं।";
+const why1 =
+  "जो महिलाएं <b>irregular periods</b> को <b>regular</b> करना चाहती हैं।";
+const why2 =
+  "जिन्हें <b>mood swings, weight changes, और sleep issues</b> हो रही हैं।";
 const why3 = "जो skin problems, hair fall, और fatigue से परेशान हैं।";
-const why4 = "जो <b>infertility</b> को दूर कर motherhood का अनुभव करना चाहती हैं।";
-const why5 = "जिन्हें <b>focus issues या fast heartbeat</b> की समस्या हो रही है।";
+const why4 =
+  "जो <b>infertility</b> को दूर कर motherhood का अनुभव करना चाहती हैं।";
+const why5 =
+  "जिन्हें <b>focus issues या fast heartbeat</b> की समस्या हो रही है।";
 
-const Testi1 = '""PCOS troubled me for years, but a webinar by Acharya Manish Ji’s team changed everything. After HiiMS consultation, I feel energetic, and my reports improved. Grateful for this life-changing experience""';
-const Testi2 = '""PCOD ne mujhe stress diya, medicines bas symptoms control karti thi. HiiMS webinar attend kiya, Ayurveda treatment shuru kiya. 3 mahine me hi periods regular, acne kam, aur energy badh gayi""';
-const Testi3 = '""Hormonal imbalance caused mood swings, weight gain, and fatigue. HiiMS webinar was eye-opening. After consultation, my energy returned, sleep improved, and I feel like myself again.""';
+const Testi1 =
+  '"PCOS troubled me for years, but a webinar by Acharya Manish Ji’s team changed everything. After HiiMS consultation, I feel energetic, and my reports improved. Grateful for this life-changing experience"';
+const Testi2 =
+  '"PCOD ne mujhe stress diya, medicines bas symptoms control karti thi. HiiMS webinar attend kiya, Ayurveda treatment shuru kiya. 3 mahine me hi periods regular, acne kam, aur energy badh gayi"';
+const Testi3 =
+  '"Hormonal imbalance caused mood swings, weight gain, and fatigue. HiiMS webinar was eye-opening. After consultation, my energy returned, sleep improved, and I feel like myself again."';
+
+const TestiNam1 = "— Rajni";
+const TestiNam2 = "— Nidhi";
+const TestiNam3 = "— Payal Jain";
 
 // Selectors for the dynamic content
 document.title = title;
@@ -81,6 +93,10 @@ document.getElementById("ContactNumber").value = contactNumber;
 document.getElementById("testi1").innerHTML = Testi1;
 document.getElementById("testi2").innerHTML = Testi2;
 document.getElementById("testi3").innerHTML = Testi3;
+
+document.getElementById("testiNam1").innerHTML = TestiNam1;
+document.getElementById("testiNam2").innerHTML = TestiNam2;
+document.getElementById("testiNam3").innerHTML = TestiNam3;
 
 // Selectors for the dynamic content end
 
