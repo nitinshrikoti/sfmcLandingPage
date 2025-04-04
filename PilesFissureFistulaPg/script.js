@@ -1,21 +1,21 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "PilesFissureFistulaWebinarOn8Apr";
+const title = "PilesFissureFistulaWebinarOn16Apr";
 const docImg =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/0798e2b6-3bdc-4f73-9a6a-9ad04bf56d84.png";
 
 const drName = "Vaidya Navneet";
-const webDate = "9 April 2025 | 10:00 AM";
+const webDate = "16 April 2025 | 4:00 PM";
 
-const joiningLink = "https://us06web.zoom.us/j/87869383139";
+const joiningLink = "https://us06web.zoom.us/j/84727150202";
 const whatsappLink =
   "https://jeenasikho.com/webinar/?page=piles-fissure-fistula";
 
-const newSlotDate = "9 April 2025";
-const newSlotTime = "10:00 AM";
+const newSlotDate = "16 April 2025";
+const newSlotTime = "4:00 PM";
 const offeringTitle = "Piles, Fissure, Fistula";
-const waitUntillDate = "2025-04-09";
-const targetDate = new Date("April 9, 2025 10:00:00").getTime();
+const waitUntillDate = "2025-04-16";
+const targetDate = new Date("April 16, 2025 16:00:00").getTime();
 const contactNumber = "917710371037";
 
 const heroHeading =
@@ -46,6 +46,10 @@ const Testi2 =
   '"Informative and well-explained! The webinar cleared many doubts about piles and how to prevent flare-ups."';
 const Testi3 =
   '"Great session! The tips on diet and treatment options for piles were practical and easy to follow"';
+
+const TestiNam1 = "— Saheb";
+const TestiNam2 = "— Pryanka";
+const TestiNam3 = "— Sidharth";
 
 // Selectors for the dynamic content
 document.title = title;
@@ -88,6 +92,10 @@ document.getElementById("ContactNumber").value = contactNumber;
 document.getElementById("testi1").innerHTML = Testi1;
 document.getElementById("testi2").innerHTML = Testi2;
 document.getElementById("testi3").innerHTML = Testi3;
+
+document.getElementById("testiNam1").innerHTML = TestiNam1;
+document.getElementById("testiNam2").innerHTML = TestiNam2;
+document.getElementById("testiNam3").innerHTML = TestiNam3;
 
 // Selectors for the dynamic content end
 
