@@ -1,29 +1,29 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "MetabolicWebinarOn3Apr";
+const title = "MetabolicWebinarOn15Apr";
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/540c60d3-7b05-4859-b63b-27c34da6ba93.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2457b5fd-2e28-495d-90e0-5625d446d1b2.png";
 
-const drName = "Dr. Geetika";
-const webDate = "3 April 2025 | 1:00 PM";
+const drName = "Dr. Meghna";
+const webDate = "15 April 2025 | 10:00 AM";
 
-const joiningLink = "https://us06web.zoom.us/j/89237691413";
+const joiningLink = "https://us06web.zoom.us/j/87299030421";
 const whatsappLink = "https://jeenasikho.com/webinar/?page=metabolic-disorders";
 
-const newSlotDate = "3 April 2025";
-const newSlotTime = "1:00 PM";
+const newSlotDate = "15 April 2025";
+const newSlotTime = "10:00 AM";
 const offeringTitle = "Metabolic Disorder";
-const waitUntillDate = "2025-04-03";
-const targetDate = new Date("April 3, 2025 13:00:00").getTime();
+const waitUntillDate = "2025-04-15";
+const targetDate = new Date("April 15, 2025 10:00:00").getTime();
 const contactNumber = "917710371037";
 
 const heroHeading =
   "Webinar on <b><i>Metabolic Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "PGDIP (PG. Diploma in Panchakarma)",
-  "M.S. (Ay.) Master of Surgery",
-  "15+ Years of Experience",
+  "Chronic Kidney & Liver Disease",
+  "Lifestyle Disorders (GIT, Joint, Mental Health)",
+  "4+ Years of Experience",
 ];
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e6cabbf5-0635-43f1-801f-0ac0ad688f98.png";
@@ -39,12 +39,17 @@ const why4 =
   "जिन्हें <b>blood sugar</b> और <b>cholesterol levels</b> कंट्रोल करने में दिक्कत हो रही है।";
 const why5 =
   "जो <b>natural remedies</b> से <b>metabolic health improve</b> करना चाहते हैं और <b>energy boost</b> करना चाहते हैं।";
+
 const Testi1 =
   '"The webinar was very informative! I learned practical tips to manage my diabetes better. Highly recommend it!"';
 const Testi2 =
   '"The expert tips on mental wellness were easy to apply and made a real difference."';
 const Testi3 =
   '"Great session! The explanations were clear, and I feel more confident about reversing my blood sugar levels & diabetes"';
+
+const TestiNam1 = "— Saheb";
+const TestiNam2 = "— Pryanka";
+const TestiNam3 = "— Sidharth";
 
 // Selectors for the dynamic content
 document.title = title;
@@ -87,6 +92,10 @@ document.getElementById("ContactNumber").value = contactNumber;
 document.getElementById("testi1").innerHTML = Testi1;
 document.getElementById("testi2").innerHTML = Testi2;
 document.getElementById("testi3").innerHTML = Testi3;
+
+document.getElementById("testiNam1").innerHTML = TestiNam1;
+document.getElementById("testiNam2").innerHTML = TestiNam2;
+document.getElementById("testiNam3").innerHTML = TestiNam3;
 
 // Selectors for the dynamic content end
 
