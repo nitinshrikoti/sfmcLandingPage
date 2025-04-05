@@ -1,29 +1,29 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "LiverWebinarOn10Apr";
+const title = "LiverWebinarOn17Apr";
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/540c60d3-7b05-4859-b63b-27c34da6ba93.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6de07489-5caa-4c98-b41f-60660aefa45c.png";
 
-const drName = "Dr. Geetika";
-const webDate = "10 April 2025 | 1:00 PM";
+const drName = "Dr. Ankita";
+const webDate = "17 April 2025 | 10:00 AM";
 
-const joiningLink = "https://us06web.zoom.us/j/89377911510";
+const joiningLink = "https://us06web.zoom.us/j/82458955760";
 const whatsappLink = "https://jeenasikho.com/webinar/?page=liver";
 
-const newSlotDate = "10 April 2025";
-const newSlotTime = "1:00 PM";
+const newSlotDate = "17 April 2025";
+const newSlotTime = "10:00 AM";
 const offeringTitle = "Liver";
-const waitUntillDate = "2025-04-10";
-const targetDate = new Date("April 10, 2025 13:00:00").getTime();
+const waitUntillDate = "2025-04-17";
+const targetDate = new Date("April 17, 2025 10:00:00").getTime();
 const contactNumber = "917710371037";
 
 const heroHeading =
   "Webinar on <b><i>Liver</i></b> by <i>Team Acharya Manish Ji</i>";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "PGDIP (PG. Diploma in Panchakarma)",
-  "M.S. (Ay.) Master of Surgery",
-  "15+ Years of Experience",
+  "Chronic Liver & Kidney Disease",
+  "Expertise in Arthritis, Mental Health",
+  "2+ Years of Experience",
 ];
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/1e0f9aef-c15f-403b-b5f5-73c34ac9b657.png";
@@ -45,6 +45,10 @@ const Testi2 =
   '"Vipin Kumar Jain shared that after attending the camp, he experienced relief from liver cirrhosis and joint-muscle pain. He appreciates Ayurvedic treatment and Acharya Manish Jis good nature."';
 const Testi3 =
   '"Gautam Jain, admitted for liver issues, experienced significant relief in swelling and digestion after just three days of Ayurvedic treatment. He highly recommends Acharya Manish Ji’s hospital for better results."';
+
+const TestiNam1 = "— Jaswinder Kaur";
+const TestiNam2 = "— Vipin Kumar Jain";
+const TestiNam3 = "— Gautam Jain";
 
 // Selectors for the dynamic content
 document.title = title;
@@ -87,6 +91,10 @@ document.getElementById("ContactNumber").value = contactNumber;
 document.getElementById("testi1").innerHTML = Testi1;
 document.getElementById("testi2").innerHTML = Testi2;
 document.getElementById("testi3").innerHTML = Testi3;
+
+document.getElementById("testiNam1").innerHTML = TestiNam1;
+document.getElementById("testiNam2").innerHTML = TestiNam2;
+document.getElementById("testiNam3").innerHTML = TestiNam3;
 
 // Selectors for the dynamic content end
 
