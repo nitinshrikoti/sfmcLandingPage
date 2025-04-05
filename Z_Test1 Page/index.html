@@ -1,0 +1,139 @@
+%%[
+IF RequestParameter("submitted") == "true" THEN
+
+  Set @uniqueID = Concat(
+    Format(SystemDateToLocalDate(Now()), "yyyyMMddHHmmss"),
+    "_",
+    RequestParameter("Phone")
+  )
+
+  Set @BookingDate = Format(SystemDateToLocalDate(Now()), "yyyy-MM-dd")
+  Set @BookingTime = Format(SystemDateToLocalDate(Now()), "HH:mm:ss")
+
+  UpsertDE(
+    "WebinarFormDataTest",    
+    1,                    
+    "UniqueID",       @uniqueID,
+    "phone",          RequestParameter("phone"),
+    "Country",        RequestParameter("Country"),
+  )
+
+ENDIF
+]%%
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Phone and Country Code</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/css/intlTelInput.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        background-color: #f8f8f8;
+      }
+      .form-container {
+        max-width: 400px;
+        margin: 0 auto;
+        background: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .input-group {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+      .intl-tel-input {
+        width: 100%;
+      }
+      button {
+        background: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100%;
+      }
+      button:hover {
+        background: #0056b3;
+      }
+      #result {
+        margin-top: 20px;
+        font-size: 1.2em;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>Enter Your Phone Number</h1>
+      <form id="testForm" action="#" method="post">
+        <div class="input-group">
+          <!-- Phone input enhanced with intl-tel-input -->
+          <input
+            id="phone"
+            type="tel"
+            name="phone"
+            placeholder="Enter phone number"
+            required
+          />
+        </div>
+        <!-- Hidden field to store the selected country's dial code -->
+        <input type="hidden" id="countyCode" name="countyCode" />
+        <!-- Hidden field to store the initial country ISO code (e.g., "in") -->
+        <input type="hidden" id="initialCountry" name="locale" />
+        <button type="submit">Submit</button>
+      </form>
+      <div id="result"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/intlTelInput.min.js"></script>
+    <script>
+      // Initialize intl-tel-input with initialCountry set to "in"
+      const phoneInput = document.querySelector("#phone");
+      const iti = window.intlTelInput(phoneInput, {
+        initialCountry: "in",
+        strictMode: true,
+        loadUtils: function () {
+          return import(
+            "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js"
+          );
+        },
+      });
+
+      // On form submission, prevent default for testing
+      document
+        .getElementById("testForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          // Retrieve selected country data from intl-tel-input
+          const countryData = iti.getSelectedCountryData();
+          // Set the hidden field "countyCode" to the dial code (e.g., "91")
+          const countryCode = (document.getElementById("countyCode").value =
+            countryData.dialCode);
+          // Set the hidden field "initialCountry" to the ISO code (e.g., "in")
+          const countryPrefix = (document.getElementById(
+            "initialCountry"
+          ).value = countryData.iso2);
+
+          // For testing, combine and display the values:
+          const combined = countryData.dialCode + phoneInput.value;
+          document.getElementById("result").innerText =
+            "Combined Phone: " +
+            combined +
+            "\ncountyCode: " +
+            countryCode +
+            "\nInitial Country: " +
+            countryPrefix;
+        });
+    </script>
+  </body>
+</html>
