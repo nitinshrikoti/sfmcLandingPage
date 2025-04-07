@@ -17,7 +17,7 @@ IF RequestParameter("submitted") == "true" THEN
   Set @uniqueID = Concat(Format(SystemDateToLocalDate(Now()), "yyyyMMddHHmmss"), "_", @digitsOnly)
 
   UpsertDE(
-    "phoneSaveTest", 
+    "WebinarFormDataTest", 
     1, 
     "UniqueID", @uniqueID, 
     "Locale", @locale, 

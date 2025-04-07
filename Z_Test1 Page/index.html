@@ -11,6 +11,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
     <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/css/intlTelInput.css"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&amp;display=swap"
       rel="stylesheet"
     />
@@ -396,10 +400,16 @@
         <!-- Registration Form Container -->
         <div class="form-container" id="formContainer">
           <h2>Fill Your Details!</h2>
-          <form action="%%=RequestParameter('PAGEURL')=%%" method="post">
+          <form
+            id="RegisterForm"
+            action="%%=RequestParameter('PAGEURL')=%%"
+            method="post"
+          >
             <input type="hidden" name="submitted" value="true" />
 
             <!-- Hidden fields (empty or default) -->
+            <input type="hidden" id="countryCode" name="countryCode" />
+            <input type="hidden" id="initialCountry" name="initialCountry" />
             <input type="hidden" name="OldSlotDate" value="" />
             <input type="hidden" name="OldSlotTime" value="" />
             <input id="NewSlotDate" type="hidden" name="NewSlotDate" value="" />
@@ -449,13 +459,7 @@
             />
 
             <label for="Phone">WhatsApp Number*</label>
-            <input
-              type="text"
-              id="Phone"
-              name="Phone"
-              required=""
-              placeholder="8866558472 (10 Digit No Space)"
-            />
+            <input type="tel" id="phone" name="phone" required />
 
             <label for="Email">Email</label>
             <input
@@ -685,5 +689,6 @@
         </div>
       </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/intlTelInput.min.js"></script>
   </body>
 </html>

@@ -1,10 +1,23 @@
 %%[
 IF RequestParameter("submitted") == "true" THEN
 
+  Set @rawPhone = RequestParameter("phone")
+  Set @countryCode = RequestParameter("countryCode")
+  Set @locale = RequestParameter("initialCountry")
+
+  Set @digitsOnly = ""
+  FOR @i = 1 TO Length(@rawPhone) DO
+    Set @char = Substring(@rawPhone, @i, 1)
+    IF IndexOf("0123456789", @char) > 0 THEN
+      Set @digitsOnly = Concat(@digitsOnly, @char)
+    ENDIF
+  NEXT @i
+
+  Set @phone = Concat(@countryCode, @digitsOnly)
   Set @uniqueID = Concat(
     Format(SystemDateToLocalDate(Now()), "yyyyMMddHHmmss"),
     "_",
-    RequestParameter("Phone")
+    RequestParameter("phone")
   )
 
   Set @BookingDate = Format(SystemDateToLocalDate(Now()), "yyyy-MM-dd")
@@ -16,7 +29,8 @@ IF RequestParameter("submitted") == "true" THEN
     "UniqueID",       @uniqueID,
     "FirstName",      RequestParameter("FirstName"),
     "LastName",       RequestParameter("LastName"),
-    "Phone",          RequestParameter("Phone"),
+    "Locale",         @locale, 
+    "Phone",          @phone,
     "Email",          RequestParameter("Email"),
     "Country",        RequestParameter("Country"),
     "BookingDate",    @BookingDate,
@@ -35,6 +49,7 @@ IF RequestParameter("submitted") == "true" THEN
 ENDIF
 ]%%
 
+
 <!-- We set a JS variable (isSubmitted) based on whether the form was posted -->
 %%[ IF RequestParameter("submitted") == "true" THEN ]%%
 <script>
@@ -45,6 +60,7 @@ ENDIF
   var isSubmitted = false;
 </script>
 %%[ ENDIF ]%%
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -57,6 +73,10 @@ ENDIF
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/css/intlTelInput.css"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&amp;display=swap"
       rel="stylesheet"
@@ -1234,7 +1254,6 @@ ENDIF
         }
       }
     </style>
-
     <!-- script -->
     <!-- <script src="script.js" defer></script> -->
   </head>
@@ -1612,10 +1631,16 @@ ENDIF
         <!-- Registration Form Container -->
         <div class="form-container" id="formContainer">
           <h2>Fill Your Details!</h2>
-          <form action="%%=RequestParameter('PAGEURL')=%%" method="post">
+          <form
+            id="RegisterForm"
+            action="%%=RequestParameter('PAGEURL')=%%"
+            method="post"
+          >
             <input type="hidden" name="submitted" value="true" />
 
             <!-- Hidden fields (empty or default) -->
+            <input type="hidden" id="countryCode" name="countryCode" />
+            <input type="hidden" id="initialCountry" name="initialCountry" />
             <input type="hidden" name="OldSlotDate" value="" />
             <input type="hidden" name="OldSlotTime" value="" />
             <input id="NewSlotDate" type="hidden" name="NewSlotDate" value="" />
@@ -1665,13 +1690,7 @@ ENDIF
             />
 
             <label for="Phone">WhatsApp Number*</label>
-            <input
-              type="text"
-              id="Phone"
-              name="Phone"
-              required=""
-              placeholder="8866558472 (10 Digit No Space)"
-            />
+            <input type="tel" id="phone" name="phone" required />
 
             <label for="Email">Email</label>
             <input
@@ -1901,10 +1920,11 @@ ENDIF
         </div>
       </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/intlTelInput.min.js"></script>
     <script>
       // -------------------- Dynamic Content Update --------------------
 
-      const title = "KneePainWebinarOn15Apr";
+      const title = "Test";
       const docImg =
         "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/aeb9ac0d-ef59-4b4d-9f8e-0bbf4eac6c40.png";
       const drName = "Dr. Ritu";
@@ -2108,6 +2128,35 @@ ENDIF
             menuToggle.checked = false;
           });
         });
+      });
+
+      // -------------------- Form country script --------------------
+      const phoneInput = document.querySelector("#phone");
+      const iti = window.intlTelInput(phoneInput, {
+        initialCountry: "in",
+        strictMode: true,
+        loadUtils: function () {
+          return import(
+            "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js"
+          );
+        },
+      });
+
+      const form = document.getElementById("RegisterForm");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault(); // Stop form submission temporarily
+
+        const countryData = iti.getSelectedCountryData();
+
+        // Set hidden fields
+        document.getElementById("countryCode").value = countryData.dialCode;
+        document.getElementById("initialCountry").value = countryData.iso2;
+
+        // Now submit the form manually
+        setTimeout(() => {
+          form.submit();
+        }, 100); // Slight delay ensures fields are updated
       });
     </script>
   </body>
