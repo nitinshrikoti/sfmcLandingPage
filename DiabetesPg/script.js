@@ -47,6 +47,10 @@ const Testi2 =
 const Testi3 =
   '"The webinar was very informative! I learned practical tips to manage my diabetes better. Highly recommend it!"';
 
+const TestiNam1 = "— Roshni Singh";
+const TestiNam2 = "— Jagmeet Kaur";
+const TestiNam3 = "— Preetinder";
+
 // Selectors for the dynamic content
 document.title = title;
 document.getElementById("heroHeading").innerHTML = heroHeading;
@@ -88,6 +92,10 @@ document.getElementById("ContactNumber").value = contactNumber;
 document.getElementById("testi1").innerHTML = Testi1;
 document.getElementById("testi2").innerHTML = Testi2;
 document.getElementById("testi3").innerHTML = Testi3;
+
+document.getElementById("testiNam1").innerHTML = TestiNam1;
+document.getElementById("testiNam2").innerHTML = TestiNam2;
+document.getElementById("testiNam3").innerHTML = TestiNam3;
 
 // Selectors for the dynamic content end
 
@@ -199,4 +207,33 @@ document.addEventListener("DOMContentLoaded", function () {
       menuToggle.checked = false;
     });
   });
+});
+
+// -------------------- Form country script --------------------
+const phoneInput = document.querySelector("#phone");
+const iti = window.intlTelInput(phoneInput, {
+  initialCountry: "in",
+  strictMode: true,
+  loadUtils: function () {
+    return import(
+      "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js"
+    );
+  },
+});
+
+const form = document.getElementById("RegisterForm");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault(); // Stop form submission temporarily
+
+  const countryData = iti.getSelectedCountryData();
+
+  // Set hidden fields
+  document.getElementById("countryCode").value = countryData.dialCode;
+  document.getElementById("initialCountry").value = countryData.iso2;
+
+  // Now submit the form manually
+  setTimeout(() => {
+    form.submit();
+  }, 100); // Slight delay ensures fields are updated
 });
