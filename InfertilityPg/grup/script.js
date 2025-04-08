@@ -1,18 +1,18 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "InfertilityWebinarOn5Apr";
+const title = "InfertilityWebinarOn12Apr";
 
 // const drName = "Dr. Sonali";
-const webDate = "5 April 2025 | 1:00 PM";
+const webDate = "12 April 2025 | 1:00 PM";
 
-const joiningLink = "https://us06web.zoom.us/j/84772919760";
+const joiningLink = "https://us06web.zoom.us/j/84761461957";
 const whatsappLink = "https://jeenasikho.com/webinar/?page=infertility-issues";
 
-const newSlotDate = "5 April 2025";
+const newSlotDate = "12 April 2025";
 const newSlotTime = "1:00 PM";
 const offeringTitle = "Infertility";
-const waitUntillDate = "2025-04-05";
-const targetDate = new Date("April 5, 2025 13:00:00").getTime();
+const waitUntillDate = "2025-04-12";
+const targetDate = new Date("April 12, 2025 13:00:00").getTime();
 const contactNumber = "917710371037";
 
 const heroHeading =
@@ -26,7 +26,8 @@ const why1 =
   "जो लोग <b>infertility</b> की समस्या के कारण माता-पिता नहीं बन पा रहे हैं।";
 const why2 = "<b>PCOD/PCOS</b> से परेशान महिलाएं जो संतान सुख पाना चाहती हैं।";
 const why3 = "जिन पुरुषों का <b>sperm count low<b> है या नहीं है।";
-const why4 = "जो <b>IVF failure या low AMH levels</b> की समस्या से जूझ रहे हैं।";
+const why4 =
+  "जो <b>IVF failure या low AMH levels</b> की समस्या से जूझ रहे हैं।";
 const why5 =
   "जो <b>newly married couples</b> सही तरीके से <b>family planning</b> करना चाहते हैं।";
 
@@ -36,6 +37,10 @@ const Testi2 =
   '"रवि तीन महीने से हमारे क्लिनिक पर इलाज करा रहे थे, जिनकी सpermia की समस्या थी और सर्जरी के बारे में सोचा था। अब उनका स्पर्म काउंट 60 मिलियन हो गया है, और वे अब पिता बनने की उम्मीद रखते हैं।"';
 const Testi3 =
   '"ज्योति, जो एक डे केयर टीचर हैं, ने शुद्धि आयुर्वेदा में इलाज करवाकर अपने पीसीओएस को रिवर्स किया और अब वह एक बच्चे की मां बन चुकी हैं। शुद्धि आयुर्वेदा ने उनका सपना सच किया और अब वह वेट लॉस पर भी ध्यान दे रही हैं।"';
+
+const TestiNam1 = "— Saheb";
+const TestiNam2 = "— Pryanka";
+const TestiNam3 = "— Sidharth";
 
 // Selectors for the dynamic content
 document.title = title;
@@ -47,7 +52,6 @@ if (document.getElementById("drImg")) {
 if (document.getElementById("BannerImg")) {
   BannerImg.src = bannerImage;
 }
-
 document.getElementById("webDate").innerHTML = webDate;
 
 document.getElementById("why1").innerHTML = why1;
@@ -68,6 +72,10 @@ document.getElementById("ContactNumber").value = contactNumber;
 document.getElementById("testi1").innerHTML = Testi1;
 document.getElementById("testi2").innerHTML = Testi2;
 document.getElementById("testi3").innerHTML = Testi3;
+
+document.getElementById("testiNam1").innerHTML = TestiNam1;
+document.getElementById("testiNam2").innerHTML = TestiNam2;
+document.getElementById("testiNam3").innerHTML = TestiNam3;
 
 // Selectors for the dynamic content end
 
@@ -179,4 +187,33 @@ document.addEventListener("DOMContentLoaded", function () {
       menuToggle.checked = false;
     });
   });
+});
+
+// -------------------- Form country script --------------------
+const phoneInput = document.querySelector("#phone");
+const iti = window.intlTelInput(phoneInput, {
+  initialCountry: "in",
+  strictMode: true,
+  loadUtils: function () {
+    return import(
+      "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js"
+    );
+  },
+});
+
+const form = document.getElementById("RegisterForm");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault(); // Stop form submission temporarily
+
+  const countryData = iti.getSelectedCountryData();
+
+  // Set hidden fields
+  document.getElementById("countryCode").value = countryData.dialCode;
+  document.getElementById("initialCountry").value = countryData.iso2;
+
+  // Now submit the form manually
+  setTimeout(() => {
+    form.submit();
+  }, 100); // Slight delay ensures fields are updated
 });
