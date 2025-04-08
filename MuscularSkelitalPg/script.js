@@ -8,7 +8,7 @@ const drName = "Dr. Meetali";
 const webDate = "11 April 2025 | 4:00 PM";
 
 const joiningLink = "https://us06web.zoom.us/j/81557819089";
-const whatsappLink = "https://jeenasikho.com/webinar/?page=joint";
+const whatsappLink = "https://chat.whatsapp.com/H9o1ghz1uYbINvVgxWmZXl";
 
 const newSlotDate = "11 April 2025";
 const newSlotTime = "4:00 PM";
@@ -204,4 +204,33 @@ document.addEventListener("DOMContentLoaded", function () {
       menuToggle.checked = false;
     });
   });
+});
+
+// -------------------- Form country script --------------------
+const phoneInput = document.querySelector("#phone");
+const iti = window.intlTelInput(phoneInput, {
+  initialCountry: "in",
+  strictMode: true,
+  loadUtils: function () {
+    return import(
+      "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js"
+    );
+  },
+});
+
+const form = document.getElementById("RegisterForm");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault(); // Stop form submission temporarily
+
+  const countryData = iti.getSelectedCountryData();
+
+  // Set hidden fields
+  document.getElementById("countryCode").value = countryData.dialCode;
+  document.getElementById("initialCountry").value = countryData.iso2;
+
+  // Now submit the form manually
+  setTimeout(() => {
+    form.submit();
+  }, 100); // Slight delay ensures fields are updated
 });
