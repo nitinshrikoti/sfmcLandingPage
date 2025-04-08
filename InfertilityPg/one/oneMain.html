@@ -1,10 +1,23 @@
 %%[
 IF RequestParameter("submitted") == "true" THEN
 
+  Set @rawPhone = RequestParameter("phone")
+  Set @countryCode = RequestParameter("countryCode")
+  Set @locale = RequestParameter("initialCountry")
+
+  Set @digitsOnly = ""
+  FOR @i = 1 TO Length(@rawPhone) DO
+    Set @char = Substring(@rawPhone, @i, 1)
+    IF IndexOf("0123456789", @char) > 0 THEN
+      Set @digitsOnly = Concat(@digitsOnly, @char)
+    ENDIF
+  NEXT @i
+
+  Set @phone = Concat(@countryCode, @digitsOnly)
   Set @uniqueID = Concat(
     Format(SystemDateToLocalDate(Now()), "yyyyMMddHHmmss"),
     "_",
-    RequestParameter("Phone")
+    RequestParameter("phone")
   )
 
   Set @BookingDate = Format(SystemDateToLocalDate(Now()), "yyyy-MM-dd")
@@ -16,7 +29,8 @@ IF RequestParameter("submitted") == "true" THEN
     "UniqueID",       @uniqueID,
     "FirstName",      RequestParameter("FirstName"),
     "LastName",       RequestParameter("LastName"),
-    "Phone",          RequestParameter("Phone"),
+    "Locale",         @locale, 
+    "Phone",          @phone,
     "Email",          RequestParameter("Email"),
     "Country",        RequestParameter("Country"),
     "BookingDate",    @BookingDate,
@@ -59,6 +73,10 @@ ENDIF
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
     <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/css/intlTelInput.css"
+    />
+    <link
       href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&amp;display=swap"
       rel="stylesheet"
     />
@@ -67,6 +85,8 @@ ENDIF
       rel="stylesheet"
     />
 
+    <!-- script -->
+    <!-- <script src="script.js" defer></script> -->
     <style>
       :root {
         --ff-exo: "Exo", serif;
@@ -909,14 +929,29 @@ ENDIF
       }
       .form-container input[type="text"],
       .form-container input[type="email"],
+      .form-container input[type="tel"],
       .form-container select {
         width: 100%;
         padding: 8px;
-        margin-bottom: 15px;
+        margin-bottom: 5px;
         border: 1px solid #ccc;
         border-radius: 4px;
       }
-      .form-container button {
+
+      .intl-tel-input,
+      .iti {
+        width: 100%;
+      }
+
+      .iti__country-container {
+        margin: 1px;
+      }
+      .iti__selected-country {
+        background-color: #f2f2f2 !important;
+        padding-inline: 5px 10px !important;
+      }
+
+      .submit-btn {
         background: #007bff;
         color: #fff;
         border: none;
@@ -925,6 +960,7 @@ ENDIF
         cursor: pointer;
         font-size: 1em;
         width: 100%;
+        margin-block: 10px;
       }
       .form-container button:hover {
         background: #0056b3;
@@ -1235,8 +1271,6 @@ ENDIF
         }
       }
     </style>
-    <!-- script -->
-    <!-- <script src="script.js" defer></script> -->
   </head>
   <body>
     <!-- -------------------- NavBar -------------------- -->
@@ -1612,10 +1646,16 @@ ENDIF
         <!-- Registration Form Container -->
         <div class="form-container" id="formContainer">
           <h2>Fill Your Details!</h2>
-          <form action="%%=RequestParameter('PAGEURL')=%%" method="post">
+          <form
+            id="RegisterForm"
+            action="%%=RequestParameter('PAGEURL')=%%"
+            method="post"
+          >
             <input type="hidden" name="submitted" value="true" />
 
             <!-- Hidden fields (empty or default) -->
+            <input type="hidden" id="countryCode" name="countryCode" />
+            <input type="hidden" id="initialCountry" name="initialCountry" />
             <input type="hidden" name="OldSlotDate" value="" />
             <input type="hidden" name="OldSlotTime" value="" />
             <input id="NewSlotDate" type="hidden" name="NewSlotDate" value="" />
@@ -1666,11 +1706,11 @@ ENDIF
 
             <label for="Phone">WhatsApp Number*</label>
             <input
-              type="text"
-              id="Phone"
-              name="Phone"
-              required=""
-              placeholder="8866558472 (10 Digit No Space)"
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="8175433680"
+              required
             />
 
             <label for="Email">Email</label>
@@ -1896,11 +1936,12 @@ ENDIF
               <option value="Zimbabwe">Zimbabwe</option>
             </select>
 
-            <button type="submit">Submit</button>
+            <button class="submit-btn" type="submit">Submit</button>
           </form>
         </div>
       </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/intlTelInput.min.js"></script>
     <script>
       // -------------------- Dynamic Content Update --------------------
 
@@ -2108,6 +2149,35 @@ ENDIF
             menuToggle.checked = false;
           });
         });
+      });
+
+      // -------------------- Form country script --------------------
+      const phoneInput = document.querySelector("#phone");
+      const iti = window.intlTelInput(phoneInput, {
+        initialCountry: "in",
+        strictMode: true,
+        loadUtils: function () {
+          return import(
+            "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js"
+          );
+        },
+      });
+
+      const form = document.getElementById("RegisterForm");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault(); // Stop form submission temporarily
+
+        const countryData = iti.getSelectedCountryData();
+
+        // Set hidden fields
+        document.getElementById("countryCode").value = countryData.dialCode;
+        document.getElementById("initialCountry").value = countryData.iso2;
+
+        // Now submit the form manually
+        setTimeout(() => {
+          form.submit();
+        }, 100); // Slight delay ensures fields are updated
       });
     </script>
   </body>
