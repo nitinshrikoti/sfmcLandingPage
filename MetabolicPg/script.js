@@ -1,29 +1,28 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "MetabolicWebinarOn15Apr";
+const title = "MetabolicWebinarOn18Apr";
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2457b5fd-2e28-495d-90e0-5625d446d1b2.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/121dab33-39a6-4863-91de-4ed0356eeeff.png";
 
-const drName = "Dr. Meghna";
-const webDate = "15 April 2025 | 10:00 AM";
+const drName = "Dr. Meetali";
+const webDate = "15 April 2025 | 4:00 PM";
 
-const joiningLink = "https://us06web.zoom.us/j/87299030421";
+const joiningLink = "https://us06web.zoom.us/j/82967000606";
 const whatsappLink = "https://jeenasikho.com/webinar/?page=metabolic-disorders";
 
-const newSlotDate = "15 April 2025";
-const newSlotTime = "10:00 AM";
+const newSlotDate = "18 April 2025";
+const newSlotTime = "4:00 PM";
 const offeringTitle = "Metabolic Disorder";
-const waitUntillDate = "2025-04-15";
-const targetDate = new Date("April 15, 2025 10:00:00").getTime();
+const waitUntillDate = "2025-04-18";
+const targetDate = new Date("April 18, 2025 16:00:00").getTime();
 const contactNumber = "917710371037";
 
 const heroHeading =
   "Webinar on <b><i>Metabolic Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Chronic Kidney & Liver Disease",
-  "Lifestyle Disorders (GIT, Joint, Mental Health)",
-  "4+ Years of Experience",
+  "Specialization in Panchkarma",
+  "8+ Years of Experience",
 ];
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e6cabbf5-0635-43f1-801f-0ac0ad688f98.png";
@@ -211,12 +210,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // -------------------- Form country script --------------------
 const phoneInput = document.querySelector("#phone");
+
+// Restrict typing to digits only
+phoneInput.addEventListener("keypress", function (e) {
+  const char = String.fromCharCode(e.which);
+  if (!/^[0-9]$/.test(char)) {
+    e.preventDefault();
+  }
+});
+
+// Clean pasted input and remove non-numeric characters
+phoneInput.addEventListener("paste", function (e) {
+  e.preventDefault();
+  const pasted = (e.clipboardData || window.clipboardData).getData("text");
+  const digitsOnly = pasted.replace(/\D/g, "").replace(/^0+/, ""); // remove leading zeros
+  phoneInput.value = digitsOnly;
+});
+
+// Prevent number from starting with 0
+phoneInput.addEventListener("input", function () {
+  if (phoneInput.value.startsWith("0")) {
+    phoneInput.value = phoneInput.value.replace(/^0+/, "");
+  }
+});
+
 const iti = window.intlTelInput(phoneInput, {
   initialCountry: "in",
   strictMode: true,
+  separateDialCode: true,
   loadUtils: function () {
     return import(
-      "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js"
+      "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js?1743167482095"
     );
   },
 });
@@ -224,7 +248,7 @@ const iti = window.intlTelInput(phoneInput, {
 const form = document.getElementById("RegisterForm");
 
 form.addEventListener("submit", function (e) {
-  e.preventDefault(); // Stop form submission temporarily
+  e.preventDefault();
 
   const countryData = iti.getSelectedCountryData();
 
@@ -235,5 +259,5 @@ form.addEventListener("submit", function (e) {
   // Now submit the form manually
   setTimeout(() => {
     form.submit();
-  }, 100); // Slight delay ensures fields are updated
+  }, 100);
 });
