@@ -1,29 +1,28 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "HormonalWebinarOn16Apr";
+const title = "FemaleSexualDisorderWebinarOn18Apr";
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6de07489-5caa-4c98-b41f-60660aefa45c.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f6e16a88-067f-41f4-a7ec-abd014ecaacc.png";
 
-const drName = "Dr. Ankita";
-const webDate = "16 April 2025 | 1:00 PM";
+const drName = "Dr. Sonali";
+const webDate = "18 April 2025 | 1:00 PM";
 
-const joiningLink = "https://us06web.zoom.us/j/88404667061";
+const joiningLink = "https://us06web.zoom.us/j/83894901178";
 const whatsappLink = "https://jeenasikho.com/webinar/?page=female-sexual";
 
-const newSlotDate = "16 April 2025";
+const newSlotDate = "18 April 2025";
 const newSlotTime = "1:00 PM";
 const offeringTitle = "Hormonal Disorder";
-const waitUntillDate = "2025-04-16";
-const targetDate = new Date("April 16, 2025 13:00:00").getTime();
+const waitUntillDate = "2025-04-18";
+const targetDate = new Date("April 18, 2025 13:00:00").getTime();
 const contactNumber = "917710371037";
 
 const heroHeading =
-  "Webinar on <b><i>Hormonal Disorders</i></b> by <i>Team Acharya Manish Ji</i>";
+  "Webinar on <b><i>Female Sexual Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
 
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Chronic Liver & Kidney Disease",
-  "Expertise in Arthritis, Mental Health",
+  "CERTIFIED in Psychosomatic Disorders",
   "2+ Years of Experience",
 ];
 
@@ -212,12 +211,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // -------------------- Form country script --------------------
 const phoneInput = document.querySelector("#phone");
+
+// Restrict typing to digits only
+phoneInput.addEventListener("keypress", function (e) {
+  const char = String.fromCharCode(e.which);
+  if (!/^[0-9]$/.test(char)) {
+    e.preventDefault();
+  }
+});
+
+// Clean pasted input and remove non-numeric characters
+phoneInput.addEventListener("paste", function (e) {
+  e.preventDefault();
+  const pasted = (e.clipboardData || window.clipboardData).getData("text");
+  const digitsOnly = pasted.replace(/\D/g, "").replace(/^0+/, ""); // remove leading zeros
+  phoneInput.value = digitsOnly;
+});
+
+// Prevent number from starting with 0
+phoneInput.addEventListener("input", function () {
+  if (phoneInput.value.startsWith("0")) {
+    phoneInput.value = phoneInput.value.replace(/^0+/, "");
+  }
+});
+
 const iti = window.intlTelInput(phoneInput, {
   initialCountry: "in",
   strictMode: true,
+  separateDialCode: true,
   loadUtils: function () {
     return import(
-      "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js"
+      "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js?1743167482095"
     );
   },
 });
@@ -225,7 +249,7 @@ const iti = window.intlTelInput(phoneInput, {
 const form = document.getElementById("RegisterForm");
 
 form.addEventListener("submit", function (e) {
-  e.preventDefault(); // Stop form submission temporarily
+  e.preventDefault();
 
   const countryData = iti.getSelectedCountryData();
 
@@ -236,5 +260,5 @@ form.addEventListener("submit", function (e) {
   // Now submit the form manually
   setTimeout(() => {
     form.submit();
-  }, 100); // Slight delay ensures fields are updated
+  }, 100);
 });
