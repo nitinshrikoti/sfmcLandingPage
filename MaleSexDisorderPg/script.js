@@ -1,32 +1,30 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "MaleSexualWebinarOn4Apr";
-const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/0798e2b6-3bdc-4f73-9a6a-9ad04bf56d84.png";
+const title = "MaleSexualWebinarOn22Apr";
+const offeringTitle = "Male Sexual Disorder";
 
-const drName = "Vaidya Navneet";
-const webDate = "4 April 2025 | 4:00 PM";
-
-const joiningLink = "https://us06web.zoom.us/j/83218602634";
+const joiningLink = "https://us06web.zoom.us/j/85745472594";
 const whatsappLink =
   "https://jeenasikho.com/webinar/?page=male-sexual-disorder";
 
-const newSlotDate = "4 April 2025";
-const newSlotTime = "4:00 PM";
-const offeringTitle = "Male Sexual Disorder";
-const waitUntillDate = "2025-04-04";
-const targetDate = new Date("April 4, 2025 16:00:00").getTime();
-const contactNumber = "917710371037";
+const webDate = "22 April 2025 | 1:00 PM";
+const newSlotDate = "22 April 2025";
+const newSlotTime = "1:00 PM";
+const waitUntillDate = "2025-04-22";
+const targetDate = new Date("April 22, 2025 13:00:00").getTime();
 
 const heroHeading =
-  "Join <i>Male Sexual Disorder</i> Webinar by <i>Acharya Manish Ji</i>";
+  "Webinar on <b><i>Male Sexual Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
 
+const drName = "Vaidya Navneet";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
   "Doctor of Medicine (MD)",
   "Certified Yoga Practitioner (CYP)",
   "5+ Years of Experience",
 ];
+const docImg =
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/0798e2b6-3bdc-4f73-9a6a-9ad04bf56d84.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/790d8dc0-9f46-4609-8e1f-ea358f39de25.png";
@@ -34,19 +32,31 @@ const bannerImage =
 // Why Join Content
 const why1 =
   "जो पुरुष <b>erectile dysfunction (ED), premature ejaculation</b> या अन्य male sexual disorders से जूझ रहे हैं।";
-const why2 = "जिन्हें <b>mental stress और anxiety</b> के कारण समस्या हो रही है।";
+const why2 =
+  "जिन्हें <b>mental stress और anxiety</b> के कारण समस्या हो रही है।";
 const why3 = "जो <b>low libido या यौन इच्छा</b> में कमी महसूस कर रहे हैं।";
-const why4 = "जो <b>natural remedies</b> से अपनी sexual health सुधारना चाहते हैं।";
-const why5 = "जिन्हें <b>physical या psychological reasons</b> से परेशानी हो रही है।";
+const why4 =
+  "जो <b>natural remedies</b> से अपनी sexual health सुधारना चाहते हैं।";
+const why5 =
+  "जिन्हें <b>physical या psychological reasons</b> से परेशानी हो रही है।";
 
 const Testi1 =
-  '""I was struggling with erectile dysfunction for over a year. It affected my confidence and my relationship. I tried many treatments but nothing worked. Then I came across HiiMS, where the doctors treated me with a combination of Ayurveda, diet, and therapy. Within a few months, I saw a big improvement. Now, I feel more energetic and my problem is almost gone. Thank you, HiiMS!""';
+  '"I was struggling with erectile dysfunction for over a year. It affected my confidence and my relationship. I tried many treatments but nothing worked. Then I came across HiiMS, where the doctors treated me with a combination of Ayurveda, diet, and therapy. Within a few months, I saw a big improvement. Now, I feel more energetic and my problem is almost gone. Thank you, HiiMS!"';
 const Testi2 =
-  '""Mujhe bohot time se premature ejaculation ki problem thi. Is wajah se meri married life par bohot asar pada. Maine HiiMS me consultation li aur wahan ke Ayurvedic treatment aur lifestyle changes follow kiye. Sirf 2 mahine me hi mujhe improvement feel hone laga. Aaj mujhe zyada confidence hai aur meri problem bhi kaafi had tak solve ho gayi hai.""';
+  '"Mujhe bohot time se premature ejaculation ki problem thi. Is wajah se meri married life par bohot asar pada. Maine HiiMS me consultation li aur wahan ke Ayurvedic treatment aur lifestyle changes follow kiye. Sirf 2 mahine me hi mujhe improvement feel hone laga. Aaj mujhe zyada confidence hai aur meri problem bhi kaafi had tak solve ho gayi hai."';
 const Testi3 =
-  '""Mujhe hamesha thakaan aur stress feel hota tha jiske wajah se meri sex life bilkul khatam ho gayi thi. Maine HiiMS ke doctors se baat ki, unhone mujhe proper diet, ayurvedic medicines aur yoga bataya. 3 mahine me hi mujhe bohot improvement dikhai diya. Aaj main apne relationship aur health dono me positive feel karta hoon. HiiMS ka treatment sach me kamaal ka hai""';
+  '"Mujhe hamesha thakaan aur stress feel hota tha jiske wajah se meri sex life bilkul khatam ho gayi thi. Maine HiiMS ke doctors se baat ki, unhone mujhe proper diet, ayurvedic medicines aur yoga bataya. 3 mahine me hi mujhe bohot improvement dikhai diya. Aaj main apne relationship aur health dono me positive feel karta hoon. HiiMS ka treatment sach me kamaal ka hai"';
 
-// Selectors for the dynamic content
+const TestiNam1 = "— Parvez";
+const TestiNam2 = "— Kashish Sharma";
+const TestiNam3 = "— Ajaydeep";
+
+const contactNumber = "917710371037";
+
+// -------------------- Dynamic Content Update End --------------------
+
+// Script for  Dynamic Content Update
+
 document.title = title;
 document.getElementById("heroHeading").innerHTML = heroHeading;
 if (document.getElementById("drImg")) {
@@ -88,7 +98,11 @@ document.getElementById("testi1").innerHTML = Testi1;
 document.getElementById("testi2").innerHTML = Testi2;
 document.getElementById("testi3").innerHTML = Testi3;
 
-// Selectors for the dynamic content end
+document.getElementById("testiNam1").innerHTML = TestiNam1;
+document.getElementById("testiNam2").innerHTML = TestiNam2;
+document.getElementById("testiNam3").innerHTML = TestiNam3;
+
+// Script for Dynamic Content Update End
 
 // -------------------- Timer Script --------------------
 // Main Timer Elements
@@ -198,4 +212,58 @@ document.addEventListener("DOMContentLoaded", function () {
       menuToggle.checked = false;
     });
   });
+});
+
+// -------------------- Form country script --------------------
+const phoneInput = document.querySelector("#phone");
+
+// Restrict typing to digits only
+phoneInput.addEventListener("keypress", function (e) {
+  const char = String.fromCharCode(e.which);
+  if (!/^[0-9]$/.test(char)) {
+    e.preventDefault();
+  }
+});
+
+// Clean pasted input and remove non-numeric characters
+phoneInput.addEventListener("paste", function (e) {
+  e.preventDefault();
+  const pasted = (e.clipboardData || window.clipboardData).getData("text");
+  const digitsOnly = pasted.replace(/\D/g, "").replace(/^0+/, ""); // remove leading zeros
+  phoneInput.value = digitsOnly;
+});
+
+// Prevent number from starting with 0
+phoneInput.addEventListener("input", function () {
+  if (phoneInput.value.startsWith("0")) {
+    phoneInput.value = phoneInput.value.replace(/^0+/, "");
+  }
+});
+
+const iti = window.intlTelInput(phoneInput, {
+  initialCountry: "in",
+  strictMode: true,
+  separateDialCode: true,
+  loadUtils: function () {
+    return import(
+      "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js?1743167482095"
+    );
+  },
+});
+
+const form = document.getElementById("RegisterForm");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const countryData = iti.getSelectedCountryData();
+
+  // Set hidden fields
+  document.getElementById("countryCode").value = countryData.dialCode;
+  document.getElementById("initialCountry").value = countryData.iso2;
+
+  // Now submit the form manually
+  setTimeout(() => {
+    form.submit();
+  }, 100);
 });
