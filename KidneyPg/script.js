@@ -1,49 +1,61 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "KidneyWebinarOn17Apr";
-const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/540c60d3-7b05-4859-b63b-27c34da6ba93.png";
+const title = "KidneyWebinarOn23Apr";
+const offeringTitle = "Kidney";
 
-const drName = "Dr. Geetika";
-const webDate = "17 April 2025 | 1:00 PM";
-
-const joiningLink = "https://us06web.zoom.us/j/86324238023";
+const joiningLink = "https://us06web.zoom.us/j/81377996508";
 const whatsappLink = "https://jeenasikho.com/webinar/?page=kidney-disease";
 
-const newSlotDate = "17 April 2025";
-const newSlotTime = "1:00 PM";
-const offeringTitle = "Kidney";
-const waitUntillDate = "2025-04-17";
-const targetDate = new Date("April 17, 2025 13:00:00").getTime();
-const contactNumber = "917710371037";
+const webDate = "23 April 2025 | 4:00 PM";
+const newSlotDate = "23 April 2025";
+const newSlotTime = "4:00 PM";
+const waitUntillDate = "2025-04-23";
+const targetDate = new Date("April 23, 2025 16:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Kidney</i></b> by <i>Team Acharya Manish Ji</i>";
+
+const drName = "Dr. Meghna";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "PGDIP (PG. Diploma in Panchakarma)",
-  "M.S. (Ay.) Master of Surgery",
-  "15+ Years of Experience",
+  "Chronic Kidney & Liver Disease",
+  "Lifestyle Disorders (GIT, Joint, Mental Health)",
+  "4+ Years of Experience",
 ];
+const docImg =
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2457b5fd-2e28-495d-90e0-5625d446d1b2.png";
+
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/ebc2bfa9-2919-4840-a855-b45e1d4531ed.png";
 
 // Why Join Content
-const why1 = "जो लोग <b>nephrotic syndrome, CKD, kidney stones, hydronephrosis</b> जैसी किडनी समस्याओं से जूझ रहे हैं।";
+const why1 =
+  "जो लोग <b>nephrotic syndrome, CKD, kidney stones, hydronephrosis</b> जैसी किडनी समस्याओं से जूझ रहे हैं।";
 const why2 = "जिनकी <b>kidney failure</b> हो चुकी है या dialysis पर हैं।";
-const why3 = "जिनका <b>creatinine level</b> बढ़ रहा है या kidney transplant की सलाह मिली है।";
-const why4 = "जिन्हें <b>foamy urine, protein leakage</b> या पेशाब से जुड़ी समस्याएं हैं।";
-const why5 = "जो high BP, diabetes से किडनी बचाना चाहते हैं और <b>natural remedies</b> अपनाना चाहते हैं।";
+const why3 =
+  "जिनका <b>creatinine level</b> बढ़ रहा है या kidney transplant की सलाह मिली है।";
+const why4 =
+  "जिन्हें <b>foamy urine, protein leakage</b> या पेशाब से जुड़ी समस्याएं हैं।";
+const why5 =
+  "जो high BP, diabetes से किडनी बचाना चाहते हैं और <b>natural remedies</b> अपनाना चाहते हैं।";
 
-const Testi1 = '"Acharya Manish Ji’s webinar gave me hope! Learned effective Ayurvedic ways to support kidney health."';
-const Testi2 = '"Very helpful session! Understood how Ayurveda can naturally reduce creatinine levels and improve kidney function. This webinar changed my thinkin"';
-const Testi3 = '"Got practical solutions in the webinar! Learned simple remedies and dietary tips to heal kidney infections naturally"';
+const Testi1 =
+  '"Acharya Manish Ji’s webinar gave me hope! Learned effective Ayurvedic ways to support kidney health."';
+const Testi2 =
+  '"Very helpful session! Understood how Ayurveda can naturally reduce creatinine levels and improve kidney function. This webinar changed my thinkin"';
+const Testi3 =
+  '"Got practical solutions in the webinar! Learned simple remedies and dietary tips to heal kidney infections naturally"';
 
 const TestiNam1 = "— Roshni Singh";
 const TestiNam2 = "— Jagmeet Kaur";
 const TestiNam3 = "— Preetinder";
 
-// Selectors for the dynamic content
+const contactNumber = "917710371037";
+
+// -------------------- Dynamic Content Update End --------------------
+
+// Script for  Dynamic Content Update
+
 document.title = title;
 document.getElementById("heroHeading").innerHTML = heroHeading;
 if (document.getElementById("drImg")) {
@@ -89,7 +101,7 @@ document.getElementById("testiNam1").innerHTML = TestiNam1;
 document.getElementById("testiNam2").innerHTML = TestiNam2;
 document.getElementById("testiNam3").innerHTML = TestiNam3;
 
-// Selectors for the dynamic content end
+// Script for Dynamic Content Update End
 
 // -------------------- Timer Script --------------------
 // Main Timer Elements
@@ -203,12 +215,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // -------------------- Form country script --------------------
 const phoneInput = document.querySelector("#phone");
+
+// Restrict typing to digits only
+phoneInput.addEventListener("keypress", function (e) {
+  const char = String.fromCharCode(e.which);
+  if (!/^[0-9]$/.test(char)) {
+    e.preventDefault();
+  }
+});
+
+// Clean pasted input and remove non-numeric characters
+phoneInput.addEventListener("paste", function (e) {
+  e.preventDefault();
+  const pasted = (e.clipboardData || window.clipboardData).getData("text");
+  const digitsOnly = pasted.replace(/\D/g, "").replace(/^0+/, ""); // remove leading zeros
+  phoneInput.value = digitsOnly;
+});
+
+// Prevent number from starting with 0
+phoneInput.addEventListener("input", function () {
+  if (phoneInput.value.startsWith("0")) {
+    phoneInput.value = phoneInput.value.replace(/^0+/, "");
+  }
+});
+
 const iti = window.intlTelInput(phoneInput, {
   initialCountry: "in",
   strictMode: true,
+  separateDialCode: true,
   loadUtils: function () {
     return import(
-      "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js"
+      "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js?1743167482095"
     );
   },
 });
@@ -216,7 +253,7 @@ const iti = window.intlTelInput(phoneInput, {
 const form = document.getElementById("RegisterForm");
 
 form.addEventListener("submit", function (e) {
-  e.preventDefault(); // Stop form submission temporarily
+  e.preventDefault();
 
   const countryData = iti.getSelectedCountryData();
 
@@ -227,5 +264,5 @@ form.addEventListener("submit", function (e) {
   // Now submit the form manually
   setTimeout(() => {
     form.submit();
-  }, 100); // Slight delay ensures fields are updated
+  }, 100);
 });
