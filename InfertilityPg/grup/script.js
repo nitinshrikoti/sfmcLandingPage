@@ -191,12 +191,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // -------------------- Form country script --------------------
 const phoneInput = document.querySelector("#phone");
+
+// Restrict typing to digits only
+phoneInput.addEventListener("keypress", function (e) {
+  const char = String.fromCharCode(e.which);
+  if (!/^[0-9]$/.test(char)) {
+    e.preventDefault();
+  }
+});
+
+// Clean pasted input and remove non-numeric characters
+phoneInput.addEventListener("paste", function (e) {
+  e.preventDefault();
+  const pasted = (e.clipboardData || window.clipboardData).getData("text");
+  const digitsOnly = pasted.replace(/\D/g, "").replace(/^0+/, ""); // remove leading zeros
+  phoneInput.value = digitsOnly;
+});
+
+// Prevent number from starting with 0
+phoneInput.addEventListener("input", function () {
+  if (phoneInput.value.startsWith("0")) {
+    phoneInput.value = phoneInput.value.replace(/^0+/, "");
+  }
+});
+
 const iti = window.intlTelInput(phoneInput, {
   initialCountry: "in",
   strictMode: true,
+  separateDialCode: true,
   loadUtils: function () {
     return import(
-      "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js"
+      "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js?1743167482095"
     );
   },
 });
@@ -204,7 +229,7 @@ const iti = window.intlTelInput(phoneInput, {
 const form = document.getElementById("RegisterForm");
 
 form.addEventListener("submit", function (e) {
-  e.preventDefault(); // Stop form submission temporarily
+  e.preventDefault();
 
   const countryData = iti.getSelectedCountryData();
 
@@ -215,5 +240,5 @@ form.addEventListener("submit", function (e) {
   // Now submit the form manually
   setTimeout(() => {
     form.submit();
-  }, 100); // Slight delay ensures fields are updated
+  }, 100);
 });

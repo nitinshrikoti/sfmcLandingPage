@@ -65,6 +65,61 @@ ENDIF
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Meta Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+      fbq("init", "1175956401206232");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1175956401206232&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- Clarity Code -->
+    <script type="text/javascript">
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", "qtqegiwx14");
+    </script>
+    <!-- Clarity Code End -->
+     
     <title>Title</title>
 
     <!-- <link rel="stylesheet" href="style.css" /> -->
@@ -2024,17 +2079,17 @@ ENDIF
       const title = "InfertilityWebinarOn12Apr";
 
       // const drName = "Dr. Sonali";
-      const webDate = "12 April 2025 | 1:00 PM";
+      const webDate = "19 April 2025 | 1:00 PM";
 
-      const joiningLink = "https://us06web.zoom.us/j/84761461957";
+      const joiningLink = "https://us06web.zoom.us/j/88644721923";
       const whatsappLink =
         "https://jeenasikho.com/webinar/?page=infertility-issues";
 
-      const newSlotDate = "12 April 2025";
+      const newSlotDate = "19 April 2025";
       const newSlotTime = "1:00 PM";
       const offeringTitle = "Infertility";
-      const waitUntillDate = "2025-04-12";
-      const targetDate = new Date("April 12, 2025 13:00:00").getTime();
+      const waitUntillDate = "2025-04-19";
+      const targetDate = new Date("April 19, 2025 13:00:00").getTime();
       const contactNumber = "917710371037";
 
       const heroHeading =
@@ -2217,12 +2272,39 @@ ENDIF
 
       // -------------------- Form country script --------------------
       const phoneInput = document.querySelector("#phone");
+
+      // Restrict typing to digits only
+      phoneInput.addEventListener("keypress", function (e) {
+        const char = String.fromCharCode(e.which);
+        if (!/^[0-9]$/.test(char)) {
+          e.preventDefault();
+        }
+      });
+
+      // Clean pasted input and remove non-numeric characters
+      phoneInput.addEventListener("paste", function (e) {
+        e.preventDefault();
+        const pasted = (e.clipboardData || window.clipboardData).getData(
+          "text"
+        );
+        const digitsOnly = pasted.replace(/\D/g, "").replace(/^0+/, ""); // remove leading zeros
+        phoneInput.value = digitsOnly;
+      });
+
+      // Prevent number from starting with 0
+      phoneInput.addEventListener("input", function () {
+        if (phoneInput.value.startsWith("0")) {
+          phoneInput.value = phoneInput.value.replace(/^0+/, "");
+        }
+      });
+
       const iti = window.intlTelInput(phoneInput, {
         initialCountry: "in",
         strictMode: true,
+        separateDialCode: true,
         loadUtils: function () {
           return import(
-            "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js"
+            "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js?1743167482095"
           );
         },
       });
@@ -2230,7 +2312,7 @@ ENDIF
       const form = document.getElementById("RegisterForm");
 
       form.addEventListener("submit", function (e) {
-        e.preventDefault(); // Stop form submission temporarily
+        e.preventDefault();
 
         const countryData = iti.getSelectedCountryData();
 
@@ -2241,7 +2323,7 @@ ENDIF
         // Now submit the form manually
         setTimeout(() => {
           form.submit();
-        }, 100); // Slight delay ensures fields are updated
+        }, 100);
       });
     </script>
   </body>
