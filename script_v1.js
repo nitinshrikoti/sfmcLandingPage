@@ -1,55 +1,51 @@
 // -------------------- Dynamic Content Update --------------------
 
 const title = "WebinarOn18Apr";
-const docImg = "";
-
-const drName = "Dr. ";
-const webDate = "18 April 2025 | 1:00 PM";
+const offeringTitle = "Hormonal Disorder";
 
 const joiningLink = "";
 const whatsappLink = "";
 
+const webDate = "18 April 2025 | 1:00 PM";
 const newSlotDate = "18 April 2025";
 const newSlotTime = "1:00 PM";
-const offeringTitle = "Hormonal Disorder";
 const waitUntillDate = "2025-04-18";
 const targetDate = new Date("April 18, 2025 13:00:00").getTime();
-const contactNumber = "917710371037";
 
 const heroHeading =
   "Webinar on <b><i></i></b> by <i>Team Acharya Manish Ji</i>";
 
+const drName = "Dr. ";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
   "",
   "2+ Years of Experience",
 ];
+const docImg = "";
 
 const bannerImage = "";
 
 // Why Join Content
-const why1 =
-  "";
-const why2 =
-  "";
+const why1 = "";
+const why2 = "";
 const why3 = "";
-const why4 =
-  "";
-const why5 =
-  "";
+const why4 = "";
+const why5 = "";
 
-const Testi1 =
-  '""';
-const Testi2 =
-  '""';
-const Testi3 =
-  '""';
+const Testi1 = '""';
+const Testi2 = '""';
+const Testi3 = '""';
 
 const TestiNam1 = "— ";
 const TestiNam2 = "— ";
 const TestiNam3 = "— ";
 
-// Selectors for the dynamic content
+const contactNumber = "917710371037";
+
+// -------------------- Dynamic Content Update End --------------------
+
+// Script for  Dynamic Content Update
+
 document.title = title;
 document.getElementById("heroHeading").innerHTML = heroHeading;
 if (document.getElementById("drImg")) {
@@ -95,7 +91,7 @@ document.getElementById("testiNam1").innerHTML = TestiNam1;
 document.getElementById("testiNam2").innerHTML = TestiNam2;
 document.getElementById("testiNam3").innerHTML = TestiNam3;
 
-// Selectors for the dynamic content end
+// Script for Dynamic Content Update End
 
 // -------------------- Timer Script --------------------
 // Main Timer Elements
