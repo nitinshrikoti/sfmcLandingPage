@@ -1,27 +1,33 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "KneePainWebinarOn15Apr";
-const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/aeb9ac0d-ef59-4b4d-9f8e-0bbf4eac6c40.png";
-const drName = "Dr. Ritu";
-const webDate = "15 April 2025 | 1:00 PM";
-const joiningLink = "https://us06web.zoom.us/j/83106414993";
+const title = "AllJointPainWebinarOn22Apr";
+const offeringTitle = "All Joint Pain";
+
+const joiningLink = "https://us06web.zoom.us/j/82099820502";
 const whatsappLink = "https://jeenasikho.com/webinar/?page=joint";
-const newSlotDate = "15 April 2025";
-const newSlotTime = "1:00 PM";
-const offeringTitle = "Knee Pain";
-const waitUntillDate = "2025-04-15";
-const targetDate = new Date("April 15, 2025 13:00:00").getTime();
+
+const webDate = "22 April 2025 | 10:00 AM";
+const newSlotDate = "22 April 2025";
+const newSlotTime = "10:00 AM";
+const waitUntillDate = "2025-04-22";
+const targetDate = new Date("April 22, 2025 10:00:00").getTime();
 
 const heroHeading =
-  "Webinar on <b><i>Knee Pain</i></b> by <i>Team Acharya Manish Ji</i>";
+  "Webinar on <b><i>All Joint Pain</i></b> by <i>Team Acharya Manish Ji</i>";
+
+const drName = "Dr. Meghna";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Diploma in Naturopathy and Diploma in Yoga",
+  "Chronic Kidney & Liver Disease",
+  "Lifestyle Disorders (GIT, Joint, Mental Health)",
   "7+ Years Of Experience",
 ];
+const docImg =
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2457b5fd-2e28-495d-90e0-5625d446d1b2.png";
+
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/ffec998a-5356-47d9-b86a-882e4cd865ea.png";
+
 // Why Join Content
 const why1 = "जो लोग <b>arthritis</b> या <b>joint pain</b> से जूझ रहे हैं।";
 const why2 = "जिन्हें <b>bone swelling</b> या <b>stiffness</b> की समस्या हो।";
@@ -29,7 +35,6 @@ const why3 = "जिन्हें <b>walking, sitting, moving</b> में �
 const why4 = "जो <b>severe joint pain</b> और <b></b> से राहत पाना चाहते हैं।";
 const why5 =
   "जो <b>natural remedies</b> से <b>joint health</b> सुधारना चाहते हैं।";
-const contactNumber = "917710371037";
 
 const Testi1 =
   "“Thanks Doctor. I learned effective ways to manage arthritis pain and improve joint health naturally.”";
@@ -42,7 +47,11 @@ const TestiNam1 = "— Saheb";
 const TestiNam2 = "— Pryanka";
 const TestiNam3 = "— Sidharth";
 
-// Selectors for the dynamic content
+const contactNumber = "917710371037";
+
+// -------------------- Dynamic Content Update End --------------------
+
+// Script for  Dynamic Content Update
 document.title = title;
 document.getElementById("heroHeading").innerHTML = heroHeading;
 if (document.getElementById("drImg")) {
@@ -88,7 +97,7 @@ document.getElementById("testiNam1").innerHTML = TestiNam1;
 document.getElementById("testiNam2").innerHTML = TestiNam2;
 document.getElementById("testiNam3").innerHTML = TestiNam3;
 
-// Selectors for the dynamic content end
+// Script for Dynamic Content Update End
 
 // -------------------- Timer Script --------------------
 // Main Timer Elements
@@ -202,12 +211,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // -------------------- Form country script --------------------
 const phoneInput = document.querySelector("#phone");
+
+// Restrict typing to digits only
+phoneInput.addEventListener("keypress", function (e) {
+  const char = String.fromCharCode(e.which);
+  if (!/^[0-9]$/.test(char)) {
+    e.preventDefault();
+  }
+});
+
+// Clean pasted input and remove non-numeric characters
+phoneInput.addEventListener("paste", function (e) {
+  e.preventDefault();
+  const pasted = (e.clipboardData || window.clipboardData).getData("text");
+  const digitsOnly = pasted.replace(/\D/g, "").replace(/^0+/, ""); // remove leading zeros
+  phoneInput.value = digitsOnly;
+});
+
+// Prevent number from starting with 0
+phoneInput.addEventListener("input", function () {
+  if (phoneInput.value.startsWith("0")) {
+    phoneInput.value = phoneInput.value.replace(/^0+/, "");
+  }
+});
+
 const iti = window.intlTelInput(phoneInput, {
   initialCountry: "in",
   strictMode: true,
+  separateDialCode: true,
   loadUtils: function () {
     return import(
-      "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js"
+      "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js?1743167482095"
     );
   },
 });
@@ -215,7 +249,7 @@ const iti = window.intlTelInput(phoneInput, {
 const form = document.getElementById("RegisterForm");
 
 form.addEventListener("submit", function (e) {
-  e.preventDefault(); // Stop form submission temporarily
+  e.preventDefault();
 
   const countryData = iti.getSelectedCountryData();
 
@@ -226,5 +260,5 @@ form.addEventListener("submit", function (e) {
   // Now submit the form manually
   setTimeout(() => {
     form.submit();
-  }, 100); // Slight delay ensures fields are updated
+  }, 100);
 });
