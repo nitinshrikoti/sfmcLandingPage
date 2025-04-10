@@ -1,7 +1,7 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "WebinarOn18Apr";
-const offeringTitle = "Hormonal Disorder";
+const title = "";
+const offeringTitle = "";
 
 const joiningLink = "";
 const whatsappLink = "";
