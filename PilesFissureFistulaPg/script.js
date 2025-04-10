@@ -1,31 +1,31 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "PilesFissureFistulaWebinarOn16Apr";
-const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/0798e2b6-3bdc-4f73-9a6a-9ad04bf56d84.png";
+const title = "PilesFissureFistulaWebinarOn23Apr";
+const offeringTitle = "Piles, Fissure, Fistula";
 
-const drName = "Vaidya Navneet";
-const webDate = "16 April 2025 | 4:00 PM";
-
-const joiningLink = "https://us06web.zoom.us/j/84727150202";
+const joiningLink = "https://us06web.zoom.us/j/84728344999";
 const whatsappLink =
   "https://jeenasikho.com/webinar/?page=piles-fissure-fistula";
 
-const newSlotDate = "16 April 2025";
-const newSlotTime = "4:00 PM";
-const offeringTitle = "Piles, Fissure, Fistula";
-const waitUntillDate = "2025-04-16";
-const targetDate = new Date("April 16, 2025 16:00:00").getTime();
-const contactNumber = "917710371037";
+const webDate = "23 April 2025 | 10:00 AM";
+const newSlotDate = "23 April 2025";
+const newSlotTime = "10:00 AM";
+const waitUntillDate = "2025-04-23";
+const targetDate = new Date("April 23, 2025 10:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Piles, Fissure, Fistula</i></b> by <i>Team Acharya Manish Ji</i>";
+
+const drName = "Vaidya Navneet";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
   "Doctor of Medicine (MD)",
   "Certified Yoga Practitioner (CYP)",
   "5+ Years of Experience",
 ];
+const docImg =
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/0798e2b6-3bdc-4f73-9a6a-9ad04bf56d84.png";
+
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/c1e47bea-97ea-4da9-bb7a-64b00f32ca01.png";
 
@@ -51,7 +51,12 @@ const TestiNam1 = "— Saheb";
 const TestiNam2 = "— Pryanka";
 const TestiNam3 = "— Sidharth";
 
-// Selectors for the dynamic content
+const contactNumber = "917710371037";
+
+// -------------------- Dynamic Content Update End --------------------
+
+// Script for  Dynamic Content Update
+
 document.title = title;
 document.getElementById("heroHeading").innerHTML = heroHeading;
 if (document.getElementById("drImg")) {
@@ -97,7 +102,7 @@ document.getElementById("testiNam1").innerHTML = TestiNam1;
 document.getElementById("testiNam2").innerHTML = TestiNam2;
 document.getElementById("testiNam3").innerHTML = TestiNam3;
 
-// Selectors for the dynamic content end
+// Script for Dynamic Content Update End
 
 // -------------------- Timer Script --------------------
 // Main Timer Elements
@@ -211,12 +216,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // -------------------- Form country script --------------------
 const phoneInput = document.querySelector("#phone");
+
+// Restrict typing to digits only
+phoneInput.addEventListener("keypress", function (e) {
+  const char = String.fromCharCode(e.which);
+  if (!/^[0-9]$/.test(char)) {
+    e.preventDefault();
+  }
+});
+
+// Clean pasted input and remove non-numeric characters
+phoneInput.addEventListener("paste", function (e) {
+  e.preventDefault();
+  const pasted = (e.clipboardData || window.clipboardData).getData("text");
+  const digitsOnly = pasted.replace(/\D/g, "").replace(/^0+/, ""); // remove leading zeros
+  phoneInput.value = digitsOnly;
+});
+
+// Prevent number from starting with 0
+phoneInput.addEventListener("input", function () {
+  if (phoneInput.value.startsWith("0")) {
+    phoneInput.value = phoneInput.value.replace(/^0+/, "");
+  }
+});
+
 const iti = window.intlTelInput(phoneInput, {
   initialCountry: "in",
   strictMode: true,
+  separateDialCode: true,
   loadUtils: function () {
     return import(
-      "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js"
+      "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js?1743167482095"
     );
   },
 });
@@ -224,7 +254,7 @@ const iti = window.intlTelInput(phoneInput, {
 const form = document.getElementById("RegisterForm");
 
 form.addEventListener("submit", function (e) {
-  e.preventDefault(); // Stop form submission temporarily
+  e.preventDefault();
 
   const countryData = iti.getSelectedCountryData();
 
@@ -235,5 +265,5 @@ form.addEventListener("submit", function (e) {
   // Now submit the form manually
   setTimeout(() => {
     form.submit();
-  }, 100); // Slight delay ensures fields are updated
+  }, 100);
 });
