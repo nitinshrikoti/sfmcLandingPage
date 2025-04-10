@@ -17,7 +17,7 @@ const targetDate = new Date("April 18, 2025 13:00:00").getTime();
 const contactNumber = "917710371037";
 
 const heroHeading =
-  "Webinar on <b><i>Female Sexual Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
+  "Webinar on <b><i></i></b> by <i>Team Acharya Manish Ji</i>";
 
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
@@ -29,25 +29,25 @@ const bannerImage = "";
 
 // Why Join Content
 const why1 =
-  "जो महिलाएं <b>irregular periods</b> को <b>regular</b> करना चाहती हैं।";
+  "";
 const why2 =
-  "जिन्हें <b>mood swings, weight changes, और sleep issues</b> हो रही हैं।";
-const why3 = "जो skin problems, hair fall, और fatigue से परेशान हैं।";
+  "";
+const why3 = "";
 const why4 =
-  "जो <b>infertility</b> को दूर कर motherhood का अनुभव करना चाहती हैं।";
+  "";
 const why5 =
-  "जिन्हें <b>focus issues या fast heartbeat</b> की समस्या हो रही है।";
+  "";
 
 const Testi1 =
-  '"PCOS troubled me for years, but a webinar by Acharya Manish Ji’s team changed everything. After HiiMS consultation, I feel energetic, and my reports improved. Grateful for this life-changing experience"';
+  '""';
 const Testi2 =
-  '"PCOD ne mujhe stress diya, medicines bas symptoms control karti thi. HiiMS webinar attend kiya, Ayurveda treatment shuru kiya. 3 mahine me hi periods regular, acne kam, aur energy badh gayi"';
+  '""';
 const Testi3 =
-  '"Hormonal imbalance caused mood swings, weight gain, and fatigue. HiiMS webinar was eye-opening. After consultation, my energy returned, sleep improved, and I feel like myself again."';
+  '""';
 
-const TestiNam1 = "— Rajni";
-const TestiNam2 = "— Nidhi";
-const TestiNam3 = "— Payal Jain";
+const TestiNam1 = "— ";
+const TestiNam2 = "— ";
+const TestiNam3 = "— ";
 
 // Selectors for the dynamic content
 document.title = title;
