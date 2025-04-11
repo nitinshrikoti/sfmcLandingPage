@@ -1,30 +1,30 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "LiverWebinarOn17Apr";
-const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6de07489-5caa-4c98-b41f-60660aefa45c.png";
+const title = "LiverWebinarOn24Apr";
+const offeringTitle = "Liver";
 
-const drName = "Dr. Ankita";
-const webDate = "17 April 2025 | 10:00 AM";
-
-const joiningLink = "https://us06web.zoom.us/j/82458955760";
+const joiningLink = "https://us06web.zoom.us/j/81873369368";
 const whatsappLink = "https://jeenasikho.com/webinar/?page=liver";
 
-const newSlotDate = "17 April 2025";
-const newSlotTime = "10:00 AM";
-const offeringTitle = "Liver";
-const waitUntillDate = "2025-04-17";
-const targetDate = new Date("April 17, 2025 10:00:00").getTime();
-const contactNumber = "917710371037";
+const webDate = "24 April 2025 | 4:00 PM";
+const newSlotDate = "24 April 2025";
+const newSlotTime = "4:00 PM";
+const waitUntillDate = "2025-04-24";
+const targetDate = new Date("April 24, 2025 16:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Liver</i></b> by <i>Team Acharya Manish Ji</i>";
+
+const drName = "Dr. Neha";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Chronic Liver & Kidney Disease",
-  "Expertise in Arthritis, Mental Health",
-  "2+ Years of Experience",
+  "Diploma in Panchakarma Chikitsa (DPC)",
+  "Expertise in Cancer, Gynaecology, CKD, CLD, Obesity, Diabetes",
+  "4+ Years Of Experience",
 ];
+const docImg =
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/b2bc80d6-0ca9-4f5a-8439-8d4149c54329.png";
+
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/1e0f9aef-c15f-403b-b5f5-73c34ac9b657.png";
 
@@ -50,7 +50,12 @@ const TestiNam1 = "— Jaswinder Kaur";
 const TestiNam2 = "— Vipin Kumar Jain";
 const TestiNam3 = "— Gautam Jain";
 
-// Selectors for the dynamic content
+const contactNumber = "917710371037";
+
+// -------------------- Dynamic Content Update End --------------------
+
+// Script for  Dynamic Content Update
+
 document.title = title;
 document.getElementById("heroHeading").innerHTML = heroHeading;
 if (document.getElementById("drImg")) {
@@ -96,7 +101,7 @@ document.getElementById("testiNam1").innerHTML = TestiNam1;
 document.getElementById("testiNam2").innerHTML = TestiNam2;
 document.getElementById("testiNam3").innerHTML = TestiNam3;
 
-// Selectors for the dynamic content end
+// Script for Dynamic Content Update End
 
 // -------------------- Timer Script --------------------
 // Main Timer Elements
@@ -210,12 +215,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // -------------------- Form country script --------------------
 const phoneInput = document.querySelector("#phone");
+
+// Restrict typing to digits only
+phoneInput.addEventListener("keypress", function (e) {
+  const char = String.fromCharCode(e.which);
+  if (!/^[0-9]$/.test(char)) {
+    e.preventDefault();
+  }
+});
+
+// Clean pasted input and remove non-numeric characters
+phoneInput.addEventListener("paste", function (e) {
+  e.preventDefault();
+  const pasted = (e.clipboardData || window.clipboardData).getData("text");
+  const digitsOnly = pasted.replace(/\D/g, "").replace(/^0+/, ""); // remove leading zeros
+  phoneInput.value = digitsOnly;
+});
+
+// Prevent number from starting with 0
+phoneInput.addEventListener("input", function () {
+  if (phoneInput.value.startsWith("0")) {
+    phoneInput.value = phoneInput.value.replace(/^0+/, "");
+  }
+});
+
 const iti = window.intlTelInput(phoneInput, {
   initialCountry: "in",
   strictMode: true,
+  separateDialCode: true,
   loadUtils: function () {
     return import(
-      "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js"
+      "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js?1743167482095"
     );
   },
 });
@@ -223,7 +253,7 @@ const iti = window.intlTelInput(phoneInput, {
 const form = document.getElementById("RegisterForm");
 
 form.addEventListener("submit", function (e) {
-  e.preventDefault(); // Stop form submission temporarily
+  e.preventDefault();
 
   const countryData = iti.getSelectedCountryData();
 
@@ -234,5 +264,5 @@ form.addEventListener("submit", function (e) {
   // Now submit the form manually
   setTimeout(() => {
     form.submit();
-  }, 100); // Slight delay ensures fields are updated
+  }, 100);
 });
