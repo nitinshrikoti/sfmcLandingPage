@@ -1,28 +1,29 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "KidneyWebinarOn25Apr";
+const title = "KidneyWebinarOn30Apr";
 const offeringTitle = "Kidney";
 
-const joiningLink = "https://us06web.zoom.us/j/82413046080";
+const joiningLink = "https://us06web.zoom.us/j/82607047559";
 const whatsappLink = "https://jeenasikho.com/webinar/?page=kidney-disease";
 
-const webDate = "25 April 2025 | 1:00 PM";
-const newSlotDate = "25 April 2025";
-const newSlotTime = "1:00 PM";
-const waitUntillDate = "2025-04-25";
-const targetDate = new Date("April 25, 2025 13:00:00").getTime();
+const webDate = "30 April 2025 | 4:00 PM";
+const newSlotDate = "30 April 2025";
+const newSlotTime = "4:00 PM";
+const waitUntillDate = "2025-04-30";
+const targetDate = new Date("April 30, 2025 16:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Kidney</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Meetali";
+const drName = "Dr. Divyadeep";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Specialization in Panchkarma",
-  "8+ Years Of Experience",
+  "Diploma in Naturopathy and Diploma in Yoga",
+  "Expertise in Chronic Diseases, Metabolic, Skin Disorders and Infertility",
+  "16+ Years of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/121dab33-39a6-4863-91de-4ed0356eeeff.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2a06da4f-2205-458e-a16f-fb3d4d65e198.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/ebc2bfa9-2919-4840-a855-b45e1d4531ed.png";
