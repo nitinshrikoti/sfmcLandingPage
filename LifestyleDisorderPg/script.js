@@ -1,28 +1,30 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "LifestyleDisorderWebinarOn18Apr";
-const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2457b5fd-2e28-495d-90e0-5625d446d1b2.png";
+const title = "LifestyleDisorderWebinarOn25Apr";
+const offeringTitle = "Lifestyle Disorder";
 
-const drName = "Dr. Meghna";
-const webDate = "18 April 2025 | 10:00 AM";
-
-const joiningLink = "https://us06web.zoom.us/j/84920343517";
+const joiningLink = "https://us06web.zoom.us/j/89014297284";
 const whatsappLink = "https://jeenasikho.com/webinar/?page=lifestyle-disorders";
 
-const newSlotDate = "18 April 2025";
+const webDate = "25 April 2025 | 10:00 AM";
+const newSlotDate = "25 April 2025";
 const newSlotTime = "10:00 AM";
-const offeringTitle = "Lifestyle Disorder";
-const waitUntillDate = "2025-04-18";
-const targetDate = new Date("April 18, 2025 10:00:00").getTime();
-const contactNumber = "917710371037";
+const waitUntillDate = "2025-04-25";
+const targetDate = new Date("April 25, 2025 10:00:00").getTime();
 
+const heroHeading =
+  "Webinar on <b><i>Lifestyle Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
+
+const drName = "Dr. Ankita";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Chronic Kidney & Liver Disease",
-  "Lifestyle Disorders (GIT, Joint, Mental Health)",
-  "4+ Years of Experience",
+  "Chronic Liver & Kidney Disease",
+  "Expertise in Arthritis, Mental Health",
+  "2+ Years of Experience",
 ];
+const docImg =
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6de07489-5caa-4c98-b41f-60660aefa45c.png";
+
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e6cabbf5-0635-43f1-801f-0ac0ad688f98.png";
 
@@ -49,7 +51,12 @@ const TestiNam1 = "— Saheb";
 const TestiNam2 = "— Pryanka";
 const TestiNam3 = "— Sidharth";
 
-// Selectors for the dynamic content
+const contactNumber = "917710371037";
+
+// -------------------- Dynamic Content Update End --------------------
+
+// Script for  Dynamic Content Update
+
 document.title = title;
 document.getElementById("heroHeading").innerHTML = heroHeading;
 if (document.getElementById("drImg")) {
@@ -95,7 +102,7 @@ document.getElementById("testiNam1").innerHTML = TestiNam1;
 document.getElementById("testiNam2").innerHTML = TestiNam2;
 document.getElementById("testiNam3").innerHTML = TestiNam3;
 
-// Selectors for the dynamic content end
+// Script for Dynamic Content Update End
 
 // -------------------- Timer Script --------------------
 // Main Timer Elements
