@@ -1,29 +1,28 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "KidneyWebinarOn23Apr";
+const title = "KidneyWebinarOn25Apr";
 const offeringTitle = "Kidney";
 
-const joiningLink = "https://us06web.zoom.us/j/81377996508";
+const joiningLink = "https://us06web.zoom.us/j/82413046080";
 const whatsappLink = "https://jeenasikho.com/webinar/?page=kidney-disease";
 
-const webDate = "23 April 2025 | 4:00 PM";
-const newSlotDate = "23 April 2025";
-const newSlotTime = "4:00 PM";
-const waitUntillDate = "2025-04-23";
-const targetDate = new Date("April 23, 2025 16:00:00").getTime();
+const webDate = "25 April 2025 | 1:00 PM";
+const newSlotDate = "25 April 2025";
+const newSlotTime = "1:00 PM";
+const waitUntillDate = "2025-04-25";
+const targetDate = new Date("April 25, 2025 13:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Kidney</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Meghna";
+const drName = "Dr. Meetali";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Chronic Kidney & Liver Disease",
-  "Lifestyle Disorders (GIT, Joint, Mental Health)",
-  "4+ Years of Experience",
+  "Specialization in Panchkarma",
+  "8+ Years Of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2457b5fd-2e28-495d-90e0-5625d446d1b2.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/121dab33-39a6-4863-91de-4ed0356eeeff.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/ebc2bfa9-2919-4840-a855-b45e1d4531ed.png";
