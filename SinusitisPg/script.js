@@ -1,28 +1,29 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "ChronicSinusitisWebinarOn18Apr";
+const title = "ChronicSinusitisWebinarOn26Apr";
 const offeringTitle = "Chronic Sinusitis";
 
-const joiningLink = "https://us06web.zoom.us/j/82387826269";
-const whatsappLink = "https://chat.whatsapp.com/DWunZCA4RpM1pznvIiuOwC";
+const joiningLink = "https://us06web.zoom.us/j/85881737876";
+const whatsappLink = "https://chat.whatsapp.com/JEUzRBOy9TA6vI8xKNgQiF";
 
-const webDate = "19 April 2025 | 10:00 AM";
-const newSlotDate = "19 April 2025";
+const webDate = "26 April 2025 | 10:00 AM";
+const newSlotDate = "26 April 2025";
 const newSlotTime = "10:00 AM";
-const waitUntillDate = "2025-04-19";
-const targetDate = new Date("April 19, 2025 10:00:00").getTime();
+const waitUntillDate = "2025-04-26";
+const targetDate = new Date("April 26, 2025 10:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Chronic Sinusitis</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Ritu";
+const drName = "Dr. Divyadeep";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
   "Diploma in Naturopathy and Diploma in Yoga",
-  "7+ Years of Experience",
+  "Expertise in Chronic Diseases, Metabolic, Skin Disorders and Infertility",
+  "16+ Years of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/aeb9ac0d-ef59-4b4d-9f8e-0bbf4eac6c40.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2a06da4f-2205-458e-a16f-fb3d4d65e198.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/8ba496b8-ad26-4c73-9019-a1f564db0842.png";
