@@ -1,31 +1,29 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "SkinDisorderWebinarOn11Apr";
-const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2457b5fd-2e28-495d-90e0-5625d446d1b2.png";
+const title = "SkinDisorderWebinarOn25Apr";
+const offeringTitle = "Skin Disorder";
 
-const drName = "Dr. Meghna";
-const webDate = "11 April 2025 | 10:00 AM";
-
-const joiningLink = "https://us06web.zoom.us/j/81721863496";
+const joiningLink = "https://us06web.zoom.us/j/89220210424";
 const whatsappLink = "https://jeenasikho.com/webinar/?page=skin-disorders";
 
-const newSlotDate = "11 April 2025";
-const newSlotTime = "10:00 AM";
-const offeringTitle = "Skin Disorder";
-const waitUntillDate = "2025-04-11";
-const targetDate = new Date("April 11, 2025 10:00:00").getTime();
-const contactNumber = "917710371037";
+const webDate = "25 April 2025 | 4:00 PM";
+const newSlotDate = "25 April 2025";
+const newSlotTime = "4:00 PM";
+const waitUntillDate = "2025-04-25";
+const targetDate = new Date("April 25, 2025 16:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Skin Disorders</i></b> by <i>Team Acharya Manish Ji</i>";
 
+const drName = "Dr. Pooja";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Chronic Kidney & Liver Disease.",
-  "Lifestyle Disorders (GIT, Joint, Mental Health)",
-  "4+ Years of Experience",
+  "Certificate of Rashtriya Ayurveda Vidyapeeth",
+  "Diploma in Panchakarma Chikitsa (DPC)",
+  "5+ Years of Experience",
 ];
+const docImg =
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/37df16f7-b445-48cc-8828-e327a4f1002b.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/256e2d62-fc16-4cc0-b9e3-c054407f54e6.png";
@@ -52,6 +50,8 @@ const Testi3 =
 const TestiNam1 = "— Mabel";
 const TestiNam2 = "— White Marks";
 const TestiNam3 = "— Shila";
+
+const contactNumber = "917710371037";
 
 // Selectors for the dynamic content
 document.title = title;

@@ -65,9 +65,64 @@ ENDIF
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Meta Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+      fbq("init", "1175956401206232");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1175956401206232&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- Clarity Code -->
+    <script type="text/javascript">
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", "qtqegiwx14");
+    </script>
+    <!-- Clarity Code End -->
+
     <title>Title</title>
 
-    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <link rel="stylesheet" href="style.css" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -86,7 +141,7 @@ ENDIF
     />
 
     <!-- script -->
-    <!-- <script src="script.js" defer></script> -->
+    <script src="script.js" defer></script>
     <style>
       :root {
         --ff-exo: "Exo", serif;
@@ -1945,33 +2000,31 @@ ENDIF
     <script>
       // -------------------- Dynamic Content Update --------------------
 
-      const title = "SkinDisorderWebinarOn11Apr";
-      const docImg =
-        "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2457b5fd-2e28-495d-90e0-5625d446d1b2.png";
+      const title = "SkinDisorderWebinarOn25Apr";
+      const offeringTitle = "Skin Disorder";
 
-      const drName = "Dr. Meghna";
-      const webDate = "11 April 2025 | 10:00 AM";
-
-      const joiningLink = "https://us06web.zoom.us/j/81721863496";
+      const joiningLink = "https://us06web.zoom.us/j/89220210424";
       const whatsappLink =
         "https://jeenasikho.com/webinar/?page=skin-disorders";
 
-      const newSlotDate = "11 April 2025";
-      const newSlotTime = "10:00 AM";
-      const offeringTitle = "Skin Disorder";
-      const waitUntillDate = "2025-04-11";
-      const targetDate = new Date("April 11, 2025 10:00:00").getTime();
-      const contactNumber = "917710371037";
+      const webDate = "25 April 2025 | 4:00 PM";
+      const newSlotDate = "25 April 2025";
+      const newSlotTime = "4:00 PM";
+      const waitUntillDate = "2025-04-25";
+      const targetDate = new Date("April 25, 2025 16:00:00").getTime();
 
       const heroHeading =
         "Webinar on <b><i>Skin Disorders</i></b> by <i>Team Acharya Manish Ji</i>";
 
+      const drName = "Dr. Pooja";
       const drDetails = [
         "Bachelor of Ayurvedic Medicine and Surgery",
-        "Chronic Kidney & Liver Disease.",
-        "Lifestyle Disorders (GIT, Joint, Mental Health)",
-        "4+ Years of Experience",
+        "Certificate of Rashtriya Ayurveda Vidyapeeth",
+        "Diploma in Panchakarma Chikitsa (DPC)",
+        "5+ Years of Experience",
       ];
+      const docImg =
+        "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/37df16f7-b445-48cc-8828-e327a4f1002b.png";
 
       const bannerImage =
         "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/256e2d62-fc16-4cc0-b9e3-c054407f54e6.png";
@@ -1998,6 +2051,8 @@ ENDIF
       const TestiNam1 = "— Mabel";
       const TestiNam2 = "— White Marks";
       const TestiNam3 = "— Shila";
+
+      const contactNumber = "917710371037";
 
       // Selectors for the dynamic content
       document.title = title;
