@@ -1,31 +1,29 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "DigestiveWebinarOn16Apr";
-const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2a06da4f-2205-458e-a16f-fb3d4d65e198.png";
+const title = "DigestiveWebinarOn24Apr";
+const offeringTitle = "Gas, Acidity, Constipation";
 
-const drName = "Dr. Divyadeep";
-const webDate = "16 April 2025 | 10:00 AM";
-
-const joiningLink = "https://us06web.zoom.us/j/83675298433";
+const joiningLink = "https://us06web.zoom.us/j/84585853006";
 const whatsappLink = "https://jeenasikho.com/webinar/?page=gastric-issues";
 
-const newSlotDate = "16 April 2025";
+const webDate = "24 April 2025 | 10:00 AM";
+const newSlotDate = "24 April 2025";
 const newSlotTime = "10:00 AM";
-const offeringTitle = "Gas, Acidity, Constipation";
-const waitUntillDate = "2025-04-16";
-const targetDate = new Date("April 16, 2025 10:00:00").getTime();
-const contactNumber = "917710371037";
+const waitUntillDate = "2025-04-24";
+const targetDate = new Date("April 24, 2025 10:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Gas, Acidity & Constipation</b></i> by <i>Team Acharya Manish Ji</i>";
 
+const drName = "Dr. Divyadeep";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
   "Diploma in Naturopathy and Diploma in Yoga",
   "Expertise in Chronic Diseases, Metabolic, Skin Disorders and Infertility",
   "16+ Years of Experience",
 ];
+const docImg =
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2a06da4f-2205-458e-a16f-fb3d4d65e198.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/c0ea5ffe-bed6-45c1-aaa3-c13bac55fb1e.png";
@@ -52,7 +50,12 @@ const TestiNam1 = "— Shubham";
 const TestiNam2 = "— Aman";
 const TestiNam3 = "— Payal Jain";
 
-// Selectors for the dynamic content
+const contactNumber = "917710371037";
+
+// -------------------- Dynamic Content Update End --------------------
+
+// Script for  Dynamic Content Update
+
 document.title = title;
 document.getElementById("heroHeading").innerHTML = heroHeading;
 if (document.getElementById("drImg")) {
@@ -98,7 +101,7 @@ document.getElementById("testiNam1").innerHTML = TestiNam1;
 document.getElementById("testiNam2").innerHTML = TestiNam2;
 document.getElementById("testiNam3").innerHTML = TestiNam3;
 
-// Selectors for the dynamic content end
+// Script for Dynamic Content Update End
 
 // -------------------- Timer Script --------------------
 // Main Timer Elements
@@ -212,12 +215,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // -------------------- Form country script --------------------
 const phoneInput = document.querySelector("#phone");
+
+// Restrict typing to digits only
+phoneInput.addEventListener("keypress", function (e) {
+  const char = String.fromCharCode(e.which);
+  if (!/^[0-9]$/.test(char)) {
+    e.preventDefault();
+  }
+});
+
+// Clean pasted input and remove non-numeric characters
+phoneInput.addEventListener("paste", function (e) {
+  e.preventDefault();
+  const pasted = (e.clipboardData || window.clipboardData).getData("text");
+  const digitsOnly = pasted.replace(/\D/g, "").replace(/^0+/, ""); // remove leading zeros
+  phoneInput.value = digitsOnly;
+});
+
+// Prevent number from starting with 0
+phoneInput.addEventListener("input", function () {
+  if (phoneInput.value.startsWith("0")) {
+    phoneInput.value = phoneInput.value.replace(/^0+/, "");
+  }
+});
+
 const iti = window.intlTelInput(phoneInput, {
   initialCountry: "in",
   strictMode: true,
+  separateDialCode: true,
   loadUtils: function () {
     return import(
-      "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js"
+      "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js?1743167482095"
     );
   },
 });
@@ -225,7 +253,7 @@ const iti = window.intlTelInput(phoneInput, {
 const form = document.getElementById("RegisterForm");
 
 form.addEventListener("submit", function (e) {
-  e.preventDefault(); // Stop form submission temporarily
+  e.preventDefault();
 
   const countryData = iti.getSelectedCountryData();
 
@@ -236,5 +264,5 @@ form.addEventListener("submit", function (e) {
   // Now submit the form manually
   setTimeout(() => {
     form.submit();
-  }, 100); // Slight delay ensures fields are updated
+  }, 100);
 });
