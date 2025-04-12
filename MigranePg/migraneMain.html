@@ -1,3 +1,65 @@
+%%[
+IF RequestParameter("submitted") == "true" THEN
+
+  Set @rawPhone = RequestParameter("phone")
+  Set @countryCode = RequestParameter("countryCode")
+  Set @locale = RequestParameter("initialCountry")
+
+  Set @digitsOnly = ""
+  FOR @i = 1 TO Length(@rawPhone) DO
+    Set @char = Substring(@rawPhone, @i, 1)
+    IF IndexOf("0123456789", @char) > 0 THEN
+      Set @digitsOnly = Concat(@digitsOnly, @char)
+    ENDIF
+  NEXT @i
+
+  Set @phone = Concat(@countryCode, @digitsOnly)
+  Set @uniqueID = Concat(
+    Format(SystemDateToLocalDate(Now()), "yyyyMMddHHmmss"),
+    "_",
+    RequestParameter("phone")
+  )
+
+  Set @BookingDate = Format(SystemDateToLocalDate(Now()), "yyyy-MM-dd")
+  Set @BookingTime = Format(SystemDateToLocalDate(Now()), "HH:mm:ss")
+
+  UpsertDE(
+    "WebinarFormData",    
+    1,                    
+    "UniqueID",       @uniqueID,
+    "FirstName",      RequestParameter("FirstName"),
+    "LastName",       RequestParameter("LastName"),
+    "Locale",         @locale, 
+    "Phone",          @phone,
+    "Email",          RequestParameter("Email"),
+    "Country",        RequestParameter("Country"),
+    "BookingDate",    @BookingDate,
+    "BookingTime",    @BookingTime,
+    "OldSlotDate",    RequestParameter("OldSlotDate"),
+    "OldSlotTime",    RequestParameter("OldSlotTime"),
+    "NewSlotDate",    RequestParameter("NewSlotDate"),
+    "NewSlotTime",    RequestParameter("NewSlotTime"),
+    "OfferingTitle",  RequestParameter("OfferingTitle"),
+    "JoiningLink",    RequestParameter("JoiningLink"),
+    "WhatsAppLink",   RequestParameter("WhatsAppLink"),
+    "WaitUntillDate", RequestParameter("WaitUntillDate"),
+    "ContactNumber",  RequestParameter("ContactNumber")
+  )
+
+ENDIF
+]%%
+
+<!-- We set a JS variable (isSubmitted) based on whether the form was posted -->
+%%[ IF RequestParameter("submitted") == "true" THEN ]%%
+<script>
+  var isSubmitted = true;
+</script>
+%%[ ELSE ]%%
+<script>
+  var isSubmitted = false;
+</script>
+%%[ ENDIF ]%%
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -1941,8 +2003,8 @@
       const title = "ChronicMigraneWebinarOn26Apr";
       const offeringTitle = "Chronic Migrane";
 
-      const joiningLink = "";
-      const whatsappLink = "";
+      const joiningLink = "https://us06web.zoom.us/j/85675259792";
+      const whatsappLink = "https://chat.whatsapp.com/LBBuSSVTu8vK2tdHZVtTxK";
 
       const webDate = "26 April 2025 | 4:00 PM";
       const newSlotDate = "26 April 2025";

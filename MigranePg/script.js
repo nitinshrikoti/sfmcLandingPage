@@ -3,8 +3,8 @@
 const title = "ChronicMigraneWebinarOn26Apr";
 const offeringTitle = "Chronic Migrane";
 
-const joiningLink = "";
-const whatsappLink = "";
+const joiningLink = "https://us06web.zoom.us/j/85675259792";
+const whatsappLink = "https://chat.whatsapp.com/LBBuSSVTu8vK2tdHZVtTxK";
 
 const webDate = "26 April 2025 | 4:00 PM";
 const newSlotDate = "26 April 2025";
