@@ -1,3 +1,108 @@
+// -------------------- Dynamic Content Update --------------------
+
+const title = "ObesityWebinarOn29Apr";
+const offeringTitle = "Obesity";
+
+const joiningLink = "https://us06web.zoom.us/j/84609008579";
+const whatsappLink = "https://jeenasikho.com/webinar/?page=obesity";
+
+const webDate = "29 April 2025 | 1:00 PM";
+const newSlotDate = "29 April 2025";
+const newSlotTime = "1:00 PM";
+const waitUntillDate = "2025-04-29";
+const targetDate = new Date("April 29, 2025 13:00:00").getTime();
+
+const heroHeading =
+  "Webinar on <b><i>Obesity</i></b> by <i>Team Acharya Manish Ji</i>";
+
+const drName = "Dr. Meghna";
+const drDetails = [
+  "Bachelor of Ayurvedic Medicine and Surgery",
+  "Chronic Kidney & Liver Disease",
+  "Lifestyle Disorders (GIT, Joint, Mental Health)",
+  "4+ Years Of Experience",
+];
+const docImg =
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2457b5fd-2e28-495d-90e0-5625d446d1b2.png";
+
+const bannerImage =
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e6cabbf5-0635-43f1-801f-0ac0ad688f98.png";
+
+// Why Join Content
+const why1 =
+  "<b>Non-Alcoholic Fatty Liver Disease (NAFLD)</b> से राहत पाना और स्वस्थ लिवर बनाना।";
+const why2 =
+  "<b>Osteoarthritis</b> में जोड़ों के दर्द और अकड़न से आराम प्राप्त करना।";
+const why3 =
+  "<b>Sleep Apnea</b> से छुटकारा पाकर बेहतर नींद और श्वसन प्रणाली सुधारना।";
+const why4 = "<b>Metabolic Syndrome</b> से बचाव और वजन को नियंत्रित करना।";
+const why5 =
+  "<b>Hormonal Imbalance</b> को संतुलित कर स्वास्थ्य और जीवनशैली में सुधार करना।";
+
+const Testi1 =
+  '"कई सालों से बीमारी से बहुत परेशान था। बहुत जगह इलाज कराया लेकिन कोई फायदा नहीं हुआ। HiiMS के इलाज से अब सच में राहत मिल रही है।"';
+const Testi2 =
+  '"पेट की दिक्कत और थकान से रोज़ की ज़िंदगी मुश्किल हो गई थी। HiiMS में इलाज शुरू किया तो आराम मिलना शुरू हो गया। अब शरीर हल्का लगता है और मन भी शांत रहता है।"';
+const Testi3 =
+  '"डॉक्टरों ने दवाइयों के साथ घरेलू नुस्खे भी बताए। इलाज बिल्कुल समझदारी से और प्यार से किया गया। HiiMS का इलाज मेरे लिए बहुत फायदेमंद रहा है।"';
+
+const TestiNam1 = "— Shweta";
+const TestiNam2 = "— Preetinder Kaur";
+const TestiNam3 = "— Suraj";
+
+const contactNumber = "917710371037";
+
+// -------------------- Dynamic Content Update End --------------------
+
+// Script for  Dynamic Content Update
+
+document.title = title;
+document.getElementById("heroHeading").innerHTML = heroHeading;
+if (document.getElementById("drImg")) {
+  drImg.src = docImg;
+}
+
+if (document.getElementById("BannerImg")) {
+  BannerImg.src = bannerImage;
+}
+document.getElementById("drName1").innerHTML = drName;
+document.getElementById("drName2").innerHTML = drName;
+document.getElementById("webDate").innerHTML = webDate;
+
+// Dr. Details
+const ulElement = document.createElement("ul");
+drDetails.forEach((item) => {
+  const liElement = document.createElement("li");
+  liElement.textContent = item;
+  ulElement.appendChild(liElement);
+});
+document.getElementById("drDetails").appendChild(ulElement);
+
+document.getElementById("why1").innerHTML = why1;
+document.getElementById("why2").innerHTML = why2;
+document.getElementById("why3").innerHTML = why3;
+document.getElementById("why4").innerHTML = why4;
+document.getElementById("why5").innerHTML = why5;
+
+document.getElementById("whatsappLink1").href = whatsappLink;
+document.getElementById("whatsappLink2").value = whatsappLink;
+document.getElementById("joiningLink").value = joiningLink;
+document.getElementById("NewSlotDate").value = newSlotDate;
+document.getElementById("NewSlotTime").value = newSlotTime;
+document.getElementById("OfferingTitle").value = offeringTitle;
+document.getElementById("WaitUntillDate").value = waitUntillDate;
+document.getElementById("ContactNumber").value = contactNumber;
+
+document.getElementById("testi1").innerHTML = Testi1;
+document.getElementById("testi2").innerHTML = Testi2;
+document.getElementById("testi3").innerHTML = Testi3;
+
+document.getElementById("testiNam1").innerHTML = TestiNam1;
+document.getElementById("testiNam2").innerHTML = TestiNam2;
+document.getElementById("testiNam3").innerHTML = TestiNam3;
+
+// Script for Dynamic Content Update End
+
 // -------------------- Timer Script --------------------
 // Main Timer Elements
 const mainDays = document.getElementById("mainDays");
@@ -17,7 +122,7 @@ function formatTime(num) {
 }
 
 // Set your target date/time here (shared by both timers)
-const targetDate = new Date("April 2, 2025 16:00:00").getTime();
+// const targetDate = new Date("April 3, 2025 10:00:00").getTime();
 
 function timer() {
   const currentDate = new Date().getTime();
@@ -106,4 +211,58 @@ document.addEventListener("DOMContentLoaded", function () {
       menuToggle.checked = false;
     });
   });
+});
+
+// -------------------- Form country script --------------------
+const phoneInput = document.querySelector("#phone");
+
+// Restrict typing to digits only
+phoneInput.addEventListener("keypress", function (e) {
+  const char = String.fromCharCode(e.which);
+  if (!/^[0-9]$/.test(char)) {
+    e.preventDefault();
+  }
+});
+
+// Clean pasted input and remove non-numeric characters
+phoneInput.addEventListener("paste", function (e) {
+  e.preventDefault();
+  const pasted = (e.clipboardData || window.clipboardData).getData("text");
+  const digitsOnly = pasted.replace(/\D/g, "").replace(/^0+/, ""); // remove leading zeros
+  phoneInput.value = digitsOnly;
+});
+
+// Prevent number from starting with 0
+phoneInput.addEventListener("input", function () {
+  if (phoneInput.value.startsWith("0")) {
+    phoneInput.value = phoneInput.value.replace(/^0+/, "");
+  }
+});
+
+const iti = window.intlTelInput(phoneInput, {
+  initialCountry: "in",
+  strictMode: true,
+  separateDialCode: true,
+  loadUtils: function () {
+    return import(
+      "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js?1743167482095"
+    );
+  },
+});
+
+const form = document.getElementById("RegisterForm");
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const countryData = iti.getSelectedCountryData();
+
+  // Set hidden fields
+  document.getElementById("countryCode").value = countryData.dialCode;
+  document.getElementById("initialCountry").value = countryData.iso2;
+
+  // Now submit the form manually
+  setTimeout(() => {
+    form.submit();
+  }, 100);
 });
