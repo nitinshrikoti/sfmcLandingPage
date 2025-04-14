@@ -525,7 +525,6 @@ textarea:not([rows]) {
 .testimonial-section {
   max-width: 1200px;
   margin: 40px auto;
-  padding: 0 20px;
   text-align: center;
 }
 
@@ -535,44 +534,92 @@ textarea:not([rows]) {
 }
 
 .testimonials-container {
-  display: flex;
   gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
 }
 
-.testimonial-card {
+/* Carousel container centered on page */
+.carousel {
+  position: relative;
+  width: 80%;
+  max-width: 550px;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 0px solid #ccc;
   background: #fff;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  flex: 1 1 300px;
-  max-width: 350px;
-  padding: 20px;
-  margin-bottom: 20px;
+}
+/* Carousel track with flex */
+.carousel-track {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: left;
+  transition: transform 0.5s ease;
+}
+/* Each slide */
+.carousel-item {
+  flex: 0 0 100%;
+  box-sizing: border-box;
+  padding: 20px 60px;
+}
+/* Video container to enforce 16:9 ratio */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 ratio */
+  height: 0;
+  overflow: hidden;
+}
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+/* Carousel caption styling */
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.55);
+  padding: 20px;
+  border-radius: 0.5rem;
+  margin-top: 10px;
 }
 
-.testimonial-card img {
-  width: 80px;
-  height: 80px;
+.carousel-caption p {
+  margin: 0;
+  color: #fff;
+}
+/* Custom navigation buttons with images */
+.carousel-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.carousel-button.prev {
+  left: 0px;
+}
+.carousel-button.next {
+  right: 0px;
+}
+.carousel-button img {
+  width: 50px;
+  height: auto;
+}
+/* Carousel indicators (dots) */
+.carousel-indicators {
+  margin-top: 15px;
+}
+.carousel-indicators button {
+  background-color: #ccc;
+  border: none;
   border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 15px;
+  width: 12px;
+  height: 12px;
+  margin: 0 4px;
+  cursor: pointer;
 }
-
-.testimonial-quote {
-  font-size: 1rem;
-  color: #555;
-  margin-bottom: 15px;
-  line-height: 1.5;
-}
-
-.testimonial-author {
-  font-weight: bold;
-  color: #333;
+.carousel-indicators button.active {
+  background-color: #333;
 }
 
 /* -------------------- BrandLogo Section -------------------- */
@@ -848,7 +895,8 @@ textarea:not([rows]) {
   border-radius: 4px;
 }
 
-.intl-tel-input, .iti {
+.intl-tel-input,
+.iti {
   width: 100%;
 }
 
@@ -856,11 +904,11 @@ textarea:not([rows]) {
   margin: 1px;
 }
 .iti__selected-country {
-  background-color: #F2F2F2 !important;
+  background-color: #f2f2f2 !important;
   padding-inline: 5px 10px !important;
 }
 
- .submit-btn {
+.submit-btn {
   background: #007bff;
   color: #fff;
   border: none;
@@ -1127,8 +1175,30 @@ textarea:not([rows]) {
   .testimonial-section h2 {
     font-size: 28px;
   }
-  .testimonial-card {
-    margin: 10px auto;
+  .testimonials-container {
+    padding: 5px;
+  }
+  .carousel {
+    width: 100%;
+    max-width: 100%;
+  }
+  .carousel-item {
+    padding: 10px 30px;
+  }
+  .carousel-button.prev {
+    left: -8px;
+  }
+  .carousel-button.next {
+    right: -8px;
+  }
+  .carousel-button img {
+    width: 30px;
+  }
+  .carousel-caption p {
+    font-size: 12px;
+  }
+  .carousel-caption {
+    padding: 10px;
   }
 
   /* ---------- BrandLogo Section ---------- */

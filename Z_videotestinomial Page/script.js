@@ -1,6 +1,6 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "AllJointPainWebinarOn22Apr";
+const title = "test";
 const offeringTitle = "All Joint Pain";
 
 const joiningLink = "https://us06web.zoom.us/j/82099820502";
@@ -36,16 +36,6 @@ const why4 = "जो <b>severe joint pain</b> और <b></b> से राहत
 const why5 =
   "जो <b>natural remedies</b> से <b>joint health</b> सुधारना चाहते हैं।";
 
-const Testi1 =
-  "“Thanks Doctor. I learned effective ways to manage arthritis pain and improve joint health naturally.”";
-const Testi2 =
-  "“Great!The tips on diet and exercise for arthritis were practical and easy to follow.”";
-const Testi3 =
-  '“Great insights on arthritis treatment options! Helped me understand how to reduce stiffness and inflammation."';
-
-const TestiNam1 = "— Saheb";
-const TestiNam2 = "— Pryanka";
-const TestiNam3 = "— Sidharth";
 
 const contactNumber = "917710371037";
 
@@ -89,13 +79,6 @@ document.getElementById("OfferingTitle").value = offeringTitle;
 document.getElementById("WaitUntillDate").value = waitUntillDate;
 document.getElementById("ContactNumber").value = contactNumber;
 
-document.getElementById("testi1").innerHTML = Testi1;
-document.getElementById("testi2").innerHTML = Testi2;
-document.getElementById("testi3").innerHTML = Testi3;
-
-document.getElementById("testiNam1").innerHTML = TestiNam1;
-document.getElementById("testiNam2").innerHTML = TestiNam2;
-document.getElementById("testiNam3").innerHTML = TestiNam3;
 
 // Script for Dynamic Content Update End
 
@@ -261,4 +244,60 @@ form.addEventListener("submit", function (e) {
   setTimeout(() => {
     form.submit();
   }, 100);
+});
+
+// Get the carousel track and slide items
+const track = document.querySelector(".carousel-track");
+const items = Array.from(track.children);
+const prevButton = document.querySelector(".carousel-button.prev");
+const nextButton = document.querySelector(".carousel-button.next");
+
+// Get the indicators container (initially empty)
+const indicatorsContainer = document.querySelector(".carousel-indicators");
+
+// Dynamically generate carousel indicators based on the number of slides
+indicatorsContainer.innerHTML = "";
+items.forEach((item, index) => {
+  const btn = document.createElement("button");
+  btn.setAttribute("data-index", index);
+  if (index === 0) {
+    btn.classList.add("active");
+  }
+  indicatorsContainer.appendChild(btn);
+});
+
+// Now get the dynamically created indicators
+const indicators = document.querySelectorAll(".carousel-indicators button");
+
+// Set the current slide index
+let currentIndex = 0;
+
+// Function to update carousel position and indicator states
+function updateCarousel() {
+  const amountToMove = -currentIndex * 100; // Each slide is 100% width
+  track.style.transform = `translateX(${amountToMove}%)`;
+
+  // Update indicator buttons
+  indicators.forEach((btn) => btn.classList.remove("active"));
+  indicators[currentIndex].classList.add("active");
+}
+
+// Next button click event
+nextButton.addEventListener("click", () => {
+  currentIndex = (currentIndex + 1) % items.length;
+  updateCarousel();
+});
+
+// Previous button click event
+prevButton.addEventListener("click", () => {
+  currentIndex = (currentIndex - 1 + items.length) % items.length;
+  updateCarousel();
+});
+
+// Indicator click navigation
+indicators.forEach((btn) => {
+  btn.addEventListener("click", function () {
+    currentIndex = parseInt(this.getAttribute("data-index"));
+    updateCarousel();
+  });
 });
