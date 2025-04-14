@@ -1,90 +1,330 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <title>Infinite Card Slider JavaScript | CodingNepal</title>
-    <link rel="stylesheet" href="style.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Fontawesome Link for Icons -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
-    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Testimonial Carousel</title>
+    <style>
+      /* Basic reset and styling */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f8f8;
+        margin: 0;
+        text-align: center;
+      }
+      /* -------------------- Testinomial Section -------------------- */
+      .testimonial-section {
+        max-width: 1200px;
+        margin: 40px auto;
+        text-align: center;
+      }
+
+      .testimonial-section h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      .testimonials-container {
+        gap: 20px;
+      }
+
+      /* Carousel container centered on page */
+      .carousel {
+        position: relative;
+        width: 80%;
+        max-width: 550px;
+        margin: 0 auto;
+        overflow: hidden;
+        border: 0px solid #ccc;
+        background: #fff;
+        border-radius: 8px;
+      }
+      /* Carousel track with flex */
+      .carousel-track {
+        display: flex;
+        transition: transform 0.5s ease;
+      }
+      /* Each slide */
+      .carousel-item {
+        flex: 0 0 100%;
+        box-sizing: border-box;
+        padding: 20px 60px;
+      }
+      /* Video container to enforce 16:9 ratio */
+      .video-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 ratio */
+        height: 0;
+        overflow: hidden;
+      }
+      .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+      }
+      /* Carousel caption styling */
+      .carousel-caption {
+        background-color: rgba(0, 0, 0, 0.55);
+        padding: 20px;
+        border-radius: 0.5rem;
+        margin-top: 10px;
+      }
+
+      .carousel-caption p {
+        margin: 0;
+        color: #fff;
+      }
+      /* Custom navigation buttons with images */
+      .carousel-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+      }
+      .carousel-button.prev {
+        left: 0px;
+      }
+      .carousel-button.next {
+        right: 0px;
+      }
+      .carousel-button img {
+        width: 50px;
+        height: auto;
+      }
+      /* Carousel indicators (dots) */
+      .carousel-indicators {
+        margin-top: 15px;
+      }
+      .carousel-indicators button {
+        background-color: #ccc;
+        border: none;
+        border-radius: 50%;
+        width: 12px;
+        height: 12px;
+        margin: 0 4px;
+        cursor: pointer;
+      }
+      .carousel-indicators button.active {
+        background-color: #333;
+      }
+
+      /* Mobile Responsive Styles */
+      @media screen and (max-width: 767px) {
+        .testimonials-container {
+          padding: 5px;
+        }
+        .carousel {
+          width: 100%;
+          max-width: 100%;
+        }
+        .carousel-item {
+          padding: 10px 30px;
+        }
+        .carousel-button.prev {
+          left: -8px;
+        }
+        .carousel-button.next {
+          right: -8px;
+        }
+        .carousel-button img {
+          width: 30px;
+        }
+        .carousel-caption p {
+          font-size: 12px;
+        }
+        .carousel-caption {
+          padding: 10px;
+        }
+      }
+    </style>
   </head>
-
   <body>
-    <div class="wrapper">
-      <i id="left" class="fa-solid fa-angle-left"></i>
-      <ul class="carousel">
-        <li class="card">
-          <div class="img">
-            <img
-              src="https://t4.ftcdn.net/jpg/03/50/40/93/240_F_350409330_2bqhjowfBmrqEia5U8lBsGrvD7h8EIo6.jpg"
-              alt="img"
-              draggable="false"
-            />
+    <!-- -------------------- Testinomial Section -------------------- -->
+    <section class="testimonial-section">
+      <h2 class="text-green">Testimonial</h2>
+      <div class="testimonials-container">
+        <!-- Testimonial 1 -->
+        <!-- Carousel Container -->
+        <div class="carousel">
+          <!-- Carousel Track holding slides -->
+          <div class="carousel-track">
+            <!-- Slide 1 -->
+            <div class="carousel-item">
+              <div class="video-container">
+                <iframe
+                  src="https://www.youtube.com/embed/f2kQ5JS74YQ?si=IEtOO5uc26nIt3Y9"
+                  title="Testimonial Video 1"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                >
+                </iframe>
+              </div>
+              <div class="carousel-caption">
+                <p>Your testimonial message goes here.</p>
+              </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+              <div class="video-container">
+                <iframe
+                  src="https://www.youtube.com/embed/f2kQ5JS74YQ?si=IEtOO5uc26nIt3Y9"
+                  title="Testimonial Video 2"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                >
+                </iframe>
+              </div>
+              <div class="carousel-caption">
+                <p>Your testimonial message goes here.</p>
+              </div>
+            </div>
+            <!-- Slide 3 -->
+            <div class="carousel-item">
+              <div class="video-container">
+                <iframe
+                  src="https://www.youtube.com/embed/7DgQGB3dAWc?si=sNVaeIlfJ7lYiZ6G"
+                  title="Testimonial Video 3"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                >
+                </iframe>
+              </div>
+              <div class="carousel-caption">
+                <p>Your testimonial message goes here.</p>
+              </div>
+            </div>
+            <!-- Slide 4 -->
+            <div class="carousel-item">
+              <div class="video-container">
+                <iframe
+                  src="https://www.youtube.com/embed/7DgQGB3dAWc?si=sNVaeIlfJ7lYiZ6G"
+                  title="Testimonial Video 4"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                >
+                </iframe>
+              </div>
+              <div class="carousel-caption">
+                <p>Your testimonial message goes here.</p>
+              </div>
+            </div>
+            <!-- Slide 4 -->
+            <div class="carousel-item">
+              <div class="video-container">
+                <iframe
+                  src="https://www.youtube.com/embed/7DgQGB3dAWc?si=sNVaeIlfJ7lYiZ6G"
+                  title="Testimonial Video 4"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                >
+                </iframe>
+              </div>
+              <div class="carousel-caption">
+                <p>Your testimonial message goes here.</p>
+              </div>
+            </div>
           </div>
-          <h2>Blanche Pearson</h2>
-          <span>Sales Manager</span>
-        </li>
-        <li class="card">
-          <div class="img">
-            <img
-              src="https://t3.ftcdn.net/jpg/00/57/55/40/240_F_57554079_g3LhdDR5C0f2mc2ZxjFgsbb6WMqouUwQ.jpg"
-              alt="img"
-              draggable="false"
-            />
-          </div>
-          <h2>Joenas Brauers</h2>
-          <span>Web Developer</span>
-        </li>
-        <li class="card">
-          <div class="img">
-            <img
-              src="https://t3.ftcdn.net/jpg/06/15/91/36/240_F_615913669_1GvdMMT0H44Z4owh9SCYsml6mCcy8g3G.jpg"
-              alt="img"
-              draggable="false"
-            />
-          </div>
-          <h2>Lariach French</h2>
-          <span>Online Teacher</span>
-        </li>
-        <li class="card">
-          <div class="img">
-            <img
-              src="https://t3.ftcdn.net/jpg/02/60/67/80/240_F_260678009_gV1PBTotxDIwTngnmn3nYqWshbznYf24.jpg"
-              alt="img"
-              draggable="false"
-            />
-          </div>
-          <h2>James Khosravi</h2>
-          <span>Freelancer</span>
-        </li>
-        <li class="card">
-          <div class="img">
-            <img
-              src="https://t3.ftcdn.net/jpg/03/99/91/62/240_F_399916297_1JwXdmC6ViCG4YhZuhLVz7xfuZhfHCY9.jpg"
-              alt="img"
-              draggable="false"
-            />
-          </div>
-          <h2>Kristina Zasiadko</h2>
-          <span>Bank Manager</span>
-        </li>
 
-        <li class="card">
-          <div class="img">
+          <!-- Navigation Buttons with Custom Images -->
+          <button class="carousel-button prev">
             <img
-              src="https://t4.ftcdn.net/jpg/06/81/01/43/240_F_681014359_dyMjwn4JYLtY985umiBOeytmLmVxEjC0.jpg"
-              alt="img"
-              draggable="false"
+              src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/d3d5a60f-aa4e-422c-962a-96add4e884a4.png"
+              alt="Previous"
             />
-          </div>
-          <h2>Donald Horton</h2>
-          <span>App Designer</span>
-        </li>
-      </ul>
-      <i id="right" class="fa-solid fa-angle-right"></i>
-    </div>
+          </button>
+          <button class="carousel-button next">
+            <img
+              src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/a791acde-49a6-462c-b9ca-cc3ea22e43d8.png"
+              alt="Next"
+            />
+          </button>
+        </div>
+
+        <!-- Carousel Indicators -->
+        <div class="carousel-indicators">
+          <button data-index="0" class="active"></button>
+          <button data-index="1"></button>
+          <button data-index="2"></button>
+          <button data-index="3"></button>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Get the carousel track and slide items
+      const track = document.querySelector(".carousel-track");
+      const items = Array.from(track.children);
+      const prevButton = document.querySelector(".carousel-button.prev");
+      const nextButton = document.querySelector(".carousel-button.next");
+
+      // Get the indicators container (initially empty)
+      const indicatorsContainer = document.querySelector(
+        ".carousel-indicators"
+      );
+
+      // Dynamically generate carousel indicators based on the number of slides
+      indicatorsContainer.innerHTML = "";
+      items.forEach((item, index) => {
+        const btn = document.createElement("button");
+        btn.setAttribute("data-index", index);
+        if (index === 0) {
+          btn.classList.add("active");
+        }
+        indicatorsContainer.appendChild(btn);
+      });
+
+      // Now get the dynamically created indicators
+      const indicators = document.querySelectorAll(
+        ".carousel-indicators button"
+      );
+
+      // Set the current slide index
+      let currentIndex = 0;
+
+      // Function to update carousel position and indicator states
+      function updateCarousel() {
+        const amountToMove = -currentIndex * 100; // Each slide is 100% width
+        track.style.transform = `translateX(${amountToMove}%)`;
+
+        // Update indicator buttons
+        indicators.forEach((btn) => btn.classList.remove("active"));
+        indicators[currentIndex].classList.add("active");
+      }
+
+      // Next button click event
+      nextButton.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % items.length;
+        updateCarousel();
+      });
+
+      // Previous button click event
+      prevButton.addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + items.length) % items.length;
+        updateCarousel();
+      });
+
+      // Indicator click navigation
+      indicators.forEach((btn) => {
+        btn.addEventListener("click", function () {
+          currentIndex = parseInt(this.getAttribute("data-index"));
+          updateCarousel();
+        });
+      });
+    </script>
   </body>
 </html>
