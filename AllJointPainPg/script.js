@@ -1,29 +1,25 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "AllJointPainWebinarOn22Apr";
-const offeringTitle = "All Joint Pain";
+const title = "KneePainWebinarOn29Apr";
+const offeringTitle = "Knee Pain";
 
-const joiningLink = "https://us06web.zoom.us/j/82099820502";
+const joiningLink = "https://us06web.zoom.us/j/86121171680";
 const whatsappLink = "https://jeenasikho.com/webinar/?page=joint";
 
-const webDate = "22 April 2025 | 10:00 AM";
-const newSlotDate = "22 April 2025";
+const webDate = "29 April 2025 | 10:00 AM";
+const newSlotDate = "29 April 2025";
 const newSlotTime = "10:00 AM";
-const waitUntillDate = "2025-04-22";
-const targetDate = new Date("April 22, 2025 10:00:00").getTime();
+const waitUntillDate = "2025-04-29";
+const targetDate = new Date("April 29, 2025 10:00:00").getTime();
 
 const heroHeading =
-  "Webinar on <b><i>All Joint Pain</i></b> by <i>Team Acharya Manish Ji</i>";
+  "Webinar on <b><i>Knee Pain</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Meghna";
-const drDetails = [
-  "Bachelor of Ayurvedic Medicine and Surgery",
-  "Chronic Kidney & Liver Disease",
-  "Lifestyle Disorders (GIT, Joint, Mental Health)",
-  "7+ Years Of Experience",
-];
+const drName = "Dr. Mandeep";
+const drDetails = ["Bachelor of Ayurvedic Medicine and Surgery"];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2457b5fd-2e28-495d-90e0-5625d446d1b2.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/ea2c0bca-5d32-4873-8419-5a01d2ad3387.png";
+
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/ffec998a-5356-47d9-b86a-882e4cd865ea.png";
