@@ -1,7 +1,8 @@
 :root {
   --ff-exo: "Exo", serif;
-  --ff-timesRoman: "Times New Roman", Times, serif;
   --ff-poppins: "Poppins", sans-serif;
+  --ff-roboto-condensed: "Roboto Condensed", sans-serif;
+  --ff-josefin-slab:"Josefin Slab", serif;
 
   --text-black: #44403b;
   --text-gray: #787878;
@@ -230,7 +231,7 @@ textarea:not([rows]) {
 .hero p {
   font-size: 36px;
   text-align: center;
-  font-family: var(--ff-timesRoman);
+  font-family: var(--ff-josefin-slab);
 }
 
 .hero iframe {
@@ -371,11 +372,12 @@ textarea:not([rows]) {
 .banner-heading-block {
   font-family: var(--ff-poppins);
   max-width: 1000px;
-  margin: 40px auto 10px;
+  margin: 20px auto 10px;
   padding: 0 20px;
   text-align: center;
 }
 .banner-heading-block h2 {
+  font-family: var(--ff-josefin-slab);
   font-size: 32px;
   margin-bottom: 10px;
 }
@@ -441,13 +443,13 @@ textarea:not([rows]) {
 
 .join-webinar {
   font-family: var(--ff-poppins);
-  max-width: 1000px; /* Constrain the width on larger screens */
+  max-width: 1224px; /* Constrain the width on larger screens */
   margin: 10px auto; /* Center with vertical spacing */
   background-color: #ffffff;
   border-radius: 8px;
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); */
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  padding: 30px 20px;
+  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
+  padding: 20px;
   text-align: center;
 }
 
@@ -463,7 +465,7 @@ textarea:not([rows]) {
   justify-content: center;
   align-items: stretch; /* Ensure equal height if desired */
   gap: 16px;
-  max-width: 800px;
+  /* max-width: 800px; */
   margin: 15px auto;
   flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
@@ -476,18 +478,18 @@ textarea:not([rows]) {
   text-align: center;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   flex: 1 1 280px; /* Grow and shrink, starting at min width 280px */
-  max-width: 350px;
-  height: 220px;
+  max-width:260px;
+  height: auto;
 }
 .step:hover {
-  background: #e6f0ff;
+  background: #edf9ee;
 }
 
 .step-number {
-  font-family: "Roboto Condensed";
+  font-family: var(--ff-roboto-condensed);
   font-weight: 700;
   font-size: 64px;
-  -webkit-text-stroke: 1px #003c71;
+  -webkit-text-stroke: 1px var(--text-green);
   margin-bottom: 10px;
   color: transparent;
 }
@@ -496,7 +498,7 @@ textarea:not([rows]) {
   font-size: 1.2rem;
   font-weight: 600;
   margin-bottom: 6px;
-  color: #003c71;
+  color: var(--text-green);
 }
 
 .step-desc {
@@ -522,12 +524,13 @@ textarea:not([rows]) {
 /* -------------------- Testinomial Section -------------------- */
 .testimonial-section {
   max-width: 1200px;
-  margin: 40px auto;
+  margin: 20px auto;
   padding: 0 20px;
   text-align: center;
 }
 
 .testimonial-section h2 {
+  font-family: var(--ff-josefin-slab);
   font-size: 2rem;
   margin-bottom: 20px;
 }
@@ -576,13 +579,14 @@ textarea:not([rows]) {
 /* -------------------- BrandLogo Section -------------------- */
 .brands-section {
   max-width: 1200px;
-  margin: 40px auto;
+  margin: 20px auto;
   text-align: center;
   padding: 0 20px;
 }
 
 /* Heading */
 .brands-section h2 {
+  font-family: var(--ff-josefin-slab);
   font-size: 2rem;
   margin-bottom: 30px;
 }
@@ -617,10 +621,11 @@ textarea:not([rows]) {
 .faq-section {
   max-width: 1000px;
   width: 90%;
-  margin: 40px auto 100px;
+  margin: 20px auto 100px;
 }
 
 .faq-section h2 {
+  font-family: var(--ff-josefin-slab);
   font-size: 2rem;
   text-align: center;
   margin-bottom: 20px;
