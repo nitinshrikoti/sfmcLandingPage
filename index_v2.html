@@ -83,7 +83,7 @@
     />
 
     <!-- script -->
-    <script src="./AllJointPainPg/script.js" defer></script>
+    <script src="./script_v1.js" defer></script>
   </head>
   <body>
     <!-- -------------------- NavBar -------------------- -->
@@ -504,7 +504,7 @@
               id="FirstName"
               name="FirstName"
               required=""
-              placeholder="Bharat"
+              placeholder="John"
             />
 
             <label for="LastName">Last Name</label>
@@ -512,7 +512,7 @@
               type="text"
               id="LastName"
               name="LastName"
-              placeholder="Singh"
+              placeholder="Doe"
             />
 
             <label for="Phone">WhatsApp Number*</label>
@@ -520,9 +520,10 @@
               type="tel"
               id="phone"
               name="phone"
-              placeholder="8175433680"
+              placeholder="1234567890"
               required
             />
+            <div id="phoneError" class="error-msg" aria-live="polite"></div>
 
             <label for="Email">Email</label>
             <input

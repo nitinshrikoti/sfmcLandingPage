@@ -2,7 +2,7 @@
   --ff-exo: "Exo", serif;
   --ff-poppins: "Poppins", sans-serif;
   --ff-roboto-condensed: "Roboto Condensed", sans-serif;
-  --ff-josefin-slab:"Josefin Slab", serif;
+  --ff-josefin-slab: "Josefin Slab", serif;
 
   --text-black: #44403b;
   --text-gray: #787878;
@@ -478,7 +478,7 @@ textarea:not([rows]) {
   text-align: center;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
   flex: 1 1 280px; /* Grow and shrink, starting at min width 280px */
-  max-width:260px;
+  max-width: 260px;
   height: auto;
 }
 .step:hover {
@@ -917,6 +917,13 @@ textarea:not([rows]) {
   to {
     box-shadow: 0 0 0 18px rgba(255, 255, 255, 0);
   }
+}
+
+.error-msg {
+  color: #c00;
+  font-size: 14px;
+  margin-top: 4px;
+  min-height: 1em;
 }
 
 /* -------------------- Responsive Code -------------------- */
