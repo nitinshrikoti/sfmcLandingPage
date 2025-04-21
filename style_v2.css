@@ -923,7 +923,10 @@ textarea:not([rows]) {
   color: #c00;
   font-size: 14px;
   margin-top: 4px;
-  min-height: 1em;
+  display: none;
+}
+.error-msg:not(:empty) {
+  display: block;
 }
 
 /* -------------------- Responsive Code -------------------- */
