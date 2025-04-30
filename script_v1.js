@@ -189,6 +189,20 @@ window.addEventListener("click", function (event) {
   }
 });
 
+// — Prevent anything but letters (no spaces) in FirstName —
+const firstNameEl = document.getElementById("FirstName");
+firstNameEl.addEventListener("keypress", e => {
+  // if the key isn’t A–Z or a–z, block it
+  if (!/^[A-Za-z]$/.test(e.key)) {
+    e.preventDefault();
+  }
+});
+firstNameEl.addEventListener("input", () => {
+  // strip out any non-letters (just in case)
+  firstNameEl.value = firstNameEl.value.replace(/[^A-Za-z]/g, "");
+});
+
+
 // -------------------- Close Nav container Script --------------------
 document.addEventListener("DOMContentLoaded", function () {
   const menuToggle = document.getElementById("menuToggle");
