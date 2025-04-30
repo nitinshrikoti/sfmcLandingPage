@@ -1,29 +1,29 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "LifestyleDisorderWebinarOn25Apr";
+const title = "LifestyleDisorderWebinarOn1May";
 const offeringTitle = "Lifestyle Disorder";
 
-const joiningLink = "https://us06web.zoom.us/j/89014297284";
-const whatsappLink = "https://jeenasikho.com/webinar/?page=lifestyle-disorders";
+const joiningLink = "https://us06web.zoom.us/j/83778452365";
+const whatsappLink = "https://chat.whatsapp.com/J3N3epmalXl91nTX2aKWde";
 
-const webDate = "25 April 2025 | 10:00 AM";
-const newSlotDate = "25 April 2025";
-const newSlotTime = "10:00 AM";
-const waitUntillDate = "2025-04-25";
-const targetDate = new Date("April 25, 2025 10:00:00").getTime();
+const webDate = "1 May 2025 | 4:00 PM";
+const newSlotDate = "1 May 2025";
+const newSlotTime = "4:00 PM";
+const waitUntillDate = "2025-05-01";
+const targetDate = new Date("May 1, 2025 16:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Lifestyle Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Ankita";
+const drName = "Dr. Sanjay Srivastava";
 const drDetails = [
-  "Bachelor of Ayurvedic Medicine and Surgery",
-  "Chronic Liver & Kidney Disease",
-  "Expertise in Arthritis, Mental Health",
-  "2+ Years of Experience",
+  "Doctor of Philosophy in Naturopathy",
+  "Doctor of Medicine",
+  "Naturopathy and Diploma in Yoga",
+  "Post Graduate Diploma in Panchkarma",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6de07489-5caa-4c98-b41f-60660aefa45c.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/50f80966-fc5e-4366-a1a0-7b2176ecfe10.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e6cabbf5-0635-43f1-801f-0ac0ad688f98.png";
@@ -200,6 +200,19 @@ window.addEventListener("click", function (event) {
   }
 });
 
+// — Prevent anything but letters (no spaces) in FirstName —
+const firstNameEl = document.getElementById("FirstName");
+firstNameEl.addEventListener("keypress", (e) => {
+  // if the key isn’t A–Z or a–z, block it
+  if (!/^[A-Za-z]$/.test(e.key)) {
+    e.preventDefault();
+  }
+});
+firstNameEl.addEventListener("input", () => {
+  // strip out any non-letters (just in case)
+  firstNameEl.value = firstNameEl.value.replace(/[^A-Za-z]/g, "");
+});
+
 // -------------------- Close Nav container Script --------------------
 document.addEventListener("DOMContentLoaded", function () {
   const menuToggle = document.getElementById("menuToggle");
@@ -216,6 +229,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // -------------------- Form country script --------------------
 const phoneInput = document.querySelector("#phone");
+const form = document.getElementById("RegisterForm");
+const errorDiv = document.getElementById("phoneError");
 
 // Restrict typing to digits only
 phoneInput.addEventListener("keypress", function (e) {
@@ -251,10 +266,20 @@ const iti = window.intlTelInput(phoneInput, {
   },
 });
 
-const form = document.getElementById("RegisterForm");
-
 form.addEventListener("submit", function (e) {
   e.preventDefault();
+
+  let raw = phoneInput.value.replace(/\D/g, "");
+  let digits = raw.replace(/^0+/, "");
+
+  // validate
+  if (digits.length !== 10) {
+    errorDiv.textContent = "Please enter exactly 10 digits";
+    phoneInput.focus();
+    return;
+  }
+  // clear any previous error
+  errorDiv.textContent = "";
 
   const countryData = iti.getSelectedCountryData();
 
