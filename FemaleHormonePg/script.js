@@ -1,29 +1,28 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "PcodPcosWebinarOn22Apr";
-const offeringTitle = "PCOD/PCOS Disorder";
+const title = "HormonalDisorderOn1May";
+const offeringTitle = "Hormonal Disorder";
 
-const joiningLink = "https://us06web.zoom.us/j/83922018338";
-const whatsappLink = "https://jeenasikho.com/webinar/?page=female-sexual";
+const joiningLink = "https://us06web.zoom.us/j/82482938638";
+const whatsappLink = "https://chat.whatsapp.com/EVZ9nVFc0aC6yWE68ID2tz";
 
-const webDate = "22 April 2025 | 4:00 PM";
-const newSlotDate = "22 April 2025";
-const newSlotTime = "4:00 PM";
-const waitUntillDate = "2025-04-22";
-const targetDate = new Date("April 22, 2025 16:00:00").getTime();
+const webDate = "1 May 2025 | 10:00 AM";
+const newSlotDate = "1 May 2025";
+const newSlotTime = "10:00 AM";
+const waitUntillDate = "2025-05-01";
+const targetDate = new Date("May 1, 2025 10:00:00").getTime();
 
 const heroHeading =
-  "Webinar on <b><i>PCOD/PCOS Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
+  "Webinar on <b><i>Hormonal Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Pooja";
+const drName = "Dr. Megha";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Certificate of Rashtriya Ayurveda Vidyapeeth",
-  "Diploma in Panchakarma Chikitsa (DPC)",
-  "5+ Years of Experience",
+  "Bachelor Of Naturopathy and Yogic Sciences",
+  "4+ Years of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/37df16f7-b445-48cc-8828-e327a4f1002b.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6cb716c2-70df-44ec-a741-2f9c745de282.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/4e666290-5329-4c7b-a389-7a8c41f4103e.png";
@@ -199,6 +198,19 @@ window.addEventListener("click", function (event) {
   }
 });
 
+// — Prevent anything but letters (no spaces) in FirstName —
+const firstNameEl = document.getElementById("FirstName");
+firstNameEl.addEventListener("keypress", (e) => {
+  // if the key isn’t A–Z or a–z, block it
+  if (!/^[A-Za-z]$/.test(e.key)) {
+    e.preventDefault();
+  }
+});
+firstNameEl.addEventListener("input", () => {
+  // strip out any non-letters (just in case)
+  firstNameEl.value = firstNameEl.value.replace(/[^A-Za-z]/g, "");
+});
+
 // -------------------- Close Nav container Script --------------------
 document.addEventListener("DOMContentLoaded", function () {
   const menuToggle = document.getElementById("menuToggle");
@@ -215,6 +227,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // -------------------- Form country script --------------------
 const phoneInput = document.querySelector("#phone");
+const form = document.getElementById("RegisterForm");
+const errorDiv = document.getElementById("phoneError");
 
 // Restrict typing to digits only
 phoneInput.addEventListener("keypress", function (e) {
@@ -250,10 +264,20 @@ const iti = window.intlTelInput(phoneInput, {
   },
 });
 
-const form = document.getElementById("RegisterForm");
-
 form.addEventListener("submit", function (e) {
   e.preventDefault();
+
+  let raw = phoneInput.value.replace(/\D/g, "");
+  let digits = raw.replace(/^0+/, "");
+
+  // validate
+  if (digits.length !== 10) {
+    errorDiv.textContent = "Please enter exactly 10 digits";
+    phoneInput.focus();
+    return;
+  }
+  // clear any previous error
+  errorDiv.textContent = "";
 
   const countryData = iti.getSelectedCountryData();
 
