@@ -4,6 +4,7 @@ IF RequestParameter("submitted") == "true" THEN
   Set @rawPhone = RequestParameter("phone")
   Set @countryCode = RequestParameter("countryCode")
   Set @locale = RequestParameter("initialCountry")
+  Set @joiningLink = RequestParameter("JoiningLink")
 
   Set @digitsOnly = ""
   FOR @i = 1 TO Length(@rawPhone) DO
@@ -17,34 +18,47 @@ IF RequestParameter("submitted") == "true" THEN
   Set @uniqueID = Concat(
     Format(SystemDateToLocalDate(Now()), "yyyyMMddHHmmss"),
     "_",
-    RequestParameter("phone")
+    @digitsOnly
   )
 
-  Set @BookingDate = Format(SystemDateToLocalDate(Now()), "yyyy-MM-dd")
-  Set @BookingTime = Format(SystemDateToLocalDate(Now()), "HH:mm:ss")
-
-  UpsertDE(
-    "WebinarFormData",    
-    1,                    
-    "UniqueID",       @uniqueID,
-    "FirstName",      RequestParameter("FirstName"),
-    "LastName",       RequestParameter("LastName"),
-    "Locale",         @locale, 
-    "Phone",          @phone,
-    "Email",          RequestParameter("Email"),
-    "Country",        RequestParameter("Country"),
-    "BookingDate",    @BookingDate,
-    "BookingTime",    @BookingTime,
-    "OldSlotDate",    RequestParameter("OldSlotDate"),
-    "OldSlotTime",    RequestParameter("OldSlotTime"),
-    "NewSlotDate",    RequestParameter("NewSlotDate"),
-    "NewSlotTime",    RequestParameter("NewSlotTime"),
-    "OfferingTitle",  RequestParameter("OfferingTitle"),
-    "JoiningLink",    RequestParameter("JoiningLink"),
-    "WhatsAppLink",   RequestParameter("WhatsAppLink"),
-    "WaitUntillDate", RequestParameter("WaitUntillDate"),
-    "ContactNumber",  RequestParameter("ContactNumber")
+  /* Check if user already registered for same Phone + JoiningLink */
+  Set @existing = Lookup(
+    "WebinarFormData", 
+    "UniqueID", 
+    "Phone", @phone, 
+    "JoiningLink", @joiningLink
   )
+
+  /* Only insert if not already registered */
+  IF Empty(@existing) THEN
+
+    Set @BookingDate = Format(SystemDateToLocalDate(Now()), "yyyy-MM-dd")
+    Set @BookingTime = Format(SystemDateToLocalDate(Now()), "HH:mm:ss")
+
+    UpsertDE(
+      "WebinarFormData",    
+      1,                    
+      "UniqueID",       @uniqueID,
+      "FirstName",      RequestParameter("FirstName"),
+      "LastName",       RequestParameter("LastName"),
+      "Locale",         @locale, 
+      "Phone",          @phone,
+      "Email",          RequestParameter("Email"),
+      "Country",        RequestParameter("Country"),
+      "BookingDate",    @BookingDate,
+      "BookingTime",    @BookingTime,
+      "OldSlotDate",    RequestParameter("OldSlotDate"),
+      "OldSlotTime",    RequestParameter("OldSlotTime"),
+      "NewSlotDate",    RequestParameter("NewSlotDate"),
+      "NewSlotTime",    RequestParameter("NewSlotTime"),
+      "OfferingTitle",  RequestParameter("OfferingTitle"),
+      "JoiningLink",    @joiningLink,
+      "WhatsAppLink",   RequestParameter("WhatsAppLink"),
+      "WaitUntillDate", RequestParameter("WaitUntillDate"),
+      "ContactNumber",  RequestParameter("ContactNumber")
+    )
+
+  ENDIF
 
 ENDIF
 ]%%
@@ -60,27 +74,75 @@ ENDIF
 </script>
 %%[ ENDIF ]%%
 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Meta Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+      fbq("init", "1175956401206232");
+      fbq("track", "PageView");
+    </script>
+    <noscript
+      ><img
+        height="1"
+        width="1"
+        style="display: none"
+        src="https://www.facebook.com/tr?id=1175956401206232&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
 
-  
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="facebook-domain-verification" content="ntxueelo74rgh0rn0ul2xcvizo84qn"  ="">
-    <title>CancerWebinarOn14April</title>
+    <!-- Clarity Code -->
+    <script type="text/javascript">
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", "qtqegiwx14");
+    </script>
+    <!-- Clarity Code End -->
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-        <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/css/intlTelInput.css"
-    />
-    <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+    <title>Title</title>
 
+    <!-- <link rel="stylesheet" href="style_v2.css" /> -->
     <style>
       :root {
         --ff-exo: "Exo", serif;
-        --ff-timesRoman: "Times New Roman", Times, serif;
+        --ff-poppins: "Poppins", sans-serif;
+        --ff-roboto-condensed: "Roboto Condensed", sans-serif;
+        --ff-josefin-slab: "Josefin Slab", serif;
 
         --text-black: #44403b;
         --text-gray: #787878;
@@ -241,6 +303,24 @@ ENDIF
         width: auto;
       }
 
+      .nav-tab > a:after {
+        background: none repeat scroll 0 0 transparent;
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 2px;
+        left: 50%;
+        background: var(--bg-green);
+        transition: opacity 300ms, transform 300ms;
+        width: 0;
+      }
+      .nav-tab > a:hover:after {
+        width: 100%;
+        left: 0;
+        opacity: 1;
+        transform: translate3d(0, 0.2em, 0);
+      }
+
       .nav-tabs {
         display: flex;
         align-items: center;
@@ -289,9 +369,9 @@ ENDIF
       }
 
       .hero p {
-        font-size: 42px;
+        font-size: 36px;
         text-align: center;
-        font-family: var(--ff-timesRoman);
+        font-family: var(--ff-josefin-slab);
       }
 
       .hero iframe {
@@ -341,10 +421,10 @@ ENDIF
         box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
       }
       .webinar-left img {
-        width: 300px;
+        width: 220px;
         height: auto;
       }
-      .webinar-left div {
+      .webinar-left > div {
         width: 100%;
       }
       .left-text-1 {
@@ -352,6 +432,13 @@ ENDIF
         font-size: 24px;
         margin-block-start: 10px;
         color: #254a28;
+      }
+
+      .dr-details {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        margin: 5px auto;
       }
 
       .webinar-right {
@@ -423,12 +510,14 @@ ENDIF
 
       /* -------------------- Mid-2 Section -------------------- */
       .banner-heading-block {
+        font-family: var(--ff-poppins);
         max-width: 1000px;
-        margin: 40px auto 10px;
+        margin: 20px auto 10px;
         padding: 0 20px;
         text-align: center;
       }
       .banner-heading-block h2 {
+        font-family: var(--ff-josefin-slab);
         font-size: 32px;
         margin-bottom: 10px;
       }
@@ -438,6 +527,7 @@ ENDIF
       }
 
       .banner-webinar-section {
+        font-family: var(--ff-poppins);
         display: flex;
         background: #fff;
         max-width: 1000px;
@@ -492,13 +582,14 @@ ENDIF
       /* -------------------- Instructions Section -------------------- */
 
       .join-webinar {
-        max-width: 1000px; /* Constrain the width on larger screens */
+        font-family: var(--ff-poppins);
+        max-width: 1224px; /* Constrain the width on larger screens */
         margin: 10px auto; /* Center with vertical spacing */
         background-color: #ffffff;
         border-radius: 8px;
         /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); */
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-        padding: 30px 20px;
+        /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
+        padding: 20px;
         text-align: center;
       }
 
@@ -508,53 +599,51 @@ ENDIF
         margin-bottom: 20px;
       }
 
-      /* Steps Container (Ordered List) */
-      .step-list {
-        max-width: 800px;
-        margin: 0 auto 30px auto;
-        list-style: none;
-        counter-reset: step;
-        text-align: left;
-      }
-
-      /* Individual Step Items */
-      .step-list li {
-        position: relative;
-        padding-left: 50px;
-        margin-bottom: 25px;
-      }
-
-      /* Circular Number */
-      .step-list li::before {
-        content: counter(step);
-        counter-increment: step;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 35px;
-        height: 35px;
-        border: 2px solid #1f3d16;
-        border-radius: 50%;
+      /* Container for all steps */
+      .steps-container {
         display: flex;
-        align-items: center;
         justify-content: center;
-        color: #1f3d16;
-        font-weight: bold;
-        background-color: #fff;
+        align-items: stretch; /* Ensure equal height if desired */
+        gap: 16px;
+        /* max-width: 800px; */
+        margin: 15px auto;
+        flex-wrap: wrap; /* Allow wrapping on smaller screens */
       }
 
-      /* Step Titles */
+      /* Each Step */
+      .step {
+        background: #fff;
+        border-radius: 8px;
+        padding: 10px;
+        text-align: center;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        flex: 1 1 280px; /* Grow and shrink, starting at min width 280px */
+        max-width: 260px;
+        height: auto;
+      }
+      .step:hover {
+        background: #edf9ee;
+      }
+
+      .step-number {
+        font-family: var(--ff-roboto-condensed);
+        font-weight: 700;
+        font-size: 64px;
+        -webkit-text-stroke: 1px var(--text-green);
+        margin-bottom: 10px;
+        color: transparent;
+      }
+
       .step-title {
-        font-size: 1.1rem;
-        font-weight: bold;
-        color: #000;
-        margin-bottom: 5px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: var(--text-green);
       }
 
-      /* Step Paragraph */
-      .step-text {
-        line-height: 1.6;
-        color: #333;
+      .step-desc {
+        font-size: 0.95rem;
+        color: #666;
       }
 
       /* Register Button */
@@ -575,12 +664,13 @@ ENDIF
       /* -------------------- Testinomial Section -------------------- */
       .testimonial-section {
         max-width: 1200px;
-        margin: 40px auto;
+        margin: 20px auto;
         padding: 0 20px;
         text-align: center;
       }
 
       .testimonial-section h2 {
+        font-family: var(--ff-josefin-slab);
         font-size: 2rem;
         margin-bottom: 20px;
       }
@@ -629,13 +719,14 @@ ENDIF
       /* -------------------- BrandLogo Section -------------------- */
       .brands-section {
         max-width: 1200px;
-        margin: 40px auto;
+        margin: 20px auto;
         text-align: center;
         padding: 0 20px;
       }
 
       /* Heading */
       .brands-section h2 {
+        font-family: var(--ff-josefin-slab);
         font-size: 2rem;
         margin-bottom: 30px;
       }
@@ -670,10 +761,11 @@ ENDIF
       .faq-section {
         max-width: 1000px;
         width: 90%;
-        margin: 40px auto 100px;
+        margin: 20px auto 100px;
       }
 
       .faq-section h2 {
+        font-family: var(--ff-josefin-slab);
         font-size: 2rem;
         text-align: center;
         margin-bottom: 20px;
@@ -826,135 +918,136 @@ ENDIF
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
       }
 
-/* -------------------- Fill Form  -------------------- */
+      /* -------------------- Fill Form  -------------------- */
 
-/* The Modal (background overlay) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed;
-  z-index: 9999;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.5);
-  font-family: var(--ff-exo);
-}
+      /* The Modal (background overlay) */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: rgba(0, 0, 0, 0.5);
+        font-family: var(--ff-exo);
+      }
 
-/* Modal Content Box */
-.modal-content {
-  background-color: #fff;
-  margin: 5% auto;
-  max-width: 400px;
-  padding: 20px;
-  border-radius: 8px;
-  position: relative;
-}
+      /* Modal Content Box */
+      .modal-content {
+        background-color: #fff;
+        margin: 5% auto;
+        max-width: 400px;
+        padding: 20px;
+        border-radius: 8px;
+        position: relative;
+      }
 
-/* Close Button (X) */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-  cursor: pointer;
-}
-.close:hover,
-.close:focus {
-  color: #000;
-}
+      /* Close Button (X) */
+      .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .close:hover,
+      .close:focus {
+        color: #000;
+      }
 
-/* Two containers in the modal: success vs. form */
-.success-container,
-.form-container {
-  display: none; /* We'll show/hide these via JS */
-  margin-block: 30px;
-}
+      /* Two containers in the modal: success vs. form */
+      .success-container,
+      .form-container {
+        display: none; /* We'll show/hide these via JS */
+        margin-block: 30px;
+      }
 
-/* Form and success message styling */
-.success-container p {
-  color: green;
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-.form-container h2 {
-  margin-bottom: 15px;
-  font-size: 28px;
-  text-align: center;
-}
-.form-container label {
-  font-size: 16px;
-  display: block;
-  margin: 10px 0 5px;
-}
-.form-container input[type="text"],
-.form-container input[type="email"],
-.form-container input[type="tel"],
-.form-container select {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
+      /* Form and success message styling */
+      .success-container p {
+        color: green;
+        font-size: 20px;
+        margin-bottom: 10px;
+      }
+      .form-container h2 {
+        margin-bottom: 15px;
+        font-size: 28px;
+        text-align: center;
+      }
+      .form-container label {
+        font-size: 16px;
+        display: block;
+        margin: 10px 0 5px;
+      }
+      .form-container input[type="text"],
+      .form-container input[type="email"],
+      .form-container input[type="tel"],
+      .form-container select {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
 
-.intl-tel-input, .iti {
-  width: 100%;
-}
+      .intl-tel-input,
+      .iti {
+        width: 100%;
+      }
 
-.iti__country-container {
-  margin: 1px;
-}
-.iti__selected-country {
-  background-color: #F2F2F2 !important;
-  padding-inline: 5px 10px !important;
-}
+      .iti__country-container {
+        margin: 1px;
+      }
+      .iti__selected-country {
+        background-color: #f2f2f2 !important;
+        padding-inline: 5px 10px !important;
+      }
 
- .submit-btn {
-  background: #007bff;
-  color: #fff;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1em;
-  width: 100%;
-  margin-block: 10px;
-}
-.form-container button:hover {
-  background: #0056b3;
-}
+      .submit-btn {
+        background: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 1em;
+        width: 100%;
+        margin-block: 10px;
+      }
+      .form-container button:hover {
+        background: #0056b3;
+      }
 
-/* join whatsapp btn */
-.whatsapp-button-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-}
+      /* join whatsapp btn */
+      .whatsapp-button-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+      }
 
-.whatsapp-button {
-  position: relative;
-  color: var(--color-white);
-  background: var(--color-liteGreen);
-  font-size: 20px;
-  text-decoration: none;
-  display: inline-block;
-  /*text-transform: uppercase;*/
-  letter-spacing: 1px;
-  border: 2px solid white;
-  border-radius: 50px;
-  padding: 20px 30px;
-  margin: 20px 0 20px;
-  box-shadow: 0 2px 5px 0 rgba(3, 6, 26, 0.15);
-  transition: 0.5s all ease-in-out;
-  &:hover {
-    cursor: pointer;
-    animation: none;
-    animation-play-state: paused;
-  }
-}
+      .whatsapp-button {
+        position: relative;
+        color: var(--color-white);
+        background: var(--color-liteGreen);
+        font-size: 20px;
+        text-decoration: none;
+        display: inline-block;
+        /*text-transform: uppercase;*/
+        letter-spacing: 1px;
+        border: 2px solid white;
+        border-radius: 50px;
+        padding: 20px 30px;
+        margin: 20px 0 20px;
+        box-shadow: 0 2px 5px 0 rgba(3, 6, 26, 0.15);
+        transition: 0.5s all ease-in-out;
+        &:hover {
+          cursor: pointer;
+          animation: none;
+          animation-play-state: paused;
+        }
+      }
 
       .whatsapp-button-pulse {
         animation: pulse 2s infinite 0.5s cubic-bezier(0.25, 0, 0, 1);
@@ -964,6 +1057,16 @@ ENDIF
         to {
           box-shadow: 0 0 0 18px rgba(255, 255, 255, 0);
         }
+      }
+
+      .error-msg {
+        color: #c00;
+        font-size: 14px;
+        margin-top: 4px;
+        display: none;
+      }
+      .error-msg:not(:empty) {
+        display: block;
       }
 
       /* -------------------- Responsive Code -------------------- */
@@ -1159,18 +1262,18 @@ ENDIF
         .join-webinar h2 {
           font-size: 24px;
         }
-        .step-list li {
-          padding-left: 40px;
+        .step {
+          height: auto;
+          padding: 15px;
+          max-width: 100%;
         }
-        .step-list li::before {
-          width: 30px;
-          height: 30px;
-          font-size: 0.9rem;
+        .step-number {
+          font-size: 2.5rem;
         }
         .step-title {
-          font-size: 1rem;
+          font-size: 1.1rem;
         }
-        .step-text {
+        .step-desc {
           font-size: 0.9rem;
         }
 
@@ -1231,17 +1334,41 @@ ENDIF
         }
       }
     </style>
-    <!-- script -->
-  
-  
+
+    <!-- Country Code -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/css/intlTelInput.css"
+    />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
     <!-- -------------------- NavBar -------------------- -->
     <header>
       <div class="nav-wrapper">
         <div class="logo-container">
-          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/cbf301aa-0b2b-4801-acad-d2ad99883567.png" alt="Logo" class="logo">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/cbf301aa-0b2b-4801-acad-d2ad99883567.png"
+            alt="Logo"
+            class="logo"
+          />
         </div>
         <nav>
-          <input class="hidden" type="checkbox" id="menuToggle">
+          <input class="hidden" type="checkbox" id="menuToggle" />
           <label class="menu-btn" for="menuToggle">
             <div class="menu"></div>
             <div class="menu"></div>
@@ -1264,41 +1391,65 @@ ENDIF
 
     <!-- -------------------- Hero -------------------- -->
     <section class="hero">
-      <p class="text-green">
-        Join <i>Cancer</i> Webinar by <i>Acharya Manish Ji</i>
-      </p>
-      <iframe width="890" height="500" src="https://www.youtube.com/embed/xAYufd85eHg?si=l_D-AgKPJGP3tAeh&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=xAYufd85eHg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
+      <p id="heroHeading" class="text-green"></p>
+      <iframe
+        width="750"
+        height="425"
+        src="https://www.youtube.com/embed/xAYufd85eHg?si=l_D-AgKPJGP3tAeh&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=xAYufd85eHg"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen=""
+      ></iframe>
     </section>
 
     <!-- -------------------- Stats Section -------------------- -->
     <div class="stats-container">
       <div class="stat-box">
-        <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f29240b6-31c3-48c7-83d5-606cc7a24835.png" alt="Icon 1">
+        <img
+          src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f29240b6-31c3-48c7-83d5-606cc7a24835.png"
+          alt="Icon 1"
+        />
       </div>
       <div class="stat-box">
-        <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/b43992eb-b602-4a91-adc5-f78bc266577f.png" alt="Icon 2">
+        <img
+          src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/b43992eb-b602-4a91-adc5-f78bc266577f.png"
+          alt="Icon 2"
+        />
       </div>
       <div class="stat-box">
-        <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/7e98c391-7d26-4138-bbed-e7844b55ec63.png" alt="Icon 3">
+        <img
+          src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/7e98c391-7d26-4138-bbed-e7844b55ec63.png"
+          alt="Icon 3"
+        />
       </div>
       <div class="stat-box">
-        <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f24cb4b2-15a2-445a-a8b4-2aa66b1704fc.png" alt="Icon 4">
+        <img
+          src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f24cb4b2-15a2-445a-a8b4-2aa66b1704fc.png"
+          alt="Icon 4"
+        />
       </div>
     </div>
 
     <!-- -------------------- Mid-1 Section -------------------- -->
     <section class="webinar-section">
       <div class="webinar-left">
-        <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/08c5ae0d-2900-4c70-9ff4-c823dc367b9e.png" alt="Acharya Manish Ji">
+        <img
+          id="drImg"
+          src=""
+          alt="Img of person who will be conducting webinar"
+        />
         <div>
-          <p class="left-text-1">Acharya Manish Ji</p>
+          <p id="drName1" class="left-text-1"></p>
+          <div id="drDetails" class="dr-details"></div>
         </div>
       </div>
 
       <div class="webinar-right text-gray">
-        <p class="right-txt-1">Join <span>Acharya Manish Ji</span></p>
+        <p class="right-txt-1">Connect with <span id="drName2"></span></p>
         <p class="right-txt-2">On</p>
-        <p class="right-txt-3">14 April 2025 | 11:00 AM</p>
+        <p id="webDate" class="right-txt-3"></p>
         <p class="right-txt-4">Time is Running Out</p>
 
         <!-- MAIN TIMER -->
@@ -1346,30 +1497,18 @@ ENDIF
     <section class="banner-webinar-section">
       <!-- banner-Left side: Image -->
       <div class="banner-left">
-        <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/40dbaf11-3753-4fe5-872f-d7cc13c487fb.png" alt="Webinar Image">
+        <img id="BannerImg" src="" alt="Webinar Image" />
       </div>
 
       <!-- banner-Right side: Text -->
       <div class="banner-right text-black">
         <p>ये वेबिनार किसके लिए है ?</p>
         <ul>
-          <li>
-            जो लोग <b>cancer reversal</b>, treatment solutions और natural
-            healing methods के बारे में जानना चाहते हैं।
-          </li>
-          <li>
-            जो <b>lifestyle changes</b> अपनाकर <b>cancer prevention</b> के उपाय
-            खोजना चाहते हैं।
-          </li>
-          <li>
-            जो mental & physical health को बेहतर बनाए रखना चाहते हैं during
-            cancer treatment।
-          </li>
-          <li>
-            जिनके परिवार में cancer patients हैं और वे <b>chemotherapy</b> या
-            <b>radiation</b> के side effects कम करने के तरीके जानना चाहते हैं।
-          </li>
-          <!-- <li>Point Five</li> -->
+          <li id="why1"></li>
+          <li id="why2"></li>
+          <li id="why3"></li>
+          <li id="why4"></li>
+          <li id="why5"></li>
         </ul>
       </div>
     </section>
@@ -1377,40 +1516,38 @@ ENDIF
     <!-- -------------------- Instructions Section -------------------- -->
     <section id="steps" class="join-webinar">
       <h2 class="text-green">वेबिनार को ज्वाइन करने की प्रक्रिया:</h2>
-      <ol class="step-list">
+      <div class="steps-container">
         <!-- Step 1 -->
-        <li>
-          <div class="step-title">Registration Process</div>
-          <div class="step-text">
-            <b>"Register"</b> बटन click करें। बटन पर क्लिक करने के बाद आपकी
-            screen पर pop-up खुलेगा।
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-title">Register Now</div>
+          <div class="step-desc">Click on "Register Now" button.</div>
+        </div>
+        <!-- Step 2 (Highlighted) -->
+        <div class="step highlight">
+          <div class="step-number">2</div>
+          <div class="step-title">Fill Your Details</div>
+          <div class="step-desc">
+            Now fill your personal details, with your "WhatsApp Number", on
+            which you want to get webinar details.
           </div>
-        </li>
-        <!-- Step 2 -->
-        <li>
-          <div class="step-title">Fill Details and Submit</div>
-          <div class="step-text">
-            वहाँ अपना <b>Name</b>, <b>WhatsApp Number</b>, <b>ईमेल (Email)</b>,
-            <b>Country</b> डालें और <b>"Submit"</b> बटन पर click करें।
-          </div>
-        </li>
+        </div>
+        <!-- Step 4 -->
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-title">Submit</div>
+          <div class="step-desc">Then click on "Submit" button.</div>
+        </div>
         <!-- Step 3 -->
-        <li>
-          <div class="step-title">Important!</div>
-          <div class="step-text">
-            <b>Form submit</b> krne के बाद आपके <b>WhatsApp Number</b> पर
-            Webinar की Details भेज दी जाएंगी। <br>
-            <b>Mobile</b> पर <b>Webinar Join</b> करने के लिए
-            <b>Zoom App</b> Download करके रखें। <br>
-            Webinar वाले दिन <b>Joining Link</b> पर click करें, <br>
-            Zoom App पर अपना Name और Email डालें फिर Continue पर Click करें।
-            <br>
-            हमारे <b></b> को ज्वाइन करना न भूलें। अगर किसी कारणवश आपको वेबिनार
-            का लिंक प्राप्त नहीं होता तो आप Group के माध्यम से वेबिनार का लिंक
-            ले सकते हैं।
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-title">Important Note !!</div>
+          <div class="step-desc">
+            After submitting your details, Join our "WhatsApp Group", to get
+            latest information about the upcomming webinar.
           </div>
-        </li>
-      </ol>
+        </div>
+      </div>
       <button class="step-register-btn" onclick="newopenmodal()">
         Register Now
       </button>
@@ -1422,32 +1559,30 @@ ENDIF
       <div class="testimonials-container">
         <!-- Testimonial 1 -->
         <div class="testimonial-card">
-          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png" alt="User Photo">
-          <p class="testimonial-quote">
-            “Got valuable guidance from Acharya Manish Ji in the webinar!
-            Learned natural ways to support breast cancer recovery with
-            Ayurveda.”
-          </p>
-          <p class="testimonial-author">— Roshni Singh</p>
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
+            alt="User Photo"
+          />
+          <p id="testi1" class="testimonial-quote"></p>
+          <p id="testiNam1" class="testimonial-author"></p>
         </div>
         <!-- Testimonial 2 -->
         <div class="testimonial-card">
-          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png" alt="User Photo">
-          <p class="testimonial-quote">
-            “Very informative session! Understood how Ayurveda helps in managing
-            skin cancer. Actually i was planning for chemo but now only
-            Ayurveda.”
-          </p>
-          <p class="testimonial-author">— Jagmeet Kaur</p>
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
+            alt="User Photo"
+          />
+          <p id="testi2" class="testimonial-quote"></p>
+          <p id="testiNam2" class="testimonial-author"></p>
         </div>
         <!-- Testimonial 3 -->
         <div class="testimonial-card">
-          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png" alt="User Photo">
-          <p class="testimonial-quote">
-            “The diet and lifestyle tips shared were really helpful. Its a new
-            hope for me now for my blood cancer treatment.”
-          </p>
-          <p class="testimonial-author">— Preetinder</p>
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
+            alt="User Photo"
+          />
+          <p id="testi3" class="testimonial-quote"></p>
+          <p id="testiNam3" class="testimonial-author"></p>
         </div>
       </div>
     </section>
@@ -1458,15 +1593,24 @@ ENDIF
       <div class="brands-container">
         <!-- Brand 1 -->
         <div class="brand-card">
-          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/dac32086-273a-490d-8790-326f19ec1a47.png" alt="Shuddhi Brand">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/dac32086-273a-490d-8790-326f19ec1a47.png"
+            alt="Shuddhi Brand"
+          />
         </div>
         <!-- Brand 2 -->
         <div class="brand-card">
-          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/09b32e30-c8b1-4499-8216-e2793e3aa65b.png" alt="HHMS Brand">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/09b32e30-c8b1-4499-8216-e2793e3aa65b.png"
+            alt="HHMS Brand"
+          />
         </div>
         <!-- Brand 3 -->
         <div class="brand-card">
-          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/71cd999b-b485-4024-b6d7-e1c2fcdf2d1d.png" alt="Swami Om Brand">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/71cd999b-b485-4024-b6d7-e1c2fcdf2d1d.png"
+            alt="Swami Om Brand"
+          />
         </div>
       </div>
     </section>
@@ -1477,7 +1621,7 @@ ENDIF
       <div class="faq-container">
         <!-- FAQ Item 1 -->
         <div class="faq-item">
-          <input type="checkbox" id="faq1">
+          <input type="checkbox" id="faq1" />
           <label class="faq-title" for="faq1">
             <span>What is this webinar about?</span>
             <div class="faq-arrow"></div>
@@ -1492,7 +1636,7 @@ ENDIF
 
         <!-- FAQ Item 2 -->
         <div class="faq-item">
-          <input type="checkbox" id="faq2">
+          <input type="checkbox" id="faq2" />
           <label class="faq-title" for="faq2">
             <span>How long will the webinar last?</span>
             <div class="faq-arrow"></div>
@@ -1507,7 +1651,7 @@ ENDIF
 
         <!-- FAQ Item 3 -->
         <div class="faq-item">
-          <input type="checkbox" id="faq3">
+          <input type="checkbox" id="faq3" />
           <label class="faq-title" for="faq3">
             <span>Is there any cost to join?</span>
             <div class="faq-arrow"></div>
@@ -1568,7 +1712,13 @@ ENDIF
           <p class="text-center">Thank you!</p>
           <p class="text-center">Your information has been submitted.</p>
           <div class="whatsapp-button-container">
-            <a href="https://chat.whatsapp.com/KTe6GqzQ4zIBBD3XQB2eTA" target="_blank" class="whatsapp-button whatsapp-button-pulse">Join our WhatsApp Group</a>
+            <a
+              id="whatsappLink1"
+              href=""
+              target="_blank"
+              class="whatsapp-button whatsapp-button-pulse"
+              >Join our WhatsApp Group</a
+            >
           </div>
           <p class="text-center">
             To stay informed about your upcoming webinar.
@@ -1578,38 +1728,84 @@ ENDIF
         <!-- Registration Form Container -->
         <div class="form-container" id="formContainer">
           <h2>Fill Your Details!</h2>
-          <form id="RegisterForm" action="%%=RequestParameter('PAGEURL')=%%" method="post">
-            <input type="hidden" name="submitted" value="true">
+          <form
+            id="RegisterForm"
+            action="%%=RequestParameter('PAGEURL')=%%"
+            method="post"
+          >
+            <input type="hidden" name="submitted" value="true" />
 
             <!-- Hidden fields (empty or default) -->
-             <input type="hidden" id="countryCode" name="countryCode" />
+            <input type="hidden" id="countryCode" name="countryCode" />
             <input type="hidden" id="initialCountry" name="initialCountry" />
-            <input type="hidden" name="OldSlotDate" value="">
-            <input type="hidden" name="OldSlotTime" value="">
-            <input type="hidden" name="NewSlotDate" value="14 April 2025">
-            <input type="hidden" name="NewSlotTime" value="11:00 AM">
-            <input type="hidden" name="OfferingTitle" value="Cancer">
-            <input type="hidden" name="WaitUntillDate" value="2025-04-14">
-            <input type="hidden" name="ContactNumber" value="917710371037">
-            <input type="hidden" name="OfferingName" value="CancerWebinarOn14April">
-            <input type="hidden" name="JoiningLink" value="https://us06web.zoom.us/j/85335792451">
-            <input type="hidden" name="WhatsAppLink" value="https://chat.whatsapp.com/KTe6GqzQ4zIBBD3XQB2eTA">
+            <input type="hidden" name="OldSlotDate" value="" />
+            <input type="hidden" name="OldSlotTime" value="" />
+            <input id="NewSlotDate" type="hidden" name="NewSlotDate" value="" />
+            <input id="NewSlotTime" type="hidden" name="NewSlotTime" value="" />
+            <input
+              id="OfferingTitle"
+              type="hidden"
+              name="OfferingTitle"
+              value=""
+            />
+            <input
+              id="WaitUntillDate"
+              type="hidden"
+              name="WaitUntillDate"
+              value=""
+            />
+            <input
+              id="ContactNumber"
+              type="hidden"
+              name="ContactNumber"
+              value=""
+            />
+            <input id="joiningLink" type="hidden" name="JoiningLink" value="" />
+            <input
+              id="whatsappLink2"
+              type="hidden"
+              name="WhatsAppLink"
+              value=""
+            />
 
             <!-- Visible fields -->
             <label for="FirstName">First Name*</label>
-            <input type="text" id="FirstName" name="FirstName" required="" placeholder="Bharat">
+            <input
+              type="text"
+              id="FirstName"
+              name="FirstName"
+              required=""
+              placeholder="John"
+            />
 
             <label for="LastName">Last Name</label>
-            <input type="text" id="LastName" name="LastName" placeholder="Singh">
+            <input
+              type="text"
+              id="LastName"
+              name="LastName"
+              placeholder="Doe"
+            />
 
             <label for="Phone">WhatsApp Number*</label>
-            <input type="tel" id="phone" name="phone" placeholder="8175433680" required />
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              placeholder="1234567890"
+              required
+            />
+            <div id="phoneError" class="error-msg" aria-live="polite"></div>
 
-            <label for="Email">Email*</label>
-            <input type="email" id="Email" name="Email" required="" placeholder="example@gmail.com">
+            <label for="Email">Email</label>
+            <input
+              type="email"
+              id="Email"
+              name="Email"
+              placeholder="example@gmail.com"
+            />
 
-            <label for="Country">Country*</label>
-            <select id="Country" name="Country" required="">
+            <label for="Country">Country</label>
+            <select id="Country" name="Country">
               <option value="">-- Select a Country --</option>
               <option value="India">India</option>
               <option value="Afghanistan">Afghanistan</option>
@@ -1829,7 +2025,98 @@ ENDIF
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/intlTelInput.min.js"></script>
+    <!-- <script src="script_v1.js"></script> -->
+
     <script>
+      // -------------------- Dynamic Content Update --------------------
+
+      const title = "CancerWebinarOn2May";
+      const offeringTitle = "Cancer";
+
+      const joiningLink = "https://us06web.zoom.us/j/88286131958";
+      const whatsappLink = "https://chat.whatsapp.com/J89ICa64CiCACyishAGNET";
+
+      const webDate = "2 May 2025 | 11:00 AM";
+      const newSlotDate = "2 May 2025";
+      const newSlotTime = "11:00 AM";
+      const waitUntillDate = "2025-05-02";
+      const targetDate = new Date("May 2, 2025 11:00:00").getTime();
+
+      const heroHeading =
+        "Join <i>Cancer</i> Webinar by <i>Acharya Manish Ji</i>";
+
+      const drName = "Acharya Manish Ji";
+      const docImg =
+        "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/08c5ae0d-2900-4c70-9ff4-c823dc367b9e.png";
+
+      const bannerImage =
+        "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/40dbaf11-3753-4fe5-872f-d7cc13c487fb.png";
+
+      // Why Join Content
+      const why1 =
+        "जो लोग <b>cancer reversal</b>, treatment solutions और natural healing methods के बारे में जानना चाहते हैं।";
+      const why2 =
+        "जो <b>lifestyle changes</b> अपनाकर <b>cancer prevention</b> के उपाय खोजना चाहते हैं।";
+      const why3 =
+        "जो mental & physical health को बेहतर बनाए रखना चाहते हैं during cancer treatment।";
+      const why4 =
+        "जिनके परिवार में cancer patients हैं और वे <b>chemotherapy</b> या <b>radiation</b> के side effects कम करने के तरीके जानना चाहते हैं।";
+
+      const Testi1 =
+        "“Got valuable guidance from Acharya Manish Ji in the webinar! Learned natural ways to support breast cancer recovery with Ayurveda.”";
+      const Testi2 =
+        "“Very informative session! Understood how Ayurveda helps in managing skin cancer. Actually i was planning for chemo but now only Ayurveda.”";
+      const Testi3 =
+        "“The diet and lifestyle tips shared were really helpful. Its a new hope for me now for my blood cancer treatment.”";
+
+      const TestiNam1 = "— Roshni Singh";
+      const TestiNam2 = "— Jagmeet Kaur";
+      const TestiNam3 = "— Preetinder";
+
+      const contactNumber = "917710371037";
+
+      // -------------------- Dynamic Content Update End --------------------
+
+      // Script for  Dynamic Content Update
+
+      document.title = title;
+      document.getElementById("heroHeading").innerHTML = heroHeading;
+      if (document.getElementById("drImg")) {
+        drImg.src = docImg;
+      }
+
+      if (document.getElementById("BannerImg")) {
+        BannerImg.src = bannerImage;
+      }
+      document.getElementById("drName1").innerHTML = drName;
+      document.getElementById("drName2").innerHTML = drName;
+      document.getElementById("webDate").innerHTML = webDate;
+
+      document.getElementById("why1").innerHTML = why1;
+      document.getElementById("why2").innerHTML = why2;
+      document.getElementById("why3").innerHTML = why3;
+      document.getElementById("why4").innerHTML = why4;
+      document.getElementById("why5").innerHTML = why5;
+
+      document.getElementById("whatsappLink1").href = whatsappLink;
+      document.getElementById("whatsappLink2").value = whatsappLink;
+      document.getElementById("joiningLink").value = joiningLink;
+      document.getElementById("NewSlotDate").value = newSlotDate;
+      document.getElementById("NewSlotTime").value = newSlotTime;
+      document.getElementById("OfferingTitle").value = offeringTitle;
+      document.getElementById("WaitUntillDate").value = waitUntillDate;
+      document.getElementById("ContactNumber").value = contactNumber;
+
+      document.getElementById("testi1").innerHTML = Testi1;
+      document.getElementById("testi2").innerHTML = Testi2;
+      document.getElementById("testi3").innerHTML = Testi3;
+
+      document.getElementById("testiNam1").innerHTML = TestiNam1;
+      document.getElementById("testiNam2").innerHTML = TestiNam2;
+      document.getElementById("testiNam3").innerHTML = TestiNam3;
+
+      // Script for Dynamic Content Update End
+
       // -------------------- Timer Script --------------------
       // Main Timer Elements
       const mainDays = document.getElementById("mainDays");
@@ -1849,7 +2136,7 @@ ENDIF
       }
 
       // Set your target date/time here (shared by both timers)
-      const targetDate = new Date("April 14, 2025 11:00:00").getTime();
+      // const targetDate = new Date("April 3, 2025 10:00:00").getTime();
 
       function timer() {
         const currentDate = new Date().getTime();
@@ -1926,6 +2213,19 @@ ENDIF
         }
       });
 
+      // — Prevent anything but letters (no spaces) in FirstName —
+      const firstNameEl = document.getElementById("FirstName");
+      firstNameEl.addEventListener("keypress", (e) => {
+        // if the key isn’t A–Z or a–z, block it
+        if (!/^[A-Za-z]$/.test(e.key)) {
+          e.preventDefault();
+        }
+      });
+      firstNameEl.addEventListener("input", () => {
+        // strip out any non-letters (just in case)
+        firstNameEl.value = firstNameEl.value.replace(/[^A-Za-z]/g, "");
+      });
+
       // -------------------- Close Nav container Script --------------------
       document.addEventListener("DOMContentLoaded", function () {
         const menuToggle = document.getElementById("menuToggle");
@@ -1941,36 +2241,74 @@ ENDIF
           });
         });
       });
-      
-// -------------------- Form country script --------------------
-const phoneInput = document.querySelector("#phone");
-const iti = window.intlTelInput(phoneInput, {
-  initialCountry: "in",
-  strictMode: true,
-  loadUtils: function () {
-    return import(
-      "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js"
-    );
-  },
-});
 
-const form = document.getElementById("RegisterForm");
+      // -------------------- Form country script --------------------
+      const phoneInput = document.querySelector("#phone");
+      const form = document.getElementById("RegisterForm");
+      const errorDiv = document.getElementById("phoneError");
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault(); // Stop form submission temporarily
+      // Restrict typing to digits only
+      phoneInput.addEventListener("keypress", function (e) {
+        const char = String.fromCharCode(e.which);
+        if (!/^[0-9]$/.test(char)) {
+          e.preventDefault();
+        }
+      });
 
-  const countryData = iti.getSelectedCountryData();
+      // Clean pasted input and remove non-numeric characters
+      phoneInput.addEventListener("paste", function (e) {
+        e.preventDefault();
+        const pasted = (e.clipboardData || window.clipboardData).getData(
+          "text"
+        );
+        const digitsOnly = pasted.replace(/\D/g, "").replace(/^0+/, ""); // remove leading zeros
+        phoneInput.value = digitsOnly;
+      });
 
-  // Set hidden fields
-  document.getElementById("countryCode").value = countryData.dialCode;
-  document.getElementById("initialCountry").value = countryData.iso2;
+      // Prevent number from starting with 0
+      phoneInput.addEventListener("input", function () {
+        if (phoneInput.value.startsWith("0")) {
+          phoneInput.value = phoneInput.value.replace(/^0+/, "");
+        }
+      });
 
-  // Now submit the form manually
-  setTimeout(() => {
-    form.submit();
-  }, 100); // Slight delay ensures fields are updated
-});
+      const iti = window.intlTelInput(phoneInput, {
+        initialCountry: "in",
+        strictMode: true,
+        separateDialCode: true,
+        loadUtils: function () {
+          return import(
+            "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js?1743167482095"
+          );
+        },
+      });
 
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        let raw = phoneInput.value.replace(/\D/g, "");
+        let digits = raw.replace(/^0+/, "");
+
+        // validate
+        if (digits.length !== 10) {
+          errorDiv.textContent = "Please enter exactly 10 digits";
+          phoneInput.focus();
+          return;
+        }
+        // clear any previous error
+        errorDiv.textContent = "";
+
+        const countryData = iti.getSelectedCountryData();
+
+        // Set hidden fields
+        document.getElementById("countryCode").value = countryData.dialCode;
+        document.getElementById("initialCountry").value = countryData.iso2;
+
+        // Now submit the form manually
+        setTimeout(() => {
+          form.submit();
+        }, 100);
+      });
     </script>
-  
-
+  </body>
+</html>
