@@ -1,3 +1,57 @@
+// -------------------- Dynamic Content Update --------------------
+
+const title = "KidneyLiverWebinarOn2May";
+const offeringTitle = "Cancer";
+
+const joiningLink = "";
+const whatsappLink = "";
+
+const webDate = "2 May 2025 | 3:00 PM";
+const newSlotDate = "2 May 2025";
+const newSlotTime = "3:00 PM";
+const waitUntillDate = "2025-05-02";
+const targetDate = new Date("May 2, 2025 15:00:00").getTime();
+
+const heroHeading =
+  "Join <i>Kidney and Liver</i> Webinar by <i>Acharya Manish Ji</i>";
+
+const drName = "Acharya Manish Ji";
+const docImg =
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/08c5ae0d-2900-4c70-9ff4-c823dc367b9e.png";
+
+const bannerImage =
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/40dbaf11-3753-4fe5-872f-d7cc13c487fb.png";
+
+const contactNumber = "917710371037";
+
+// -------------------- Dynamic Content Update End --------------------
+
+// Script for  Dynamic Content Update
+
+document.title = title;
+document.getElementById("heroHeading").innerHTML = heroHeading;
+if (document.getElementById("drImg")) {
+  drImg.src = docImg;
+}
+
+if (document.getElementById("BannerImg")) {
+  BannerImg.src = bannerImage;
+}
+document.getElementById("drName1").innerHTML = drName;
+document.getElementById("drName2").innerHTML = drName;
+document.getElementById("webDate").innerHTML = webDate;
+
+document.getElementById("whatsappLink1").href = whatsappLink;
+document.getElementById("whatsappLink2").value = whatsappLink;
+document.getElementById("joiningLink").value = joiningLink;
+document.getElementById("NewSlotDate").value = newSlotDate;
+document.getElementById("NewSlotTime").value = newSlotTime;
+document.getElementById("OfferingTitle").value = offeringTitle;
+document.getElementById("WaitUntillDate").value = waitUntillDate;
+document.getElementById("ContactNumber").value = contactNumber;
+
+// Script for Dynamic Content Update End
+
 // -------------------- Timer Script --------------------
 // Main Timer Elements
 const mainDays = document.getElementById("mainDays");
@@ -17,7 +71,7 @@ function formatTime(num) {
 }
 
 // Set your target date/time here (shared by both timers)
-const targetDate = new Date("April 28, 2025 15:00:00").getTime();
+// const targetDate = new Date("April 3, 2025 10:00:00").getTime();
 
 function timer() {
   const currentDate = new Date().getTime();
@@ -94,6 +148,19 @@ window.addEventListener("click", function (event) {
   }
 });
 
+// — Prevent anything but letters (no spaces) in FirstName —
+const firstNameEl = document.getElementById("FirstName");
+firstNameEl.addEventListener("keypress", (e) => {
+  // if the key isn’t A–Z or a–z, block it
+  if (!/^[A-Za-z]$/.test(e.key)) {
+    e.preventDefault();
+  }
+});
+firstNameEl.addEventListener("input", () => {
+  // strip out any non-letters (just in case)
+  firstNameEl.value = firstNameEl.value.replace(/[^A-Za-z]/g, "");
+});
+
 // -------------------- Close Nav container Script --------------------
 document.addEventListener("DOMContentLoaded", function () {
   const menuToggle = document.getElementById("menuToggle");
@@ -106,4 +173,70 @@ document.addEventListener("DOMContentLoaded", function () {
       menuToggle.checked = false;
     });
   });
+});
+
+// -------------------- Form country script --------------------
+const phoneInput = document.querySelector("#phone");
+const form = document.getElementById("RegisterForm");
+const errorDiv = document.getElementById("phoneError");
+
+// Restrict typing to digits only
+phoneInput.addEventListener("keypress", function (e) {
+  const char = String.fromCharCode(e.which);
+  if (!/^[0-9]$/.test(char)) {
+    e.preventDefault();
+  }
+});
+
+// Clean pasted input and remove non-numeric characters
+phoneInput.addEventListener("paste", function (e) {
+  e.preventDefault();
+  const pasted = (e.clipboardData || window.clipboardData).getData("text");
+  const digitsOnly = pasted.replace(/\D/g, "").replace(/^0+/, ""); // remove leading zeros
+  phoneInput.value = digitsOnly;
+});
+
+// Prevent number from starting with 0
+phoneInput.addEventListener("input", function () {
+  if (phoneInput.value.startsWith("0")) {
+    phoneInput.value = phoneInput.value.replace(/^0+/, "");
+  }
+});
+
+const iti = window.intlTelInput(phoneInput, {
+  initialCountry: "in",
+  strictMode: true,
+  separateDialCode: true,
+  loadUtils: function () {
+    return import(
+      "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js?1743167482095"
+    );
+  },
+});
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  let raw = phoneInput.value.replace(/\D/g, "");
+  let digits = raw.replace(/^0+/, "");
+
+  // validate
+  if (digits.length !== 10) {
+    errorDiv.textContent = "Please enter exactly 10 digits";
+    phoneInput.focus();
+    return;
+  }
+  // clear any previous error
+  errorDiv.textContent = "";
+
+  const countryData = iti.getSelectedCountryData();
+
+  // Set hidden fields
+  document.getElementById("countryCode").value = countryData.dialCode;
+  document.getElementById("initialCountry").value = countryData.iso2;
+
+  // Now submit the form manually
+  setTimeout(() => {
+    form.submit();
+  }, 100);
 });
