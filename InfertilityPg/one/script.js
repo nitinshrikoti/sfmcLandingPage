@@ -1,28 +1,31 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "InfertilityWebinarOn29Apr";
+const title = "InfertilityWebinarOn3May";
 const offeringTitle = "Infertility";
 
-const joiningLink = "https://us06web.zoom.us/j/88451483264";
+const joiningLink = "https://us06web.zoom.us/j/89801629784";
 const whatsappLink = "https://jeenasikho.com/webinar/?page=infertility-issues";
 
-const webDate = "29 April 2025 | 4:00 PM";
-const newSlotDate = "29 April 2025";
-const newSlotTime = "4:00 PM";
-const waitUntillDate = "2025-04-29";
-const targetDate = new Date("April 29, 2025 16:00:00").getTime();
+const webDate = "3 May 2025 | 10:00 AM";
+const newSlotDate = "3 May 2025";
+const newSlotTime = "10:00 AM";
+const waitUntillDate = "2025-05-03";
+const targetDate = new Date("May 3, 2025 10:00:00").getTime();
 
 const heroHeading =
-  "Webinar on <b><i>Infertility</i></b> by <i>Team Acharya Manish Ji</i>";
+  "Webinar on <b><i>Infertility</i></b> by <i>Acharya Manish Ji & Dr. Geetika</i>";
 
-const drName = "Dr. Meetali";
+const drName = "Dr. Geetika";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Specialization in Panchkarma",
-  "8+ Years Of Experience",
+  "PGDGS (PG. Diploma in Garbh Sankar)",
+  "PGDIP (PG. Diploma in Panchakarma)",
+  "M.S. (Ay.) Master of Surgery",
+  "15+ Years of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/121dab33-39a6-4863-91de-4ed0356eeeff.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/540c60d3-7b05-4859-b63b-27c34da6ba93.png";
+
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/38a78d85-9024-44c6-b2ca-0255b66ef18d.png";
@@ -197,6 +200,19 @@ window.addEventListener("click", function (event) {
   }
 });
 
+// — Prevent anything but letters (no spaces) in FirstName —
+const firstNameEl = document.getElementById("FirstName");
+firstNameEl.addEventListener("keypress", (e) => {
+  // if the key isn’t A–Z or a–z, block it
+  if (!/^[A-Za-z]$/.test(e.key)) {
+    e.preventDefault();
+  }
+});
+firstNameEl.addEventListener("input", () => {
+  // strip out any non-letters (just in case)
+  firstNameEl.value = firstNameEl.value.replace(/[^A-Za-z]/g, "");
+});
+
 // -------------------- Close Nav container Script --------------------
 document.addEventListener("DOMContentLoaded", function () {
   const menuToggle = document.getElementById("menuToggle");
@@ -213,6 +229,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // -------------------- Form country script --------------------
 const phoneInput = document.querySelector("#phone");
+const form = document.getElementById("RegisterForm");
+const errorDiv = document.getElementById("phoneError");
 
 // Restrict typing to digits only
 phoneInput.addEventListener("keypress", function (e) {
@@ -248,10 +266,20 @@ const iti = window.intlTelInput(phoneInput, {
   },
 });
 
-const form = document.getElementById("RegisterForm");
-
 form.addEventListener("submit", function (e) {
   e.preventDefault();
+
+  let raw = phoneInput.value.replace(/\D/g, "");
+  let digits = raw.replace(/^0+/, "");
+
+  // validate
+  if (digits.length !== 10) {
+    errorDiv.textContent = "Please enter exactly 10 digits";
+    phoneInput.focus();
+    return;
+  }
+  // clear any previous error
+  errorDiv.textContent = "";
 
   const countryData = iti.getSelectedCountryData();
 
