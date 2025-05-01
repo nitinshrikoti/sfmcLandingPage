@@ -1,29 +1,29 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "LifestyleDisorderWebinarOn1May";
+const title = "LifestyleDisorderWebinarOn6May";
 const offeringTitle = "Lifestyle Disorder";
 
-const joiningLink = "https://us06web.zoom.us/j/83778452365";
-const whatsappLink = "https://chat.whatsapp.com/J3N3epmalXl91nTX2aKWde";
+const joiningLink = "https://us06web.zoom.us/j/86482189253";
+const whatsappLink = "https://chat.whatsapp.com/GogWFCaNW19DMgda3rJ1J1";
 
-const webDate = "1 May 2025 | 4:00 PM";
-const newSlotDate = "1 May 2025";
+const webDate = "6 May 2025 | 4:00 PM";
+const newSlotDate = "6 May 2025";
 const newSlotTime = "4:00 PM";
-const waitUntillDate = "2025-05-01";
-const targetDate = new Date("May 1, 2025 16:00:00").getTime();
+const waitUntillDate = "2025-05-06";
+const targetDate = new Date("May 6, 2025 16:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Lifestyle Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Sanjay Srivastava";
+const drName = "Dr. Meghna";
 const drDetails = [
-  "Doctor of Philosophy in Naturopathy",
-  "Doctor of Medicine",
-  "Naturopathy and Diploma in Yoga",
-  "Post Graduate Diploma in Panchkarma",
+  "Bachelor of Ayurvedic Medicine and Surgery",
+  "Chronic Kidney & Liver Disease",
+  "Lifestyle Disorders (GIT, Joint, Mental Health)",
+  "4+ Years Of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/50f80966-fc5e-4366-a1a0-7b2176ecfe10.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2457b5fd-2e28-495d-90e0-5625d446d1b2.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e6cabbf5-0635-43f1-801f-0ac0ad688f98.png";
