@@ -1,25 +1,29 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "KneePainWebinarOn29Apr";
-const offeringTitle = "Knee Pain";
+const title = "AllJointPainWebinarOn3May";
+const offeringTitle = "All Joint Pain";
 
-const joiningLink = "https://us06web.zoom.us/j/86121171680";
+const joiningLink = "https://us06web.zoom.us/j/83747486480";
 const whatsappLink = "https://jeenasikho.com/webinar/?page=joint";
 
-const webDate = "29 April 2025 | 10:00 AM";
-const newSlotDate = "29 April 2025";
-const newSlotTime = "10:00 AM";
-const waitUntillDate = "2025-04-29";
-const targetDate = new Date("April 29, 2025 10:00:00").getTime();
+const webDate = "3 May 2025 | 01:00 PM";
+const newSlotDate = "3 May 2025";
+const newSlotTime = "01:00 PM";
+const waitUntillDate = "2025-05-03";
+const targetDate = new Date("May 3, 2025 13:00:00").getTime();
 
 const heroHeading =
-  "Webinar on <b><i>Knee Pain</i></b> by <i>Team Acharya Manish Ji</i>";
+  "Webinar on <b><i>All Joint Pain</i></b> by <i>Acharya Manish Ji & Dr. Geetika</i>";
 
-const drName = "Dr. Mandeep";
-const drDetails = ["Bachelor of Ayurvedic Medicine and Surgery"];
+const drName = "Dr. Divyadeep";
+const drDetails = [
+  "Bachelor of Ayurvedic Medicine and Surgery",
+  "Diploma in Naturopathy and Diploma in Yoga",
+  "Expertise in Chronic Diseases, Metabolic, Skin Disorders and Infertility",
+  "16+ Years of Experience",
+];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/ea2c0bca-5d32-4873-8419-5a01d2ad3387.png";
-
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2a06da4f-2205-458e-a16f-fb3d4d65e198.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/ffec998a-5356-47d9-b86a-882e4cd865ea.png";
@@ -48,6 +52,7 @@ const contactNumber = "917710371037";
 // -------------------- Dynamic Content Update End --------------------
 
 // Script for  Dynamic Content Update
+
 document.title = title;
 document.getElementById("heroHeading").innerHTML = heroHeading;
 if (document.getElementById("drImg")) {
@@ -191,6 +196,19 @@ window.addEventListener("click", function (event) {
   }
 });
 
+// — Prevent anything but letters (no spaces) in FirstName —
+const firstNameEl = document.getElementById("FirstName");
+firstNameEl.addEventListener("keypress", (e) => {
+  // if the key isn’t A–Z or a–z, block it
+  if (!/^[A-Za-z]$/.test(e.key)) {
+    e.preventDefault();
+  }
+});
+firstNameEl.addEventListener("input", () => {
+  // strip out any non-letters (just in case)
+  firstNameEl.value = firstNameEl.value.replace(/[^A-Za-z]/g, "");
+});
+
 // -------------------- Close Nav container Script --------------------
 document.addEventListener("DOMContentLoaded", function () {
   const menuToggle = document.getElementById("menuToggle");
@@ -207,6 +225,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // -------------------- Form country script --------------------
 const phoneInput = document.querySelector("#phone");
+const form = document.getElementById("RegisterForm");
+const errorDiv = document.getElementById("phoneError");
 
 // Restrict typing to digits only
 phoneInput.addEventListener("keypress", function (e) {
@@ -242,10 +262,20 @@ const iti = window.intlTelInput(phoneInput, {
   },
 });
 
-const form = document.getElementById("RegisterForm");
-
 form.addEventListener("submit", function (e) {
   e.preventDefault();
+
+  let raw = phoneInput.value.replace(/\D/g, "");
+  let digits = raw.replace(/^0+/, "");
+
+  // validate
+  if (digits.length !== 10) {
+    errorDiv.textContent = "Please enter exactly 10 digits";
+    phoneInput.focus();
+    return;
+  }
+  // clear any previous error
+  errorDiv.textContent = "";
 
   const countryData = iti.getSelectedCountryData();
 
