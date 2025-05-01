@@ -4,6 +4,7 @@ IF RequestParameter("submitted") == "true" THEN
   Set @rawPhone = RequestParameter("phone")
   Set @countryCode = RequestParameter("countryCode")
   Set @locale = RequestParameter("initialCountry")
+  Set @joiningLink = RequestParameter("JoiningLink")
 
   Set @digitsOnly = ""
   FOR @i = 1 TO Length(@rawPhone) DO
@@ -17,34 +18,47 @@ IF RequestParameter("submitted") == "true" THEN
   Set @uniqueID = Concat(
     Format(SystemDateToLocalDate(Now()), "yyyyMMddHHmmss"),
     "_",
-    RequestParameter("phone")
+    @digitsOnly
   )
 
-  Set @BookingDate = Format(SystemDateToLocalDate(Now()), "yyyy-MM-dd")
-  Set @BookingTime = Format(SystemDateToLocalDate(Now()), "HH:mm:ss")
-
-  UpsertDE(
-    "WebinarFormData",    
-    1,                    
-    "UniqueID",       @uniqueID,
-    "FirstName",      RequestParameter("FirstName"),
-    "LastName",       RequestParameter("LastName"),
-    "Locale",         @locale, 
-    "Phone",          @phone,
-    "Email",          RequestParameter("Email"),
-    "Country",        RequestParameter("Country"),
-    "BookingDate",    @BookingDate,
-    "BookingTime",    @BookingTime,
-    "OldSlotDate",    RequestParameter("OldSlotDate"),
-    "OldSlotTime",    RequestParameter("OldSlotTime"),
-    "NewSlotDate",    RequestParameter("NewSlotDate"),
-    "NewSlotTime",    RequestParameter("NewSlotTime"),
-    "OfferingTitle",  RequestParameter("OfferingTitle"),
-    "JoiningLink",    RequestParameter("JoiningLink"),
-    "WhatsAppLink",   RequestParameter("WhatsAppLink"),
-    "WaitUntillDate", RequestParameter("WaitUntillDate"),
-    "ContactNumber",  RequestParameter("ContactNumber")
+  /* Check if user already registered for same Phone + JoiningLink */
+  Set @existing = Lookup(
+    "WebinarFormData", 
+    "UniqueID", 
+    "Phone", @phone, 
+    "JoiningLink", @joiningLink
   )
+
+  /* Only insert if not already registered */
+  IF Empty(@existing) THEN
+
+    Set @BookingDate = Format(SystemDateToLocalDate(Now()), "yyyy-MM-dd")
+    Set @BookingTime = Format(SystemDateToLocalDate(Now()), "HH:mm:ss")
+
+    UpsertDE(
+      "WebinarFormData",    
+      1,                    
+      "UniqueID",       @uniqueID,
+      "FirstName",      RequestParameter("FirstName"),
+      "LastName",       RequestParameter("LastName"),
+      "Locale",         @locale, 
+      "Phone",          @phone,
+      "Email",          RequestParameter("Email"),
+      "Country",        RequestParameter("Country"),
+      "BookingDate",    @BookingDate,
+      "BookingTime",    @BookingTime,
+      "OldSlotDate",    RequestParameter("OldSlotDate"),
+      "OldSlotTime",    RequestParameter("OldSlotTime"),
+      "NewSlotDate",    RequestParameter("NewSlotDate"),
+      "NewSlotTime",    RequestParameter("NewSlotTime"),
+      "OfferingTitle",  RequestParameter("OfferingTitle"),
+      "JoiningLink",    @joiningLink,
+      "WhatsAppLink",   RequestParameter("WhatsAppLink"),
+      "WaitUntillDate", RequestParameter("WaitUntillDate"),
+      "ContactNumber",  RequestParameter("ContactNumber")
+    )
+
+  ENDIF
 
 ENDIF
 ]%%
@@ -122,31 +136,13 @@ ENDIF
 
     <title>Title</title>
 
-    <link rel="stylesheet" href="style.css" />
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/css/intlTelInput.css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&amp;display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins&amp;display=swap"
-      rel="stylesheet"
-    />
-
-    <!-- script -->
-    <script src="script.js" defer></script>
+    <!-- <link rel="stylesheet" href="style_v2.css" /> -->
     <style>
       :root {
         --ff-exo: "Exo", serif;
-        --ff-timesRoman: "Times New Roman", Times, serif;
         --ff-poppins: "Poppins", sans-serif;
+        --ff-roboto-condensed: "Roboto Condensed", sans-serif;
+        --ff-josefin-slab: "Josefin Slab", serif;
 
         --text-black: #44403b;
         --text-gray: #787878;
@@ -375,7 +371,7 @@ ENDIF
       .hero p {
         font-size: 36px;
         text-align: center;
-        font-family: var(--ff-timesRoman);
+        font-family: var(--ff-josefin-slab);
       }
 
       .hero iframe {
@@ -516,11 +512,12 @@ ENDIF
       .banner-heading-block {
         font-family: var(--ff-poppins);
         max-width: 1000px;
-        margin: 40px auto 10px;
+        margin: 20px auto 10px;
         padding: 0 20px;
         text-align: center;
       }
       .banner-heading-block h2 {
+        font-family: var(--ff-josefin-slab);
         font-size: 32px;
         margin-bottom: 10px;
       }
@@ -586,13 +583,13 @@ ENDIF
 
       .join-webinar {
         font-family: var(--ff-poppins);
-        max-width: 1000px; /* Constrain the width on larger screens */
+        max-width: 1224px; /* Constrain the width on larger screens */
         margin: 10px auto; /* Center with vertical spacing */
         background-color: #ffffff;
         border-radius: 8px;
         /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); */
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-        padding: 30px 20px;
+        /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
+        padding: 20px;
         text-align: center;
       }
 
@@ -602,53 +599,51 @@ ENDIF
         margin-bottom: 20px;
       }
 
-      /* Steps Container (Ordered List) */
-      .step-list {
-        max-width: 800px;
-        margin: 0 auto 30px auto;
-        list-style: none;
-        counter-reset: step;
-        text-align: left;
-      }
-
-      /* Individual Step Items */
-      .step-list li {
-        position: relative;
-        padding-left: 50px;
-        margin-bottom: 25px;
-      }
-
-      /* Circular Number */
-      .step-list li::before {
-        content: counter(step);
-        counter-increment: step;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 35px;
-        height: 35px;
-        border: 2px solid #1f3d16;
-        border-radius: 50%;
+      /* Container for all steps */
+      .steps-container {
         display: flex;
-        align-items: center;
         justify-content: center;
-        color: #1f3d16;
-        font-weight: bold;
-        background-color: #fff;
+        align-items: stretch; /* Ensure equal height if desired */
+        gap: 16px;
+        /* max-width: 800px; */
+        margin: 15px auto;
+        flex-wrap: wrap; /* Allow wrapping on smaller screens */
       }
 
-      /* Step Titles */
+      /* Each Step */
+      .step {
+        background: #fff;
+        border-radius: 8px;
+        padding: 10px;
+        text-align: center;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        flex: 1 1 280px; /* Grow and shrink, starting at min width 280px */
+        max-width: 260px;
+        height: auto;
+      }
+      .step:hover {
+        background: #edf9ee;
+      }
+
+      .step-number {
+        font-family: var(--ff-roboto-condensed);
+        font-weight: 700;
+        font-size: 64px;
+        -webkit-text-stroke: 1px var(--text-green);
+        margin-bottom: 10px;
+        color: transparent;
+      }
+
       .step-title {
-        font-size: 1.1rem;
-        font-weight: bold;
-        color: #000;
-        margin-bottom: 5px;
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: var(--text-green);
       }
 
-      /* Step Paragraph */
-      .step-text {
-        line-height: 1.6;
-        color: #333;
+      .step-desc {
+        font-size: 0.95rem;
+        color: #666;
       }
 
       /* Register Button */
@@ -669,12 +664,13 @@ ENDIF
       /* -------------------- Testinomial Section -------------------- */
       .testimonial-section {
         max-width: 1200px;
-        margin: 40px auto;
+        margin: 20px auto;
         padding: 0 20px;
         text-align: center;
       }
 
       .testimonial-section h2 {
+        font-family: var(--ff-josefin-slab);
         font-size: 2rem;
         margin-bottom: 20px;
       }
@@ -723,13 +719,14 @@ ENDIF
       /* -------------------- BrandLogo Section -------------------- */
       .brands-section {
         max-width: 1200px;
-        margin: 40px auto;
+        margin: 20px auto;
         text-align: center;
         padding: 0 20px;
       }
 
       /* Heading */
       .brands-section h2 {
+        font-family: var(--ff-josefin-slab);
         font-size: 2rem;
         margin-bottom: 30px;
       }
@@ -764,10 +761,11 @@ ENDIF
       .faq-section {
         max-width: 1000px;
         width: 90%;
-        margin: 40px auto 100px;
+        margin: 20px auto 100px;
       }
 
       .faq-section h2 {
+        font-family: var(--ff-josefin-slab);
         font-size: 2rem;
         text-align: center;
         margin-bottom: 20px;
@@ -1061,6 +1059,16 @@ ENDIF
         }
       }
 
+      .error-msg {
+        color: #c00;
+        font-size: 14px;
+        margin-top: 4px;
+        display: none;
+      }
+      .error-msg:not(:empty) {
+        display: block;
+      }
+
       /* -------------------- Responsive Code -------------------- */
 
       @media (max-width: 767px) {
@@ -1254,18 +1262,18 @@ ENDIF
         .join-webinar h2 {
           font-size: 24px;
         }
-        .step-list li {
-          padding-left: 40px;
+        .step {
+          height: auto;
+          padding: 15px;
+          max-width: 100%;
         }
-        .step-list li::before {
-          width: 30px;
-          height: 30px;
-          font-size: 0.9rem;
+        .step-number {
+          font-size: 2.5rem;
         }
         .step-title {
-          font-size: 1rem;
+          font-size: 1.1rem;
         }
-        .step-text {
+        .step-desc {
           font-size: 0.9rem;
         }
 
@@ -1326,6 +1334,27 @@ ENDIF
         }
       }
     </style>
+
+    <!-- Country Code -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/css/intlTelInput.css"
+    />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <!-- -------------------- NavBar -------------------- -->
@@ -1487,40 +1516,38 @@ ENDIF
     <!-- -------------------- Instructions Section -------------------- -->
     <section id="steps" class="join-webinar">
       <h2 class="text-green">वेबिनार को ज्वाइन करने की प्रक्रिया:</h2>
-      <ol class="step-list">
+      <div class="steps-container">
         <!-- Step 1 -->
-        <li>
-          <div class="step-title">Registration Process</div>
-          <div class="step-text">
-            <b>"Register"</b> बटन click करें। बटन पर क्लिक करने के बाद आपकी
-            screen पर pop-up खुलेगा।
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-title">Register Now</div>
+          <div class="step-desc">Click on "Register Now" button.</div>
+        </div>
+        <!-- Step 2 (Highlighted) -->
+        <div class="step highlight">
+          <div class="step-number">2</div>
+          <div class="step-title">Fill Your Details</div>
+          <div class="step-desc">
+            Now fill your personal details, with your "WhatsApp Number", on
+            which you want to get webinar details.
           </div>
-        </li>
-        <!-- Step 2 -->
-        <li>
-          <div class="step-title">Fill Details and Submit</div>
-          <div class="step-text">
-            वहाँ अपना <b>Name</b>, <b>WhatsApp Number</b>, <b>ईमेल (Email)</b>,
-            <b>Country</b> डालें और <b>"Submit"</b> बटन पर click करें।
-          </div>
-        </li>
+        </div>
+        <!-- Step 4 -->
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-title">Submit</div>
+          <div class="step-desc">Then click on "Submit" button.</div>
+        </div>
         <!-- Step 3 -->
-        <li>
-          <div class="step-title">Important!</div>
-          <div class="step-text">
-            <b>Form submit</b> krne के बाद आपके <b>WhatsApp Number</b> पर
-            Webinar की Details भेज दी जाएंगी। <br />
-            <b>Mobile</b> पर <b>Webinar Join</b> करने के लिए
-            <b>Zoom App</b> Download करके रखें। <br />
-            Webinar वाले दिन <b>Joining Link</b> पर click करें, <br />
-            Zoom App पर अपना Name और Email डालें फिर Continue पर Click करें।
-            <br />
-            हमारे <b></b> को ज्वाइन करना न भूलें। अगर किसी कारणवश आपको वेबिनार
-            का लिंक प्राप्त नहीं होता तो आप Group के माध्यम से वेबिनार का लिंक
-            ले सकते हैं।
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-title">Important Note !!</div>
+          <div class="step-desc">
+            After submitting your details, Join our "WhatsApp Group", to get
+            latest information about the upcomming webinar.
           </div>
-        </li>
-      </ol>
+        </div>
+      </div>
       <button class="step-register-btn" onclick="newopenmodal()">
         Register Now
       </button>
@@ -1748,7 +1775,7 @@ ENDIF
               id="FirstName"
               name="FirstName"
               required=""
-              placeholder="Bharat"
+              placeholder="John"
             />
 
             <label for="LastName">Last Name</label>
@@ -1756,7 +1783,7 @@ ENDIF
               type="text"
               id="LastName"
               name="LastName"
-              placeholder="Singh"
+              placeholder="Doe"
             />
 
             <label for="Phone">WhatsApp Number*</label>
@@ -1764,9 +1791,10 @@ ENDIF
               type="tel"
               id="phone"
               name="phone"
-              placeholder="8175433680"
+              placeholder="1234567890"
               required
             />
+            <div id="phoneError" class="error-msg" aria-live="polite"></div>
 
             <label for="Email">Email</label>
             <input
@@ -1776,8 +1804,8 @@ ENDIF
               placeholder="example@gmail.com"
             />
 
-            <label for="Country">Country*</label>
-            <select id="Country" name="Country" required="">
+            <label for="Country">Country</label>
+            <select id="Country" name="Country">
               <option value="">-- Select a Country --</option>
               <option value="India">India</option>
               <option value="Afghanistan">Afghanistan</option>
@@ -1997,20 +2025,21 @@ ENDIF
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/intlTelInput.min.js"></script>
+    <!-- <script src="script_v1.js"></script> -->
     <script>
       // -------------------- Dynamic Content Update --------------------
 
-      const title = "ObesityWebinarOn29Apr";
+      const title = "ObesityWebinarOn7May";
       const offeringTitle = "Obesity";
 
-      const joiningLink = "https://us06web.zoom.us/j/84609008579";
-      const whatsappLink = "https://jeenasikho.com/webinar/?page=obesity";
+      const joiningLink = "https://us06web.zoom.us/j/85467931184";
+      const whatsappLink = "https://chat.whatsapp.com/E97hLGwJebmK5OGg6FVSWe";
 
-      const webDate = "29 April 2025 | 1:00 PM";
-      const newSlotDate = "29 April 2025";
-      const newSlotTime = "1:00 PM";
-      const waitUntillDate = "2025-04-29";
-      const targetDate = new Date("April 29, 2025 13:00:00").getTime();
+      const webDate = "7 May 2025 | 4:00 PM";
+      const newSlotDate = "7 May 2025";
+      const newSlotTime = "4:00 PM";
+      const waitUntillDate = "2025-05-07";
+      const targetDate = new Date("May 7, 2025 16:00:00").getTime();
 
       const heroHeading =
         "Webinar on <b><i>Obesity</i></b> by <i>Team Acharya Manish Ji</i>";
@@ -2200,6 +2229,19 @@ ENDIF
         }
       });
 
+      // — Prevent anything but letters (no spaces) in FirstName —
+      const firstNameEl = document.getElementById("FirstName");
+      firstNameEl.addEventListener("keypress", (e) => {
+        // if the key isn’t A–Z or a–z, block it
+        if (!/^[A-Za-z]$/.test(e.key)) {
+          e.preventDefault();
+        }
+      });
+      firstNameEl.addEventListener("input", () => {
+        // strip out any non-letters (just in case)
+        firstNameEl.value = firstNameEl.value.replace(/[^A-Za-z]/g, "");
+      });
+
       // -------------------- Close Nav container Script --------------------
       document.addEventListener("DOMContentLoaded", function () {
         const menuToggle = document.getElementById("menuToggle");
@@ -2218,6 +2260,8 @@ ENDIF
 
       // -------------------- Form country script --------------------
       const phoneInput = document.querySelector("#phone");
+      const form = document.getElementById("RegisterForm");
+      const errorDiv = document.getElementById("phoneError");
 
       // Restrict typing to digits only
       phoneInput.addEventListener("keypress", function (e) {
@@ -2255,10 +2299,20 @@ ENDIF
         },
       });
 
-      const form = document.getElementById("RegisterForm");
-
       form.addEventListener("submit", function (e) {
         e.preventDefault();
+
+        let raw = phoneInput.value.replace(/\D/g, "");
+        let digits = raw.replace(/^0+/, "");
+
+        // validate
+        if (digits.length !== 10) {
+          errorDiv.textContent = "Please enter exactly 10 digits";
+          phoneInput.focus();
+          return;
+        }
+        // clear any previous error
+        errorDiv.textContent = "";
 
         const countryData = iti.getSelectedCountryData();
 
