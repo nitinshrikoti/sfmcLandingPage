@@ -1,16 +1,16 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "DigestiveWebinarOn24Apr";
+const title = "DigestiveWebinarOn7May";
 const offeringTitle = "Gas, Acidity, Constipation";
 
-const joiningLink = "https://us06web.zoom.us/j/84585853006";
-const whatsappLink = "https://jeenasikho.com/webinar/?page=gastric-issues";
+const joiningLink = "https://us06web.zoom.us/j/82409367566";
+const whatsappLink = "https://chat.whatsapp.com/KfLJrufZdoFFcbtqcwkUWx";
 
-const webDate = "24 April 2025 | 10:00 AM";
-const newSlotDate = "24 April 2025";
+const webDate = "7 May 2025 | 10:00 AM";
+const newSlotDate = "7 May 2025";
 const newSlotTime = "10:00 AM";
-const waitUntillDate = "2025-04-24";
-const targetDate = new Date("April 24, 2025 10:00:00").getTime();
+const waitUntillDate = "2025-05-07";
+const targetDate = new Date("May 7, 2025 10:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Gas, Acidity & Constipation</b></i> by <i>Team Acharya Manish Ji</i>";
@@ -199,6 +199,19 @@ window.addEventListener("click", function (event) {
   }
 });
 
+// — Prevent anything but letters (no spaces) in FirstName —
+const firstNameEl = document.getElementById("FirstName");
+firstNameEl.addEventListener("keypress", (e) => {
+  // if the key isn’t A–Z or a–z, block it
+  if (!/^[A-Za-z]$/.test(e.key)) {
+    e.preventDefault();
+  }
+});
+firstNameEl.addEventListener("input", () => {
+  // strip out any non-letters (just in case)
+  firstNameEl.value = firstNameEl.value.replace(/[^A-Za-z]/g, "");
+});
+
 // -------------------- Close Nav container Script --------------------
 document.addEventListener("DOMContentLoaded", function () {
   const menuToggle = document.getElementById("menuToggle");
@@ -215,6 +228,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // -------------------- Form country script --------------------
 const phoneInput = document.querySelector("#phone");
+const form = document.getElementById("RegisterForm");
+const errorDiv = document.getElementById("phoneError");
 
 // Restrict typing to digits only
 phoneInput.addEventListener("keypress", function (e) {
@@ -250,10 +265,20 @@ const iti = window.intlTelInput(phoneInput, {
   },
 });
 
-const form = document.getElementById("RegisterForm");
-
 form.addEventListener("submit", function (e) {
   e.preventDefault();
+
+  let raw = phoneInput.value.replace(/\D/g, "");
+  let digits = raw.replace(/^0+/, "");
+
+  // validate
+  if (digits.length !== 10) {
+    errorDiv.textContent = "Please enter exactly 10 digits";
+    phoneInput.focus();
+    return;
+  }
+  // clear any previous error
+  errorDiv.textContent = "";
 
   const countryData = iti.getSelectedCountryData();
 
