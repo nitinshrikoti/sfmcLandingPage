@@ -1,38 +1,61 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "AutoImmuneWebinarOn8Apr";
-const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f6e16a88-067f-41f4-a7ec-abd014ecaacc.png";
-const drName = "Dr. Sonali";
-const webDate = "8 April 2025 | 1:00 PM";
-const joiningLink = "https://us06web.zoom.us/j/83678910019";
-const whatsappLink = "https://jeenasikho.com/webinar/?page=auto-immune";
-const newSlotDate = "8 April 2025";
-const newSlotTime = "1:00 PM";
+const title = "AutoImmuneWebinarOn5May";
 const offeringTitle = "Auto Immune Disorder";
-const waitUntillDate = "2025-04-08";
-const targetDate = new Date("April 8, 2025 13:00:00").getTime();
+
+const joiningLink = "https://us06web.zoom.us/j/81290265550";
+const whatsappLink = "https://chat.whatsapp.com/EIYvS5oPl16KzEj6XZJEej";
+
+const webDate = "18 April 2025 | 1:00 PM";
+const newSlotDate = "18 April 2025";
+const newSlotTime = "1:00 PM";
+const waitUntillDate = "2025-04-18";
+const targetDate = new Date("April 18, 2025 13:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Auto Immune Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
+
+const drName = "Dr. Sonali";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
   "CERTIFIED in Psychosomatic Disorders",
-  "4+ Years Of Experience",
+  "4+ Years of Experience",
 ];
+const docImg =
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f6e16a88-067f-41f4-a7ec-abd014ecaacc.png";
+
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6365c39c-91b5-4ddd-8d6a-4687462688b0.png";
+
 // Why Join Content
 const why1 =
   "<b>Systemic Lupus Erythematosus (SLE)</b> में जोड़ों, त्वचा, किडनी और मस्तिष्क की सूजन से राहत पाना चाहते हैं।";
 const why2 =
   "<b>Rheumatoid और Psoriatic Arthritis</b> में जोड़ों के दर्द और अकड़न को कम करना चाहते हैं।";
-const why3 = "<b>Multiple Sclerosis</b> में नसों की कमजोरी और संतुलन की समस्या से बचाव करना चाहते हैं।";
-const why4 = "<b>Myasthenia Gravis</b> में मांसपेशियों की ताकत बढ़ाना और थकान कम करना चाहते हैं।";
-const why5 = "<b>Autoimmune Disorders</b> को प्राकृतिक और आयुर्वेदिक तरीकों से मैनेज करना चाहते हैं।";
+const why3 =
+  "<b>Multiple Sclerosis</b> में नसों की कमजोरी और संतुलन की समस्या से बचाव करना चाहते हैं।";
+const why4 =
+  "<b>Myasthenia Gravis</b> में मांसपेशियों की ताकत बढ़ाना और थकान कम करना चाहते हैं।";
+const why5 =
+  "<b>Autoimmune Disorders</b> को प्राकृतिक और आयुर्वेदिक तरीकों से मैनेज करना चाहते हैं।";
+
+const Testi1 =
+  "“Pushpa Rani ji shared that she had a stent placed in her heart and also has a problem with high sugar levels. She prefers Ayurvedic medicine and believes following a proper diet is essential for better health.”";
+const Testi2 =
+  "“The person had severe skin problems and white marks all over their body, feeling hopeless. After using Divya Kit for just 45 days, their condition improved drastically, and they are now completely healed and grateful for the new life they’ve received.”";
+const Testi3 =
+  '“After multiple doctors advised knee transplants, Ayurvedic Panchakarma at HIMs Chandigarh provided significant relief. If you are facing knee pain or have been advised a transplant, try Ayurveda for effective treatment."';
+
+const TestiNam1 = "— Pushpa Rani";
+const TestiNam2 = "— White Patches";
+const TestiNam3 = "— Ashwini Upadhyay";
+
 const contactNumber = "917710371037";
 
-// Selectors for the dynamic content
+// -------------------- Dynamic Content Update End --------------------
+
+// Script for  Dynamic Content Update
+
 document.title = title;
 document.getElementById("heroHeading").innerHTML = heroHeading;
 if (document.getElementById("drImg")) {
@@ -70,7 +93,15 @@ document.getElementById("OfferingTitle").value = offeringTitle;
 document.getElementById("WaitUntillDate").value = waitUntillDate;
 document.getElementById("ContactNumber").value = contactNumber;
 
-// Selectors for the dynamic content end
+document.getElementById("testi1").innerHTML = Testi1;
+document.getElementById("testi2").innerHTML = Testi2;
+document.getElementById("testi3").innerHTML = Testi3;
+
+document.getElementById("testiNam1").innerHTML = TestiNam1;
+document.getElementById("testiNam2").innerHTML = TestiNam2;
+document.getElementById("testiNam3").innerHTML = TestiNam3;
+
+// Script for Dynamic Content Update End
 
 // -------------------- Timer Script --------------------
 // Main Timer Elements
@@ -168,6 +199,19 @@ window.addEventListener("click", function (event) {
   }
 });
 
+// — Prevent anything but letters (no spaces) in FirstName —
+const firstNameEl = document.getElementById("FirstName");
+firstNameEl.addEventListener("keypress", (e) => {
+  // if the key isn’t A–Z or a–z, block it
+  if (!/^[A-Za-z]$/.test(e.key)) {
+    e.preventDefault();
+  }
+});
+firstNameEl.addEventListener("input", () => {
+  // strip out any non-letters (just in case)
+  firstNameEl.value = firstNameEl.value.replace(/[^A-Za-z]/g, "");
+});
+
 // -------------------- Close Nav container Script --------------------
 document.addEventListener("DOMContentLoaded", function () {
   const menuToggle = document.getElementById("menuToggle");
@@ -180,4 +224,70 @@ document.addEventListener("DOMContentLoaded", function () {
       menuToggle.checked = false;
     });
   });
+});
+
+// -------------------- Form country script --------------------
+const phoneInput = document.querySelector("#phone");
+const form = document.getElementById("RegisterForm");
+const errorDiv = document.getElementById("phoneError");
+
+// Restrict typing to digits only
+phoneInput.addEventListener("keypress", function (e) {
+  const char = String.fromCharCode(e.which);
+  if (!/^[0-9]$/.test(char)) {
+    e.preventDefault();
+  }
+});
+
+// Clean pasted input and remove non-numeric characters
+phoneInput.addEventListener("paste", function (e) {
+  e.preventDefault();
+  const pasted = (e.clipboardData || window.clipboardData).getData("text");
+  const digitsOnly = pasted.replace(/\D/g, "").replace(/^0+/, ""); // remove leading zeros
+  phoneInput.value = digitsOnly;
+});
+
+// Prevent number from starting with 0
+phoneInput.addEventListener("input", function () {
+  if (phoneInput.value.startsWith("0")) {
+    phoneInput.value = phoneInput.value.replace(/^0+/, "");
+  }
+});
+
+const iti = window.intlTelInput(phoneInput, {
+  initialCountry: "in",
+  strictMode: true,
+  separateDialCode: true,
+  loadUtils: function () {
+    return import(
+      "https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js?1743167482095"
+    );
+  },
+});
+
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  let raw = phoneInput.value.replace(/\D/g, "");
+  let digits = raw.replace(/^0+/, "");
+
+  // validate
+  if (digits.length !== 10) {
+    errorDiv.textContent = "Please enter exactly 10 digits";
+    phoneInput.focus();
+    return;
+  }
+  // clear any previous error
+  errorDiv.textContent = "";
+
+  const countryData = iti.getSelectedCountryData();
+
+  // Set hidden fields
+  document.getElementById("countryCode").value = countryData.dialCode;
+  document.getElementById("initialCountry").value = countryData.iso2;
+
+  // Now submit the form manually
+  setTimeout(() => {
+    form.submit();
+  }, 100);
 });
