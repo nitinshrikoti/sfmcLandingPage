@@ -1,29 +1,29 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "CancerWebinarOn30Apr";
+const title = "CancerWebinarOn5May";
 const offeringTitle = "Cancer";
 
-const joiningLink = "https://us06web.zoom.us/j/83528348601";
-const whatsappLink = "https://jeenasikho.com/webinar/?page=cancer";
+const joiningLink = "https://us06web.zoom.us/j/85640521674";
+const whatsappLink = "https://chat.whatsapp.com/Gql8jgapNjCIebugnSCdN4";
 
-const webDate = "30 April 2025 | 1:00 PM";
-const newSlotDate = "30 April 2025";
-const newSlotTime = "1:00 PM";
-const waitUntillDate = "2025-04-30";
-const targetDate = new Date("April 30, 2025 13:00:00").getTime();
+const webDate = "5 May 2025 | 10:00 AM";
+const newSlotDate = "5 May 2025";
+const newSlotTime = "10:00 AM";
+const waitUntillDate = "2025-05-05";
+const targetDate = new Date("May 5, 2025 10:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Cancer</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Neha";
+const drName = "Dr. Krishna Kant Soni";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Diploma in Panchakarma Chikitsa (DPC)",
-  "Expertise in Cancer, Gynaecology, CKD, CLD, Obesity, Diabetes",
-  "4+ Years Of Experience",
+  "Diploma in Public Health",
+  "Diploma in Nutrition and Health Education",
+  "Master of Hospital Administration",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/b2bc80d6-0ca9-4f5a-8439-8d4149c54329.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6435236d-b1a8-4d89-9829-063f1897ecff.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/40dbaf11-3753-4fe5-872f-d7cc13c487fb.png";
@@ -81,6 +81,7 @@ document.getElementById("why1").innerHTML = why1;
 document.getElementById("why2").innerHTML = why2;
 document.getElementById("why3").innerHTML = why3;
 document.getElementById("why4").innerHTML = why4;
+document.getElementById("why5").innerHTML = why5;
 
 document.getElementById("whatsappLink1").href = whatsappLink;
 document.getElementById("whatsappLink2").value = whatsappLink;
@@ -197,6 +198,19 @@ window.addEventListener("click", function (event) {
   }
 });
 
+// — Prevent anything but letters (no spaces) in FirstName —
+const firstNameEl = document.getElementById("FirstName");
+firstNameEl.addEventListener("keypress", (e) => {
+  // if the key isn’t A–Z or a–z, block it
+  if (!/^[A-Za-z]$/.test(e.key)) {
+    e.preventDefault();
+  }
+});
+firstNameEl.addEventListener("input", () => {
+  // strip out any non-letters (just in case)
+  firstNameEl.value = firstNameEl.value.replace(/[^A-Za-z]/g, "");
+});
+
 // -------------------- Close Nav container Script --------------------
 document.addEventListener("DOMContentLoaded", function () {
   const menuToggle = document.getElementById("menuToggle");
@@ -213,6 +227,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // -------------------- Form country script --------------------
 const phoneInput = document.querySelector("#phone");
+const form = document.getElementById("RegisterForm");
+const errorDiv = document.getElementById("phoneError");
 
 // Restrict typing to digits only
 phoneInput.addEventListener("keypress", function (e) {
@@ -248,10 +264,20 @@ const iti = window.intlTelInput(phoneInput, {
   },
 });
 
-const form = document.getElementById("RegisterForm");
-
 form.addEventListener("submit", function (e) {
   e.preventDefault();
+
+  let raw = phoneInput.value.replace(/\D/g, "");
+  let digits = raw.replace(/^0+/, "");
+
+  // validate
+  if (digits.length !== 10) {
+    errorDiv.textContent = "Please enter exactly 10 digits";
+    phoneInput.focus();
+    return;
+  }
+  // clear any previous error
+  errorDiv.textContent = "";
 
   const countryData = iti.getSelectedCountryData();
 
