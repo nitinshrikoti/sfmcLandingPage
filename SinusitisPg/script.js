@@ -1,29 +1,27 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "ChronicSinusitisWebinarOn26Apr";
+const title = "ChronicSinusitisWebinarOn10May";
 const offeringTitle = "Chronic Sinusitis";
 
-const joiningLink = "https://us06web.zoom.us/j/85881737876";
-const whatsappLink = "https://chat.whatsapp.com/JEUzRBOy9TA6vI8xKNgQiF";
+const joiningLink = "https://us06web.zoom.us/j/82539238995";
+const whatsappLink = "https://chat.whatsapp.com/Cs4N0pTQdeK9VOB4Ix0xDN";
 
-const webDate = "26 April 2025 | 10:00 AM";
-const newSlotDate = "26 April 2025";
-const newSlotTime = "10:00 AM";
-const waitUntillDate = "2025-04-26";
-const targetDate = new Date("April 26, 2025 10:00:00").getTime();
+const webDate = "10 May 2025 | 4:00 PM";
+const newSlotDate = "10 May 2025";
+const newSlotTime = "4:00 PM";
+const waitUntillDate = "2025-05-10";
+const targetDate = new Date("May 10, 2025 16:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Chronic Sinusitis</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Divyadeep";
+const drName = "Dr. Niteshwari";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Diploma in Naturopathy and Diploma in Yoga",
-  "Expertise in Chronic Diseases, Metabolic, Skin Disorders and Infertility",
-  "16+ Years of Experience",
+  "Post Graduate Diploma in Panchkarma",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2a06da4f-2205-458e-a16f-fb3d4d65e198.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/3f798a87-7c17-462c-b545-fededeaaa976.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/8ba496b8-ad26-4c73-9019-a1f564db0842.png";
@@ -199,6 +197,19 @@ window.addEventListener("click", function (event) {
   }
 });
 
+// — Prevent anything but letters (no spaces) in FirstName —
+const firstNameEl = document.getElementById("FirstName");
+firstNameEl.addEventListener("keypress", (e) => {
+  // if the key isn’t A–Z or a–z, block it
+  if (!/^[A-Za-z]$/.test(e.key)) {
+    e.preventDefault();
+  }
+});
+firstNameEl.addEventListener("input", () => {
+  // strip out any non-letters (just in case)
+  firstNameEl.value = firstNameEl.value.replace(/[^A-Za-z]/g, "");
+});
+
 // -------------------- Close Nav container Script --------------------
 document.addEventListener("DOMContentLoaded", function () {
   const menuToggle = document.getElementById("menuToggle");
@@ -215,6 +226,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // -------------------- Form country script --------------------
 const phoneInput = document.querySelector("#phone");
+const form = document.getElementById("RegisterForm");
+const errorDiv = document.getElementById("phoneError");
 
 // Restrict typing to digits only
 phoneInput.addEventListener("keypress", function (e) {
@@ -250,10 +263,20 @@ const iti = window.intlTelInput(phoneInput, {
   },
 });
 
-const form = document.getElementById("RegisterForm");
-
 form.addEventListener("submit", function (e) {
   e.preventDefault();
+
+  let raw = phoneInput.value.replace(/\D/g, "");
+  let digits = raw.replace(/^0+/, "");
+
+  // validate
+  if (digits.length !== 10) {
+    errorDiv.textContent = "Please enter exactly 10 digits";
+    phoneInput.focus();
+    return;
+  }
+  // clear any previous error
+  errorDiv.textContent = "";
 
   const countryData = iti.getSelectedCountryData();
 
