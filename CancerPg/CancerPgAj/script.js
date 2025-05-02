@@ -1,16 +1,16 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "CancerWebinarOn2May";
+const title = "CancerWebinarOn9May";
 const offeringTitle = "Cancer";
 
-const joiningLink = "https://us06web.zoom.us/j/88286131958";
-const whatsappLink = "https://chat.whatsapp.com/J89ICa64CiCACyishAGNET";
+const joiningLink = "https://us06web.zoom.us/j/87065237956";
+const whatsappLink = "https://chat.whatsapp.com/HsVJj53kOQHEytkvet9P1f";
 
-const webDate = "2 May 2025 | 11:00 AM";
-const newSlotDate = "2 May 2025";
-const newSlotTime = "11:00 AM";
-const waitUntillDate = "2025-05-02";
-const targetDate = new Date("May 2, 2025 11:00:00").getTime();
+const webDate = "9 May 2025 | 3:00 PM";
+const newSlotDate = "9 May 2025";
+const newSlotTime = "3:00 PM";
+const waitUntillDate = "2025-05-09";
+const targetDate = new Date("May 9, 2025 15:00:00").getTime();
 
 const heroHeading = "Join <i>Cancer</i> Webinar by <i>Acharya Manish Ji</i>";
 
@@ -184,7 +184,7 @@ window.addEventListener("click", function (event) {
 
 // — Prevent anything but letters (no spaces) in FirstName —
 const firstNameEl = document.getElementById("FirstName");
-firstNameEl.addEventListener("keypress", (e) => {
+firstNameEl.addEventListener("keypress", e => {
   // if the key isn’t A–Z or a–z, block it
   if (!/^[A-Za-z]$/.test(e.key)) {
     e.preventDefault();
@@ -194,6 +194,7 @@ firstNameEl.addEventListener("input", () => {
   // strip out any non-letters (just in case)
   firstNameEl.value = firstNameEl.value.replace(/[^A-Za-z]/g, "");
 });
+
 
 // -------------------- Close Nav container Script --------------------
 document.addEventListener("DOMContentLoaded", function () {
