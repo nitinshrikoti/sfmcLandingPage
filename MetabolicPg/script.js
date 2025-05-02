@@ -1,29 +1,29 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "MetabolicWebinarOn1May";
+const title = "MetabolicWebinarOn8May";
 const offeringTitle = "Metabolic Disorder";
 
-const joiningLink = "https://us06web.zoom.us/j/81123446234";
-const whatsappLink = "https://chat.whatsapp.com/CwXi9VHurmGFLlgd6HQQUp";
+const joiningLink = "https://us06web.zoom.us/j/82533984045";
+const whatsappLink = "https://chat.whatsapp.com/G9NvTYWAgfeC6KE703fy5p";
 
-const webDate = "1 May 2025 | 1:00 PM";
-const newSlotDate = "1 May 2025";
-const newSlotTime = "1:00 PM";
-const waitUntillDate = "2025-05-01";
-const targetDate = new Date("May 1, 2025 13:00:00").getTime();
+const webDate = "8 May 2025 | 4:00 PM";
+const newSlotDate = "8 May 2025";
+const newSlotTime = "4:00 PM";
+const waitUntillDate = "2025-05-08";
+const targetDate = new Date("May 8, 2025 16:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Metabolic Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Geetika";
+const drName = "Dr. Meghna";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "PGDIP (PG. Diploma in Panchakarma)",
-  "M.S. (Ay.) Master of Surgery",
-  "15+ Years of Experience",
+  "Chronic Kidney & Liver Disease",
+  "Lifestyle Disorders (GIT, Joint, Mental Health)",
+  "4+ Years Of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/540c60d3-7b05-4859-b63b-27c34da6ba93.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2457b5fd-2e28-495d-90e0-5625d446d1b2.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e6cabbf5-0635-43f1-801f-0ac0ad688f98.png";
