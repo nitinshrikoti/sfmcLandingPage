@@ -1,29 +1,30 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "KidneyWebinarOn30Apr";
+const title = "KidneyWebinarOn8May";
 const offeringTitle = "Kidney";
 
-const joiningLink = "https://us06web.zoom.us/j/82607047559";
-const whatsappLink = "https://jeenasikho.com/webinar/?page=kidney-disease";
+const joiningLink = "https://us06web.zoom.us/j/87813388598";
+const whatsappLink = "https://chat.whatsapp.com/KLSyixn0nVN5O1rsu2y3TF";
 
-const webDate = "30 April 2025 | 4:00 PM";
-const newSlotDate = "30 April 2025";
-const newSlotTime = "4:00 PM";
-const waitUntillDate = "2025-04-30";
-const targetDate = new Date("April 30, 2025 16:00:00").getTime();
+const webDate = "8 May 2025 | 1:00 PM";
+const newSlotDate = "8 May 2025";
+const newSlotTime = "1:00 PM";
+const waitUntillDate = "2025-05-08";
+const targetDate = new Date("May 8, 2025 13:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Kidney</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Divyadeep";
+const drName = "Dr. Geetika";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Diploma in Naturopathy and Diploma in Yoga",
-  "Expertise in Chronic Diseases, Metabolic, Skin Disorders and Infertility",
-  "16+ Years of Experience",
+  "PGDGS (PG. Diploma in Garbh Sankar)",
+  "PGDIP (PG. Diploma in Panchakarma)",
+  "M.S. (Ay.) Master of Surgery",
+  "15+ Years of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2a06da4f-2205-458e-a16f-fb3d4d65e198.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/540c60d3-7b05-4859-b63b-27c34da6ba93.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/ebc2bfa9-2919-4840-a855-b45e1d4531ed.png";
@@ -199,6 +200,19 @@ window.addEventListener("click", function (event) {
   }
 });
 
+// — Prevent anything but letters (no spaces) in FirstName —
+const firstNameEl = document.getElementById("FirstName");
+firstNameEl.addEventListener("keypress", (e) => {
+  // if the key isn’t A–Z or a–z, block it
+  if (!/^[A-Za-z]$/.test(e.key)) {
+    e.preventDefault();
+  }
+});
+firstNameEl.addEventListener("input", () => {
+  // strip out any non-letters (just in case)
+  firstNameEl.value = firstNameEl.value.replace(/[^A-Za-z]/g, "");
+});
+
 // -------------------- Close Nav container Script --------------------
 document.addEventListener("DOMContentLoaded", function () {
   const menuToggle = document.getElementById("menuToggle");
@@ -215,6 +229,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // -------------------- Form country script --------------------
 const phoneInput = document.querySelector("#phone");
+const form = document.getElementById("RegisterForm");
+const errorDiv = document.getElementById("phoneError");
 
 // Restrict typing to digits only
 phoneInput.addEventListener("keypress", function (e) {
@@ -250,10 +266,20 @@ const iti = window.intlTelInput(phoneInput, {
   },
 });
 
-const form = document.getElementById("RegisterForm");
-
 form.addEventListener("submit", function (e) {
   e.preventDefault();
+
+  let raw = phoneInput.value.replace(/\D/g, "");
+  let digits = raw.replace(/^0+/, "");
+
+  // validate
+  if (digits.length !== 10) {
+    errorDiv.textContent = "Please enter exactly 10 digits";
+    phoneInput.focus();
+    return;
+  }
+  // clear any previous error
+  errorDiv.textContent = "";
 
   const countryData = iti.getSelectedCountryData();
 
