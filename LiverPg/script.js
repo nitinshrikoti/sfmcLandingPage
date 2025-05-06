@@ -1,29 +1,28 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "LiverWebinarOn10May";
+const title = "LiverWebinarOn17May";
 const offeringTitle = "Liver";
 
-const joiningLink = "https://us06web.zoom.us/j/81275280660";
-const whatsappLink = "https://chat.whatsapp.com/EOYSKYeabTd4SGOrOHXyRL";
+const joiningLink = "https://us06web.zoom.us/j/87048625530";
+const whatsappLink = "https://chat.whatsapp.com/Eav4aRnLZRFAflKrAutZok";
 
-const webDate = "10 May 2025 | 10:00 AM";
-const newSlotDate = "10 May 2025";
-const newSlotTime = "10:00 AM";
-const waitUntillDate = "2025-05-10";
-const targetDate = new Date("May 10, 2025 10:00:00").getTime();
+const webDate = "17 May 2025 | 4:00 PM";
+const newSlotDate = "17 May 2025";
+const newSlotTime = "4:00 PM";
+const waitUntillDate = "2025-05-17";
+const targetDate = new Date("May 17, 2025 16:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Liver</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Divyadeep";
+const drName = "Dr. Megha";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Diploma in Naturopathy and Diploma in Yoga",
-  "Expertise in Chronic Diseases, Metabolic, Skin Disorders and Infertility",
-  "16+ Years of Experience",
+  "Bachelor Of Naturopathy and Yogic Sciences",
+  "4+ Years of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2a06da4f-2205-458e-a16f-fb3d4d65e198.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6cb716c2-70df-44ec-a741-2f9c745de282.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/1e0f9aef-c15f-403b-b5f5-73c34ac9b657.png";
