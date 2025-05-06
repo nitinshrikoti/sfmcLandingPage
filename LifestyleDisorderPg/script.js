@@ -1,29 +1,29 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "LifestyleDisorderWebinarOn6May";
+const title = "LifestyleDisorderWebinarOn17May";
 const offeringTitle = "Lifestyle Disorder";
 
-const joiningLink = "https://us06web.zoom.us/j/86482189253";
-const whatsappLink = "https://chat.whatsapp.com/GogWFCaNW19DMgda3rJ1J1";
+const joiningLink = "https://us06web.zoom.us/j/87194640865";
+const whatsappLink = "https://chat.whatsapp.com/Js4oqk0HQIBL7D0lnvS7t3";
 
-const webDate = "6 May 2025 | 4:00 PM";
-const newSlotDate = "6 May 2025";
-const newSlotTime = "4:00 PM";
-const waitUntillDate = "2025-05-06";
-const targetDate = new Date("May 6, 2025 16:00:00").getTime();
+const webDate = "17 May 2025 | 10:00 AM";
+const newSlotDate = "17 May 2025";
+const newSlotTime = "10:00 AM";
+const waitUntillDate = "2025-05-17";
+const targetDate = new Date("May 17, 2025 10:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Lifestyle Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Meghna";
+const drName = "Vaidya Navneet";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Chronic Kidney & Liver Disease",
-  "Lifestyle Disorders (GIT, Joint, Mental Health)",
-  "4+ Years Of Experience",
+  "Doctor of Medicine (MD)",
+  "Certified Yoga Practitioner (CYP)",
+  "5+ Years of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2457b5fd-2e28-495d-90e0-5625d446d1b2.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/0798e2b6-3bdc-4f73-9a6a-9ad04bf56d84.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e6cabbf5-0635-43f1-801f-0ac0ad688f98.png";
