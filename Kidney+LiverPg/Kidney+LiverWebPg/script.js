@@ -1,16 +1,16 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "KidneyLiverWebinarOn2May";
-const offeringTitle = "Cancer";
+const title = "KidneyLiverWebinarOn16May";
+const offeringTitle = "Kidney + Liver";
 
-const joiningLink = "";
-const whatsappLink = "";
+const joiningLink = "https://us06web.zoom.us/j/89558945081";
+const whatsappLink = "https://chat.whatsapp.com/LgKs6e5TqNiFoHCUjHO5wc";
 
-const webDate = "2 May 2025 | 3:00 PM";
-const newSlotDate = "2 May 2025";
+const webDate = "16 May 2025 | 3:00 PM";
+const newSlotDate = "16 May 2025";
 const newSlotTime = "3:00 PM";
-const waitUntillDate = "2025-05-02";
-const targetDate = new Date("May 2, 2025 15:00:00").getTime();
+const waitUntillDate = "2025-05-16";
+const targetDate = new Date("May 16, 2025 15:00:00").getTime();
 
 const heroHeading =
   "Join <i>Kidney and Liver</i> Webinar by <i>Acharya Manish Ji</i>";
