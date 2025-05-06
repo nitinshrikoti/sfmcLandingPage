@@ -1,27 +1,29 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "DiabetesWebinarOn12May";
+const title = "DiabetesWebinarOn19May";
 const offeringTitle = "Diabetes";
 
-const joiningLink = "https://us06web.zoom.us/j/84062757502";
-const whatsappLink = "https://chat.whatsapp.com/CtMBKdt3mkSHwsrdKfelZI";
+const joiningLink = "https://us06web.zoom.us/j/86734735283";
+const whatsappLink = "https://chat.whatsapp.com/JTRvQ0EHhboC0GogMxb4hb";
 
-const webDate = "12 May 2025 | 4:00 PM";
-const newSlotDate = "12 May 2025";
+const webDate = "19 May 2025 | 4:00 PM";
+const newSlotDate = "19 May 2025";
 const newSlotTime = "4:00 PM";
-const waitUntillDate = "2025-05-12";
-const targetDate = new Date("May 12, 2025 16:00:00").getTime();
+const waitUntillDate = "2025-05-19";
+const targetDate = new Date("May 19, 2025 16:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Diabetes</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Anil";
+const drName = "Dr. Divyadeep";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Certificate of Rashtriya Ayurveda Vidyapeeth",
+  "Diploma in Naturopathy and Diploma in Yoga",
+  "Expertise in Chronic Diseases, Metabolic, Skin Disorders and Infertility",
+  "16+ Years of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6e4798f7-7917-41cd-9ca7-ee139ceee939.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2a06da4f-2205-458e-a16f-fb3d4d65e198.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/766d2799-154f-4dee-bab1-0a358411bb5e.png";

@@ -1,29 +1,28 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "AnxietyStressDepressionWebinarOn9Apr";
+const title = "AnxietyStressDepressionWebinarOn19Apr";
 const offeringTitle = "Anxiety, Depression, Stress";
 
-const joiningLink = "https://us06web.zoom.us/j/84755678267";
-const whatsappLink = "https://chat.whatsapp.com/HheCd9bk0UNBGTh7TPyXLY";
+const joiningLink = "https://us06web.zoom.us/j/81525234690";
+const whatsappLink = "https://chat.whatsapp.com/DeeFLjjg45lIVjwpuX9UxM";
 
-const webDate = "14 May 2025 | 1:00 PM";
-const newSlotDate = "14 May 2025";
+const webDate = "19 May 2025 | 1:00 PM";
+const newSlotDate = "19 May 2025";
 const newSlotTime = "1:00 PM";
-const waitUntillDate = "2025-05-14";
-const targetDate = new Date("May 14, 2025 13:00:00").getTime();
+const waitUntillDate = "2025-05-19";
+const targetDate = new Date("May 19, 2025 13:00:00").getTime();
 
 const heroHeading =
-  "Webinar on <b><i>Anxiety, Depression, Stress</i></b> by <i>Team Acharya Manish Ji</i>";
+  "Webinar on <b><i>Anxiety, Depression, Stress</i></b> by <i>Acharya Manish Ji & Dr. Sonali</i>";
 
-const drName = "Dr. Neha";
+const drName = "Dr. Sonali";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Diploma in Panchakarma Chikitsa (DPC)",
-  "Expertise in Cancer, Gynaecology, CKD, CLD, Obesity, Diabetes",
-  "4+ Years Of Experience",
+  "CERTIFIED in Psychosomatic Disorders",
+  "4+ Years of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/b2bc80d6-0ca9-4f5a-8439-8d4149c54329.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f6e16a88-067f-41f4-a7ec-abd014ecaacc.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2eecef18-d58d-48be-bba0-6ddbd265a74e.png";

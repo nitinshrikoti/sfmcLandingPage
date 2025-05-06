@@ -1,16 +1,16 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "PilesFissureFistulaWebinarOn12May";
+const title = "PilesFissureFistulaWebinarOn19May";
 const offeringTitle = "Piles, Fissure, Fistula";
 
-const joiningLink = "https://us06web.zoom.us/j/81487647702";
-const whatsappLink = "https://chat.whatsapp.com/LmBwiw8sGq62VUW61HjN9S";
+const joiningLink = "https://us06web.zoom.us/j/83638359353";
+const whatsappLink = "https://chat.whatsapp.com/HSq2gPHR0gRFjQQzjlpeuf";
 
-const webDate = "12 May 2025 | 10:00 AM";
-const newSlotDate = "12 May 2025";
+const webDate = "19 May 2025 | 10:00 AM";
+const newSlotDate = "19 May 2025";
 const newSlotTime = "10:00 AM";
-const waitUntillDate = "2025-05-12";
-const targetDate = new Date("May 12, 2025 10:00:00").getTime();
+const waitUntillDate = "2025-05-19";
+const targetDate = new Date("May 19, 2025 10:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Piles, Fissure, Fistula</i></b> by <i>Team Acharya Manish Ji</i>";
