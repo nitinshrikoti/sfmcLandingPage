@@ -1,29 +1,28 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "MetabolicWebinarOn8May";
+const title = "MetabolicWebinarOn15May";
 const offeringTitle = "Metabolic Disorder";
 
-const joiningLink = "https://us06web.zoom.us/j/82533984045";
-const whatsappLink = "https://chat.whatsapp.com/G9NvTYWAgfeC6KE703fy5p";
+const joiningLink = "https://us06web.zoom.us/j/82401361807";
+const whatsappLink = "https://chat.whatsapp.com/HimEcEYvpYHAsOYUk8p2uo";
 
-const webDate = "8 May 2025 | 4:00 PM";
-const newSlotDate = "8 May 2025";
-const newSlotTime = "4:00 PM";
-const waitUntillDate = "2025-05-08";
-const targetDate = new Date("May 8, 2025 16:00:00").getTime();
+const webDate = "15 May 2025 | 1:00 PM";
+const newSlotDate = "15 May 2025";
+const newSlotTime = "1:00 PM";
+const waitUntillDate = "2025-05-15";
+const targetDate = new Date("May 15, 2025 13:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Metabolic Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Meghna";
+const drName = "Dr. Meetali";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Chronic Kidney & Liver Disease",
-  "Lifestyle Disorders (GIT, Joint, Mental Health)",
-  "4+ Years Of Experience",
+  "Specialization in Panchkarma",
+  "8+ Years of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2457b5fd-2e28-495d-90e0-5625d446d1b2.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/121dab33-39a6-4863-91de-4ed0356eeeff.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e6cabbf5-0635-43f1-801f-0ac0ad688f98.png";
