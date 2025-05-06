@@ -1,29 +1,27 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "SkinDisorderWebinarOn9May";
+const title = "SkinDisorderWebinarOn13May";
 const offeringTitle = "Skin Disorder";
 
-const joiningLink = "https://us06web.zoom.us/j/86893202828";
-const whatsappLink = "https://chat.whatsapp.com/JxvwMacpbq98Gd6Fdy3SZn";
+const joiningLink = "https://us06web.zoom.us/j/81834589967";
+const whatsappLink = "https://chat.whatsapp.com/DXGrIIS0sKrGTdpIhKVMFU";
 
-const webDate = "9 May 2025 | 11:00 AM";
-const newSlotDate = "9 May 2025";
-const newSlotTime = "11:00 AM";
-const waitUntillDate = "2025-05-09";
-const targetDate = new Date("May 9, 2025 11:00:00").getTime();
+const webDate = "13 May 2025 | 4:00 PM";
+const newSlotDate = "13 May 2025";
+const newSlotTime = "4:00 PM";
+const waitUntillDate = "2025-05-13";
+const targetDate = new Date("May 13, 2025 16:00:00").getTime();
 
 const heroHeading =
-  "Webinar on <b><i>Skin Disorders</i></b> by <i>Acharya Manish Ji & Dr. Meghna</i>";
+  "Webinar on <b><i>Skin Disorders</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Meghna";
+const drName = "Dr. Jaspreet";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Chronic Kidney & Liver Disease",
-  "Lifestyle Disorders (GIT, Joint, Mental Health)",
-  "4+ Years Of Experience",
+  "Diploma in Panchakarma Chikitsa (DPC)",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2457b5fd-2e28-495d-90e0-5625d446d1b2.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e4575f46-5879-4661-8bbc-5603026b64ba.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/256e2d62-fc16-4cc0-b9e3-c054407f54e6.png";

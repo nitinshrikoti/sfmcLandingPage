@@ -202,7 +202,6 @@ firstNameEl.addEventListener("input", () => {
   firstNameEl.value = firstNameEl.value.replace(/[^A-Za-z]/g, "");
 });
 
-
 // -------------------- Close Nav container Script --------------------
 document.addEventListener("DOMContentLoaded", function () {
   const menuToggle = document.getElementById("menuToggle");
