@@ -1,16 +1,16 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "InfertilityWebinarOn10May";
+const title = "InfertilityWebinarOn13May";
 const offeringTitle = "Infertility";
 
-const joiningLink = "https://us06web.zoom.us/j/89033314693";
-const whatsappLink = "https://chat.whatsapp.com/KI6vU1vNzrRFLmZL48roOO";
+const joiningLink = "https://us06web.zoom.us/j/86521634133";
+const whatsappLink = "https://chat.whatsapp.com/K0EmwEnkfGK0hQpIHR0Voz";
 
-const webDate = "10 May 2025 | 1:00 PM";
-const newSlotDate = "10 May 2025";
+const webDate = "13 May 2025 | 1:00 PM";
+const newSlotDate = "13 May 2025";
 const newSlotTime = "1:00 PM";
-const waitUntillDate = "2025-05-10";
-const targetDate = new Date("May 10, 2025 13:00:00").getTime();
+const waitUntillDate = "2025-05-13";
+const targetDate = new Date("May 13, 2025 13:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Infertility</i></b> by <i>Team Acharya Manish Ji</i>";
@@ -199,7 +199,7 @@ window.addEventListener("click", function (event) {
 
 // — Prevent anything but letters (no spaces) in FirstName —
 const firstNameEl = document.getElementById("FirstName");
-firstNameEl.addEventListener("keypress", (e) => {
+firstNameEl.addEventListener("keypress", e => {
   // if the key isn’t A–Z or a–z, block it
   if (!/^[A-Za-z]$/.test(e.key)) {
     e.preventDefault();
