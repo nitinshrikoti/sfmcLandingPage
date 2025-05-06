@@ -1,6 +1,6 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "";
+const title = "AnxietyStressDepressionWebinarOn9Apr";
 const offeringTitle = "";
 
 const joiningLink = "";
@@ -13,7 +13,7 @@ const waitUntillDate = "2025-04-18";
 const targetDate = new Date("April 18, 2025 13:00:00").getTime();
 
 const heroHeading =
-  "Webinar on <b><i></i></b> by <i>Team Acharya Manish Ji</i>";
+  "Webinar on <b><i>Anxiety, Depression, Stress</i></b> by <i>Team Acharya Manish Ji</i>";
 
 const drName = "Dr. ";
 const drDetails = [
@@ -23,22 +23,29 @@ const drDetails = [
 ];
 const docImg = "";
 
-const bannerImage = "";
+const bannerImage =
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2eecef18-d58d-48be-bba0-6ddbd265a74e.png";
 
 // Why Join Content
-const why1 = "";
-const why2 = "";
-const why3 = "";
-const why4 = "";
-const why5 = "";
+const why1 =
+  "जो <b>Anxiety</b> और <b>panic disorder</b> से राहत पाना चाहते हैं।";
+const why2 = "जो <b>Depression</b> से उबरकर mental peace चाहते हैं।";
+const why3 = "जो <b>Insomnia</b> से छुटकारा पाकर बेहतर नींद चाहते हैं।";
+const why4 =
+  "जो <b>Emotional balance</b> और <b>mental clarity</b> बढ़ाना चाहते हैं।";
+const why5 =
+  " जो <b>Lifestyle</b> changes से <b>stress-free</b> और healthy life चाहते हैं।";
 
-const Testi1 = '""';
-const Testi2 = '""';
-const Testi3 = '""';
+const Testi1 =
+  '"The webinar provided practical strategies to manage anxiety and stress. I feel more confident in handling my emotions now!"';
+const Testi2 =
+  '"The expert tips on mental wellness were easy to apply and made a real difference."';
+const Testi3 =
+  '"Insightful session! Helped me understand depression better and gave me useful coping techniques for daily life with ayurvedic remedies"';
 
-const TestiNam1 = "— ";
-const TestiNam2 = "— ";
-const TestiNam3 = "— ";
+const TestiNam1 = "— Saheb";
+const TestiNam2 = "— Pryanka";
+const TestiNam3 = "— Sidharth";
 
 const contactNumber = "917710371037";
 
@@ -191,7 +198,7 @@ window.addEventListener("click", function (event) {
 
 // — Prevent anything but letters (no spaces) in FirstName —
 const firstNameEl = document.getElementById("FirstName");
-firstNameEl.addEventListener("keypress", e => {
+firstNameEl.addEventListener("keypress", (e) => {
   // if the key isn’t A–Z or a–z, block it
   if (!/^[A-Za-z]$/.test(e.key)) {
     e.preventDefault();
