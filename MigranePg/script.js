@@ -1,29 +1,28 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "ChronicMigraneWebinarOn26Apr";
+const title = "ChronicMigraneWebinarOn14May";
 const offeringTitle = "Chronic Migrane";
 
-const joiningLink = "https://us06web.zoom.us/j/85675259792";
-const whatsappLink = "https://chat.whatsapp.com/LBBuSSVTu8vK2tdHZVtTxK";
+const joiningLink = "https://us06web.zoom.us/j/82890246896";
+const whatsappLink = "https://chat.whatsapp.com/G8tDGUZ970qCMPbE9c9RKY";
 
-const webDate = "26 April 2025 | 4:00 PM";
-const newSlotDate = "26 April 2025";
+const webDate = "14 May 2025 | 4:00 PM";
+const newSlotDate = "14 May 2025";
 const newSlotTime = "4:00 PM";
-const waitUntillDate = "2025-04-26";
-const targetDate = new Date("April 26, 2025 16:00:00").getTime();
+const waitUntillDate = "2025-05-14";
+const targetDate = new Date("May 14, 2025 16:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Chronic Migrane</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Pooja";
+const drName = "Dr. Megha";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Certificate of Rashtriya Ayurveda Vidyapeeth",
-  "Diploma in Panchakarma Chikitsa (DPC)",
-  "5+ Years of Experience",
+  "Bachelor Of Naturopathy and Yogic Sciences",
+  "4+ Years of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/37df16f7-b445-48cc-8828-e327a4f1002b.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6cb716c2-70df-44ec-a741-2f9c745de282.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/05fe38fe-3faf-45fe-97ec-0f6433478b51.png";
@@ -200,6 +199,19 @@ window.addEventListener("click", function (event) {
   }
 });
 
+// — Prevent anything but letters (no spaces) in FirstName —
+const firstNameEl = document.getElementById("FirstName");
+firstNameEl.addEventListener("keypress", (e) => {
+  // if the key isn’t A–Z or a–z, block it
+  if (!/^[A-Za-z]$/.test(e.key)) {
+    e.preventDefault();
+  }
+});
+firstNameEl.addEventListener("input", () => {
+  // strip out any non-letters (just in case)
+  firstNameEl.value = firstNameEl.value.replace(/[^A-Za-z]/g, "");
+});
+
 // -------------------- Close Nav container Script --------------------
 document.addEventListener("DOMContentLoaded", function () {
   const menuToggle = document.getElementById("menuToggle");
@@ -216,6 +228,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // -------------------- Form country script --------------------
 const phoneInput = document.querySelector("#phone");
+const form = document.getElementById("RegisterForm");
+const errorDiv = document.getElementById("phoneError");
 
 // Restrict typing to digits only
 phoneInput.addEventListener("keypress", function (e) {
@@ -251,10 +265,20 @@ const iti = window.intlTelInput(phoneInput, {
   },
 });
 
-const form = document.getElementById("RegisterForm");
-
 form.addEventListener("submit", function (e) {
   e.preventDefault();
+
+  let raw = phoneInput.value.replace(/\D/g, "");
+  let digits = raw.replace(/^0+/, "");
+
+  // validate
+  if (digits.length !== 10) {
+    errorDiv.textContent = "Please enter exactly 10 digits";
+    phoneInput.focus();
+    return;
+  }
+  // clear any previous error
+  errorDiv.textContent = "";
 
   const countryData = iti.getSelectedCountryData();
 
