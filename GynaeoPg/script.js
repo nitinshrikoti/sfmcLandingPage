@@ -1,55 +1,51 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "ChronicMigraneWebinarOn23May";
-const offeringTitle = "Chronic Migrane";
+const title = "GynaecologicalDisorderOn23May";
+const offeringTitle = "Gynaecological Disorder";
 
-const joiningLink = "https://us06web.zoom.us/j/88063763352";
-const whatsappLink = "https://chat.whatsapp.com/EJHzYUarMT0FUmQ6CFIzwt";
+const joiningLink = "https://us06web.zoom.us/j/87911949514";
+const whatsappLink = "https://chat.whatsapp.com/E3DZEFbpPD69NDEWohfw1h";
 
-const webDate = "23 May 2025 | 1:00 PM";
+const webDate = "23 May 2025 | 10:00 AM";
 const newSlotDate = "23 May 2025";
-const newSlotTime = "1:00 PM";
+const newSlotTime = "10:00 AM";
 const waitUntillDate = "2025-05-23";
-const targetDate = new Date("May 23, 2025 13:00:00").getTime();
+const targetDate = new Date("May 23, 2025 10:00:00").getTime();
 
 const heroHeading =
-  "Webinar on <b><i>Chronic Migrane</i></b> by <i>Team Acharya Manish Ji</i>";
+  "Webinar on <b><i>Gynaecological Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Neha";
+const drName = "Dr. Nikita";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Diploma in Panchakarma Chikitsa (DPC)",
-  "Expertise in Cancer, Gynaecology, CKD, CLD, Obesity, Diabetes",
-  "4+ Years Of Experience",
+  "Expertise in Garbh Dharan",
+  "3+ Years of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/b2bc80d6-0ca9-4f5a-8439-8d4149c54329.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/7d087163-7351-4cff-bc97-e07d41e40c7c.png";
 
 const bannerImage =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/05fe38fe-3faf-45fe-97ec-0f6433478b51.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/fd2a34e2-e83f-4354-a7a7-57c6e6af00f2.png";
 
 // Why Join Content
-const why1 =
-  "<b>Classic</b> और <b>Common Migraine</b> से सिर दर्द और लक्षणों से राहत पाना चाहते हैं।";
+const why1 = "जिन्हें <b>पीरियड्स</b> अनियमित रहते हैं या हर महीने ज़्यादा दर्द और ब्लीडिं  होती है।";
 const why2 =
-  "<b>Hormonal Migraine</b> को संतुलित कर महिलाओं में सिर दर्द को कम करना चाहते हैं।";
-const why3 =
-  "<b>Rebound Headache</b> से बचने और दर्दनाशक दवाइयों के प्रभाव को कम करना चाहते हैं।";
+  "जो लंबे समय से <b>PCOS या एंडोमेट्रियोसिस</b> जैसी समस्या से परेशान हैं।";
+const why3 = "जिनकी शादी के बाद भी मां बनने में बार-बार दिक्कत आ रही है।";
 const why4 =
-  "<b>Cluster Headache</b> और <b>Tension-type Headache</b> से सिर में तनाव और दर्द को कम करना चाहते हैं।";
-const why5 =
-  "<b>Sinus Headache</b> और <b>Ocular Migraine</b> से नाक, आंखों के दबाव और दर्द को नियंत्रित करना चाहते हैं।";
+  "जिन्हें बार-बार <b>वाइट डिस्चार्ज या यूरिन इन्फेक्शन</b> की शिकायत रहती है।";
+const why5 = "जो <b>मेनोपॉज़</b> के बाद शरीर में बदलावों से राहत पाना चाहती हैं।";
 
 const Testi1 =
-  '"The webinar provided clear insights on managing nerve disorders with practical tips. Very informative!"';
+  '"PCOS troubled me for years, but a webinar by Acharya Manish Ji’s team changed everything. After HiiMS consultation, I feel energetic, and my reports improved. Grateful for this life-changing experience"';
 const Testi2 =
-  '"Great session on brain health! Learned useful strategies to improve memory and prevent neurological issues."';
+  '"PCOD ne mujhe stress diya, medicines bas symptoms control karti thi. HiiMS webinar attend kiya, Ayurveda treatment shuru kiya. 3 mahine me hi periods regular, acne kam, aur energy badh gayi"';
 const Testi3 =
-  '"Well-explained and engaging! Helped me understand nerve disorders and available treatment options better."';
+  '"Hormonal imbalance caused mood swings, weight gain, and fatigue. HiiMS webinar was eye-opening. After consultation, my energy returned, sleep improved, and I feel like myself again."';
 
-const TestiNam1 = "— Bikash Ahuja";
-const TestiNam2 = "— Virender Gupta";
-const TestiNam3 = "— Navjot Singh";
+const TestiNam1 = "— Rajni";
+const TestiNam2 = "— Nidhi";
+const TestiNam3 = "— Payal Jain";
 
 const contactNumber = "917710371037";
 
