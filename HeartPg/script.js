@@ -1,30 +1,28 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "HeartWebinarOn3May";
+const title = "HeartWebinarOn20May";
 const offeringTitle = "Heart";
 
-const joiningLink = "https://us06web.zoom.us/j/86226389099";
-const whatsappLink = "https://chat.whatsapp.com/FWbIxnCNsBD2XR1GCzKX1z";
+const joiningLink = "https://us06web.zoom.us/j/88350126946";
+const whatsappLink = "https://chat.whatsapp.com/Dlydb01VL81LeGKnzwfRlb";
 
-const webDate = "3 May 2025 | 4:00 PM";
-const newSlotDate = "3 May 2025";
-const newSlotTime = "4:00 PM";
-const waitUntillDate = "2025-05-03";
-const targetDate = new Date("May 3, 2025 16:00:00").getTime();
+const webDate = "20 May 2025 | 10:00 AM";
+const newSlotDate = "20 May 2025";
+const newSlotTime = "10:00 AM";
+const waitUntillDate = "2025-05-20";
+const targetDate = new Date("May 20, 2025 10:00:00").getTime();
 
 const heroHeading =
-  "Webinar on <b><i>Heart Disorder</i></b> by <i>Acharya Manish Ji & Dr. Neha</i>";
+  "Webinar on <b><i>Heart Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Neha";
+const drName = "Dr. Sonali";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Diploma in Panchakarma Chikitsa (DPC)",
-  "Expertise in Cancer, Gynaecology, CKD, CLD, Obesity, Diabetes",
-  "4+ Years Of Experience",
+  "CERTIFIED in Psychosomatic Disorders",
+  "4+ Years of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/b2bc80d6-0ca9-4f5a-8439-8d4149c54329.png";
-
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f6e16a88-067f-41f4-a7ec-abd014ecaacc.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/63590534-356c-45d0-a437-2e4f62528278.png";
@@ -33,15 +31,19 @@ const bannerImage =
 const why1 =
   "जो लोग <b>coronary artery disease (CAD)</b> या heart disease से जूझ रहे हैं।";
 const why2 = "जिन्हें <b>chest pain, heaviness, या pressure</b> महसूस होता है।";
-const why3 = "जिन्हें <b>breathing difficulty या fast heartbeat</b> की समस्या है।";
-const why4 = "जो <b>fatigue, weakness, और body discomfort</b> अनुभव कर रहे हैं।";
+const why3 =
+  "जिन्हें <b>breathing difficulty या fast heartbeat</b> की समस्या है।";
+const why4 =
+  "जो <b>fatigue, weakness, और body discomfort</b> अनुभव कर रहे हैं।";
 const why5 =
   "जो <b>high blood pressure या high cholesterol</b> को नियंत्रित करना चाहते हैं।";
 
-const Testi1 = '"मेरा नाम जंग बहादुर सिंह है। मुझे हार्ट, प्रोस्टेट, शुगर और पर्किंसन जैसी कई दिक्कतें थीं। HiiMS इलाज से काफी आराम मिला, मैं फिर से जरूर आऊंगा और सबको आने की सलाह दूंगा।"';
+const Testi1 =
+  '"मेरा नाम जंग बहादुर सिंह है। मुझे हार्ट, प्रोस्टेट, शुगर और पर्किंसन जैसी कई दिक्कतें थीं। HiiMS इलाज से काफी आराम मिला, मैं फिर से जरूर आऊंगा और सबको आने की सलाह दूंगा।"';
 const Testi2 =
   '""मेरा नाम सुशील सिंह चौहान है, मैं भोडा कला गांव (गुड़गांव) से आया हूं। मुझे पिछले 9 साल से शुगर थी, लेकिन HiiMS के 72 घंटे के कैंप में बिना दवा के मेरी शुगर नॉर्मल आ गई। यहां का डाइट प्लान, डॉक्टर और स्टाफ सभी बहुत अच्छे हैं — हर किसी को एक बार जरूर आना चाहिए।""';
-const Testi3 = '"दलजीत कौर जी को 20 साल से शुगर, हार्ट और किडनी की गंभीर दिक्कत थी। HiiMS में एडमिट होने के बाद दवाइयाँ बंद हो गईं और सभी रिपोर्ट्स नॉर्मल आने लगीं। अब बिना दवा के नींद भी ठीक है और खुद को बिल्कुल स्वस्थ महसूस कर रही हैं।"';
+const Testi3 =
+  '"दलजीत कौर जी को 20 साल से शुगर, हार्ट और किडनी की गंभीर दिक्कत थी। HiiMS में एडमिट होने के बाद दवाइयाँ बंद हो गईं और सभी रिपोर्ट्स नॉर्मल आने लगीं। अब बिना दवा के नींद भी ठीक है और खुद को बिल्कुल स्वस्थ महसूस कर रही हैं।"';
 
 const TestiNam1 = "— जंग बहादुर सिंह";
 const TestiNam2 = "— सुशील सिंह चौहान";

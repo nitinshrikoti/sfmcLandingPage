@@ -1,16 +1,16 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "InfertilityWebinarOn17May";
+const title = "InfertilityWebinarOn20May";
 const offeringTitle = "Infertility";
 
-const joiningLink = "https://us06web.zoom.us/j/83050775300";
-const whatsappLink = "https://chat.whatsapp.com/BYBhqv2YDxlKnlRnMHdraz";
+const joiningLink = "https://us06web.zoom.us/j/87123202765";
+const whatsappLink = "https://chat.whatsapp.com/KYAIvNVvXaoIO0sskK29Wc";
 
-const webDate = "17 May 2025 | 1:00 PM";
-const newSlotDate = "17 May 2025";
+const webDate = "20 May 2025 | 1:00 PM";
+const newSlotDate = "20 May 2025";
 const newSlotTime = "1:00 PM";
-const waitUntillDate = "2025-05-17";
-const targetDate = new Date("May 17, 2025 13:00:00").getTime();
+const waitUntillDate = "2025-05-20";
+const targetDate = new Date("May 20, 2025 13:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Infertility</i></b> by <i>Team Acharya Manish Ji</i>";
