@@ -1,28 +1,29 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "FemaleHormonalOn15May";
+const title = "FemaleHormonalOn22May";
 const offeringTitle = "Female Hormonal Disorder";
 
-const joiningLink = "https://us06web.zoom.us/j/82453625628";
-const whatsappLink = "https://chat.whatsapp.com/KwV6vvecOzpCMGfxnQbLsG";
+const joiningLink = "https://us06web.zoom.us/j/86791257510";
+const whatsappLink = "https://chat.whatsapp.com/GC7DMIiCE4qAY13iR67v3m";
 
-const webDate = "15 May 2025 | 4:00 PM";
-const newSlotDate = "15 May 2025";
+const webDate = "22 May 2025 | 4:00 PM";
+const newSlotDate = "22 May 2025";
 const newSlotTime = "4:00 PM";
-const waitUntillDate = "2025-05-15";
-const targetDate = new Date("May 15, 2025 16:00:00").getTime();
+const waitUntillDate = "2025-05-22";
+const targetDate = new Date("May 22, 2025 16:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Female Hormonal Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Sonali";
+const drName = "Dr. Ankita";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "CERTIFIED in Psychosomatic Disorders",
-  "4+ Years of Experience",
+  "Chronic Liver & Kidney Disease",
+  "Expertise in Arthritis, Mental Health",
+  "2+ Years of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f6e16a88-067f-41f4-a7ec-abd014ecaacc.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6de07489-5caa-4c98-b41f-60660aefa45c.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/4e666290-5329-4c7b-a389-7a8c41f4103e.png";

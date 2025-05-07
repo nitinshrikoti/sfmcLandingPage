@@ -1,28 +1,29 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "LiverWebinarOn17May";
+const title = "LiverWebinarOn22May";
 const offeringTitle = "Liver";
 
-const joiningLink = "https://us06web.zoom.us/j/87048625530";
-const whatsappLink = "https://chat.whatsapp.com/Eav4aRnLZRFAflKrAutZok";
+const joiningLink = "https://us06web.zoom.us/j/84131944330";
+const whatsappLink = "https://chat.whatsapp.com/CV2Iw1hPI6wI16fRfagQnH";
 
-const webDate = "17 May 2025 | 4:00 PM";
-const newSlotDate = "17 May 2025";
-const newSlotTime = "4:00 PM";
-const waitUntillDate = "2025-05-17";
-const targetDate = new Date("May 17, 2025 16:00:00").getTime();
+const webDate = "22 May 2025 | 1:00 PM";
+const newSlotDate = "22 May 2025";
+const newSlotTime = "1:00 PM";
+const waitUntillDate = "2025-05-22";
+const targetDate = new Date("May 22, 2025 13:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Liver</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Megha";
+const drName = "Dr. Geetika";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Bachelor Of Naturopathy and Yogic Sciences",
-  "4+ Years of Experience",
+  "PGDIP (PG. Diploma in Panchakarma)",
+  "M.S. (Ay.) Master of Surgery",
+  "15+ Years of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6cb716c2-70df-44ec-a741-2f9c745de282.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/540c60d3-7b05-4859-b63b-27c34da6ba93.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/1e0f9aef-c15f-403b-b5f5-73c34ac9b657.png";
