@@ -1,6 +1,6 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "WebinarOn9Apr";
+const title = "WebinarOn9May";
 const offeringTitle = "";
 
 const joiningLink = "";
