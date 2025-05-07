@@ -1,28 +1,29 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "MetabolicWebinarOn15May";
+const title = "MetabolicWebinarOn21May";
 const offeringTitle = "Metabolic Disorder";
 
-const joiningLink = "https://us06web.zoom.us/j/82401361807";
-const whatsappLink = "https://chat.whatsapp.com/HimEcEYvpYHAsOYUk8p2uo";
+const joiningLink = "https://us06web.zoom.us/j/89155985612";
+const whatsappLink = "https://chat.whatsapp.com/BTUzTnzZCnJKqVdKc93pLz";
 
-const webDate = "15 May 2025 | 1:00 PM";
-const newSlotDate = "15 May 2025";
-const newSlotTime = "1:00 PM";
-const waitUntillDate = "2025-05-15";
-const targetDate = new Date("May 15, 2025 13:00:00").getTime();
+const webDate = "21 May 2025 | 11:00 AM";
+const newSlotDate = "21 May 2025";
+const newSlotTime = "11:00 AM";
+const waitUntillDate = "2025-05-21";
+const targetDate = new Date("May 21, 2025 11:00:00").getTime();
 
 const heroHeading =
-  "Webinar on <b><i>Metabolic Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
+  "Webinar on <b><i>Metabolic Disorder</i></b> by <i>Acharya Manish Ji & Dr. Divyadeep</i>";
 
-const drName = "Dr. Meetali";
+const drName = "Dr. Divyadeep";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Specialization in Panchkarma",
-  "8+ Years of Experience",
+  "Diploma in Naturopathy and Diploma in Yoga",
+  "Expertise in Chronic Diseases, Metabolic, Skin Disorders and Infertility",
+  "16+ Years of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/121dab33-39a6-4863-91de-4ed0356eeeff.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2a06da4f-2205-458e-a16f-fb3d4d65e198.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e6cabbf5-0635-43f1-801f-0ac0ad688f98.png";
