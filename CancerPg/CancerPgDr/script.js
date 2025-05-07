@@ -1,29 +1,29 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "CancerWebinarOn5May";
+const title = "CancerWebinarOn24May";
 const offeringTitle = "Cancer";
 
-const joiningLink = "https://us06web.zoom.us/j/85640521674";
-const whatsappLink = "https://chat.whatsapp.com/Gql8jgapNjCIebugnSCdN4";
+const joiningLink = "https://us06web.zoom.us/j/82727433565";
+const whatsappLink = "https://chat.whatsapp.com/Hc8XUnbXDzP0CixLtDxNVC";
 
-const webDate = "5 May 2025 | 10:00 AM";
-const newSlotDate = "5 May 2025";
-const newSlotTime = "10:00 AM";
-const waitUntillDate = "2025-05-05";
-const targetDate = new Date("May 5, 2025 10:00:00").getTime();
+const webDate = "24 May 2025 | 4:00 PM";
+const newSlotDate = "24 May 2025";
+const newSlotTime = "4:00 PM";
+const waitUntillDate = "2025-05-24";
+const targetDate = new Date("May 24, 2025 16:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Cancer</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Krishna Kant Soni";
+const drName = "Dr. Neha";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Diploma in Public Health",
-  "Diploma in Nutrition and Health Education",
-  "Master of Hospital Administration",
+  "Diploma in Panchakarma Chikitsa (DPC)",
+  "Expertise in Cancer, Gynaecology, CKD, CLD, Obesity, Diabetes",
+  "4+ Years Of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6435236d-b1a8-4d89-9829-063f1897ecff.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/b2bc80d6-0ca9-4f5a-8439-8d4149c54329.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/40dbaf11-3753-4fe5-872f-d7cc13c487fb.png";

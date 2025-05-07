@@ -1,16 +1,16 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "MaleSexualWebinarOn8May";
+const title = "MaleSexualWebinarOn24May";
 const offeringTitle = "Male Sexual Disorder";
 
-const joiningLink = "https://us06web.zoom.us/j/86914474296";
-const whatsappLink = "https://chat.whatsapp.com/Bni5kk3VZXD4bkOD3B3uFY";
+const joiningLink = "https://us06web.zoom.us/j/86172692929";
+const whatsappLink = "https://chat.whatsapp.com/BlYBpSWGXMZIdwZ6ScyWMa";
 
-const webDate = "8 May 2025 | 10:00 AM";
-const newSlotDate = "8 May 2025";
+const webDate = "24 May 2025 | 10:00 AM";
+const newSlotDate = "24 May 2025";
 const newSlotTime = "10:00 AM";
-const waitUntillDate = "2025-05-08";
-const targetDate = new Date("May 8, 2025 10:00:00").getTime();
+const waitUntillDate = "2025-05-24";
+const targetDate = new Date("May 24, 2025 10:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Male Sexual Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
