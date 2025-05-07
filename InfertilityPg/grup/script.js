@@ -1,22 +1,27 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "InfertilityWebinarOn12Apr";
-
-// const drName = "Dr. Sonali";
-const webDate = "12 April 2025 | 1:00 PM";
-
-const joiningLink = "https://us06web.zoom.us/j/84761461957";
-const whatsappLink = "https://jeenasikho.com/webinar/?page=infertility-issues";
-
-const newSlotDate = "12 April 2025";
-const newSlotTime = "1:00 PM";
+const title = "InfertilityWebinarOn24May";
 const offeringTitle = "Infertility";
-const waitUntillDate = "2025-04-12";
-const targetDate = new Date("April 12, 2025 13:00:00").getTime();
-const contactNumber = "917710371037";
+
+const joiningLink = "";
+const whatsappLink = "";
+
+const webDate = "24 May 2025 | 1:00 PM";
+const newSlotDate = "24 April 2025";
+const newSlotTime = "1:00 PM";
+const waitUntillDate = "2025-05-24";
+const targetDate = new Date("May 24, 2025 13:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Infertility</i></b> by <i>Team Acharya Manish Ji</i>";
+
+const drName = "Dr. ";
+const drDetails = [
+  "Bachelor of Ayurvedic Medicine and Surgery",
+  "",
+  "2+ Years of Experience",
+];
+const docImg = "";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/38a78d85-9024-44c6-b2ca-0255b66ef18d.png";
@@ -39,10 +44,15 @@ const Testi3 =
   '"ज्योति, जो एक डे केयर टीचर हैं, ने शुद्धि आयुर्वेदा में इलाज करवाकर अपने पीसीओएस को रिवर्स किया और अब वह एक बच्चे की मां बन चुकी हैं। शुद्धि आयुर्वेदा ने उनका सपना सच किया और अब वह वेट लॉस पर भी ध्यान दे रही हैं।"';
 
 const TestiNam1 = "— Saheb";
-const TestiNam2 = "— Pryanka";
-const TestiNam3 = "— Sidharth";
+const TestiNam2 = "— Ravi";
+const TestiNam3 = "— Jyoti";
 
-// Selectors for the dynamic content
+const contactNumber = "917710371037";
+
+// -------------------- Dynamic Content Update End --------------------
+
+// Script for  Dynamic Content Update
+
 document.title = title;
 document.getElementById("heroHeading").innerHTML = heroHeading;
 if (document.getElementById("drImg")) {
@@ -77,7 +87,7 @@ document.getElementById("testiNam1").innerHTML = TestiNam1;
 document.getElementById("testiNam2").innerHTML = TestiNam2;
 document.getElementById("testiNam3").innerHTML = TestiNam3;
 
-// Selectors for the dynamic content end
+// Script for Dynamic Content Update End
 
 // -------------------- Timer Script --------------------
 // Main Timer Elements
@@ -175,6 +185,19 @@ window.addEventListener("click", function (event) {
   }
 });
 
+// — Prevent anything but letters (no spaces) in FirstName —
+const firstNameEl = document.getElementById("FirstName");
+firstNameEl.addEventListener("keypress", (e) => {
+  // if the key isn’t A–Z or a–z, block it
+  if (!/^[A-Za-z]$/.test(e.key)) {
+    e.preventDefault();
+  }
+});
+firstNameEl.addEventListener("input", () => {
+  // strip out any non-letters (just in case)
+  firstNameEl.value = firstNameEl.value.replace(/[^A-Za-z]/g, "");
+});
+
 // -------------------- Close Nav container Script --------------------
 document.addEventListener("DOMContentLoaded", function () {
   const menuToggle = document.getElementById("menuToggle");
@@ -191,6 +214,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // -------------------- Form country script --------------------
 const phoneInput = document.querySelector("#phone");
+const form = document.getElementById("RegisterForm");
+const errorDiv = document.getElementById("phoneError");
 
 // Restrict typing to digits only
 phoneInput.addEventListener("keypress", function (e) {
@@ -226,10 +251,20 @@ const iti = window.intlTelInput(phoneInput, {
   },
 });
 
-const form = document.getElementById("RegisterForm");
-
 form.addEventListener("submit", function (e) {
   e.preventDefault();
+
+  let raw = phoneInput.value.replace(/\D/g, "");
+  let digits = raw.replace(/^0+/, "");
+
+  // validate
+  if (digits.length !== 10) {
+    errorDiv.textContent = "Please enter exactly 10 digits";
+    phoneInput.focus();
+    return;
+  }
+  // clear any previous error
+  errorDiv.textContent = "";
 
   const countryData = iti.getSelectedCountryData();
 

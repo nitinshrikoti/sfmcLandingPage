@@ -62,13 +62,14 @@
 
     <link rel="stylesheet" href="style.css" />
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <!-- Country Code -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/css/intlTelInput.css"
     />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
     <link
       href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&amp;display=swap"
       rel="stylesheet"
@@ -77,9 +78,10 @@
       href="https://fonts.googleapis.com/css2?family=Poppins&amp;display=swap"
       rel="stylesheet"
     />
-
-    <!-- script -->
-    <script src="script.js" defer></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <!-- -------------------- NavBar -------------------- -->
@@ -541,7 +543,7 @@
               id="FirstName"
               name="FirstName"
               required=""
-              placeholder="Bharat"
+              placeholder="John"
             />
 
             <label for="LastName">Last Name</label>
@@ -549,7 +551,7 @@
               type="text"
               id="LastName"
               name="LastName"
-              placeholder="Singh"
+              placeholder="Doe"
             />
 
             <label for="Phone">WhatsApp Number*</label>
@@ -557,9 +559,10 @@
               type="tel"
               id="phone"
               name="phone"
-              placeholder="8175433680"
+              placeholder="1234567890"
               required
             />
+            <div id="phoneError" class="error-msg" aria-live="polite"></div>
 
             <label for="Email">Email</label>
             <input
@@ -569,8 +572,8 @@
               placeholder="example@gmail.com"
             />
 
-            <label for="Country">Country*</label>
-            <select id="Country" name="Country" required="">
+            <label for="Country">Country</label>
+            <select id="Country" name="Country">
               <option value="">-- Select a Country --</option>
               <option value="India">India</option>
               <option value="Afghanistan">Afghanistan</option>
@@ -790,5 +793,7 @@
       </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/intlTelInput.min.js"></script>
+    <script src="script.js"></script>
+     
   </body>
 </html>
