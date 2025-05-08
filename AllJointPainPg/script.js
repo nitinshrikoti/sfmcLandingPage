@@ -1,29 +1,29 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "KneePainWebinarOn15May";
-const offeringTitle = "Knee Pain";
+const title = "AllJointPainWebinarOn28May";
+const offeringTitle = "All Joint Pain";
 
-const joiningLink = "https://us06web.zoom.us/j/87031378182";
-const whatsappLink = "https://chat.whatsapp.com/BQFfcS5SCsBBLkxsSOvy7z";
+const joiningLink = "https://us06web.zoom.us/j/84919258107";
+const whatsappLink = "https://chat.whatsapp.com/G8Rlx3PhOeYIKqk9PSveG2";
 
-const webDate = "15 May 2025 | 10:00 AM";
-const newSlotDate = "15 May 2025";
-const newSlotTime = "10:00 AM";
-const waitUntillDate = "2025-05-15";
-const targetDate = new Date("May 15, 2025 10:00:00").getTime();
+const webDate = "28 May 2025 | 1:00 PM";
+const newSlotDate = "28 May 2025";
+const newSlotTime = "1:00 PM";
+const waitUntillDate = "2025-05-28";
+const targetDate = new Date("May 15, 2025 13:00:00").getTime();
 
 const heroHeading =
-  "Webinar on <b><i>Knee Pain</i></b> by <i>Team Acharya Manish Ji</i>";
+  "Webinar on <b><i>All Joint Pain</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Neha";
+const drName = "Dr. Ankita";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Diploma in Panchakarma Chikitsa (DPC)",
-  "Expertise in Cancer, Gynaecology, CKD, CLD, Obesity, Diabetes",
-  "4+ Years Of Experience",
+  "Chronic Liver & Kidney Disease",
+  "Expertise in Arthritis, Mental Health",
+  "2+ Years of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/b2bc80d6-0ca9-4f5a-8439-8d4149c54329.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6de07489-5caa-4c98-b41f-60660aefa45c.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/ffec998a-5356-47d9-b86a-882e4cd865ea.png";

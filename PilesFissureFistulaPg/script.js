@@ -1,19 +1,19 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "PilesFissureFistulaWebinarOn19May";
+const title = "PilesFissureFistulaWebinarOn30May";
 const offeringTitle = "Piles, Fissure, Fistula";
 
-const joiningLink = "https://us06web.zoom.us/j/83638359353";
-const whatsappLink = "https://chat.whatsapp.com/HSq2gPHR0gRFjQQzjlpeuf";
+const joiningLink = "https://us06web.zoom.us/j/83631953657";
+const whatsappLink = "https://chat.whatsapp.com/GamDuR8UnFw1ZyKMmllz6o";
 
-const webDate = "19 May 2025 | 10:00 AM";
-const newSlotDate = "19 May 2025";
+const webDate = "30 May 2025 | 10:00 AM";
+const newSlotDate = "30 May 2025";
 const newSlotTime = "10:00 AM";
-const waitUntillDate = "2025-05-19";
-const targetDate = new Date("May 19, 2025 10:00:00").getTime();
+const waitUntillDate = "2025-05-30";
+const targetDate = new Date("May 30, 2025 10:00:00").getTime();
 
 const heroHeading =
-  "Webinar on <b><i>Piles, Fissure, Fistula</i></b> by <i>Team Acharya Manish Ji</i>";
+  "Webinar on <b><i>Piles, Fissure, Fistula</i></b> by <i>Acharya Manish Ji & Dr. Navneet</i>";
 
 const drName = "Vaidya Navneet";
 const drDetails = [

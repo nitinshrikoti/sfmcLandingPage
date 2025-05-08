@@ -1,16 +1,16 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "GynaecologicalDisorderOn23May";
+const title = "GynaecologicalDisorderOn27May";
 const offeringTitle = "Gynaecological Disorder";
 
-const joiningLink = "https://us06web.zoom.us/j/87911949514";
-const whatsappLink = "https://chat.whatsapp.com/E3DZEFbpPD69NDEWohfw1h";
+const joiningLink = "https://us06web.zoom.us/j/85631854238";
+const whatsappLink = "https://chat.whatsapp.com/FqaWkvdpm6e5l7Oja0tSkV";
 
-const webDate = "23 May 2025 | 10:00 AM";
-const newSlotDate = "23 May 2025";
-const newSlotTime = "10:00 AM";
-const waitUntillDate = "2025-05-23";
-const targetDate = new Date("May 23, 2025 10:00:00").getTime();
+const webDate = "27 May 2025 | 4:00 PM";
+const newSlotDate = "27 May 2025";
+const newSlotTime = "4:00 PM";
+const waitUntillDate = "2025-05-27";
+const targetDate = new Date("May 27, 2025 16:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Gynaecological Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
