@@ -1,16 +1,16 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "CancerWebinarOn21May";
+const title = "CancerWebinarOn26May";
 const offeringTitle = "Cancer";
 
-const joiningLink = "https://us06web.zoom.us/j/82595581288";
-const whatsappLink = "https://chat.whatsapp.com/GNV7Vxy7dYsLgYDSwwSfvF";
+const joiningLink = "https://us06web.zoom.us/j/85281944202";
+const whatsappLink = "https://chat.whatsapp.com/DyWAVDdIT2zGZxHv2SeT92";
 
-const webDate = "21 May 2025 | 3:00 PM";
-const newSlotDate = "21 May 2025";
-const newSlotTime = "3:00 PM";
-const waitUntillDate = "2025-05-21";
-const targetDate = new Date("May 21, 2025 15:00:00").getTime();
+const webDate = "26 May 2025 | 10:00 AM";
+const newSlotDate = "26 May 2025";
+const newSlotTime = "10:00 AM";
+const waitUntillDate = "2025-05-26";
+const targetDate = new Date("May 26, 2025 10:00:00").getTime();
 
 const heroHeading = "Join <i>Cancer</i> Webinar by <i>Acharya Manish Ji</i>";
 

@@ -1,29 +1,29 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "DigestiveWebinarOn12May";
+const title = "DigestiveWebinarOn27May";
 const offeringTitle = "Gas, Acidity, Constipation";
 
-const joiningLink = "https://us06web.zoom.us/j/85947685656";
-const whatsappLink = "https://chat.whatsapp.com/EumA0rTeRpd3ThTF7TlBHG";
+const joiningLink = "https://us06web.zoom.us/j/89590817075";
+const whatsappLink = "https://chat.whatsapp.com/CFLGWGIS6Z33YKRxRnKYHo";
 
-const webDate = "12 May 2025 | 1:00 PM";
-const newSlotDate = "12 May 2025";
-const newSlotTime = "1:00 PM";
-const waitUntillDate = "2025-05-12";
-const targetDate = new Date("May 12, 2025 13:00:00").getTime();
+const webDate = "27 May 2025 | 10:00 AM";
+const newSlotDate = "27 May 2025";
+const newSlotTime = "10:00 AM";
+const waitUntillDate = "2025-05-27";
+const targetDate = new Date("May 27, 2025 10:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Gas, Acidity & Constipation</b></i> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Ankita";
+Megha;
+const drName = "Dr. Megha";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Chronic Liver & Kidney Disease",
-  "Expertise in Arthritis, Mental Health",
-  "2+ Years of Experience",
+  "Bachelor Of Naturopathy and Yogic Sciences",
+  "4+ Years of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6de07489-5caa-4c98-b41f-60660aefa45c.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6cb716c2-70df-44ec-a741-2f9c745de282.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/c0ea5ffe-bed6-45c1-aaa3-c13bac55fb1e.png";

@@ -3,8 +3,8 @@
 const title = "InfertilityWebinarOn24May";
 const offeringTitle = "Infertility";
 
-const joiningLink = "";
-const whatsappLink = "";
+const joiningLink = "https://us06web.zoom.us/j/81970773953";
+const whatsappLink = "https://chat.whatsapp.com/F9LdvFRs6PaJ1jvDTjnC88";
 
 const webDate = "24 May 2025 | 1:00 PM";
 const newSlotDate = "24 April 2025";
@@ -14,14 +14,6 @@ const targetDate = new Date("May 24, 2025 13:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Infertility</i></b> by <i>Team Acharya Manish Ji</i>";
-
-const drName = "Dr. ";
-const drDetails = [
-  "Bachelor of Ayurvedic Medicine and Surgery",
-  "",
-  "2+ Years of Experience",
-];
-const docImg = "";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/38a78d85-9024-44c6-b2ca-0255b66ef18d.png";
@@ -55,9 +47,6 @@ const contactNumber = "917710371037";
 
 document.title = title;
 document.getElementById("heroHeading").innerHTML = heroHeading;
-if (document.getElementById("drImg")) {
-  drImg.src = docImg;
-}
 
 if (document.getElementById("BannerImg")) {
   BannerImg.src = bannerImage;
