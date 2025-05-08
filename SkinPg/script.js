@@ -1,27 +1,29 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "SkinDisorderWebinarOn13May";
+const title = "SkinDisorderWebinarOn31May";
 const offeringTitle = "Skin Disorder";
 
-const joiningLink = "https://us06web.zoom.us/j/81834589967";
-const whatsappLink = "https://chat.whatsapp.com/DXGrIIS0sKrGTdpIhKVMFU";
+const joiningLink = "https://us06web.zoom.us/j/87050894157";
+const whatsappLink = "https://chat.whatsapp.com/I8cFeKNNl62F9E77ezxrtk";
 
-const webDate = "13 May 2025 | 4:00 PM";
-const newSlotDate = "13 May 2025";
-const newSlotTime = "4:00 PM";
-const waitUntillDate = "2025-05-13";
-const targetDate = new Date("May 13, 2025 16:00:00").getTime();
+const webDate = "31 May 2025 | 10:00 AM";
+const newSlotDate = "31 May 2025";
+const newSlotTime = "10:00 AM";
+const waitUntillDate = "2025-05-31";
+const targetDate = new Date("May 31, 2025 10:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Skin Disorders</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Jaspreet";
+const drName = "Dr. Divyadeep";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Diploma in Panchakarma Chikitsa (DPC)",
+  "Diploma in Naturopathy and Diploma in Yoga",
+  "Expertise in Chronic Diseases, Metabolic, Skin Disorders and Infertility",
+  "16+ Years of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e4575f46-5879-4661-8bbc-5603026b64ba.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2a06da4f-2205-458e-a16f-fb3d4d65e198.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/256e2d62-fc16-4cc0-b9e3-c054407f54e6.png";
