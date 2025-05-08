@@ -1,29 +1,28 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "FemaleHormonalOn22May";
-const offeringTitle = "Female Hormonal Disorder";
+const title = "PcodPcosOn28May";
+const offeringTitle = "PCOD/PCOS";
 
-const joiningLink = "https://us06web.zoom.us/j/86791257510";
-const whatsappLink = "https://chat.whatsapp.com/GC7DMIiCE4qAY13iR67v3m";
+const joiningLink = "https://us06web.zoom.us/j/86046925434";
+const whatsappLink = "https://chat.whatsapp.com/DLcK39CygkiCFgNWrLaxSO";
 
-const webDate = "22 May 2025 | 4:00 PM";
-const newSlotDate = "22 May 2025";
+const webDate = "28 May 2025 | 4:00 PM";
+const newSlotDate = "28 May 2025";
 const newSlotTime = "4:00 PM";
-const waitUntillDate = "2025-05-22";
-const targetDate = new Date("May 22, 2025 16:00:00").getTime();
+const waitUntillDate = "2025-05-28";
+const targetDate = new Date("May 28, 2025 16:00:00").getTime();
 
 const heroHeading =
-  "Webinar on <b><i>Female Hormonal Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
+  "Webinar on <b><i>PCOD/PCOS Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Ankita";
+const drName = "Dr. Megha";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Chronic Liver & Kidney Disease",
-  "Expertise in Arthritis, Mental Health",
-  "2+ Years of Experience",
+  "Bachelor Of Naturopathy and Yogic Sciences",
+  "4+ Years of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6de07489-5caa-4c98-b41f-60660aefa45c.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6cb716c2-70df-44ec-a741-2f9c745de282.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/4e666290-5329-4c7b-a389-7a8c41f4103e.png";

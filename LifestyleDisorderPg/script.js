@@ -1,29 +1,29 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "LifestyleDisorderWebinarOn22May";
+const title = "LifestyleDisorderWebinarOn30May";
 const offeringTitle = "Lifestyle Disorder";
 
-const joiningLink = "https://us06web.zoom.us/j/85459680791";
-const whatsappLink = "https://chat.whatsapp.com/JdKuGYpgfAl5OEvo2dXC2Y";
+const joiningLink = "https://us06web.zoom.us/j/83336545045";
+const whatsappLink = "https://chat.whatsapp.com/LUcV2iQPutxHiO6EPvFg4t";
 
-const webDate = "22 May 2025 | 10:00 AM";
-const newSlotDate = "22 May 2025";
-const newSlotTime = "10:00 AM";
-const waitUntillDate = "2025-05-22";
-const targetDate = new Date("May 22, 2025 10:00:00").getTime();
+const webDate = "30 May 2025 | 1:00 PM";
+const newSlotDate = "30 May 2025";
+const newSlotTime = "1:00 PM";
+const waitUntillDate = "2025-05-30";
+const targetDate = new Date("May 30, 2025 13:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Lifestyle Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Meghna";
+const drName = "Dr. Ankita";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Chronic Kidney & Liver Disease",
-  "Lifestyle Disorders (GIT, Joint, Mental Health)",
-  "4+ Years Of Experience",
+  "Chronic Liver & Kidney Disease",
+  "Expertise in Arthritis, Mental Health",
+  "2+ Years of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2457b5fd-2e28-495d-90e0-5625d446d1b2.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6de07489-5caa-4c98-b41f-60660aefa45c.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e6cabbf5-0635-43f1-801f-0ac0ad688f98.png";

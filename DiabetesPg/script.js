@@ -1,29 +1,26 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "DiabetesWebinarOn19May";
+const title = "DiabetesWebinarOn29May";
 const offeringTitle = "Diabetes";
 
-const joiningLink = "https://us06web.zoom.us/j/86734735283";
-const whatsappLink = "https://chat.whatsapp.com/JTRvQ0EHhboC0GogMxb4hb";
+const joiningLink = "https://us06web.zoom.us/j/89830268504";
+const whatsappLink = "https://chat.whatsapp.com/LsucCLq2gIA2zUUNFlj348";
 
-const webDate = "19 May 2025 | 4:00 PM";
-const newSlotDate = "19 May 2025";
+const webDate = "29 May 2025 | 4:00 PM";
+const newSlotDate = "29 May 2025";
 const newSlotTime = "4:00 PM";
-const waitUntillDate = "2025-05-19";
-const targetDate = new Date("May 19, 2025 16:00:00").getTime();
+const waitUntillDate = "2025-05-29";
+const targetDate = new Date("May 29, 2025 16:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Diabetes</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Dr. Divyadeep";
+const drName = "Dr. Samiksha";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Diploma in Naturopathy and Diploma in Yoga",
-  "Expertise in Chronic Diseases, Metabolic, Skin Disorders and Infertility",
-  "16+ Years of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2a06da4f-2205-458e-a16f-fb3d4d65e198.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2ca06501-06a9-496f-a64b-dae31008d9da.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/766d2799-154f-4dee-bab1-0a358411bb5e.png";

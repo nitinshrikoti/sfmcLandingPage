@@ -1,29 +1,28 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "MaleSexualWebinarOn24May";
+const title = "MaleSexualWebinarOn30May";
 const offeringTitle = "Male Sexual Disorder";
 
-const joiningLink = "https://us06web.zoom.us/j/86172692929";
-const whatsappLink = "https://chat.whatsapp.com/BlYBpSWGXMZIdwZ6ScyWMa";
+const joiningLink = "https://us06web.zoom.us/j/89677528521";
+const whatsappLink = "https://chat.whatsapp.com/JZ0yYFVournFRp1ZiFKKUy";
 
-const webDate = "24 May 2025 | 10:00 AM";
-const newSlotDate = "24 May 2025";
-const newSlotTime = "10:00 AM";
-const waitUntillDate = "2025-05-24";
-const targetDate = new Date("May 24, 2025 10:00:00").getTime();
+const webDate = "30 May 2025 | 4:00 PM";
+const newSlotDate = "30 May 2025";
+const newSlotTime = "4:00 PM";
+const waitUntillDate = "2025-05-30";
+const targetDate = new Date("May 30, 2025 16:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Male Sexual Disorder</i></b> by <i>Team Acharya Manish Ji</i>";
 
-const drName = "Vaidya Navneet";
+const drName = "Dr. Sonali";
 const drDetails = [
   "Bachelor of Ayurvedic Medicine and Surgery",
-  "Doctor of Medicine (MD)",
-  "Certified Yoga Practitioner (CYP)",
-  "5+ Years of Experience",
+  "CERTIFIED in Psychosomatic Disorders",
+  "4+ Years of Experience",
 ];
 const docImg =
-  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/0798e2b6-3bdc-4f73-9a6a-9ad04bf56d84.png";
+  "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f6e16a88-067f-41f4-a7ec-abd014ecaacc.png";
 
 const bannerImage =
   "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/790d8dc0-9f46-4609-8e1f-ea358f39de25.png";

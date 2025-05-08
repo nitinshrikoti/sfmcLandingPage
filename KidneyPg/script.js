@@ -1,16 +1,16 @@
 // -------------------- Dynamic Content Update --------------------
 
-const title = "KidneyWebinarOn20May";
+const title = "KidneyWebinarOn29May";
 const offeringTitle = "Kidney";
 
-const joiningLink = "https://us06web.zoom.us/j/88095274436";
-const whatsappLink = "https://chat.whatsapp.com/CdY1Et42YWV6ciqnXpbEcy";
+const joiningLink = "https://us06web.zoom.us/j/88628213519";
+const whatsappLink = "https://chat.whatsapp.com/GmvYQU4nRrGKCCobbzkVB9";
 
-const webDate = "20 May 2025 | 4:00 PM";
-const newSlotDate = "20 May 2025";
-const newSlotTime = "4:00 PM";
-const waitUntillDate = "2025-05-20";
-const targetDate = new Date("May 20, 2025 16:00:00").getTime();
+const webDate = "29 May 2025 | 1:00 PM";
+const newSlotDate = "29 May 2025";
+const newSlotTime = "1:00 PM";
+const waitUntillDate = "2025-05-29";
+const targetDate = new Date("May 29, 2025 13:00:00").getTime();
 
 const heroHeading =
   "Webinar on <b><i>Kidney</i></b> by <i>Team Acharya Manish Ji</i>";
