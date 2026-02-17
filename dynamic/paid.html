@@ -1,0 +1,1647 @@
+%%[
+/* ===============================
+   VARIABLES
+   =============================== */
+VAR @id
+VAR @wRows, @wRow
+VAR @topicId
+VAR @tRows, @tRow
+VAR @docId
+VAR @dRows, @dRow
+VAR @startDT
+
+/* ===============================
+   1. READ URL PARAM
+   =============================== */
+SET @id = RequestParameter("id")
+
+IF EMPTY(@id) THEN
+  IF _messagecontext == "PREVIEW" THEN
+    SET @id = "PUT-A-VALID-ID-HERE"
+  ELSE
+    RaiseError("Missing Webinar Id", true)
+  ENDIF
+ENDIF
+
+
+
+/* ===============================
+   2. LOOKUP WEBINAR (PRIMARY DE)
+   =============================== */
+SET @wRows = LookupRows("Webinar_Landing_Pages", "Id", @id)
+
+IF RowCount(@wRows) == 0 THEN
+  RaiseError("Invalid Webinar Id", true)
+ENDIF
+
+SET @wRow = Row(@wRows, 1)
+
+/* ===============================
+   3. LOOKUP TOPIC DATA
+   =============================== */
+SET @topicId = Field(@wRow, "Webinar_Topic__c")
+
+IF EMPTY(@topicId) THEN
+  RaiseError("Webinar_Topic__c is empty", true)
+ENDIF
+
+SET @tRows = LookupRows( "Webinar_Topic_Data", "Id", @topicId )
+
+IF RowCount(@tRows) == 0 THEN
+  RaiseError("Invalid Topic Mapping", true)
+ENDIF
+
+SET @tRow = Row(@tRows, 1)
+
+/* ===============================
+   4. LOOKUP DOCTOR DATA
+   =============================== */
+SET @docId = Field(@wRow, "DoctorId")
+
+IF EMPTY(@docId) THEN
+  RaiseError("DoctorId is empty", true)
+ENDIF
+
+SET @dRows = LookupRows( "Webinar_Doctors_List", "Id", @docId )
+
+IF RowCount(@dRows) == 0 THEN
+  RaiseError("Invalid Doctor Mapping", true)
+ENDIF
+
+SET @dRow = Row(@dRows, 1)
+
+/* ===============================
+   5. START DATETIME (LOCAL)
+   =============================== */
+SET @startDT = Field(@wRow,"Start_Datetime__c")
+
+
+IF EMPTY(@startDT) THEN
+  RaiseError("Timer is empty", true)
+ENDIF
+]%%
+
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Meta Pixel Code -->
+    <script>
+      !(function (f, b, e, v, n, t, s) {
+        if (f.fbq) return;
+        n = f.fbq = function () {
+          n.callMethod
+            ? n.callMethod.apply(n, arguments)
+            : n.queue.push(arguments);
+        };
+        if (!f._fbq) f._fbq = n;
+        n.push = n;
+        n.loaded = !0;
+        n.version = "2.0";
+        n.queue = [];
+        t = b.createElement(e);
+        t.async = !0;
+        t.src = v;
+        s = b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t, s);
+      })(
+        window,
+        document,
+        "script",
+        "https://connect.facebook.net/en_US/fbevents.js"
+      );
+      fbq("init", "1175956401206232");
+      fbq("track", "PageView");
+    </script>
+    <noscript><img height="1" width="1" style="display: none" src="https://www.facebook.com/tr?id=1175956401206232&ev=PageView&noscript=1"></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- Clarity Code -->
+    <script type="text/javascript">
+      (function (c, l, a, r, i, t, y) {
+        c[a] =
+          c[a] ||
+          function () {
+            (c[a].q = c[a].q || []).push(arguments);
+          };
+        t = l.createElement(r);
+        t.async = 1;
+        t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0];
+        y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", "qtqegiwx14");
+    </script>
+    <!-- Clarity Code End -->
+
+<title>%%=v(Field(@tRow,"Title"))=%%</title>
+
+    <!-- <link rel="stylesheet" href="/style_v2.css"> -->
+    <style>
+      :root {
+        --ff-exo: "Exo", serif;
+        --ff-poppins: "Poppins", sans-serif;
+        --ff-roboto-condensed: "Roboto Condensed", sans-serif;
+        --ff-josefin-slab: "Josefin Slab", serif;
+
+        --text-black: #44403b;
+        --text-gray: #787878;
+        --text-yellow: #ffed00;
+        --text-green: #254a28;
+        --color-white: #ffffff;
+
+        --color-liteGreen: #25d366;
+        --bg-green: #254a28;
+      }
+
+      /* -------------------- Reset -------------------- */
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body,
+      h1,
+      h2,
+      h3,
+      h4,
+      p,
+      a,
+      li,
+      ul,
+      ol,
+      span,
+      strong,
+      em,
+      figure,
+      picture,
+      blockquote,
+      dl,
+      dd {
+        padding: 0;
+        margin: 0;
+        /* margin-block-end: 0; */
+      }
+
+      ul[role="list"],
+      ol[role="list"] {
+        list-style: none;
+      }
+
+      body {
+        min-height: 100vh;
+        /* line-height: 1.6; */
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      button,
+      input,
+      label {
+        line-height: 1.1;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        text-wrap: balance;
+      }
+
+      /* A elements that don't have a class get default styles */
+      /* a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+} */
+      a {
+        text-decoration: none;
+        color: currentColor;
+      }
+
+      input,
+      button,
+      textarea,
+      select {
+        font-family: inherit;
+        font-size: inherit;
+      }
+
+      img,
+      picture {
+        max-width: 100%;
+        display: block;
+      }
+
+      textarea:not([rows]) {
+        min-height: 10em;
+      }
+
+      :target {
+        scroll-margin-block: 5ex;
+      }
+
+      /* -------------------- mc-default -------------------- */
+      .layout-canvas-g > .section {
+        margin: 0px;
+      }
+
+      /* -------------------- Utilities -------------------- */
+      .bg-green {
+        background-color: var(--bg-green);
+      }
+
+      .text-yellow {
+        color: var(--text-yellow);
+      }
+      .text-black {
+        color: var(--text-black);
+      }
+      .text-gray {
+        color: var(--text-gray);
+      }
+      .text-green {
+        color: var(--text-green);
+      }
+      .text-center {
+        text-align: center;
+      }
+
+      /* -------------------- Navbar -------------------- */
+      .nav-wrapper {
+        display: flex;
+        position: relative;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
+        margin: auto;
+        width: 90%;
+        height: 70px;
+        border-radius: 0 0 15px 15px;
+        padding: 0 25px;
+        z-index: 2;
+        background: #fff;
+        box-shadow: 0 0px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .logo {
+        height: 50px;
+        width: auto;
+      }
+
+      .nav-tab > a:after {
+        background: none repeat scroll 0 0 transparent;
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 2px;
+        left: 50%;
+        background: var(--bg-green);
+        transition: opacity 300ms, transform 300ms;
+        width: 0;
+      }
+      .nav-tab > a:hover:after {
+        width: 100%;
+        left: 0;
+        opacity: 1;
+        transform: translate3d(0, 0.2em, 0);
+      }
+
+      .nav-tabs {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        font-family: var(--ff-exo);
+      }
+
+      .nav-tab:not(:last-child) {
+        padding: 10px 25px;
+        margin: 0;
+        border-right: 1px solid #eee;
+      }
+
+      .nav-tab:last-child {
+        padding: 5px 10px;
+      }
+
+      .nav-tab,
+      .menu-btn {
+        cursor: pointer;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      .navbar-register-btn {
+        background-color: #254a28;
+        color: #ffed00;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 18px;
+      }
+
+      /* -------------------- Hero Section -------------------- */
+
+      .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 20px 20px 10px;
+      }
+
+      .hero p {
+        font-size: 36px;
+        text-align: center;
+        font-family: var(--ff-josefin-slab);
+      }
+
+      .hero iframe {
+        border: 0;
+        border-radius: 20px;
+        margin-top: 10px;
+      }
+
+      /* -------------------- Stats Section -------------------- */
+
+      .stats-container {
+        display: flex;
+        gap: 1em;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .stat-box img {
+        width: 180px;
+        height: 180px;
+        object-fit: contain;
+        border-radius: 10px;
+      }
+
+      /* -------------------- Mid-1 Section -------------------- */
+
+      /*  Webinar Section (First Snippet) */
+      .webinar-section {
+        display: flex;
+        max-width: 1000px;
+        margin: 0px auto;
+        gap: 1em;
+        overflow: hidden;
+        padding: 10px;
+      }
+
+      .webinar-left {
+        display: flex;
+        width: 50%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-block: 40px;
+        background-color: #fafafa;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      }
+      .webinar-left img {
+        width: 220px;
+        height: auto;
+        border-radius: 20px;
+      }
+      .webinar-left > div {
+        width: 100%;
+      }
+      .left-text-1 {
+        text-align: center;
+        font-size: 24px;
+        margin-block-start: 10px;
+        color: #254a28;
+      }
+
+      .dr-details {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        margin: 5px auto;
+      }
+
+      .webinar-right {
+        display: flex;
+        width: 50%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding-block: 40px;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        font-family: var(--ff-exo);
+      }
+      .right-txt-1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+      }
+      .right-txt-1 span {
+        color: #254a28;
+      }
+      .right-txt-2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+      .right-txt-3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+      .right-txt-4 {
+        font-size: 16px;
+        color: #254a28;
+      }
+
+      /* Timer container (main section) */
+      .timebox {
+        display: flex;
+        gap: 8px;
+        margin: 10px 0;
+      }
+      .time {
+        padding: 10px;
+        width: 80px;
+        font-weight: 600;
+        background-color: #f1f1f1;
+        border-radius: 10px;
+      }
+      .time-count {
+        font-size: 42px;
+      }
+      .time-txt {
+        font-size: 20px;
+      }
+
+      .timer-register-btn {
+        background-color: #254a28;
+        color: #ffed00;
+        padding: 15px 40px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 18px;
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
+      .timer-register-btn:hover {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+      }
+
+      /* -------------------- Mid-2 Section -------------------- */
+      .banner-heading-block {
+        font-family: var(--ff-poppins);
+        max-width: 1000px;
+        margin: 20px auto 10px;
+        padding: 0 20px;
+        text-align: center;
+      }
+      .banner-heading-block h2 {
+        font-family: var(--ff-josefin-slab);
+        font-size: 32px;
+        margin-bottom: 10px;
+      }
+      .banner-heading-block p {
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      .banner-webinar-section {
+        font-family: var(--ff-poppins);
+        display: flex;
+        background: #fff;
+        max-width: 1000px;
+        margin: 10px auto;
+        gap: 1em;
+        overflow: hidden;
+        padding: 10px 2px;
+      }
+
+      /* banner-Left Column */
+      .banner-left {
+        display: flex;
+        width: 50%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 5px;
+        /* background-color: #fafafa; */
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      }
+      .banner-left img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+
+      /* banner-Right Column */
+      .banner-right {
+        width: 50%;
+        padding-block: 30px;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      }
+      .banner-right p {
+        font-size: 20px;
+        line-height: 1.4;
+        margin: 0 20px 10px;
+        font-weight: bold;
+      }
+      .banner-right ul {
+        width: 80%;
+        list-style: disc;
+        text-align: banner-left; /* banner-left-align the list while overall text is centered */
+        margin: 0 auto;
+        line-height: 1.4;
+      }
+      .banner-right li {
+        margin-bottom: 8px;
+      }
+
+      /* -------------------- Instructions Section -------------------- */
+
+      .join-webinar {
+        font-family: var(--ff-poppins);
+        max-width: 1224px; /* Constrain the width on larger screens */
+        margin: 10px auto; /* Center with vertical spacing */
+        background-color: #ffffff;
+        border-radius: 8px;
+        /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); */
+        /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
+        padding: 20px;
+        text-align: center;
+      }
+
+      /* Heading */
+      .join-webinar h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+      }
+
+      /* Container for all steps */
+      .steps-container {
+        display: flex;
+        justify-content: center;
+        align-items: stretch; /* Ensure equal height if desired */
+        gap: 16px;
+        /* max-width: 800px; */
+        margin: 15px auto;
+        flex-wrap: wrap; /* Allow wrapping on smaller screens */
+      }
+
+      /* Each Step */
+      .step {
+        background: #fff;
+        border-radius: 8px;
+        padding: 10px;
+        text-align: center;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        flex: 1 1 280px; /* Grow and shrink, starting at min width 280px */
+        max-width: 260px;
+        height: auto;
+      }
+      .step:hover {
+        background: #edf9ee;
+      }
+
+      .step-number {
+        font-family: var(--ff-roboto-condensed);
+        font-weight: 700;
+        font-size: 64px;
+        -webkit-text-stroke: 1px var(--text-green);
+        margin-bottom: 10px;
+        color: transparent;
+      }
+
+      .step-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-bottom: 6px;
+        color: var(--text-green);
+      }
+
+      .step-desc {
+        line-height: 26px;
+        font-size: 0.95rem;
+        color: #666;
+      }
+
+      /* Register Button */
+      .step-register-btn {
+        background-color: #1f3d16;
+        color: #ffed00;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 20px;
+        transition: box-shadow 0.3s;
+      }
+      .step-register-btn:hover {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+      }
+
+      /* -------------------- Testinomial Section -------------------- */
+      .testimonial-section {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 0 20px;
+        text-align: center;
+      }
+
+      .testimonial-section h2 {
+        font-family: var(--ff-josefin-slab);
+        font-size: 2rem;
+        margin-bottom: 20px;
+      }
+
+      .testimonials-container {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .testimonial-card {
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        flex: 1 1 300px;
+        max-width: 350px;
+        padding: 20px;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: left;
+      }
+
+      .testimonial-card img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+      }
+
+      .testimonial-quote {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 15px;
+        line-height: 1.5;
+      }
+
+      .testimonial-author {
+        font-weight: bold;
+        color: #333;
+      }
+
+      /* -------------------- BrandLogo Section -------------------- */
+      .brands-section {
+        max-width: 1200px;
+        margin: 20px auto;
+        text-align: center;
+        padding: 0 20px;
+      }
+
+      /* Heading */
+      .brands-section h2 {
+        font-family: var(--ff-josefin-slab);
+        font-size: 2rem;
+        margin-bottom: 30px;
+      }
+
+      .brands-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .brand-card {
+        background-color: #fff;
+        border-radius: 8px;
+        width: 180px;
+        height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .brand-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 8px;
+      }
+
+      /* -------------------- Faqs Section -------------------- */
+      /* FAQ Section Container */
+      .faq-section {
+        max-width: 1000px;
+        width: 90%;
+        margin: 20px auto 100px;
+      }
+
+      .faq-section h2 {
+        font-family: var(--ff-josefin-slab);
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      /* FAQ Container */
+      .faq-container {
+        background: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Each FAQ item (Accordion) */
+      .faq-item {
+        border-bottom: 1px solid #e1e1e1;
+      }
+
+      /* Hide native checkbox */
+      .faq-item input[type="checkbox"] {
+        display: none;
+      }
+
+      /* FAQ Title Label */
+      .faq-title {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 15px 20px;
+        background-color: #fafafa;
+        transition: background-color 0.3s;
+        position: relative;
+      }
+
+      .faq-title:hover {
+        background-color: #f0f0f0;
+      }
+
+      /* FAQ Arrow (indicator) */
+      .faq-arrow {
+        margin-left: auto;
+        width: 6px;
+        height: 6px;
+        border-right: 2px solid #666;
+        border-bottom: 2px solid #666;
+        transform: rotate(45deg);
+        transition: transform 0.3s;
+      }
+
+      /* Expand arrow on check */
+      .faq-item input[type="checkbox"]:checked + .faq-title .faq-arrow {
+        transform: rotate(-135deg);
+      }
+
+      /* FAQ Content (hidden by default) */
+      .faq-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        background-color: #fff;
+        padding: 0 20px;
+      }
+
+      /* Reveal content when checked */
+      .faq-item input[type="checkbox"]:checked ~ .faq-content {
+        max-height: 200px;
+        padding: 20px;
+      }
+
+      .faq-content p {
+        font-size: 1rem;
+        color: #555;
+        line-height: 1.5;
+      }
+
+      /* -------------------- Footer Section -------------------- */
+
+      .footer-container {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+      }
+
+      /* Fixed Footer (Second Snippet) */
+      .fixed-footer {
+        width: 90%;
+        background-color: #fff;
+        border-radius: 15px 15px 0 0;
+        margin-inline: auto;
+        padding: 5px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 0 0px 4px rgba(0, 0, 0, 0.2);
+        z-index: 8888;
+        font-family: var(--ff-exo);
+      }
+
+      /* Left Section: Price & Timer */
+      .footer-left {
+        display: flex;
+        flex-direction: column;
+      }
+      .webinar-text {
+        font-size: 18px;
+        margin-bottom: 2px;
+        font-weight: bold;
+      }
+      .old-price {
+        text-decoration: line-through;
+        text-decoration-color: red;
+        text-decoration-thickness: 3px;
+        text-decoration-style: solid;
+      }
+      .new-price {
+        color: #1f3d16;
+      }
+      .subtext {
+        font-size: 16px;
+        color: #333;
+        margin-bottom: 2px;
+      }
+
+      /* Footer Timer Container */
+      .footer-timebox {
+        display: flex;
+        gap: 6px;
+      }
+      .footer-time {
+        text-align: center;
+        color: #254a28;
+      }
+      .footer-time-count {
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      /* Right Section: Register Button */
+      .footer-right .footer-register-btn {
+        background-color: #254a28;
+        color: #ffed00;
+        padding: 20px 30px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 20px;
+      }
+      .footer-right .footer-register-btn:hover {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+      }
+
+      /* -------------------- Responsive Code -------------------- */
+
+      @media (max-width: 767px) {
+        /* ---------- NavBar ---------- */
+        .nav-wrapper {
+          width: 95%;
+        }
+
+        .nav-container {
+          position: absolute;
+          display: none;
+          overflow-y: auto;
+          z-index: -1;
+          top: 0;
+          right: 0;
+          width: 280px;
+          border-radius: 10px 0 0 10px;
+          background: #fff;
+          box-shadow: -1px 0 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-tabs {
+          text-align: center;
+          display: block;
+          margin-top: 80px;
+          width: 100%;
+        }
+
+        .nav-tab:not(:last-child) {
+          padding: 20px 25px;
+          margin: 0;
+          border-right: unset;
+          border-bottom: 1px solid #f5f5f5;
+        }
+
+        .nav-tab:last-child {
+          padding: 15px 25px;
+        }
+
+        .menu-btn {
+          position: relative;
+          display: block;
+          margin: 0;
+          width: 35px;
+          height: 30px;
+          cursor: pointer;
+          z-index: 2;
+          padding: 5px;
+          border-radius: 2px;
+        }
+
+        .menu-btn .menu {
+          display: block;
+          width: 100%;
+          height: 5px;
+          border-radius: 2px;
+          background: #111;
+        }
+
+        .menu-btn .menu:nth-child(2) {
+          margin-top: 4px;
+          opacity: 1;
+        }
+
+        .menu-btn .menu:nth-child(3) {
+          margin-top: 4px;
+        }
+
+        #menuToggle:checked + .menu-btn .menu {
+          transition: transform 0.2s ease;
+        }
+
+        #menuToggle:checked + .menu-btn .menu:nth-child(1) {
+          transform: translate3d(0, 7px, 0) rotate(45deg);
+        }
+
+        #menuToggle:checked + .menu-btn .menu:nth-child(2) {
+          transform: rotate(-45deg) translate3d(-5.71429px, -6px, 0);
+          opacity: 0;
+        }
+
+        #menuToggle:checked + .menu-btn .menu:nth-child(3) {
+          transform: translate3d(0, -11px, 0) rotate(-45deg);
+        }
+
+        #menuToggle:checked ~ .nav-container {
+          z-index: 1;
+          display: flex;
+          animation: menu-slide-left 0.3s ease;
+        }
+        @keyframes menu-slide-left {
+          0% {
+            transform: translateX(200px);
+          }
+          to {
+            transform: translateX(0);
+          }
+        }
+
+        /* ---------- Hero Section ---------- */
+
+        .hero {
+          margin: 10px;
+        }
+        .hero p {
+          font-size: 28px;
+        }
+
+        .hero iframe {
+          width: 100%;
+          height: 220px;
+        }
+
+        /* ---------- Stats Section ---------- */
+
+        .stats-container {
+          gap: 8px;
+        }
+        .stat-box img {
+          width: 140px;
+          height: 140px;
+        }
+
+        /* ---------- Mid-1 Section ---------- */
+
+        .webinar-section {
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+        }
+        .webinar-text {
+          font-size: 14px;
+          margin-bottom: 2px;
+        }
+        .subtext {
+          font-size: 14px;
+          margin-bottom: 2px;
+        }
+        .webinar-left {
+          width: 100%;
+        }
+        .webinar-right {
+          width: 100%;
+        }
+        .webinar-left img {
+          width: 250px;
+        }
+        .right-txt-1 {
+          font-size: 28px;
+        }
+        .right-txt-2 {
+          font-size: 16px;
+        }
+        .right-txt-3 {
+          font-size: 20px;
+        }
+        .time {
+          padding: 10px;
+          width: 65px;
+        }
+        .time-count {
+          font-size: 32px;
+        }
+        .time-txt {
+          font-size: 16px;
+        }
+
+        /* ---------- Mid-2 Section ---------- */
+        .banner-webinar-section {
+          flex-direction: column;
+          align-items: center;
+          margin: 10px;
+        }
+
+        .banner-heading-block p {
+          font-size: 14px;
+        }
+
+        .banner-left,
+        .banner-right {
+          width: 100%;
+        }
+
+        /* ---------- Instructions Section ---------- */
+
+        .join-webinar {
+          margin: 10px;
+          padding: 30px 10px;
+        }
+
+        .join-webinar h2 {
+          font-size: 24px;
+        }
+        .step {
+          height: auto;
+          padding: 15px;
+          max-width: 100%;
+        }
+        .step-number {
+          font-size: 2.5rem;
+        }
+        .step-title {
+          font-size: 1.1rem;
+        }
+        .step-desc {
+          line-height: 24px;
+          font-size: 0.9rem;
+        }
+
+        /* ---------- Testinomial Section ---------- */
+        .testimonial-section h2 {
+          font-size: 28px;
+        }
+        .testimonial-card {
+          margin: 10px auto;
+        }
+
+        /* ---------- BrandLogo Section ---------- */
+        .brands-section h2 {
+          font-size: 28px;
+        }
+        .brands-container {
+          gap: 10px;
+        }
+        .brand-card {
+          width: 130px;
+          height: 130px;
+        }
+
+        /* ---------- Faqs Section ---------- */
+
+        .faq-section h2 {
+          font-size: 28px;
+        }
+        .faq-title {
+          padding: 12px 16px;
+        }
+        .faq-content {
+          padding: 0 16px;
+        }
+
+        /* ---------- Footer Section ---------- */
+        .fixed-footer {
+          padding: 10px 10px;
+          width: 95%;
+        }
+        .footer-right .footer-register-btn {
+          padding: 20px 15px;
+          font-size: 14px;
+        }
+      }
+    </style>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&amp;family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
+
+    <!-- -------------------- NavBar -------------------- -->
+    <header>
+      <div class="nav-wrapper">
+        <div class="logo-container">
+          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/cbf301aa-0b2b-4801-acad-d2ad99883567.png" alt="Logo" class="logo">
+        </div>
+        <nav>
+          <input class="hidden" type="checkbox" id="menuToggle">
+          <label class="menu-btn" for="menuToggle">
+            <div class="menu"></div>
+            <div class="menu"></div>
+            <div class="menu"></div>
+          </label>
+          <div class="nav-container">
+            <ul class="nav-tabs text-black" role="list">
+              <li class="nav-tab"><a href="#steps">Booking Steps</a></li>
+              <li class="nav-tab"><a href="#faqs">Faqs</a></li>
+              <li class="nav-tab">
+                <button type="button" class="navbar-register-btn book-spot-btn">
+                  Book A Spot
+                </button>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <!-- -------------------- Hero -------------------- -->
+    <section class="hero">
+      <p id="heroHeading" class="text-green">Webinar on <b><i>%%=v(Field(@tRow,"HeroHeading"))=%%</i></b> by <i>Team Acharya Manish Ji</i></p>
+
+      
+      <iframe width="750" height="425" src="https://www.youtube.com/embed/xAYufd85eHg?si=l_D-AgKPJGP3tAeh&amp;autoplay=1&amp;mute=1&amp;loop=1&amp;playlist=xAYufd85eHg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
+    </section>
+
+    <!-- -------------------- Stats Section -------------------- -->
+    <div class="stats-container">
+      <div class="stat-box">
+        <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f29240b6-31c3-48c7-83d5-606cc7a24835.png" alt="Icon 1">
+      </div>
+      <div class="stat-box">
+        <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/b43992eb-b602-4a91-adc5-f78bc266577f.png" alt="Icon 2">
+      </div>
+      <div class="stat-box">
+        <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/7e98c391-7d26-4138-bbed-e7844b55ec63.png" alt="Icon 3">
+      </div>
+      <div class="stat-box">
+        <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f24cb4b2-15a2-445a-a8b4-2aa66b1704fc.png" alt="Icon 4">
+      </div>
+    </div>
+
+    <!-- -------------------- Mid-1 Section -------------------- -->
+    <section class="webinar-section">
+      <div class="webinar-left">
+        <img id="drImg" src="%%=v(Field(@dRow,'ImageUrl'))=%%" alt="Doctor Image">
+
+        <div>
+          <p id="drName1" class="left-text-1">%%=v(Field(@dRow,"Name"))=%%</p>
+          <div class="dr-details">
+            %%[
+            VAR @detail, @i
+
+            FOR @i = 1 TO 5 DO
+              SET @detail = Field(@dRow, Concat("Detail", @i))
+              IF NOT EMPTY(@detail) THEN
+            ]%%
+              <p>%%=v(@detail)=%%</p>
+            %%[
+              ENDIF
+            NEXT @i
+            ]%%
+            </div>
+
+        </div>
+      </div>
+
+      <div class="webinar-right text-gray">
+        <p class="right-txt-1">Connect with <span>%%=v(Field(@dRow,"Name"))=%%</span></p>        
+
+        
+        <p class="right-txt-2">On</p>
+        
+        <p id="webDate" class="right-txt-3"></p>
+
+        
+        <p class="right-txt-4">Time is Running Out</p>
+
+        <!-- MAIN TIMER -->
+        <div class="timebox">
+          <div class="time">
+            <p class="time-count" id="mainDays">00</p>
+            <p class="time-txt">Days</p>
+          </div>
+          <div class="time">
+            <p class="time-count" id="mainHours">00</p>
+            <p class="time-txt">Hours</p>
+          </div>
+          <div class="time">
+            <p class="time-count" id="mainMinutes">00</p>
+            <p class="time-txt">Mins</p>
+          </div>
+          <div class="time">
+            <p class="time-count" id="mainSeconds">00</p>
+            <p class="time-txt">Secs</p>
+          </div>
+        </div>
+
+        <button type="button" class="timer-register-btn book-spot-btn">
+          Book A Spot
+        </button>
+
+        <p class="right-txt-4">
+          Don't Miss the Chance to Consult with Acharya Ji
+        </p>
+      </div>
+    </section>
+
+    <!-- -------------------- Mid-2 Section -------------------- -->
+    <div class="banner-heading-block text-black">
+      <h2 class="text-green">Webinar से जुड़ी कुछ जरुरी बातें।</h2>
+      <p>
+        वेबिनार में भाग लेने से पहले सुनिश्चित करें कि आप शांत जगह पर बैठें हों
+        एक अच्छे इंटरनेट कनेक्शन के साथ। अपने सवालों को पहले से तैयार रखें, ताकि
+        आप डॉक्टर या आचार्य मनीष जी से अधिकतम लाभ प्राप्त कर सकें। जब आपका नाम
+        लिया जाए तो अपना माइक अनम्यूट करें और आचार्य मनीष जी या हमारे डॉक्टर से
+        बात कर करें।
+      </p>
+    </div>
+
+    <section class="banner-webinar-section">
+      <!-- banner-Left side: Image -->
+      <div class="banner-left">
+        
+        <img id="BannerImg" src="%%=v(Field(@tRow,'BannerImage'))=%%" alt="Webinar Image">
+
+        
+      </div>
+
+      <!-- banner-Right side: Text -->
+      <div class="banner-right text-black">
+        <p>ये वेबिनार किसके लिए है ?</p>
+        <ul>
+          %%[
+          VAR @r
+
+          SET @r = Field(@tRow,"Reason1")
+          IF NOT EMPTY(@r) THEN
+          ]%%
+            <li>%%=v(@r)=%%</li>
+          %%[ ENDIF ]%%
+
+          %%[
+          SET @r = Field(@tRow,"Reason2")
+          IF NOT EMPTY(@r) THEN
+          ]%%
+            <li>%%=v(@r)=%%</li>
+          %%[ ENDIF ]%%
+
+          %%[
+          SET @r = Field(@tRow,"Reason3")
+          IF NOT EMPTY(@r) THEN
+          ]%%
+            <li>%%=v(@r)=%%</li>
+          %%[ ENDIF ]%%
+
+          %%[
+          SET @r = Field(@tRow,"Reason4")
+          IF NOT EMPTY(@r) THEN
+          ]%%
+            <li>%%=v(@r)=%%</li>
+          %%[ ENDIF ]%%
+
+          %%[
+          SET @r = Field(@tRow,"Reason5")
+          IF NOT EMPTY(@r) THEN
+          ]%%
+            <li>%%=v(@r)=%%</li>
+          %%[ ENDIF ]%%
+
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- -------------------- Instructions Section -------------------- -->
+    <section id="steps" class="join-webinar">
+      <h2 class="text-green">वेबिनार को ज्वाइन करने की प्रक्रिया:</h2>
+      <div class="steps-container">
+        <!-- Step 1 -->
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-title">Book A Spot</div>
+          <div class="step-desc">सबसे पहले <strong>Book A Spot</strong> पर क्लिक करें।</div>
+        </div>
+        <!-- Step 2 (Highlighted) -->
+        <div class="step highlight">
+          <div class="step-number">2</div>
+          <div class="step-title">Fill Your Details</div>
+          <div class="step-desc">
+            अपनी जानकारी भरें — <strong>WhatsApp नंबर</strong> और <strong>Email</strong> ज़रूर डालें, जिस पर <strong>वेबिनार डिटेल्स</strong> मिलेंगी।
+          </div>
+        </div>
+        <!-- Step 4 -->
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-title">Make Payment</div>
+          <div class="step-desc">सभी जानकारी भरने के बाद पेमेंट करें।</div>
+        </div>
+        <!-- Step 3 -->
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-title">Important Note !!</div>
+          <div class="step-desc">
+            पेमेंट के बाद WhatsApp/Email पर <strong>कन्फर्मेशन मैसेज</strong> आएगा। उसी मैसेज में <strong>Official Group का लिंक</strong> होगा — <strong>वहीं वेबिनार लिंक शेयर किया जाएगा</strong>।
+          </div>
+        </div>
+      </div>
+      <button type="button" class="step-register-btn book-spot-btn">
+        Book A Spot
+      </button>
+    </section>
+
+    <!-- -------------------- Testinomial Section -------------------- -->
+    <section class="testimonial-section">
+      <h2 class="text-green">Testimonial</h2>
+      <div class="testimonials-container">
+        <!-- Testimonial 1 -->
+        <div class="testimonial-card">
+          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png" alt="User Photo">
+          <p id="testi1" class="testimonial-quote">%%=v(Field(@tRow,"Testimonial1"))=%%</p>
+          <p id="testiNam1" class="testimonial-author">— %%=v(Field(@tRow,"TestimonialName1"))=%%</p>
+        </div>
+        <!-- Testimonial 2 -->
+        <div class="testimonial-card">
+          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png" alt="User Photo">
+          <p id="testi1" class="testimonial-quote">%%=v(Field(@tRow,"Testimonial2"))=%%</p>
+          <p id="testiNam1" class="testimonial-author">— %%=v(Field(@tRow,"TestimonialName2"))=%%</p>
+        </div>
+        <!-- Testimonial 3 -->
+        <div class="testimonial-card">
+          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png" alt="User Photo">
+          <p id="testi1" class="testimonial-quote">%%=v(Field(@tRow,"Testimonial3"))=%%</p>
+          <p id="testiNam1" class="testimonial-author">— %%=v(Field(@tRow,"TestimonialName3"))=%%</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------------------- BrandLogo Section -------------------- -->
+    <section class="brands-section">
+      <h2 class="text-green">Proudly Representing Our Other Brands</h2>
+      <div class="brands-container">
+        <!-- Brand 1 -->
+        <div class="brand-card">
+          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/dac32086-273a-490d-8790-326f19ec1a47.png" alt="Shuddhi Brand">
+        </div>
+        <!-- Brand 2 -->
+        <div class="brand-card">
+          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/09b32e30-c8b1-4499-8216-e2793e3aa65b.png" alt="HHMS Brand">
+        </div>
+        <!-- Brand 3 -->
+        <div class="brand-card">
+          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/71cd999b-b485-4024-b6d7-e1c2fcdf2d1d.png" alt="Swami Om Brand">
+        </div>
+      </div>
+    </section>
+
+    <!-- -------------------- Faqs Section -------------------- -->
+    <section id="faqs" class="faq-section">
+      <h2 class="text-green">Frequently Asked Questions</h2>
+      <div class="faq-container">
+        <!-- FAQ Item 1 -->
+        <div class="faq-item">
+          <input type="checkbox" id="faq1">
+          <label class="faq-title" for="faq1">
+            <span>What is this webinar about?</span>
+            <div class="faq-arrow"></div>
+          </label>
+          <div class="faq-content">
+            <p>
+              This webinar covers essential health tips, lifestyle guidance, and
+              expert insights to help you stay fit and informed.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="faq-item">
+          <input type="checkbox" id="faq2">
+          <label class="faq-title" for="faq2">
+            <span>How long will the webinar last?</span>
+            <div class="faq-arrow"></div>
+          </label>
+          <div class="faq-content">
+            <p>
+              The webinar typically runs for about 1-2 hours, followed by a Q&A
+              session where you can ask any questions you have.
+            </p>
+          </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="faq-item">
+          <input type="checkbox" id="faq3">
+          <label class="faq-title" for="faq3">
+            <span>Is there any cost to join?</span>
+            <div class="faq-arrow"></div>
+          </label>
+          <div class="faq-content">
+            <p>
+              The webinar is available at a nominal fee of ₹49. Simply register, and we’ll share all the details with you to join.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- -------------------- Footer Section -------------------- -->
+    <footer class="footer-container">
+      <div class="fixed-footer text-gray">
+        <!-- Left side: Strikethrough Price, Timer -->
+        <div class="footer-left">
+          <p class="webinar-text">
+            Webinar in
+            <span class="old-price">₹500</span>
+            <span class="new-price">₹49 Only</span>
+          </p>
+          <p class="subtext">Before it ends</p>
+          <div class="footer-timebox">
+            <div class="footer-time">
+              <p class="footer-time-count" id="footerDays">00</p>
+            </div>
+            <div class="footer-time">
+              <p class="footer-time-count" id="footerHours">00</p>
+            </div>
+            <div class="footer-time">
+              <p class="footer-time-count" id="footerMinutes">00</p>
+            </div>
+            <div class="footer-time">
+              <p class="footer-time-count" id="footerSeconds">00</p>
+            </div>
+          </div>
+        </div>
+        <!-- Right side: Register button -->
+        <div class="footer-right">
+          <button type="button" class="footer-register-btn book-spot-btn">
+            Book A Spot
+          </button>
+        </div>
+      </div>
+    </footer>
+
+    <!-- <script src="script.js"></script> -->
+    <script>
+      // -------------------- Dynamic Content Update --------------------
+
+
+      const targetDate = new Date("%%=v(@startDT)=%%").getTime();
+      
+      var BOOK_SPOT_URL = "%%=RedirectTo(Field(@wRow,'SfmcPayUrl'))=%%";
+      
+      const webDate = formatWebDate(targetDate);
+      
+      const webDateEl = document.getElementById("webDate");
+      if (webDateEl) webDateEl.innerHTML = webDate;
+
+      // -------------------- Dynamic Content Update End --------------------
+
+      // -------------------- Timer Script --------------------
+      // Main Timer Elements
+      const mainDays = document.getElementById("mainDays");
+      const mainHours = document.getElementById("mainHours");
+      const mainMinutes = document.getElementById("mainMinutes");
+      const mainSeconds = document.getElementById("mainSeconds");
+
+      // Footer Timer Elements
+      const footerDays = document.getElementById("footerDays");
+      const footerHours = document.getElementById("footerHours");
+      const footerMinutes = document.getElementById("footerMinutes");
+      const footerSeconds = document.getElementById("footerSeconds");
+
+      // Helper function to add leading zero
+      function formatTime(num) {
+        return num < 10 ? "0" + num : num;
+      }
+
+      // Set your target date/time here (shared by both timers)
+      // const targetDate = new Date("April 3, 2025 10:00:00").getTime();
+
+      function timer() {
+        const currentDate = new Date().getTime();
+        const distance = targetDate - currentDate;
+
+        // If countdown is over, set all to "00"
+        if (distance < 0) {
+          updateTimer("00", "00", "00", "00");
+        } else {
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+          const minutes = Math.floor((distance / (1000 * 60)) % 60);
+          const seconds = Math.floor((distance / 1000) % 60);
+
+          updateTimer(
+            formatTime(days),
+            formatTime(hours),
+            formatTime(minutes),
+            formatTime(seconds)
+          );
+        }
+      }
+
+      // Update both main & footer timers
+      function updateTimer(d, h, m, s) {
+        if (mainDays) mainDays.textContent = d;
+        if (mainHours) mainHours.textContent = h;
+        if (mainMinutes) mainMinutes.textContent = m;
+        if (mainSeconds) mainSeconds.textContent = s;
+
+        if (footerDays) footerDays.textContent = d;
+        if (footerHours) footerHours.textContent = h;
+        if (footerMinutes) footerMinutes.textContent = m;
+        if (footerSeconds) footerSeconds.textContent = s;
+      }
+
+      // Run timer every second
+      setInterval(timer, 1000);
+      timer(); // Initialize immediately
+
+      // -------------------- Common Payment link --------------------
+
+      document.querySelectorAll(".book-spot-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          window.location.href = BOOK_SPOT_URL;
+        });
+      });
+      
+      // -------------------- Displaying date --------------------
+
+          function formatWebDate(timestamp) {
+          const date = new Date(timestamp);
+          const day = date.getDate();
+          const year = date.getFullYear();
+          const months = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December",
+          ];
+          const month = months[date.getMonth()];
+          let hours = date.getHours();
+          const minutes = String(date.getMinutes()).padStart(2, "0");
+          const meridian = hours >= 12 ? "PM" : "AM";
+          hours = hours % 12 || 12;
+          return `${day} ${month} ${year} | ${hours}:${minutes} ${meridian}`;
+        }
+
+        
+    </script>
