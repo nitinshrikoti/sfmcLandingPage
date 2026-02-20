@@ -2157,19 +2157,6 @@ window.addEventListener("click", function (event) {
   }
 });
 
-// — Prevent anything but letters (no spaces) in Name —
-const NameEl = document.getElementById("Name");
-NameEl.addEventListener("keypress", (e) => {
-  // if the key isn’t A–Z or a–z, block it
-  if (!/^[A-Za-z]$/.test(e.key)) {
-    e.preventDefault();
-  }
-});
-NameEl.addEventListener("input", () => {
-  // strip out any non-letters (just in case)
-  NameEl.value = NameEl.value.replace(/[^A-Za-z]/g, "");
-});
-
 // -------------------- Close Nav container Script --------------------
 document.addEventListener("DOMContentLoaded", function () {
   const menuToggle = document.getElementById("menuToggle");
