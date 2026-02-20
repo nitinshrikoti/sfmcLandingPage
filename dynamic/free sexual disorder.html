@@ -110,7 +110,7 @@ IF RequestParameter("submitted") == "true" THEN
 
   /* Atomic Upsert */
   UpsertDE(
-    "Free_Webinar_Registration",
+    "Free_Webinar_Registration_Raw",
     1,
     "Id", @Id,
 
@@ -120,11 +120,11 @@ IF RequestParameter("submitted") == "true" THEN
     "Email", RequestParameter("Email"),
     "Country", RequestParameter("Country"),
 
-    "BookingDate", @BookingDate,
+    "Booking_Date", @BookingDate,
 
-    "WebinarId", @webinarId,
-    "WebinarTopic", Field(@wRow,"Webinar_Topic__c"),
-    "WebinarDate", Field(@wRow,"Start_Datetime__c")
+    "Webinar_Id", @webinarId,
+    "Webinar_Topic", Field(@wRow,"Webinar_Topic__c"),
+    "Webinar_DateTime", Field(@wRow,"Start_Datetime__c")
   )
 
 ENDIF
