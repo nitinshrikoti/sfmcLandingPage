@@ -1543,8 +1543,20 @@ ENDIF
       </div>
     </section>
 
+    %%[
+    VAR @topicValue
+    SET @topicValue = Field(@wRow,"Webinar_Topic__c")
+    ]%%
+
     <!-- -------------------- Mid-2 Section -------------------- -->
     <div class="banner-heading-block text-black">
+
+      %%[ IF @topicValue == "All Diseases" THEN ]%%
+      <h2 class="text-green">Important Things to Know Before the Webinar</h2>
+      <p>
+        Before joining the webinar, make sure you are seated in a quiet place with a stable internet connection. Keep your questions ready in advance so you can make the most of your time with Acharya Manish Ji or the attending doctors. When your name is called, please unmute yourself and confidently share your concern.
+      </p>
+      %%[ ELSE ]%%
       <h2 class="text-green">Webinar से जुड़ी कुछ जरुरी बातें।</h2>
       <p>
         वेबिनार में भाग लेने से पहले सुनिश्चित करें कि आप शांत जगह पर बैठें हों
@@ -1553,17 +1565,28 @@ ENDIF
         लिया जाए तो अपना माइक अनम्यूट करें और आचार्य मनीष जी या हमारे डॉक्टर से
         बात कर करें।
       </p>
+      %%[ ENDIF ]%%
+
     </div>
 
     <section class="banner-webinar-section">
       <!-- banner-Left side: Image -->
       <div class="banner-left">
+        
         <img id="BannerImg" src="%%=v(Field(@tRow,'BannerImage'))=%%" alt="Webinar Image">
+
       </div>
+
 
       <!-- banner-Right side: Text -->
       <div class="banner-right text-black">
-        <p>ये वेबिनार किसके लिए है ?</p>
+
+        %%[ IF @topicValue == "All Diseases" THEN ]%%
+          <p>Who Should Attend This Webinar?</p>
+        %%[ ELSE ]%%
+          <p>ये वेबिनार किसके लिए है?</p>
+        %%[ ENDIF ]%%        
+
         <ul>
           %%[
           VAR @r
@@ -1601,11 +1624,56 @@ ENDIF
           ]%%
             <li>%%=v(@r)=%%</li>
           %%[ ENDIF ]%%
+
+
         </ul>
       </div>
     </section>
 
     <!-- -------------------- Instructions Section -------------------- -->
+    %%[ IF @topicValue == "All Diseases" THEN ]%%
+      <section id="steps" class="join-webinar">
+        <h2 class="text-green">Process to Join the Webinar:</h2>
+        <div class="steps-container">
+          <!-- Step 1 -->
+          <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-title">Register Now</div>
+            <div class="step-desc">First, click on <strong>Register Now</strong>.</div>
+          </div>
+
+          <!-- Step 2 (Highlighted) -->
+          <div class="step highlight">
+            <div class="step-number">2</div>
+            <div class="step-title">Fill Your Details</div>
+            <div class="step-desc">
+              Fill in your details — make sure to provide your <strong>WhatsApp number</strong> and <strong>Email</strong>, where you will receive the <strong>webinar details</strong>.
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-title">Submit</div>
+            <div class="step-desc">After filling in all the required information, click submit.</div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-title">Important Note !!</div>
+            <div class="step-desc">
+              After payment, you will receive a <strong>confirmation message</strong> on WhatsApp/Email. The same message will contain the <strong>Official Group link</strong> — the <strong>webinar link will be shared there</strong>.
+            </div>
+          </div>
+        </div>
+
+        <button class="step-register-btn" onclick="newopenmodal()">
+          Register Now
+        </button>
+      </section>
+
+    %%[ ELSE ]%%
     <section id="steps" class="join-webinar">
       <h2 class="text-green">वेबिनार को ज्वाइन करने की प्रक्रिया:</h2>
       <div class="steps-container">
@@ -1642,6 +1710,8 @@ ENDIF
         Register Now
       </button>
     </section>
+      
+    %%[ ENDIF ]%%
 
     <!-- -------------------- Testinomial Section -------------------- -->
     <section class="testimonial-section">
