@@ -1,0 +1,255 @@
+%%[
+VAR @uid, @rows, @row
+VAR @Name, @Email, @Phone, @Webinar_Topic, @Webinar_Datetime, @Webinar_Link
+VAR @action
+
+/* Read UID */
+SET @uid = RequestParameter("cid")
+
+/* Detect form submission */
+SET @action = RequestParameter("action")
+
+/* Lookup registration data */
+SET @rows = LookupRows(
+  "Paid_Webinar_Registration",
+  "UniqueID",
+  @uid
+)
+
+IF RowCount(@rows) > 0 THEN
+  SET @row = Row(@rows, 1)
+  SET @Name        = Field(@row, "Name")
+  SET @Email       = Field(@row, "Email")
+  SET @Phone       = Field(@row, "Phone")
+  SET @Webinar_Topic = Field(@row, "Webinar_Topic")
+  SET @Webinar_Datetime = Field(@row, "Webinar_Datetime")
+  SET @Webinar_Link    = Field(@row, "Webinar_Link")
+ENDIF
+
+IF @action == "join" THEN
+
+  InsertDE(
+    "Webinar_Join_Attempts",
+    "UniqueID", @uid,
+    "Name", @Name,
+    "Email", @Email,
+    "Phone", @Phone,
+    "Webinar_Topic", @Webinar_Topic,
+    "Webinar_Datetime", @Webinar_Datetime,
+    "JoinTime", SystemDateToLocalDate(Now())
+  )
+
+  Redirect(@Webinar_Link)
+
+ENDIF
+]%%
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join Webinar</title>
+<style>
+/* =========================
+   RESET & BOX MODEL
+   ========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* -------------------- mc-default -------------------- */
+.layout-canvas-g > .section {
+ margin: 0px;
+}
+ 
+  
+/* =========================
+   PAGE LAYOUT (ALL SCREENS)
+   ========================= */
+body {
+  margin: 0;
+  padding: 20px 12px;           /* safe padding for mobile */
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  /* True centering */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Background pattern */
+  --s: 194px;
+  --c1: #f6edb3;
+  --c2: #acc4a3;
+
+  --_l: #0000 calc(25% / 3), var(--c1) 0 25%, #0000 0;
+  --_g: conic-gradient(from 120deg at 50% 87.5%, var(--c1) 120deg, #0000 0);
+
+  background:
+    var(--_g),
+    var(--_g) 0 calc(var(--s) / 2),
+    conic-gradient(from 180deg at 75%, var(--c2) 60deg, #0000 0),
+    conic-gradient(from 60deg at 75% 75%, var(--c1) 0 60deg, #0000 0),
+    linear-gradient(150deg, var(--_l)) 0 calc(var(--s) / 2),
+    conic-gradient(at 25% 25%, #0000 50%, var(--c2) 0 240deg, var(--c1) 0 300deg, var(--c2) 0),
+    linear-gradient(-150deg, var(--_l)) #55897c;
+
+  background-size: calc(0.866 * var(--s)) var(--s);
+}
+
+/* =========================
+   CONTAINER
+   ========================= */
+.container {
+  width: 100%;
+  max-width: 420px;
+  margin: auto;
+
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+  
+  /* =========================
+   LOGO
+   ========================= */
+  .logo-wrap {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo-wrap img {
+  max-width: 160px;   /* prevents oversized logo */
+  width: 100%;
+  height: auto;
+}
+
+
+/* =========================
+   TYPOGRAPHY
+   ========================= */
+h1 {
+  font-size: 22px;
+  text-align: center;
+  margin: 0 0 10px;
+}
+
+.date {
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.label {
+  font-weight: bold;
+  margin-top: 15px;
+  display: block;
+}
+
+.value {
+  margin-top: 5px;
+  color: #333;
+  word-break: break-word;
+}
+
+/* =========================
+   BUTTON
+   ========================= */
+.join-btn {
+  margin-top: 30px;
+  width: 100%;
+  padding: 16px;
+  background-color: #254a28;
+  color: #ffffff;
+  border: none;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.join-btn:hover {
+  background-color: #1e3e22;
+}
+
+/* =========================
+   FOOTNOTE
+   ========================= */
+.note {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #777;
+  text-align: center;
+}
+
+/* =========================
+   SMALL SCREEN TUNING
+   ========================= */
+@media (max-width: 480px) {
+
+  .container {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .date {
+    font-size: 13px;
+  }
+
+  .label,
+  .value {
+    font-size: 14px;
+  }
+
+  .note {
+    font-size: 11px;
+  }
+}
+
+</style>
+
+
+
+<div class="container">
+  
+  <div class="logo-wrap">
+  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/7ba0d21d-ea59-4ac0-9fa0-213c3f25cf9e.png" alt="Jeena Sikho">
+ </div>
+
+
+  <h1>%%=v(@Webinar_Topic)=%% Webinar</h1>
+
+  <div class="date">
+    %%=FormatDate(@Webinar_Datetime,"dd MMM yyyy 'at' hh:mm tt")=%%
+  </div>
+
+  <span class="label">Name</span>
+  <div class="value">%%=v(@Name)=%%</div>
+
+  <span class="label">Email</span>
+  <div class="value">%%=v(@Email)=%%</div>
+
+  <span class="label">Phone</span>
+  <div class="value">%%=v(@Phone)=%%</div>
+
+  <!-- Join + Track -->
+  <form method="post">
+    <input type="hidden" name="action" value="join">
+    <button type="submit" class="join-btn">
+      Join Webinar
+    </button>
+  </form>
+
+  <div class="note">
+    Please join from the same device used for registration.
+  </div>
+
+</div>

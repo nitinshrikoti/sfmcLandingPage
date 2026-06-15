@@ -1,0 +1,141 @@
+<script runat="server">
+  Platform.Load("Core", "1");
+
+  var submitted = false;
+  var outputMessage = "";
+
+  try {
+    var method = Request.Method;
+
+    if (method == "POST") {
+      submitted = true;
+
+      var name = Request.GetFormField("name");
+      var phone = Request.GetFormField("phone");
+
+      if (name) { name = name.replace(/^\s+|\s+$/g, ""); }
+      if (phone) { phone = phone.replace(/^\s+|\s+$/g, ""); }
+
+      if (!name || !phone) {
+        outputMessage = "Missing fields";
+      } else {
+
+        // ===== CONFIG =====
+        var credentialName = "Webinar_Registration_Leads";
+        var eventKey = "APIEvent-a8a8b451-c4e1-90ab-d485-c61161a9865f";
+
+        // ===== 1. Fetch API credentials from DE =====
+        var credDE = DataExtension.Init("BA04C94C-05A6-494C-8641-F7193F955B6E");
+        var rows = credDE.Rows.Retrieve({
+          Property: "Name",
+          SimpleOperator: "equals",
+          Value: credentialName
+        });
+
+        if (!rows || rows.length == 0) {
+          outputMessage = "Credential not found";
+        } else {
+          var clientId     = rows[0].ClientId;
+          var clientSecret = rows[0].ClientSecret;
+          var mid          = rows[0].MID;
+          var subdomain    = rows[0].Subdomain;
+
+          if (!subdomain) {
+            outputMessage = "Subdomain missing";
+          } else {
+
+            // ===== 2. Get OAuth Token =====
+            var tokenUrl = "https://" + subdomain + ".auth.marketingcloudapis.com/v2/token";
+
+            // MUST be form-encoded, not JSON
+            var tokenPayload = "grant_type=client_credentials"
+              + "&client_id=" + clientId
+              + "&client_secret=" + clientSecret
+              + "&account_id=" + mid;
+
+            var tokenResponse = HTTP.Post(
+              tokenUrl,
+              "application/x-www-form-urlencoded",  // ← key change
+              tokenPayload
+            );
+
+            if (tokenResponse.StatusCode != 200) {
+              outputMessage = "Token HTTP error: " + tokenResponse.StatusCode;
+            } else if (!tokenResponse.Response || tokenResponse.Response.length == 0) {
+              outputMessage = "Empty token response";
+            } else {
+              var tokenResult = Platform.Function.ParseJSON(tokenResponse.Response[0]);
+
+              if (!tokenResult || !tokenResult.access_token) {
+                outputMessage = "Token parse error: " + Stringify(tokenResult);
+              } else {
+                var accessToken = tokenResult.access_token;
+
+                // ===== 3. Fire Journey Event =====
+                var contactKey = phone.replace(/[^0-9]/g, "");
+
+                if (!contactKey) {
+                  outputMessage = "Invalid phone number";
+                } else {
+                  var eventUrl = "https://" + subdomain + ".rest.marketingcloudapis.com/interaction/v1/events";
+                  var eventPayload = Stringify({
+                    ContactKey:          contactKey,
+                    EventDefinitionKey:  eventKey,
+                    Data: {
+                      Name:   name,
+                      Phone:  contactKey,
+                      Locale: "en_IN"
+                    }
+                  });
+
+                  var headerNames  = ["Authorization"];
+                  var headerValues = ["Bearer " + accessToken];
+
+                  var eventResponse = HTTP.Post(
+                    eventUrl,
+                    "application/json",
+                    eventPayload,
+                    headerNames,
+                    headerValues
+                  );
+
+                  var responseBody = "{}";
+                  if (eventResponse.Response && eventResponse.Response.length > 0) {
+                    responseBody = eventResponse.Response[0];
+                  }
+
+                  if (eventResponse.StatusCode == 200 || eventResponse.StatusCode == 201) {
+                    outputMessage = "✅ Success " + eventResponse.StatusCode + ": " + responseBody;
+                  } else {
+                    outputMessage = "❌ Event error " + eventResponse.StatusCode + ": " + responseBody;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  } catch (e) {
+    outputMessage = "Exception: " + Stringify(e);
+    submitted = true;
+  }
+</script>
+
+
+
+
+  <form method="post">
+    <label>Name: <input type="text" name="name" required=""></label><br>
+    <label>Phone: <input type="text" name="phone" required=""></label><br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <script runat="server">
+    if (submitted && outputMessage != "") {
+      Write("<p><strong>" + outputMessage + "</strong></p>");
+    }
+  </script>
+
+

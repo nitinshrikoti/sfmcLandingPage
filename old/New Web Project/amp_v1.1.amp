@@ -1,0 +1,151 @@
+%%[
+IF RequestParameter("submitted") == "true" THEN
+
+  Set @rawPhone = RequestParameter("phone")
+  Set @countryCode = RequestParameter("countryCode")
+  Set @locale = RequestParameter("initialCountry")
+  Set @joiningLink = RequestParameter("JoiningLink")
+
+  Set @digitsOnly = ""
+  FOR @i = 1 TO Length(@rawPhone) DO
+    Set @char = Substring(@rawPhone, @i, 1)
+    IF IndexOf("0123456789", @char) > 0 THEN
+      Set @digitsOnly = Concat(@digitsOnly, @char)
+    ENDIF
+  NEXT @i
+
+  Set @phone = Concat(@countryCode, @digitsOnly)
+  Set @uniqueID = Concat(
+    Format(SystemDateToLocalDate(Now()), "yyyyMMddHHmmss"),
+    "_",
+    @digitsOnly
+  )
+
+  /* Check if user already registered for same Phone + JoiningLink */
+  Set @existing = Lookup(
+    "WebinarFormData", 
+    "UniqueID", 
+    "Phone", @phone, 
+    "JoiningLink", @joiningLink
+  )
+
+  /* Only insert if not already registered */
+  IF Empty(@existing) THEN
+
+    Set @BookingDate = Format(SystemDateToLocalDate(Now()), "yyyy-MM-dd")
+    Set @BookingTime = Format(SystemDateToLocalDate(Now()), "HH:mm:ss")
+
+    UpsertDE(
+      "WebinarFormData",    
+      1,                    
+      "UniqueID",       @uniqueID,
+      "FirstName",      RequestParameter("FirstName"),
+      "LastName",       RequestParameter("LastName"),
+      "Locale",         @locale, 
+      "Phone",          @phone,
+      "Email",          RequestParameter("Email"),
+      "Country",        RequestParameter("Country"),
+      "BookingDate",    @BookingDate,
+      "BookingTime",    @BookingTime,
+      "OldSlotDate",    RequestParameter("OldSlotDate"),
+      "OldSlotTime",    RequestParameter("OldSlotTime"),
+      "NewSlotDate",    RequestParameter("NewSlotDate"),
+      "NewSlotTime",    RequestParameter("NewSlotTime"),
+      "OfferingTitle",  RequestParameter("OfferingTitle"),
+      "JoiningLink",    @joiningLink,
+      "WhatsAppLink",   RequestParameter("WhatsAppLink"),
+      "WaitUntillDate", RequestParameter("WaitUntillDate"),
+      "ContactNumber",  RequestParameter("ContactNumber")
+    )
+
+  ENDIF
+
+ENDIF
+]%%
+
+<!-- We set a JS variable (isSubmitted) based on whether the form was posted -->
+%%[ IF RequestParameter("submitted") == "true" THEN ]%%
+<script>
+  var isSubmitted = true;
+</script>
+%%[ ELSE ]%%
+<script>
+  var isSubmitted = false;
+</script>
+%%[ ENDIF ]%%
+
+
+%%[
+/* ============================
+   CONFIG
+============================ */
+
+VAR @uid, @rows, @row
+VAR @Name, @Email, @Phone
+VAR @WebinarName, @WebinarDate
+VAR @ZoomLink
+
+SET @uid = RequestParameter("uid")
+
+IF EMPTY(@uid) THEN
+  RaiseError("Invalid or missing link.", true)
+ENDIF
+
+SET @rows = LookupRows(
+  "Webinar_Registrations",
+  "UniqueID",
+  @uid
+)
+
+IF RowCount(@rows) == 0 THEN
+  RaiseError("No registration found for this link.", true)
+ENDIF
+
+SET @row = Row(@rows, 1)
+
+SET @Name        = Field(@row, "Name")
+SET @Email       = Field(@row, "Email")
+SET @Phone       = Field(@row, "Phone")
+SET @WebinarName = Field(@row, "WebinarName")
+SET @WebinarDate = Field(@row, "WebinarDate")
+SET @ZoomLink    = Field(@row, "ZoomLink")
+]%%
+
+
+working
+%%[
+VAR @uid, @rows, @row
+VAR @Name, @Email, @Phone, @WebinarName, @WebinarDate, @ZoomLink
+
+/* Read UID from URL */
+SET @uid = RequestParameter("cid")
+
+/* Lookup record */
+SET @rows = LookupRows(
+  "Webinar_Registration",
+  "UniqueID",
+  @uid
+)
+
+/* Default values (in case no row is found) */
+SET @Name = "NO RECORD FOUND"
+SET @Email = ""
+SET @Phone = ""
+SET @WebinarName = ""
+SET @WebinarDate = ""
+SET @ZoomLink = ""
+
+/* Populate values if record exists */
+IF RowCount(@rows) > 0 THEN
+  SET @row = Row(@rows, 1)
+  SET @Name        = Field(@row, "Name")
+  SET @Email       = Field(@row, "Email")
+  SET @Phone       = Field(@row, "Phone")
+  SET @WebinarName = Field(@row, "WebinarName")
+  SET @WebinarDate = Field(@row, "WebinarDate")
+  SET @ZoomLink    = Field(@row, "ZoomLink")
+ENDIF
+]%%
+
+
+not working

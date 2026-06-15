@@ -1,0 +1,209 @@
+/* -------------------- Reset -------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+a,
+li,
+ul,
+ol,
+span,
+strong,
+em,
+figure,
+picture,
+blockquote,
+dl,
+dd {
+  padding: 0;
+  margin: 0;
+  /* margin-block-end: 0; */
+}
+
+ul[role="list"],
+ol[role="list"] {
+  list-style: none;
+}
+
+body {
+  min-height: 100vh;
+  /* line-height: 1.6; */
+}
+
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+  line-height: 1.1;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+/* A elements that don't have a class get default styles */
+/* a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+} */
+a {
+  text-decoration: none;
+  color: currentColor;
+}
+
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+textarea:not([rows]) {
+  min-height: 10em;
+}
+
+:target {
+  scroll-margin-block: 5ex;
+}
+
+/* -------------------- mc-default -------------------- */
+.layout-canvas-g > .section {
+  margin: 0px;
+}
+
+.announcement-bar {
+  background: #266a3d;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 30px;
+  padding: 5px 20px;
+}
+
+.announcement-bar p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.navbar-section {
+  background: #ffffff;
+  width: 100%;
+  padding: 16px 24px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo img {
+  height: 50px;
+  width: auto;
+  display: block;
+}
+
+.register-btn {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  border: none;
+  outline: none;
+
+  cursor: pointer;
+
+  background: #ffbaba;
+
+  padding: 14px 24px;
+
+  border-radius: 999px;
+
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.pulse-dot {
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+
+  background: #ff2626;
+
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 38, 38, 0.7);
+  }
+
+  70% {
+    box-shadow: 0 0 0 12px rgba(255, 38, 38, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 38, 38, 0);
+  }
+}
+
+@media (max-width: 445px) {
+  .announcement-bar {
+    padding: 5px 16px;
+  }
+
+  .announcement-bar p {
+    font-size: 9px;
+  }
+
+  .navbar-section {
+    padding: 14px 16px;
+  }
+
+  .navbar-logo img {
+    height: 42px;
+  }
+
+  .register-btn {
+    padding: 12px 18px;
+
+    font-size: 14px;
+  }
+}

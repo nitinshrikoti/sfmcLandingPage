@@ -1,0 +1,14 @@
+<p>Hello %%= Lowercase(@name) =%%
+
+%%= Iif(Empty(@var), '123', '243') =%%
+
+%%[
+var @free_shipping, @country
+Set @country = Uppercase([CountryCote])
+If ( @country == "US" or @country == "CA" ) then
+Set @free_shipping = true
+Else
+Set @free_shipping = false
+EndIf
+]%%
+
