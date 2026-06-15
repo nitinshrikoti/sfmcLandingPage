@@ -273,6 +273,107 @@ textarea:not([rows]) {
   object-fit: contain;
 }
 
+.countdown-section {
+  width: 100%;
+  background-image: url("https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/14729b3f-42f5-4999-b5ad-2cd4dba8a44b.png");
+  background-size: cover;
+  background-position: center;
+  padding: 20px 0;
+}
+
+.countdown-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+
+/* LEFT */
+
+.countdown-left {
+  width: 30%;
+}
+
+.small-text {
+  color: #47a564;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.countdown-left h2 {
+  font-size: 42px;
+  font-weight: 700;
+  color: #0e6b38;
+  line-height: 1.1;
+}
+
+/* MIDDLE */
+
+.countdown-middle {
+  width: 30%;
+}
+
+.timer-box {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.time-item {
+  text-align: center;
+}
+
+.time-value {
+  width: 68px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: #0e6b38;
+  color: #ffffff;
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.time-item span {
+  display: block;
+  margin-top: 10px;
+  font-size: 13px;
+  color: #555;
+}
+
+/* RIGHT */
+
+.countdown-right {
+  width: 30%;
+}
+
+.countdown-btn {
+  width: 220px;
+  height: 50px;
+  border-radius: 8px;
+  background: #0e6b38;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+
+.countdown-right p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #666;
+  max-width: 260px;
+}
+
 @media (max-width: 445px) {
   .announcement-bar {
     padding: 5px 16px;
@@ -292,7 +393,40 @@ textarea:not([rows]) {
 
   .register-btn {
     padding: 12px 18px;
-
     font-size: 14px;
   }
+  .countdown-wrapper {
+    flex-direction: column;
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  .countdown-left,
+  .countdown-middle,
+  .countdown-right {
+    width: 100%;
+  }
+
+  .countdown-left h2 {
+    font-size: 32px;
+  }
+
+  .timer-box {
+    flex-wrap: wrap;
+  }
+
+  .time-value {
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+  }
+
+  .countdown-btn {
+    margin: 0 auto 14px;
+  }
+
+  .countdown-right p {
+    max-width: 100%;
+  }
 }
+
