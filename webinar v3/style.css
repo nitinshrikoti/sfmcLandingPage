@@ -1004,6 +1004,76 @@ textarea:not([rows]) {
   font-size: 18px;
 }
 
+.webinar-footer {
+  width: 100%;
+}
+
+/* TOP SECTION */
+
+.footer-main {
+  background: #0f7143;
+
+  padding: 44px 20px;
+}
+
+.footer-main .container {
+  max-width: 1200px;
+
+  margin: auto;
+
+  text-align: center;
+}
+
+.footer-logo {
+  width: 180px;
+
+  margin: 0 auto 24px;
+
+  display: block;
+}
+
+.footer-main h2 {
+  font-size: 36px;
+
+  line-height: 1.3;
+
+  font-weight: 700;
+
+  color: #ffffff;
+
+  margin: 0;
+}
+
+.footer-main h2 span {
+  color: #ffe600;
+}
+
+/* DISCLAIMER */
+
+.footer-disclaimer {
+  background: #002a1d;
+
+  padding: 26px 20px;
+}
+
+.footer-disclaimer .container {
+  max-width: 1100px;
+
+  margin: auto;
+}
+
+.footer-disclaimer p {
+  margin: 0;
+
+  text-align: center;
+
+  color: rgba(255, 255, 255, 0.6);
+
+  font-size: 16px;
+
+  line-height: 1.7;
+}
+
 @media (max-width: 445px) {
   .announcement-bar {
     padding: 5px 16px;
@@ -1188,5 +1258,21 @@ textarea:not([rows]) {
 
   .faq-question {
     font-size: 16px;
+  }
+
+  .footer-main {
+    padding: 36px 20px;
+  }
+
+  .footer-logo {
+    width: 150px;
+  }
+
+  .footer-main h2 {
+    font-size: 28px;
+  }
+
+  .footer-disclaimer p {
+    font-size: 14px;
   }
 }
