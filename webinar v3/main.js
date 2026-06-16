@@ -33,3 +33,21 @@ function updateCountdown() {
 setInterval(updateCountdown, 1000);
 
 updateCountdown();
+
+const videoContainer = document.getElementById("videoContainer");
+
+videoContainer.addEventListener("click", function () {
+  videoContainer.innerHTML = `
+
+    <iframe
+
+        src="https://www.youtube.com/embed/Zxv21BqGicM?autoplay=1"
+
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+
+        allowfullscreen>
+
+    </iframe>
+
+    `;
+});
