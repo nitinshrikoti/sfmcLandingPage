@@ -50,7 +50,7 @@ ENDIF
    TOPIC LOOKUP
 ================================ */
 
-SET @topicId = Field(@webinarRow,"Webinar_Topic__c")
+SET @topicId = Trim(Field(@webinarRow,"Webinar_Topic__c"))
 
 IF Empty(@topicId) THEN
   RaiseError("Webinar topic missing", true)
@@ -1424,12 +1424,12 @@ ENDIF
           <h1>
             Live Ayurveda Webinar
             <br>
-            on <span>Liver Health</span>
+            on <span>%%=v(Field(@topicRow,"var1"))=%% Health</span>
           </h1>
 
           <p>
-            In this webinar, learn about Fatty Liver, Liver Fibrosis, Cirrhosis,
-            and natural Ayurvedic ways to support your liver health — guided by
+            In this webinar, learn about %%=v(Field(@topicRow,"var2"))=%%, %%=v(Field(@topicRow,"var3"))=%%, %%=v(Field(@topicRow,"var4"))=%%,
+            and natural Ayurvedic ways to support your %%=v(Field(@topicRow,"var1"))=%% health — guided by
             Acharya Manish Ji and his team of specialists.
           </p>
 
@@ -1537,7 +1537,7 @@ ENDIF
 
           <p class="learn-description">
             Join this exclusive live session and understand the Ayurvedic
-            perspective on liver health — directly from experts
+            perspective on %%=v(Field(@topicRow,"var1"))=%% health — directly from experts
           </p>
 
           <div class="learn-cards">
@@ -1545,8 +1545,7 @@ ENDIF
               <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e4d92b33-7a02-467e-9d03-5416b4894137.png">
 
               <p>
-                Understand the root causes of Fatty Liver, Liver Fibrosis, Liver
-                Cirrhosis, and other liver problems
+                Understand the root causes of %%=v(Field(@topicRow,"var2"))=%%, %%=v(Field(@topicRow,"var3"))=%%, %%=v(Field(@topicRow,"var4"))=%%, and other %%=v(Field(@topicRow,"var1"))=%% problems
               </p>
             </div>
 
@@ -1554,7 +1553,7 @@ ENDIF
               <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/0c287ff8-e766-4609-b57c-7340a85209bc.png">
 
               <p>
-                Learn how liver conditions can be reversed naturally through the
+                Learn how %%=v(Field(@topicRow,"var1"))=%% conditions can be reversed naturally through the
                 right lifestyle, pH-balanced diet, and Ayurvedic guidance
               </p>
             </div>
@@ -1564,7 +1563,7 @@ ENDIF
 
               <p>
                 Discover the daily habits that may be silently damaging your
-                liver health
+                %%=v(Field(@topicRow,"var1"))=%% health
               </p>
             </div>
 
@@ -1594,8 +1593,7 @@ ENDIF
               <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png">
 
               <p>
-                Expert insights from Acharya Manish Ji and his team of 600+
-                senior doctors
+                Expert insights from Acharya Manish Ji and his team of 600+ senior doctors
               </p>
             </div>
 
@@ -1603,8 +1601,7 @@ ENDIF
               <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png">
 
               <p>
-                Live Q&A session to discuss your personal health concerns with
-                expert doctors
+                Live Q&A session to discuss your personal health concerns with expert doctors
               </p>
             </div>
 
@@ -1612,8 +1609,7 @@ ENDIF
               <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png">
 
               <p>
-                Natural Ayurvedic guidance to improve liver health without side
-                effects
+                Natural Ayurvedic guidance to improve %%=v(Field(@topicRow,"var1"))=%% health without side effects
               </p>
             </div>
 
@@ -1621,8 +1617,7 @@ ENDIF
               <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png">
 
               <p>
-                Better understanding of early symptoms and their possible root
-                causes
+                Better understanding of early symptoms and their possible root causes
               </p>
             </div>
 
