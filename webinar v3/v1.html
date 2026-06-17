@@ -1643,19 +1643,17 @@ ENDIF
 
               <h3>%%=v(Field(@doctorRow,"Name"))=%%</h3>
 
-              <div class="schedule-box">
-                <div>
-                  <small>Date</small>
+                <div class="schedule-box">
+                  <div>
+                    <small>Date</small>
+                    <span id="webDate"></span>
+                  </div>
 
-                  <span>16 June 2026</span>
+                  <div>
+                    <small>Time</small>
+                    <span id="webTime"></span>
+                  </div>
                 </div>
-
-                <div>
-                  <small>Time</small>
-
-                  <span>10:00 AM</span>
-                </div>
-              </div>
 
               <a href="#register" class="doctor-btn"> Book a Spot </a>
             </div>
@@ -1937,10 +1935,16 @@ ENDIF
 
     const targetDate = new Date("%%=v(@startDT)=%%").getTime();
 
-    const webDate = formatWebDate(targetDate);
-      
-      const webDateEl = document.getElementById("webDate");
-      if (webDateEl) webDateEl.innerHTML = webDate;
+    const webDateEl = document.getElementById("webDate");
+    const webTimeEl = document.getElementById("webTime");
+
+    if (webDateEl) {
+      webDateEl.innerHTML = formatDate(targetDate);
+    }
+
+    if (webTimeEl) {
+      webTimeEl.innerHTML = formatTime(targetDate);
+    }
 
     // -------------------- Timer Script --------------------
 
@@ -2020,30 +2024,46 @@ ENDIF
 
     // -------------------- Displaying date --------------------
 
-    function formatWebDate(timestamp) {
-      const date = new Date(timestamp);
-      const day = date.getDate();
-      const year = date.getFullYear();
-      const months = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December",
-      ];
-      const month = months[date.getMonth()];
-      let hours = date.getHours();
-      const minutes = String(date.getMinutes()).padStart(2, "0");
-      const meridian = hours >= 12 ? "PM" : "AM";
-      hours = hours % 12 || 12;
-      return `${day} ${month} ${year} | ${hours}:${minutes} ${meridian}`;
-    }
+function formatDate(timestamp) {
+
+  const date = new Date(timestamp);
+
+  const day = date.getDate();
+
+  const year = date.getFullYear();
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
+
+  return `${day} ${months[date.getMonth()]} ${year}`;
+}
+
+
+function formatTime(timestamp) {
+
+  const date = new Date(timestamp);
+
+  let hours = date.getHours();
+
+  const minutes = String(date.getMinutes()).padStart(2,"0");
+
+  const meridian = hours >= 12 ? "PM" : "AM";
+
+  hours = hours % 12 || 12;
+
+  return `${hours}:${minutes} ${meridian}`;
+}
   </script>
 
