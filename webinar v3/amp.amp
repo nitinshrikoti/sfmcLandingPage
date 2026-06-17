@@ -1,0 +1,109 @@
+%%[
+/* ===============================
+   VARIABLES
+================================ */
+VAR @id
+VAR @webinarRow
+VAR @topicRow
+VAR @doctorRow
+VAR @topicId
+VAR @doctorId
+VAR @startDT
+
+/* ===============================
+   GET URL PARAMETER
+================================ */
+
+SET @id = Trim(RequestParameter("id"))
+
+IF Empty(@id) THEN
+
+  IF _messagecontext == "PREVIEW" THEN
+    SET @id = "PUT-A-VALID-ID-HERE"
+  ELSE
+    RaiseError("Missing Webinar Id", true)
+  ENDIF
+
+ENDIF
+
+
+/* ===============================
+   WEBINAR LOOKUP
+================================ */
+
+SET @webinarRow = Row(
+  LookupOrderedRows(
+    "Webinar_Landing_Pages",
+    1,
+    "Id ASC",
+    "Id",
+    @id
+  ),
+1)
+
+IF Empty(@webinarRow) THEN
+  RaiseError("Invalid Webinar Id", true)
+ENDIF
+
+
+/* ===============================
+   TOPIC LOOKUP
+================================ */
+
+SET @topicId = Field(@webinarRow,"Webinar_Topic__c")
+
+IF Empty(@topicId) THEN
+  RaiseError("Webinar topic missing", true)
+ENDIF
+
+SET @topicRow = Row(
+  LookupOrderedRows(
+    "Webinar_Topic_Data",
+    1,
+    "Id ASC",
+    "Id",
+    @topicId
+  ),
+1)
+
+IF Empty(@topicRow) THEN
+  RaiseError("Invalid Topic Mapping", true)
+ENDIF
+
+
+/* ===============================
+   DOCTOR LOOKUP
+================================ */
+
+SET @doctorId = Field(@webinarRow,"Expert_Name__c")
+
+IF Empty(@doctorId) THEN
+  RaiseError("Doctor Id missing", true)
+ENDIF
+
+SET @doctorRow = Row(
+  LookupOrderedRows(
+    "Webinar_Doctors_List",
+    1,
+    "Id ASC",
+    "Id",
+    @doctorId
+  ),
+1)
+
+IF Empty(@doctorRow) THEN
+  RaiseError("Invalid Doctor Mapping", true)
+ENDIF
+
+
+/* ===============================
+   START DATETIME
+================================ */
+
+SET @startDT = Field(@webinarRow,"Start_Datetime__c")
+
+IF Empty(@startDT) THEN
+  RaiseError("Start Datetime missing", true)
+ENDIF
+
+]%%

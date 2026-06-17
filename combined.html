@@ -1,0 +1,1960 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* -------------------- Reset -------------------- */
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body,
+      h1,
+      h2,
+      h3,
+      h4,
+      p,
+      a,
+      li,
+      ul,
+      ol,
+      span,
+      strong,
+      em,
+      figure,
+      picture,
+      blockquote,
+      dl,
+      dd {
+        padding: 0;
+        margin: 0;
+        /* margin-block-end: 0; */
+      }
+
+      ul[role="list"],
+      ol[role="list"] {
+        list-style: none;
+      }
+
+      body {
+        min-height: 100vh;
+        /* line-height: 1.6; */
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      button,
+      input,
+      label {
+        line-height: 1.1;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        text-wrap: balance;
+      }
+
+      /* A elements that don't have a class get default styles */
+      /* a:not([class]) {
+  text-decoration-skip-ink: auto;
+  color: currentColor;
+} */
+      a {
+        text-decoration: none;
+        color: currentColor;
+      }
+
+      input,
+      button,
+      textarea,
+      select {
+        font-family: inherit;
+        font-size: inherit;
+      }
+
+      img,
+      picture {
+        max-width: 100%;
+        display: block;
+      }
+
+      textarea:not([rows]) {
+        min-height: 10em;
+      }
+
+      :target {
+        scroll-margin-block: 5ex;
+      }
+
+      /* -------------------- mc-default -------------------- */
+      .layout-canvas-g > .section {
+        margin: 0px;
+      }
+
+      .announcement-bar {
+        background: #266a3d;
+        color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        min-height: 30px;
+        padding: 5px 20px;
+      }
+
+      .announcement-bar p {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.4;
+      }
+
+      .navbar-section {
+        background: #ffffff;
+        width: 100%;
+        padding: 16px 24px;
+        border-bottom: 1px solid #f2f2f2;
+      }
+
+      .navbar-container {
+        max-width: 1200px;
+        margin: 0 auto;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .navbar-logo img {
+        height: 50px;
+        width: auto;
+        display: block;
+      }
+
+      .register-btn {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        background: #ffbaba;
+        padding: 14px 24px;
+        border-radius: 999px;
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .pulse-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #ff2626;
+        animation: pulse 1.5s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(255, 38, 38, 0.7);
+        }
+
+        70% {
+          box-shadow: 0 0 0 12px rgba(255, 38, 38, 0);
+        }
+
+        100% {
+          box-shadow: 0 0 0 0 rgba(255, 38, 38, 0);
+        }
+      }
+
+      .webinar-hero {
+        position: relative;
+        width: 100%;
+        min-height: 550px;
+        background-image: url("https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/8f105eb1-6989-460e-96c9-6e3d4e1c2656.png");
+        background-size: cover;
+        background-position: center;
+        overflow: hidden;
+      }
+
+      .webinar-hero .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px;
+        min-height: 550px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-content {
+        width: 45%;
+      }
+
+      .hero-image {
+        width: 55%;
+      }
+
+      .hero-content h1 {
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 1.1;
+        color: #ffffff;
+        margin-bottom: 0px;
+      }
+
+      .hero-content span {
+        color: #ffe600;
+      }
+
+      .hero-content p {
+        max-width: 500px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #ffffff;
+        margin-bottom: 24px;
+      }
+
+      .hero-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 190px;
+        height: 58px;
+        border-radius: 12px;
+        background: #ffffff;
+        color: #0e6b38;
+        font-size: 18px;
+        font-weight: 700;
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        -ms-border-radius: 12px;
+        -o-border-radius: 12px;
+      }
+
+      .doctor-group {
+        position: absolute;
+        bottom: 0;
+        right: 5%;
+        width: 700px;
+        height: auto;
+        z-index: 1;
+        object-fit: contain;
+      }
+
+      .countdown-section {
+        width: 100%;
+        background-image: url("https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/14729b3f-42f5-4999-b5ad-2cd4dba8a44b.png");
+        background-size: cover;
+        background-position: center;
+        padding: 20px 0;
+      }
+
+      .countdown-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        gap: 10px;
+      }
+
+      /* LEFT */
+
+      .countdown-left {
+        width: 30%;
+      }
+
+      .small-text {
+        color: #47a564;
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .countdown-left h2 {
+        font-size: 36px;
+        font-weight: 700;
+        color: #0e6b38;
+        line-height: 1.1;
+      }
+
+      /* MIDDLE */
+
+      .countdown-middle {
+        width: 30%;
+      }
+
+      .timer-box {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+      }
+
+      .time-item {
+        text-align: center;
+      }
+
+      .time-value {
+        width: 68px;
+        height: 68px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        background: #0e6b38;
+        color: #ffffff;
+        font-size: 34px;
+        font-weight: 700;
+      }
+
+      .time-item span {
+        display: block;
+        margin-top: 10px;
+        font-size: 13px;
+        color: #555;
+      }
+
+      /* RIGHT */
+
+      .countdown-right {
+        width: 30%;
+      }
+
+      .countdown-btn {
+        width: 220px;
+        height: 50px;
+        border-radius: 8px;
+        background: #0e6b38;
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 14px;
+      }
+
+      .countdown-right p {
+        font-size: 14px;
+        line-height: 1.5;
+        color: #666;
+        max-width: 260px;
+      }
+
+      .offer-section {
+        width: 100%;
+        background: #dff6e7;
+        padding: 10px 0;
+      }
+
+      .offer-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      /* LEFT */
+
+      .offer-left {
+        width: 30%;
+      }
+
+      .offer-left h2 {
+        font-size: 20px;
+        font-weight: 700;
+        color: #0d6447;
+        line-height: 1;
+      }
+
+      /* MIDDLE */
+
+      .offer-middle {
+        width: 40%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 18px;
+      }
+
+      .old-price {
+        font-size: 30px;
+        font-weight: 700;
+        color: #acacac;
+        text-decoration: line-through;
+        text-decoration-color: #ff1414;
+        text-decoration-thickness: 4px;
+      }
+
+      .new-price {
+        font-size: 30px;
+        font-weight: 800;
+        color: #0d6447;
+      }
+
+      /* RIGHT */
+
+      .offer-right {
+        width: 30%;
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .offer-btn {
+        width: 140px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background: #0d6447;
+        color: #26ff6f;
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .offer-btn span {
+        font-size: 24px;
+      }
+
+      .learn-section {
+        padding: 60px 0;
+        background: #ffffff;
+      }
+
+      .learn-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px;
+        display: flex;
+        align-items: center;
+        gap: 70px;
+      }
+
+      /* LEFT */
+
+      .learn-left {
+        width: 42%;
+      }
+
+      .learn-left img {
+        width: 100%;
+        display: block;
+      }
+
+      /* RIGHT */
+
+      .learn-right {
+        width: 58%;
+      }
+
+      .learn-right h2 {
+        font-size: 36px;
+        font-weight: 800;
+        line-height: 1.1;
+        color: #000;
+        margin-bottom: 8px;
+      }
+
+      .learn-description {
+        font-size: 16px;
+        color: #555;
+        line-height: 1.4;
+        margin-bottom: 20px;
+      }
+
+      /* CARDS */
+
+      .learn-cards {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+
+      .learn-card {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 12px 16px;
+        border: 1px solid #c7d0c3;
+        border-radius: 6px;
+        background: #eef2ea;
+      }
+
+      .learn-card img {
+        width: 34px;
+        height: 34px;
+        flex-shrink: 0;
+      }
+
+      .learn-card p {
+        font-size: 15px;
+        line-height: 1.35;
+        color: #444;
+        margin: 0;
+      }
+
+      .learn-card strong {
+        color: #266a3d;
+      }
+
+      /* BUTTON */
+
+      .play-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        background: #266a3d;
+        color: #ffffff;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .why-attend-section {
+        padding: 70px 0;
+        background-image: url("https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f8752606-bf4a-4d8c-b6f8-d49c9a954e71.png");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .why-attend-section .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 40px;
+      }
+
+      /* HEADING */
+
+      .section-heading {
+        text-align: center;
+        font-size: 36px;
+        font-weight: 800;
+        margin-bottom: 50px;
+        color: #000;
+      }
+
+      .section-heading span {
+        color: #2a7a4a;
+      }
+
+      /* LAYOUT */
+
+      .why-attend-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 70px;
+      }
+
+      /* LEFT */
+
+      .attend-left {
+        flex: 1;
+      }
+
+      .attend-item {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        background: #ffffff;
+        border: 1px solid #d7e2d8;
+        border-radius: 14px;
+        padding: 14px 18px;
+        margin-bottom: 14px;
+      }
+
+      .attend-item img {
+        width: 28px;
+
+        height: 28px;
+
+        flex-shrink: 0;
+      }
+
+      .attend-item p {
+        margin: 0;
+        font-size: 18px;
+        color: #555;
+        line-height: 1.4;
+      }
+
+      /* RIGHT */
+
+      .attend-right {
+        width: 360px;
+      }
+
+      .doctor-card {
+        background: linear-gradient(180deg, #74bc8d 0%, #3c8254 100%);
+        border-radius: 20px;
+        padding: 24px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .doctor-card::before {
+        content: "";
+        position: absolute;
+        left: -15%;
+        right: -15%;
+        bottom: 110px;
+        height: 90px;
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 50%;
+      }
+
+      .doctor-card > * {
+        position: relative;
+        z-index: 2;
+      }
+
+      .doctor-image {
+        width: 180px;
+        margin: 0 auto 16px;
+      }
+
+      .doctor-image img {
+        width: 100%;
+        display: block;
+        border-radius: 20px;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        -ms-border-radius: 20px;
+        -o-border-radius: 20px;
+      }
+
+      .connect-text {
+        font-size: 14px;
+        color: #ffffff;
+        margin-bottom: 5px;
+      }
+
+      .doctor-card h3 {
+        font-size: 30px;
+        color: #ffffff;
+        margin-bottom: 10px;
+      }
+
+      /* DATE TIME */
+
+      .schedule-box {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        border-radius: 10px;
+        padding: 12px 18px;
+        margin-bottom: 20px;
+      }
+
+      .schedule-box div {
+        flex: 1;
+        text-align: left;
+      }
+
+      .schedule-box small {
+        display: block;
+        color: #d8f1de;
+        margin-bottom: 4px;
+      }
+
+      .schedule-box span {
+        font-size: 18px;
+        font-weight: 600;
+        color: #ffffff;
+      }
+
+      /* BUTTON */
+
+      .doctor-btn {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        width: 180px;
+        height: 48px;
+        border-radius: 10px;
+        background: #ffffff;
+        color: #266a3d;
+        font-weight: 700;
+      }
+
+      .join-webinar-section {
+        padding: 60px 0 80px;
+        background-image: url("https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/dd754011-e2e3-47fc-b236-9101c5ad16b8.png");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .join-webinar-section .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 0 40px;
+      }
+
+      /* HEADING */
+
+      .join-heading {
+        font-size: 36px;
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 45px;
+      }
+
+      .join-heading span {
+        color: #3c8254;
+      }
+
+      /* LAYOUT */
+
+      .join-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 60px;
+      }
+
+      /* LEFT */
+
+      .join-video {
+        width: 335px;
+      }
+
+      .video-card {
+        width: 100%;
+        overflow: hidden;
+        border-radius: 18px;
+        cursor: pointer;
+        border: 1px solid #74bc8d;
+      }
+
+      .video-card img {
+        width: 100%;
+        display: block;
+      }
+
+      .video-card iframe {
+        width: 100%;
+        height: 540px;
+        border: none;
+      }
+
+      /* RIGHT */
+
+      .join-steps {
+        width: 500px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      /* STEP CARD */
+
+      .step-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 10px 18px 10px 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+
+      .step-card img {
+        width: 40px;
+        margin-left: -1px;
+        flex-shrink: 0;
+      }
+
+      .step-card h3 {
+        font-size: 16px;
+        font-weight: 700;
+        color: #000;
+        margin: 0 0 4px;
+      }
+
+      .step-card p {
+        margin: 0;
+        font-size: 13px;
+        line-height: 1.35;
+        color: #666;
+      }
+
+      .testimonial-section {
+        padding: 70px 0;
+        background-image: url("https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/ffe72f4e-d6b9-479c-a647-a4c3e967bddd.png");
+        background-size: cover;
+        background-position: center;
+      }
+
+      .testimonial-section .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 0 40px;
+      }
+
+      /* HEADING */
+
+      .testimonial-heading {
+        text-align: center;
+        font-size: 36px;
+        font-weight: 800;
+        margin-bottom: 50px;
+      }
+
+      .testimonial-heading span {
+        color: #4ea96d;
+      }
+
+      /* CARDS */
+
+      .testimonial-wrapper {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      .testimonial-card {
+        width: 540px;
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 34px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        -webkit-border-radius: 12px;
+        -moz-border-radius: 12px;
+        -ms-border-radius: 12px;
+        -o-border-radius: 12px;
+      }
+
+      /* TEXT */
+
+      .testimonial-text {
+        font-size: 16px;
+        line-height: 1.6;
+        color: #555;
+        margin-bottom: 28px;
+      }
+
+      /* USER */
+
+      .testimonial-user {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .testimonial-user img {
+        width: 54px;
+        height: 54px;
+        object-fit: cover;
+        border-radius: 50%;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+      }
+
+      .testimonial-stars {
+        color: #ffc107;
+        font-size: 14px;
+        letter-spacing: 2px;
+        margin-bottom: 4px;
+      }
+
+      .testimonial-user h3 {
+        font-size: 18px;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .testimonial-user span {
+        font-size: 14px;
+        color: #777;
+      }
+
+      .faq-section {
+        padding: 80px 0;
+        background: #ffffff;
+      }
+
+      .faq-section .container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 0 40px;
+      }
+
+      /* HEADING */
+
+      .faq-heading {
+        text-align: center;
+        font-size: 36px;
+        font-weight: 800;
+        margin-bottom: 50px;
+      }
+
+      .faq-heading span {
+        color: #4da86b;
+      }
+
+      /* GRID */
+
+      .faq-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+
+      .faq-column {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      /* CARD */
+
+      .faq-item {
+        border: 1px solid #e7e7e7;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      /* QUESTION */
+
+      .faq-question {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: none;
+        background: none;
+        padding: 20px 16px;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: 700;
+        text-align: left;
+      }
+
+      .faq-question span {
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        background: #e6efe9;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #266a3d;
+        font-size: 18px;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      /* ANSWER */
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+
+      .faq-answer p {
+        padding: 0 16px 20px;
+        margin: 0;
+        line-height: 1.6;
+        color: #666;
+      }
+
+      /* ACTIVE */
+
+      .faq-item.active .faq-answer {
+        max-height: 200px;
+      }
+
+      .faq-item.active .faq-question span {
+        content: "−";
+      }
+
+      .faq-item.active .faq-question span::before {
+        content: "−";
+      }
+
+      .faq-item.active .faq-question span {
+        font-size: 0;
+      }
+
+      .faq-item.active .faq-question span::before {
+        font-size: 18px;
+      }
+
+      .webinar-footer {
+        width: 100%;
+      }
+
+      /* TOP SECTION */
+
+      .footer-main {
+        background: #0f7143;
+
+        padding: 44px 20px;
+      }
+
+      .footer-main .container {
+        max-width: 1200px;
+
+        margin: auto;
+
+        text-align: center;
+      }
+
+      .footer-logo {
+        width: 180px;
+
+        margin: 0 auto 24px;
+
+        display: block;
+      }
+
+      .footer-main h2 {
+        font-size: 36px;
+
+        line-height: 1.3;
+
+        font-weight: 700;
+
+        color: #ffffff;
+
+        margin: 0;
+      }
+
+      .footer-main h2 span {
+        color: #ffe600;
+      }
+
+      /* DISCLAIMER */
+
+      .footer-disclaimer {
+        background: #002a1d;
+
+        padding: 26px 20px;
+      }
+
+      .footer-disclaimer .container {
+        max-width: 1100px;
+
+        margin: auto;
+      }
+
+      .footer-disclaimer p {
+        margin: 0;
+
+        text-align: center;
+
+        color: rgba(255, 255, 255, 0.6);
+
+        font-size: 16px;
+
+        line-height: 1.7;
+      }
+
+      @media (max-width: 445px) {
+        .announcement-bar {
+          padding: 5px 16px;
+        }
+
+        .announcement-bar p {
+          font-size: 9px;
+        }
+
+        .navbar-section {
+          padding: 14px 16px;
+        }
+
+        .navbar-logo img {
+          height: 42px;
+        }
+
+        .register-btn {
+          padding: 12px 18px;
+          font-size: 14px;
+        }
+        .countdown-wrapper {
+          flex-direction: column;
+          text-align: center;
+          padding: 0 20px;
+        }
+
+        .countdown-left,
+        .countdown-middle,
+        .countdown-right {
+          width: 100%;
+        }
+
+        .countdown-left h2 {
+          font-size: 32px;
+        }
+
+        .timer-box {
+          flex-wrap: wrap;
+        }
+
+        .time-value {
+          width: 60px;
+          height: 60px;
+          font-size: 28px;
+        }
+
+        .countdown-btn {
+          margin: 0 auto 14px;
+        }
+
+        .countdown-right p {
+          max-width: 100%;
+        }
+        .offer-wrapper {
+          flex-direction: column;
+          text-align: center;
+          padding: 0 20px;
+        }
+
+        .offer-left,
+        .offer-middle,
+        .offer-right {
+          width: 100%;
+        }
+
+        .offer-right {
+          justify-content: center;
+        }
+
+        .offer-left h2 {
+          font-size: 36px;
+        }
+
+        .offer-middle {
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .old-price {
+          font-size: 36px;
+        }
+
+        .new-price {
+          font-size: 42px;
+        }
+
+        .learn-wrapper {
+          flex-direction: column;
+          padding: 0 20px;
+          gap: 40px;
+        }
+
+        .learn-left,
+        .learn-right {
+          width: 100%;
+        }
+
+        .learn-right h2 {
+          font-size: 34px;
+        }
+
+        .learn-card {
+          align-items: flex-start;
+        }
+
+        .learn-card p {
+          font-size: 14px;
+        }
+        .why-attend-wrapper {
+          flex-direction: column;
+        }
+
+        .attend-right {
+          width: 100%;
+        }
+
+        .section-heading {
+          font-size: 36px;
+        }
+
+        .attend-item {
+          align-items: flex-start;
+        }
+
+        .attend-item p {
+          font-size: 15px;
+        }
+
+        .doctor-card h3 {
+          font-size: 32px;
+        }
+
+        .schedule-box {
+          flex-direction: column;
+        }
+        .join-webinar-section .container {
+          padding: 0 20px;
+        }
+
+        .join-wrapper {
+          flex-direction: column;
+
+          gap: 40px;
+        }
+
+        .join-video,
+        .join-steps {
+          width: 100%;
+        }
+
+        .step-card {
+          padding: 10px 14px 10px 0;
+        }
+        .testimonial-section {
+          padding: 60px 0;
+        }
+
+        .testimonial-section .container {
+          padding: 0 20px;
+        }
+
+        .testimonial-wrapper {
+          flex-direction: column;
+        }
+
+        .testimonial-card {
+          width: 100%;
+          padding: 24px;
+        }
+        .faq-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .faq-section .container {
+          padding: 0 20px;
+        }
+
+        .faq-heading {
+          font-size: 30px;
+        }
+
+        .faq-question {
+          font-size: 16px;
+        }
+
+        .footer-main {
+          padding: 36px 20px;
+        }
+
+        .footer-logo {
+          width: 150px;
+        }
+
+        .footer-main h2 {
+          font-size: 28px;
+        }
+
+        .footer-disclaimer p {
+          font-size: 14px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="announcement-bar">
+      <p>
+        100% Webinar · Limited Seats Available · Register Now to Secure Your
+        Spot
+      </p>
+    </section>
+    <section class="navbar-section">
+      <div class="navbar-container">
+        <div class="navbar-logo">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e15059bf-d81e-4f31-b7bd-1b5ad3d67906.png"
+            alt="Logo"
+          />
+        </div>
+
+        <div class="navbar-action">
+          <button class="register-btn">
+            <span class="pulse-dot"></span>
+
+            Live Webinar
+          </button>
+        </div>
+      </div>
+    </section>
+    <section class="webinar-hero">
+      <div class="container">
+        <!-- Left Content -->
+        <div class="hero-content">
+          <h1>
+            Live Ayurveda Webinar
+            <br />
+            on <span>Liver Health</span>
+          </h1>
+
+          <p>
+            In this webinar, learn about Fatty Liver, Liver Fibrosis, Cirrhosis,
+            and natural Ayurvedic ways to support your liver health — guided by
+            Acharya Manish Ji and his team of specialists.
+          </p>
+
+          <a href="#register" class="hero-btn"> Register Now </a>
+        </div>
+
+        <!-- Right Space -->
+        <div class="hero-image"></div>
+      </div>
+
+      <!-- Doctor Group Image -->
+      <img
+        class="doctor-group"
+        src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/900de63d-60c1-4df6-989d-1e07ce20bf3a.png"
+        alt="Doctors Group"
+      />
+    </section>
+    <section class="countdown-section">
+      <div class="container countdown-wrapper">
+        <!-- Left -->
+
+        <div class="countdown-left">
+          <p class="small-text">Time Is Running Out</p>
+
+          <h2>Webinar Starts In</h2>
+        </div>
+
+        <!-- Middle -->
+
+        <div class="countdown-middle">
+          <div class="timer-box">
+            <div class="time-item">
+              <div class="time-value" id="days">05</div>
+
+              <span>Days</span>
+            </div>
+
+            <div class="time-item">
+              <div class="time-value" id="hours">12</div>
+
+              <span>Hours</span>
+            </div>
+
+            <div class="time-item">
+              <div class="time-value" id="minutes">36</div>
+
+              <span>Minutes</span>
+            </div>
+
+            <div class="time-item">
+              <div class="time-value" id="seconds">36</div>
+
+              <span>Seconds</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right -->
+
+        <div class="countdown-right">
+          <a href="#register" class="countdown-btn"> Register Now </a>
+
+          <p>
+            Secure your seat before registration closes. Limited spots
+            available.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="offer-section">
+      <div class="container offer-wrapper">
+        <!-- Left -->
+
+        <div class="offer-left">
+          <h2>Book a Spot</h2>
+        </div>
+
+        <!-- Middle -->
+
+        <div class="offer-middle">
+          <span class="old-price">₹500</span>
+
+          <span class="new-price">₹49 Only</span>
+        </div>
+
+        <!-- Right -->
+
+        <div class="offer-right">
+          <a href="#register" class="offer-btn">
+            Book Now
+
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+    <section class="learn-section">
+      <div class="container learn-wrapper">
+        <!-- Left -->
+
+        <div class="learn-left">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/4f347f69-5c8e-4b96-abdc-52d7fb08ecc6.png"
+            alt="Acharya Manish Ji"
+          />
+        </div>
+
+        <!-- Right -->
+
+        <div class="learn-right">
+          <h2>What You Will Learn?</h2>
+
+          <p class="learn-description">
+            Join this exclusive live session and understand the Ayurvedic
+            perspective on liver health — directly from experts
+          </p>
+
+          <div class="learn-cards">
+            <div class="learn-card">
+              <img
+                src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e4d92b33-7a02-467e-9d03-5416b4894137.png"
+              />
+
+              <p>
+                Understand the root causes of Fatty Liver, Liver Fibrosis, Liver
+                Cirrhosis, and other liver problems
+              </p>
+            </div>
+
+            <div class="learn-card">
+              <img
+                src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/0c287ff8-e766-4609-b57c-7340a85209bc.png"
+              />
+
+              <p>
+                Learn how liver conditions can be reversed naturally through the
+                right lifestyle, pH-balanced diet, and Ayurvedic guidance
+              </p>
+            </div>
+
+            <div class="learn-card">
+              <img
+                src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/5a6a09aa-17b4-42f6-b876-b6315112c42e.png"
+              />
+
+              <p>
+                Discover the daily habits that may be silently damaging your
+                liver health
+              </p>
+            </div>
+
+            <div class="learn-card">
+              <img
+                src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/a8077317-f4fc-4cac-975c-662e85d37dc3.png"
+              />
+
+              <p>
+                Live Q&A session with <strong>Acharya Manish Ji</strong> and his
+                team of Ayurvedic experts
+              </p>
+            </div>
+          </div>
+
+          <a href="#" class="play-btn"> ▶ Play Video </a>
+        </div>
+      </div>
+    </section>
+    <section class="why-attend-section">
+      <div class="container">
+        <h2 class="section-heading">Why Attend <span>This Webinar</span></h2>
+
+        <div class="why-attend-wrapper">
+          <!-- Left -->
+
+          <div class="attend-left">
+            <div class="attend-item">
+              <img
+                src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png"
+              />
+
+              <p>
+                Expert insights from Acharya Manish Ji and his team of 600+
+                senior doctors
+              </p>
+            </div>
+
+            <div class="attend-item">
+              <img
+                src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png"
+              />
+
+              <p>
+                Live Q&A session to discuss your personal health concerns with
+                expert doctors
+              </p>
+            </div>
+
+            <div class="attend-item">
+              <img
+                src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png"
+              />
+
+              <p>
+                Natural Ayurvedic guidance to improve liver health without side
+                effects
+              </p>
+            </div>
+
+            <div class="attend-item">
+              <img
+                src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png"
+              />
+
+              <p>
+                Better understanding of early symptoms and their possible root
+                causes
+              </p>
+            </div>
+
+            <div class="attend-item">
+              <img
+                src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png"
+              />
+
+              <p>
+                Practical lifestyle tips you can start applying from the very
+                next day
+              </p>
+            </div>
+          </div>
+
+          <!-- Right -->
+
+          <div class="attend-right">
+            <div class="doctor-card">
+              <div class="doctor-image">
+                <img
+                  src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9625dd7b-702a-45da-9816-384233124108.png"
+                />
+              </div>
+
+              <p class="connect-text">Connect with</p>
+
+              <h3>Dr. Hemant</h3>
+
+              <div class="schedule-box">
+                <div>
+                  <small>Date</small>
+
+                  <span>16 June 2026</span>
+                </div>
+
+                <div>
+                  <small>Time</small>
+
+                  <span>10:00 AM</span>
+                </div>
+              </div>
+
+              <a href="#register" class="doctor-btn"> Book a Spot </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="join-webinar-section">
+      <div class="container">
+        <h2 class="join-heading">How to Join <span>the Webinar</span></h2>
+
+        <div class="join-wrapper">
+          <!-- LEFT -->
+
+          <div class="join-video">
+            <div class="video-card" id="videoContainer">
+              <img
+                src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/0fc6efdf-7564-471a-b929-74369664f3fc.png"
+                alt="Video Thumbnail"
+              />
+            </div>
+          </div>
+
+          <!-- RIGHT -->
+
+          <div class="join-steps">
+            <div class="step-card">
+              <img
+                src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f725a19c-c4d3-4996-9e79-97be3bd17d6c.png"
+              />
+
+              <div>
+                <h3>Register</h3>
+
+                <p>
+                  Fill the form given above – Name, Mobile Number, and other
+                  details.
+                </p>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <img
+                src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/057036d6-c64a-4720-81a0-07c4a609351b.png"
+              />
+
+              <div>
+                <h3>Install the Zoom Meeting App</h3>
+
+                <p>
+                  Download and install the Zoom app on your mobile phone or
+                  computer before the webinar date.
+                </p>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <img
+                src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/880bbc14-d597-4448-8f3f-f70baba2bafb.png"
+              />
+
+              <div>
+                <h3>Click the Webinar Link</h3>
+
+                <p>
+                  After registration, you will receive the webinar joining link
+                  on your WhatsApp and via SMS. Click the link to open it.
+                </p>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <img
+                src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6183c01b-7122-4b5d-a3bd-7a51f9deff41.png"
+              />
+
+              <div>
+                <h3>Enter Your Details</h3>
+
+                <p>
+                  Enter your name and other details as prompted in Zoom to
+                  complete the joining process.
+                </p>
+              </div>
+            </div>
+
+            <div class="step-card">
+              <img
+                src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/b6141ddf-bd32-4221-8c1e-4ea0f3087690.png"
+              />
+
+              <div>
+                <h3>Join and Learn</h3>
+
+                <p>
+                  You're in! Attend the live webinar and learn directly from
+                  Acharya Manish Ji and his team of Ayurvedic experts.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="testimonial-section">
+      <div class="container">
+        <h2 class="testimonial-heading">
+          What Our <span>Participants Say</span>
+        </h2>
+
+        <div class="testimonial-wrapper">
+          <!-- Card 1 -->
+
+          <div class="testimonial-card">
+            <p class="testimonial-text">
+              I joined on behalf of my mother who had Fatty Liver issues. The
+              doctors explained everything simply and suggested Ayurvedic
+              remedies we could follow at home. Over time, her condition
+              improved significantly.
+            </p>
+
+            <div class="testimonial-user">
+              <img
+                src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
+                alt="Tanu"
+              />
+
+              <div>
+                <div class="testimonial-stars">★★★★★</div>
+
+                <h3>Tanu</h3>
+
+                <span> Delhi, India </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+
+          <div class="testimonial-card">
+            <p class="testimonial-text">
+              I was getting treatment for my liver from different hospitals
+              without relief. After attending this webinar and hearing Acharya
+              Manish Ji's guidance, I chose Jeena Sikho HiiMS and today I feel
+              much better.
+            </p>
+
+            <div class="testimonial-user">
+              <img
+                src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
+                alt="Rakesh M."
+              />
+
+              <div>
+                <div class="testimonial-stars">★★★★★</div>
+
+                <h3>Rakesh M.</h3>
+
+                <span> Chandigarh, India </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="faq-section">
+      <div class="container">
+        <h2 class="faq-heading">Frequently <span>Asked Questions</span></h2>
+
+        <div class="faq-grid">
+          <!-- LEFT COLUMN -->
+
+          <div class="faq-column">
+            <div class="faq-item active">
+              <button class="faq-question">
+                Is this webinar free?
+
+                <span>+</span>
+              </button>
+
+              <div class="faq-answer">
+                <p>
+                  Yes! This webinar normally costs ₹500, but it's currently
+                  available at a special price. Register quickly—seating is
+                  limited.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                How will I receive the webinar link?
+
+                <span>+</span>
+              </button>
+
+              <div class="faq-answer">
+                <p>
+                  You will receive the webinar joining link via WhatsApp and SMS
+                  after registration.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                How do I join the webinar?
+
+                <span>+</span>
+              </button>
+
+              <div class="faq-answer">
+                <p>
+                  Install Zoom and click the link you receive after
+                  registration.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN -->
+
+          <div class="faq-column">
+            <div class="faq-item">
+              <button class="faq-question">
+                Who should attend this webinar?
+
+                <span>+</span>
+              </button>
+
+              <div class="faq-answer">
+                <p>
+                  Anyone interested in improving liver health through Ayurveda
+                  can attend.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                Will Acharya Manish Ji be present?
+
+                <span>+</span>
+              </button>
+
+              <div class="faq-answer">
+                <p>Yes, along with his team of Ayurvedic experts.</p>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question">
+                Can I ask questions during the webinar?
+
+                <span>+</span>
+              </button>
+
+              <div class="faq-answer">
+                <p>Yes, there will be a live Q&A session.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="webinar-footer">
+      <!-- Top -->
+
+      <div class="footer-main">
+        <div class="container">
+          <img
+            class="footer-logo"
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e15059bf-d81e-4f31-b7bd-1b5ad3d67906.png"
+            alt="Jeena Sikho"
+          />
+
+          <h2>
+            <span>Jeena Sikho HiiMS</span>
+
+            – India's Largest Integrated
+
+            <br />
+
+            Ayurvedic Healthcare System
+          </h2>
+        </div>
+      </div>
+
+      <!-- Bottom -->
+
+      <div class="footer-disclaimer">
+        <div class="container">
+          <p>
+            Disclaimer: The information on this website is for general awareness
+            only and is not a substitute for professional medical advice.
+            Individual results may vary. Please consult our Ayurvedic experts
+            for a personalised assessment and treatment guidance.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+  <script>
+    const targetDate = new Date("2026-07-20T19:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+
+      const distance = targetDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+      const hours = Math.floor(
+        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+      );
+
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerHTML = String(days).padStart(2, "0");
+
+      document.getElementById("hours").innerHTML = String(hours).padStart(
+        2,
+        "0",
+      );
+
+      document.getElementById("minutes").innerHTML = String(minutes).padStart(
+        2,
+        "0",
+      );
+
+      document.getElementById("seconds").innerHTML = String(seconds).padStart(
+        2,
+        "0",
+      );
+    }
+
+    setInterval(updateCountdown, 1000);
+
+    updateCountdown();
+
+    const videoContainer = document.getElementById("videoContainer");
+
+    videoContainer.addEventListener("click", function () {
+      videoContainer.innerHTML = `
+
+    <iframe
+
+        src="https://www.youtube.com/embed/Zxv21BqGicM?autoplay=1"
+
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+
+        allowfullscreen>
+
+    </iframe>
+
+    `;
+    });
+
+    const faqItems = document.querySelectorAll(".faq-item");
+
+    faqItems.forEach((item) => {
+      const button = item.querySelector(".faq-question");
+
+      button.addEventListener("click", () => {
+        faqItems.forEach((faq) => {
+          if (faq !== item) {
+            faq.classList.remove("active");
+          }
+        });
+
+        item.classList.toggle("active");
+      });
+    });
+  </script>
+</html>
