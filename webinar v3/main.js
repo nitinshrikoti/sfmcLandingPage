@@ -192,17 +192,24 @@ const initialCountryLookup = async () => {
 (async () => {
   const country = await initialCountryLookup();
 
-  window.intlTelInput(
-    phoneInput,
-
-    {
-      initialCountry: country,
-
-      countrySearch: false,
-      dropdownContainer: document.body,
-
-      loadUtils: () =>
-        import("https://cdn.jsdelivr.net/npm/intl-tel-input@29.1.0/dist/js/utils.js"),
-    },
-  );
+  window.iti = window.intlTelInput(phoneInput, {
+    // store globally as window.iti
+    initialCountry: country,
+    countrySearch: false,
+    dropdownParent: document.body,
+    loadUtils: () =>
+      import("https://cdn.jsdelivr.net/npm/intl-tel-input@29.1.0/dist/js/utils.js"),
+  });
 })();
+
+const registrationForm = document.getElementById("registrationForm");
+
+registrationForm.addEventListener("submit", function () {
+  if (!window.iti) return;
+  const countryData = window.iti.getSelectedCountry
+    ? window.iti.getSelectedCountry()
+    : window.iti.getSelectedCountryData();
+
+  document.getElementById("countryCode").value = "+" + countryData.dialCode;
+  document.getElementById("initialCountry").value = countryData.iso2;
+});

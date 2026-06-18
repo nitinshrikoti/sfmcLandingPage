@@ -10,27 +10,26 @@ VAR @topicId
 VAR @doctorId
 VAR @startDT
 
+VAR @rawPhone, @digitsOnly, @countryCode, @locale
+VAR @phone, @webinarId, @recordId, @BookingDate
+VAR @char, @i
+
 /* ===============================
    GET URL PARAMETER
 ================================ */
-
 SET @id = Trim(RequestParameter("id"))
 
 IF Empty(@id) THEN
-
   IF _messagecontext == "PREVIEW" THEN
     SET @id = "PUT-A-VALID-ID-HERE"
   ELSE
     RaiseError("Missing Webinar Id", true)
   ENDIF
-
 ENDIF
-
 
 /* ===============================
    WEBINAR LOOKUP
 ================================ */
-
 SET @webinarRow = Row(
   LookupOrderedRows(
     "Webinar_Landing_Pages",
@@ -45,11 +44,9 @@ IF Empty(@webinarRow) THEN
   RaiseError("Invalid Webinar Id", true)
 ENDIF
 
-
 /* ===============================
    TOPIC LOOKUP
 ================================ */
-
 SET @topicId = Trim(Field(@webinarRow,"Webinar_Topic__c"))
 
 IF Empty(@topicId) THEN
@@ -70,11 +67,9 @@ IF Empty(@topicRow) THEN
   RaiseError("Invalid Topic Mapping", true)
 ENDIF
 
-
 /* ===============================
    DOCTOR LOOKUP
 ================================ */
-
 SET @doctorId = Field(@webinarRow,"Expert_Name__c")
 
 IF Empty(@doctorId) THEN
@@ -95,15 +90,65 @@ IF Empty(@doctorRow) THEN
   RaiseError("Invalid Doctor Mapping", true)
 ENDIF
 
-
 /* ===============================
    START DATETIME
 ================================ */
-
 SET @startDT = Field(@webinarRow,"Start_Datetime__c")
 
 IF Empty(@startDT) THEN
   RaiseError("Start Datetime missing", true)
 ENDIF
 
+/* ===============================
+   SUBMISSION LOGIC
+================================ */
+IF RequestParameter("submitted") == "true" THEN
+
+  /* Read inputs from the new form */
+  SET @rawPhone    = RequestParameter("phone")
+  SET @countryCode = RequestParameter("countryCode")
+  SET @locale      = RequestParameter("initialCountry")
+
+  /* Sanitize phone (digits only) */
+  SET @digitsOnly = ""
+  FOR @i = 1 TO Length(@rawPhone) DO
+    SET @char = Substring(@rawPhone, @i, 1)
+    IF IndexOf("0123456789", @char) > 0 THEN
+      SET @digitsOnly = Concat(@digitsOnly, @char)
+    ENDIF
+  NEXT @i
+
+  SET @phone = Concat(@countryCode, @digitsOnly)
+
+  /* Webinar id from master row */
+  SET @webinarId = Field(@webinarRow, "Id")
+
+  /* Deterministic Primary Key */
+  SET @recordId = Concat(@phone, "_", @webinarId)
+
+  /* Booking timestamp */
+  SET @BookingDate = Format(Now(), "yyyy-MM-dd HH:mm:ss")
+
+  /* Atomic Upsert — old columns kept, new ones (City, Age) added */
+  UpsertDE(
+    "Free_Webinar_Registration_Raw",
+    1,
+    "Id", @recordId,
+
+    "Name", RequestParameter("name"),
+    "Locale", @locale,
+    "Phone", @phone,
+    "Email", RequestParameter("Email"),
+    "Country", RequestParameter("Country"),
+    "City", RequestParameter("city"),
+    "Age", RequestParameter("age"),
+
+    "Booking_Date", @BookingDate,
+
+    "Webinar_Id", @webinarId,
+    "Webinar_Topic", Field(@webinarRow,"Webinar_Topic__c"),
+    "Webinar_DateTime", @startDT
+  )
+
+ENDIF
 ]%%
