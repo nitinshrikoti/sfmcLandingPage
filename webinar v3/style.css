@@ -30,7 +30,6 @@ dl,
 dd {
   padding: 0;
   margin: 0;
-  /* margin-block-end: 0; */
 }
 
 ul[role="list"],
@@ -40,7 +39,6 @@ ol[role="list"] {
 
 body {
   min-height: 100vh;
-  /* line-height: 1.6; */
 }
 
 h1,
@@ -60,11 +58,6 @@ h4 {
   text-wrap: balance;
 }
 
-/* A elements that don't have a class get default styles */
-/* a:not([class]) {
-  text-decoration-skip-ink: auto;
-  color: currentColor;
-} */
 a {
   text-decoration: none;
   color: currentColor;
@@ -1237,10 +1230,6 @@ textarea:not([rows]) {
   position: relative;
 }
 
-.iti__dropdown-content {
-  z-index: 10002 !important;
-}
-
 .iti__country-list {
   max-height: 170px !important;
 
@@ -1287,97 +1276,253 @@ textarea:not([rows]) {
 .iti__country:hover {
   background: #f2f6f3 !important;
 }
-@media (max-width: 445px) {
-  .announcement-bar {
-    padding: 5px 16px;
+
+dialog.iti__dropdown,
+.iti__dropdown {
+  position: fixed !important;
+  z-index: 10005 !important;
+}
+
+.iti--container {
+  z-index: 10005 !important;
+}
+
+.iti__dropdown-content,
+.iti__country-list,
+[class*="iti__dropdown"] {
+  z-index: 10005 !important;
+}
+
+.iti--container[style*="position"] {
+  position: fixed !important;
+}
+
+/* ============================================================
+   RESPONSIVE STYLES
+   Breakpoints: 1024px (tablet), 768px (large mobile), 480px (small mobile)
+   ============================================================ */
+
+/* -------------------- Tablet: <= 1024px -------------------- */
+@media (max-width: 1024px) {
+  .hero-content h1 {
+    font-size: 38px;
   }
 
-  .announcement-bar p {
-    font-size: 9px;
+  .hero-content p {
+    font-size: 17px;
   }
 
-  .navbar-section {
-    padding: 14px 16px;
+  .doctor-group {
+    width: 480px;
+    right: 0;
   }
 
-  .navbar-logo img {
-    height: 42px;
-  }
-
-  .register-btn {
-    padding: 12px 18px;
-    font-size: 14px;
-  }
   .countdown-wrapper {
-    flex-direction: column;
-    text-align: center;
-    padding: 0 20px;
+    flex-wrap: wrap;
   }
 
   .countdown-left,
   .countdown-middle,
   .countdown-right {
     width: 100%;
+    text-align: center;
   }
 
-  .countdown-left h2 {
-    font-size: 32px;
+  .countdown-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .timer-box {
-    flex-wrap: wrap;
+    margin: 16px 0;
   }
 
-  .time-value {
-    width: 60px;
-    height: 60px;
-    font-size: 28px;
+  /* Sticky bottom CTA bar on mobile */
+  body {
+    padding-bottom: 230px;
   }
 
-  .countdown-btn {
-    margin: 0 auto 14px;
+  .offer-section {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    padding: 18px 20px 22px;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.12);
   }
 
-  .countdown-right p {
-    max-width: 100%;
-  }
   .offer-wrapper {
     flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
     text-align: center;
-    padding: 0 20px;
+    gap: 10px;
   }
 
-  .offer-left,
-  .offer-middle,
-  .offer-right {
+  .offer-left {
     width: 100%;
   }
 
-  .offer-right {
-    justify-content: center;
-  }
-
   .offer-left h2 {
-    font-size: 36px;
+    font-size: 18px;
   }
 
   .offer-middle {
-    flex-direction: column;
-    gap: 8px;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
   }
 
-  .old-price {
-    font-size: 36px;
+  .offer-right {
+    width: 100%;
+    justify-content: center;
   }
 
-  .new-price {
-    font-size: 42px;
+  .offer-btn {
+    width: 100%;
+    max-width: 320px;
+    height: 50px;
+    font-size: 17px;
   }
 
   .learn-wrapper {
-    flex-direction: column;
-    padding: 0 20px;
     gap: 40px;
+  }
+
+  .why-attend-wrapper {
+    flex-direction: column;
+  }
+
+  .attend-right {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .join-wrapper {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .join-video,
+  .join-steps {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .testimonial-card {
+    width: 100%;
+    max-width: 540px;
+  }
+}
+
+/* -------------------- Large Mobile: <= 768px -------------------- */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  /* Announcement bar */
+  .announcement-bar {
+    padding: 8px 14px;
+  }
+
+  .announcement-bar p {
+    font-size: 12px;
+  }
+
+  /* Navbar */
+  .navbar-section {
+    padding: 12px 16px;
+  }
+
+  .navbar-logo img {
+    height: 38px;
+  }
+
+  .register-btn {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  /* Hero */
+  .webinar-hero {
+    min-height: auto;
+    padding-bottom: 260px;
+  }
+
+  .webinar-hero .container {
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: auto;
+    padding: 40px 20px 0;
+    text-align: left;
+  }
+
+  .hero-content,
+  .hero-image {
+    width: 100%;
+  }
+
+  .hero-image {
+    display: none;
+  }
+
+  .hero-content h1 {
+    font-size: 30px;
+  }
+
+  .hero-content p {
+    font-size: 16px;
+    max-width: 100%;
+  }
+
+  .hero-btn {
+    width: 100%;
+    max-width: 240px;
+    height: 52px;
+  }
+
+  .doctor-group {
+    width: 320px;
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 0;
+  }
+
+  /* Countdown */
+  .countdown-left h2 {
+    font-size: 26px;
+  }
+
+  .time-value {
+    width: 56px;
+    height: 56px;
+    font-size: 26px;
+  }
+
+  .timer-box {
+    gap: 10px;
+  }
+
+  .countdown-btn {
+    width: 100%;
+    max-width: 260px;
+  }
+
+  /* Offer */
+  .old-price,
+  .new-price {
+    font-size: 24px;
+  }
+
+  /* Learn section */
+  .learn-wrapper {
+    flex-direction: column;
   }
 
   .learn-left,
@@ -1386,106 +1531,180 @@ textarea:not([rows]) {
   }
 
   .learn-right h2 {
-    font-size: 34px;
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .learn-description {
+    text-align: center;
+  }
+
+  .play-btn {
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Why attend */
+  .why-attend-section {
+    padding: 50px 0;
+  }
+
+  .section-heading {
+    font-size: 28px;
+    margin-bottom: 32px;
+  }
+
+  .attend-item p {
+    font-size: 16px;
+  }
+
+  /* Join webinar */
+  .join-heading {
+    font-size: 28px;
+  }
+
+  .step-card {
+    padding: 10px 14px;
+  }
+
+  /* Testimonials */
+  .testimonial-heading {
+    font-size: 28px;
+  }
+
+  .testimonial-card {
+    padding: 24px;
+  }
+
+  /* FAQ */
+  .faq-heading {
+    font-size: 28px;
+  }
+
+  .faq-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .faq-question {
+    font-size: 16px;
+    padding: 16px 14px;
+  }
+
+  /* Footer */
+  .footer-main h2 {
+    font-size: 24px;
+  }
+
+  .footer-disclaimer p {
+    font-size: 13px;
+  }
+
+  /* Modal */
+  .registration-box {
+    padding: 22px 18px;
+  }
+}
+
+/* -------------------- Small Mobile: <= 480px -------------------- */
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 26px;
+  }
+
+  .hero-content p {
+    font-size: 15px;
+  }
+
+  .doctor-group {
+    width: 260px;
+  }
+
+  .webinar-hero {
+    padding-bottom: 220px;
+  }
+
+  .timer-box {
+    gap: 6px;
+  }
+
+  .time-value {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+
+  .time-item span {
+    font-size: 11px;
+  }
+
+  .offer-section {
+    padding: 14px 16px 18px;
+  }
+
+  .offer-middle {
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .offer-middle .old-price {
+    font-size: 18px;
+  }
+
+  .offer-middle .new-price {
+    font-size: 22px;
+  }
+
+  .offer-left h2 {
+    font-size: 16px;
+  }
+
+  .offer-btn {
+    width: 100%;
+    max-width: 280px;
+    height: 46px;
+    font-size: 16px;
+  }
+
+  .offer-btn span {
+    font-size: 20px;
+  }
+
+  .doctor-card h3 {
+    font-size: 24px;
+  }
+
+  .schedule-box {
+    flex-direction: column;
+    gap: 10px;
   }
 
   .learn-card {
-    align-items: flex-start;
+    flex-direction: row;
+    padding: 10px 12px;
   }
 
   .learn-card p {
     font-size: 14px;
   }
-  .why-attend-wrapper {
-    flex-direction: column;
+
+  .step-card img {
+    width: 32px;
   }
 
-  .attend-right {
-    width: 100%;
-  }
-
-  .section-heading {
-    font-size: 36px;
-  }
-
-  .attend-item {
-    align-items: flex-start;
-  }
-
-  .attend-item p {
+  .step-card h3 {
     font-size: 15px;
   }
 
-  .doctor-card h3 {
-    font-size: 32px;
+  .step-card p {
+    font-size: 12.5px;
   }
 
-  .schedule-box {
+  .testimonial-text {
+    font-size: 15px;
+  }
+
+  .form-row {
     flex-direction: column;
-  }
-  .join-webinar-section .container {
-    padding: 0 20px;
-  }
-
-  .join-wrapper {
-    flex-direction: column;
-
-    gap: 40px;
-  }
-
-  .join-video,
-  .join-steps {
-    width: 100%;
-  }
-
-  .step-card {
-    padding: 10px 14px 10px 0;
-  }
-  .testimonial-section {
-    padding: 60px 0;
-  }
-
-  .testimonial-section .container {
-    padding: 0 20px;
-  }
-
-  .testimonial-wrapper {
-    flex-direction: column;
-  }
-
-  .testimonial-card {
-    width: 100%;
-    padding: 24px;
-  }
-  .faq-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .faq-section .container {
-    padding: 0 20px;
-  }
-
-  .faq-heading {
-    font-size: 30px;
-  }
-
-  .faq-question {
-    font-size: 16px;
-  }
-
-  .footer-main {
-    padding: 36px 20px;
-  }
-
-  .footer-logo {
-    width: 150px;
-  }
-
-  .footer-main h2 {
-    font-size: 28px;
-  }
-
-  .footer-disclaimer p {
-    font-size: 14px;
+    gap: 0;
   }
 }

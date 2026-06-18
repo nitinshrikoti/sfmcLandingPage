@@ -199,6 +199,7 @@ const initialCountryLookup = async () => {
       initialCountry: country,
 
       countrySearch: false,
+      dropdownContainer: document.body,
 
       loadUtils: () =>
         import("https://cdn.jsdelivr.net/npm/intl-tel-input@29.1.0/dist/js/utils.js"),
