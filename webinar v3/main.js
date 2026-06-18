@@ -1,4 +1,18 @@
-const targetDate = new Date("2026-07-20T19:00:00").getTime();
+// const targetDate = new Date("%%=v(@startDT)=%%").getTime();
+const targetDate = new Date("2026-07-01T16:30:00").getTime();
+
+const webDateEl = document.getElementById("webDate");
+const webTimeEl = document.getElementById("webTime");
+
+if (webDateEl) {
+  webDateEl.innerHTML = formatDate(targetDate);
+}
+
+if (webTimeEl) {
+  webTimeEl.innerHTML = formatTime(targetDate);
+}
+
+// -------------------- Timer Script --------------------
 
 function updateCountdown() {
   const now = new Date().getTime();
@@ -30,6 +44,7 @@ function updateCountdown() {
   );
 }
 
+// -------------------- How to youtube video --------------------
 setInterval(updateCountdown, 1000);
 
 updateCountdown();
@@ -52,6 +67,7 @@ videoContainer.addEventListener("click", function () {
     `;
 });
 
+// -------------------- Faqs --------------------
 const faqItems = document.querySelectorAll(".faq-item");
 
 faqItems.forEach((item) => {
@@ -67,3 +83,44 @@ faqItems.forEach((item) => {
     item.classList.toggle("active");
   });
 });
+
+// -------------------- Displaying date --------------------
+
+function formatDate(timestamp) {
+  const date = new Date(timestamp);
+
+  const day = date.getDate();
+
+  const year = date.getFullYear();
+
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  return `${day} ${months[date.getMonth()]} ${year}`;
+}
+
+function formatTime(timestamp) {
+  const date = new Date(timestamp);
+
+  let hours = date.getHours();
+
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+
+  const meridian = hours >= 12 ? "PM" : "AM";
+
+  hours = hours % 12 || 12;
+
+  return `${hours}:${minutes} ${meridian}`;
+}

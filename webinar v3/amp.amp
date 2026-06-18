@@ -50,7 +50,7 @@ ENDIF
    TOPIC LOOKUP
 ================================ */
 
-SET @topicId = Field(@webinarRow,"Webinar_Topic__c")
+SET @topicId = Trim(Field(@webinarRow,"Webinar_Topic__c"))
 
 IF Empty(@topicId) THEN
   RaiseError("Webinar topic missing", true)
