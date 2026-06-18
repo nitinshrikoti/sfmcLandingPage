@@ -213,3 +213,22 @@ registrationForm.addEventListener("submit", function () {
   document.getElementById("countryCode").value = "+" + countryData.dialCode;
   document.getElementById("initialCountry").value = countryData.iso2;
 });
+
+// -------------------- Success Modal --------------------
+
+const successModal = document.getElementById("successModal");
+const successOkBtn = document.getElementById("successOkBtn");
+
+if (typeof isSubmitted !== "undefined" && isSubmitted) {
+  modal.classList.remove("active"); // hide registration modal if it was open
+  successModal.classList.add("active");
+  document.body.style.overflow = "hidden";
+
+  // Optional: clean the form for next time
+  registrationForm.reset();
+}
+
+successOkBtn.addEventListener("click", () => {
+  successModal.classList.remove("active");
+  document.body.style.overflow = "auto";
+});
