@@ -124,3 +124,84 @@ function formatTime(timestamp) {
 
   return `${hours}:${minutes} ${meridian}`;
 }
+
+// -------------------- form modal --------------------
+
+const modal = document.getElementById("registrationModal");
+
+const closeBtn = document.getElementById("closeModal");
+
+const openButtons = document.querySelectorAll(".open-registration-modal");
+
+/* OPEN */
+
+openButtons.forEach((button) => {
+  button.addEventListener(
+    "click",
+
+    () => {
+      modal.classList.add("active");
+
+      document.body.style.overflow = "hidden";
+    },
+  );
+});
+
+/* CLOSE BUTTON */
+
+closeBtn.addEventListener(
+  "click",
+
+  () => {
+    modal.classList.remove("active");
+
+    document.body.style.overflow = "auto";
+  },
+);
+
+/* CLICK OUTSIDE */
+
+modal.addEventListener(
+  "click",
+
+  (e) => {
+    if (e.target === modal) {
+      modal.classList.remove("active");
+
+      document.body.style.overflow = "auto";
+    }
+  },
+);
+
+// -------------------- Initialize phone input --------------------
+
+const phoneInput = document.querySelector("#phone");
+
+const initialCountryLookup = async () => {
+  try {
+    const response = await fetch("https://ipapi.co/json");
+
+    const data = await response.json();
+
+    return data.country_code.toLowerCase();
+  } catch (error) {
+    return "in";
+  }
+};
+
+(async () => {
+  const country = await initialCountryLookup();
+
+  window.intlTelInput(
+    phoneInput,
+
+    {
+      initialCountry: country,
+
+      countrySearch: false,
+
+      loadUtils: () =>
+        import("https://cdn.jsdelivr.net/npm/intl-tel-input@29.1.0/dist/js/utils.js"),
+    },
+  );
+})();
