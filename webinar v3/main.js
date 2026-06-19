@@ -1,5 +1,5 @@
-// const targetDate = new Date("%%=v(@startDT)=%%").getTime();
-const targetDate = new Date("2026-07-01T16:30:00").getTime();
+const targetDate = new Date("%%=v(@startDT)=%%").getTime();
+// const targetDate = new Date("2026-07-01T16:30:00").getTime();
 
 const webDateEl = document.getElementById("webDate");
 const webTimeEl = document.getElementById("webTime");
@@ -196,7 +196,7 @@ const initialCountryLookup = async () => {
     // store globally as window.iti
     initialCountry: country,
     countrySearch: false,
-    dropdownParent: document.body,
+    countrySelectorMode: "DROPDOWN",
     loadUtils: () =>
       import("https://cdn.jsdelivr.net/npm/intl-tel-input@29.1.0/dist/js/utils.js"),
   });
