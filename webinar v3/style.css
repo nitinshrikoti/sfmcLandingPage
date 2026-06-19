@@ -1397,7 +1397,7 @@ dialog.iti__dropdown,
 
   /* Sticky bottom CTA bar on mobile */
   body {
-    padding-bottom: 230px;
+    padding-bottom: 125px;
   }
 
   .offer-section {
@@ -1517,7 +1517,7 @@ dialog.iti__dropdown,
     align-items: flex-start;
     min-height: auto;
     padding: 40px 20px 0;
-    text-align: left;
+    text-align: center;
   }
 
   .hero-content,
@@ -1677,7 +1677,7 @@ dialog.iti__dropdown,
   }
 
   .webinar-hero {
-    padding-bottom: 220px;
+    padding-bottom: 145px;
   }
 
   .timer-box {
@@ -1731,8 +1731,8 @@ dialog.iti__dropdown,
   }
 
   .schedule-box {
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: row;
+    gap: 0px;
   }
 
   .learn-card {
@@ -1763,5 +1763,8 @@ dialog.iti__dropdown,
   .form-row {
     flex-direction: column;
     gap: 0;
+  }
+  .schedule-box span {
+    font-size: 14px;
   }
 }
