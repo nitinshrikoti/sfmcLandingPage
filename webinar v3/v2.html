@@ -1,11 +1,173 @@
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Document</title>
+%%[
+/* ===============================
+   VARIABLES
+================================ */
+VAR @id
+VAR @webinarRow
+VAR @topicRow
+VAR @doctorRow
+VAR @topicId
+VAR @doctorId
+VAR @startDT
 
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/css/intlTelInput.css"
-/>
+VAR @rawPhone, @digitsOnly, @countryCode, @locale
+VAR @phone, @webinarId, @recordId, @BookingDate
+VAR @char, @i
+
+/* ===============================
+   GET URL PARAMETER
+================================ */
+SET @id = Trim(RequestParameter("id"))
+
+IF Empty(@id) THEN
+  IF _messagecontext == "PREVIEW" THEN
+    SET @id = "PUT-A-VALID-ID-HERE"
+  ELSE
+    RaiseError("Missing Webinar Id", true)
+  ENDIF
+ENDIF
+
+/* ===============================
+   WEBINAR LOOKUP
+================================ */
+SET @webinarRow = Row(
+  LookupOrderedRows(
+    "Webinar_Landing_Pages",
+    1,
+    "Id ASC",
+    "Id",
+    @id
+  ),
+1)
+
+IF Empty(@webinarRow) THEN
+  RaiseError("Invalid Webinar Id", true)
+ENDIF
+
+/* ===============================
+   TOPIC LOOKUP
+================================ */
+SET @topicId = Trim(Field(@webinarRow,"Webinar_Topic__c"))
+
+IF Empty(@topicId) THEN
+  RaiseError("Webinar topic missing", true)
+ENDIF
+
+SET @topicRow = Row(
+  LookupOrderedRows(
+    "Webinar_Topic_Data",
+    1,
+    "Id ASC",
+    "Id",
+    @topicId
+  ),
+1)
+
+IF Empty(@topicRow) THEN
+  RaiseError("Invalid Topic Mapping", true)
+ENDIF
+
+/* ===============================
+   DOCTOR LOOKUP
+================================ */
+SET @doctorId = Field(@webinarRow,"Expert_Name__c")
+
+IF Empty(@doctorId) THEN
+  RaiseError("Doctor Id missing", true)
+ENDIF
+
+SET @doctorRow = Row(
+  LookupOrderedRows(
+    "Webinar_Doctors_List",
+    1,
+    "Id ASC",
+    "Id",
+    @doctorId
+  ),
+1)
+
+IF Empty(@doctorRow) THEN
+  RaiseError("Invalid Doctor Mapping", true)
+ENDIF
+
+/* ===============================
+   START DATETIME
+================================ */
+SET @startDT = Field(@webinarRow,"Start_Datetime__c")
+
+IF Empty(@startDT) THEN
+  RaiseError("Start Datetime missing", true)
+ENDIF
+
+/* ===============================
+   SUBMISSION LOGIC
+================================ */
+IF RequestParameter("submitted") == "true" THEN
+
+  /* Read inputs from the new form */
+  SET @rawPhone    = RequestParameter("phone")
+  SET @countryCode = RequestParameter("countryCode")
+  SET @locale      = RequestParameter("initialCountry")
+
+  /* Sanitize phone (digits only) */
+  SET @digitsOnly = ""
+  FOR @i = 1 TO Length(@rawPhone) DO
+    SET @char = Substring(@rawPhone, @i, 1)
+    IF IndexOf("0123456789", @char) > 0 THEN
+      SET @digitsOnly = Concat(@digitsOnly, @char)
+    ENDIF
+  NEXT @i
+
+  SET @phone = Concat(@countryCode, @digitsOnly)
+
+  /* Webinar id from master row */
+  SET @webinarId = Field(@webinarRow, "Id")
+
+  /* Deterministic Primary Key */
+  SET @recordId = Concat(@phone, "_", @webinarId)
+
+  /* Booking timestamp */
+  SET @BookingDate = Format(Now(), "yyyy-MM-dd HH:mm:ss")
+
+  /* Atomic Upsert — old columns kept, new ones (City, Age) added */
+  UpsertDE(
+    "Free_Webinar_Registration_Raw",
+    1,
+    "Id", @recordId,
+
+    "Name", RequestParameter("name"),
+    "Locale", @locale,
+    "Phone", @phone,
+    "Email", RequestParameter("Email"),
+    "Country", RequestParameter("Country"),
+    "City", RequestParameter("city"),
+    "Age", RequestParameter("age"),
+
+    "Booking_Date", @BookingDate,
+
+    "Webinar_Id", @webinarId,
+    "Webinar_Topic", Field(@webinarRow,"Webinar_Topic__c"),
+    "Webinar_DateTime", @startDT
+  )
+
+ENDIF
+]%%
+
+%%[ IF RequestParameter("submitted") == "true" THEN ]%%
+<script>
+  var isSubmitted = true;
+</script>
+%%[ ELSE ]%%
+<script>
+  var isSubmitted = false;
+</script>
+%%[ ENDIF ]%%
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>%%=v(Field(@topicRow,"Title"))=%%</title>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/css/intlTelInput.css">
 <style>
   /* -------------------- Reset -------------------- */
 
@@ -1787,10 +1949,7 @@
 <section class="navbar-section">
   <div class="navbar-container">
     <div class="navbar-logo">
-      <img
-        src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e15059bf-d81e-4f31-b7bd-1b5ad3d67906.png"
-        alt="Logo"
-      />
+      <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e15059bf-d81e-4f31-b7bd-1b5ad3d67906.png" alt="Logo">
     </div>
 
     <div class="navbar-action">
@@ -1808,14 +1967,15 @@
     <div class="hero-content">
       <h1>
         Live Ayurveda Webinar
-        <br />
-        on <span>Liver Health</span>
+        <br>
+        on <span>%%=v(Field(@topicRow,"var1"))=%% Health</span>
       </h1>
 
       <p>
-        In this webinar, learn about Fatty Liver, Liver Fibrosis, Cirrhosis, and
-        natural Ayurvedic ways to support your liver health — guided by Acharya
-        Manish Ji and his team of specialists.
+        In this webinar, learn about %%=v(Field(@topicRow,"var2"))=%%,
+        %%=v(Field(@topicRow,"var3"))=%%, %%=v(Field(@topicRow,"var4"))=%%, and
+        natural Ayurvedic ways to support your %%=v(Field(@topicRow,"var1"))=%%
+        health — guided by Acharya Manish Ji and his team of specialists.
       </p>
 
       <a href="#register" class="open-registration-modal hero-btn">
@@ -1828,11 +1988,7 @@
   </div>
 
   <!-- Doctor Group Image -->
-  <img
-    class="doctor-group"
-    src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/900de63d-60c1-4df6-989d-1e07ce20bf3a.png"
-    alt="Doctors Group"
-  />
+  <img class="doctor-group" src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/900de63d-60c1-4df6-989d-1e07ce20bf3a.png" alt="Doctors Group">
 </section>
 <section class="countdown-section">
   <div class="container countdown-wrapper">
@@ -1919,10 +2075,7 @@
     <!-- Left -->
 
     <div class="learn-left">
-      <img
-        src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/4f347f69-5c8e-4b96-abdc-52d7fb08ecc6.png"
-        alt="Acharya Manish Ji"
-      />
+      <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/4f347f69-5c8e-4b96-abdc-52d7fb08ecc6.png" alt="Acharya Manish Ji">
     </div>
 
     <!-- Right -->
@@ -1932,47 +2085,42 @@
 
       <p class="learn-description">
         Join this exclusive live session and understand the Ayurvedic
-        perspective on liver health — directly from experts
+        perspective on %%=v(Field(@topicRow,"var1"))=%% health — directly from
+        experts
       </p>
 
       <div class="learn-cards">
         <div class="learn-card">
-          <img
-            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e4d92b33-7a02-467e-9d03-5416b4894137.png"
-          />
+          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e4d92b33-7a02-467e-9d03-5416b4894137.png">
 
           <p>
-            Understand the root causes of Fatty Liver, Liver Fibrosis, Liver
-            Cirrhosis, and other liver problems
+            Understand the root causes of %%=v(Field(@topicRow,"var2"))=%%,
+            %%=v(Field(@topicRow,"var3"))=%%, %%=v(Field(@topicRow,"var4"))=%%,
+            and other %%=v(Field(@topicRow,"var1"))=%% problems
           </p>
         </div>
 
         <div class="learn-card">
-          <img
-            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/0c287ff8-e766-4609-b57c-7340a85209bc.png"
-          />
+          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/0c287ff8-e766-4609-b57c-7340a85209bc.png">
 
           <p>
-            Learn how liver conditions can be reversed naturally through the
-            right lifestyle, pH-balanced diet, and Ayurvedic guidance
+            Learn how %%=v(Field(@topicRow,"var1"))=%% conditions can be
+            reversed naturally through the right lifestyle, pH-balanced diet,
+            and Ayurvedic guidance
           </p>
         </div>
 
         <div class="learn-card">
-          <img
-            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/5a6a09aa-17b4-42f6-b876-b6315112c42e.png"
-          />
+          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/5a6a09aa-17b4-42f6-b876-b6315112c42e.png">
 
           <p>
-            Discover the daily habits that may be silently damaging your liver
-            health
+            Discover the daily habits that may be silently damaging your
+            %%=v(Field(@topicRow,"var1"))=%% health
           </p>
         </div>
 
         <div class="learn-card">
-          <img
-            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/a8077317-f4fc-4cac-975c-662e85d37dc3.png"
-          />
+          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/a8077317-f4fc-4cac-975c-662e85d37dc3.png">
 
           <p>
             Live Q&A session with <strong>Acharya Manish Ji</strong> and his
@@ -1994,9 +2142,7 @@
 
       <div class="attend-left">
         <div class="attend-item">
-          <img
-            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png"
-          />
+          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png">
 
           <p>
             Expert insights from Acharya Manish Ji and his team of 600+ senior
@@ -2005,9 +2151,7 @@
         </div>
 
         <div class="attend-item">
-          <img
-            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png"
-          />
+          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png">
 
           <p>
             Live Q&A session to discuss your personal health concerns with
@@ -2016,20 +2160,16 @@
         </div>
 
         <div class="attend-item">
-          <img
-            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png"
-          />
+          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png">
 
           <p>
-            Natural Ayurvedic guidance to improve liver health without side
-            effects
+            Natural Ayurvedic guidance to improve
+            %%=v(Field(@topicRow,"var1"))=%% health without side effects
           </p>
         </div>
 
         <div class="attend-item">
-          <img
-            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png"
-          />
+          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png">
 
           <p>
             Better understanding of early symptoms and their possible root
@@ -2038,9 +2178,7 @@
         </div>
 
         <div class="attend-item">
-          <img
-            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png"
-          />
+          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png">
 
           <p>
             Practical lifestyle tips you can start applying from the very next
@@ -2054,14 +2192,12 @@
       <div class="attend-right">
         <div class="doctor-card">
           <div class="doctor-image">
-            <img
-              src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9625dd7b-702a-45da-9816-384233124108.png"
-            />
+            <img src="%%=v(Field(@doctorRow,'ImageUrl'))=%%">
           </div>
 
           <p class="connect-text">Connect with</p>
 
-          <h3>Dr. Hemant</h3>
+          <h3>%%=v(Field(@doctorRow,"Name"))=%%</h3>
 
           <div class="schedule-box">
             <div>
@@ -2092,10 +2228,7 @@
 
       <div class="join-video">
         <div class="video-card" id="videoContainer">
-          <img
-            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/0fc6efdf-7564-471a-b929-74369664f3fc.png"
-            alt="Video Thumbnail"
-          />
+          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/0fc6efdf-7564-471a-b929-74369664f3fc.png" alt="Video Thumbnail">
         </div>
       </div>
 
@@ -2103,9 +2236,7 @@
 
       <div class="join-steps">
         <div class="step-card">
-          <img
-            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f725a19c-c4d3-4996-9e79-97be3bd17d6c.png"
-          />
+          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f725a19c-c4d3-4996-9e79-97be3bd17d6c.png">
 
           <div>
             <h3>Register</h3>
@@ -2118,9 +2249,7 @@
         </div>
 
         <div class="step-card">
-          <img
-            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/057036d6-c64a-4720-81a0-07c4a609351b.png"
-          />
+          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/057036d6-c64a-4720-81a0-07c4a609351b.png">
 
           <div>
             <h3>Install the Zoom Meeting App</h3>
@@ -2133,9 +2262,7 @@
         </div>
 
         <div class="step-card">
-          <img
-            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/880bbc14-d597-4448-8f3f-f70baba2bafb.png"
-          />
+          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/880bbc14-d597-4448-8f3f-f70baba2bafb.png">
 
           <div>
             <h3>Click the Webinar Link</h3>
@@ -2148,9 +2275,7 @@
         </div>
 
         <div class="step-card">
-          <img
-            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6183c01b-7122-4b5d-a3bd-7a51f9deff41.png"
-          />
+          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6183c01b-7122-4b5d-a3bd-7a51f9deff41.png">
 
           <div>
             <h3>Enter Your Details</h3>
@@ -2163,9 +2288,7 @@
         </div>
 
         <div class="step-card">
-          <img
-            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/b6141ddf-bd32-4221-8c1e-4ea0f3087690.png"
-          />
+          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/b6141ddf-bd32-4221-8c1e-4ea0f3087690.png">
 
           <div>
             <h3>Join and Learn</h3>
@@ -2189,22 +2312,16 @@
 
       <div class="testimonial-card">
         <p class="testimonial-text">
-          I joined on behalf of my mother who had Fatty Liver issues. The
-          doctors explained everything simply and suggested Ayurvedic remedies
-          we could follow at home. Over time, her condition improved
-          significantly.
+          %%=v(Field(@topicRow,"Testimonial1"))=%%
         </p>
 
         <div class="testimonial-user">
-          <img
-            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
-            alt="Tanu"
-          />
+          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png" alt="Tanu">
 
           <div>
             <div class="testimonial-stars">★★★★★</div>
 
-            <h3>Tanu</h3>
+            <h3>%%=v(Field(@topicRow,"TestimonialName1"))=%%</h3>
 
             <span> Delhi, India </span>
           </div>
@@ -2215,21 +2332,16 @@
 
       <div class="testimonial-card">
         <p class="testimonial-text">
-          I was getting treatment for my liver from different hospitals without
-          relief. After attending this webinar and hearing Acharya Manish Ji's
-          guidance, I chose Jeena Sikho HiiMS and today I feel much better.
+          %%=v(Field(@topicRow,"Testimonial2"))=%%
         </p>
 
         <div class="testimonial-user">
-          <img
-            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
-            alt="Rakesh M."
-          />
+          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png" alt="Rakesh M.">
 
           <div>
             <div class="testimonial-stars">★★★★★</div>
 
-            <h3>Rakesh M.</h3>
+            <h3>%%=v(Field(@topicRow,"TestimonialName2"))=%%</h3>
 
             <span> Chandigarh, India </span>
           </div>
@@ -2341,18 +2453,14 @@
 
   <div class="footer-main">
     <div class="container">
-      <img
-        class="footer-logo"
-        src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e15059bf-d81e-4f31-b7bd-1b5ad3d67906.png"
-        alt="Jeena Sikho"
-      />
+      <img class="footer-logo" src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e15059bf-d81e-4f31-b7bd-1b5ad3d67906.png" alt="Jeena Sikho">
 
       <h2>
         <span>Jeena Sikho HiiMS</span>
 
         – India's Largest Integrated
 
-        <br />
+        <br>
 
         Ayurvedic Healthcare System
       </h2>
@@ -2379,50 +2487,35 @@
 
     <h2>Register for the Webinar</h2>
 
-    <form
-      id="registrationForm"
-      action="%%=RequestParameter('PAGEURL')=%%"
-      method="post"
-    >
-      <input type="hidden" name="submitted" value="true" />
-      <input type="hidden" name="id" value="%%=RequestParameter('id')=%%" />
+    <form id="registrationForm" action="%%=RequestParameter('PAGEURL')=%%" method="post">
+      <input type="hidden" name="submitted" value="true">
+      <input type="hidden" name="id" value="%%=RequestParameter('id')=%%">
 
       <!-- Hidden fields populated by intl-tel-input JS on submit -->
-      <input type="hidden" id="countryCode" name="countryCode" />
-      <input type="hidden" id="initialCountry" name="initialCountry" />
+      <input type="hidden" id="countryCode" name="countryCode">
+      <input type="hidden" id="initialCountry" name="initialCountry">
 
       <!-- Name -->
       <div class="form-group">
         <label>Full Name <span>*</span></label>
-        <input
-          type="text"
-          name="name"
-          placeholder="Enter your full name"
-          required=""
-        />
+        <input type="text" name="name" placeholder="Enter your full name" required="">
       </div>
 
       <!-- Phone -->
       <div class="form-group">
         <label>Mobile Number <span>*</span></label>
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          placeholder="8270482704"
-          required=""
-        />
+        <input type="tel" id="phone" name="phone" placeholder="8270482704" required="">
       </div>
 
       <!-- Bottom Row -->
       <div class="form-row">
         <div class="form-group">
           <label>City</label>
-          <input type="text" name="city" placeholder="Enter City" />
+          <input type="text" name="city" placeholder="Enter City">
         </div>
         <div class="form-group">
           <label>Age</label>
-          <input type="number" name="age" placeholder="Enter Age" />
+          <input type="number" name="age" placeholder="Enter Age">
         </div>
       </div>
 
@@ -2440,9 +2533,12 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@29.1.0/dist/js/intlTelInput.min.js"></script>
+
+
 <script>
-  // const targetDate = new Date("%%=v(@startDT)=%%").getTime();
-  const targetDate = new Date("2026-07-01T16:30:00").getTime();
+
+  const targetDate = new Date("%%=v(@startDT)=%%").getTime();
+  // const targetDate = new Date("2026-07-01T16:30:00").getTime();
 
   const webDateEl = document.getElementById("webDate");
   const webTimeEl = document.getElementById("webTime");
