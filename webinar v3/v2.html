@@ -163,11 +163,14 @@ ENDIF
 </script>
 %%[ ENDIF ]%%
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>%%=v(Field(@topicRow,"Title"))=%%</title>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/css/intlTelInput.css">
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/css/intlTelInput.css"
+/>
 <style>
   /* -------------------- Reset -------------------- */
 
@@ -1399,20 +1402,51 @@ ENDIF
   .iti {
     width: 100%;
     position: relative;
+    z-index: 10002;
+  }
+
+  .iti__country-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .iti__selected-country,
+  .iti__country-container > button {
+    pointer-events: auto; /* re-enable clicks on the actual flag button */
+    display: inline-flex;
+    align-items: center;
+    height: 100%;
+  }
+  .iti__country-selector {
+    position: absolute !important;
+    top: 100% !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin-top: 4px;
+    z-index: 10005 !important;
+    background: #fff;
+    width: 100% !important;
+    min-width: 0 !important;
+    pointer-events: auto !important; /* re-enable since parent has pointer-events: none */
+    height: auto !important; /* don't inherit 100% height from .iti__country-container */
   }
 
   .iti__country-list {
     max-height: 170px !important;
-
     overflow-y: auto !important;
-
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
+    pointer-events: auto !important;
     background: #fff !important;
-
     border: 1px solid #d4d4d4 !important;
-
     border-radius: 12px !important;
-
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+    z-index: 10005 !important;
   }
 
   .iti__country-list::-webkit-scrollbar {
@@ -1421,13 +1455,11 @@ ENDIF
 
   .iti__country-list::-webkit-scrollbar-thumb {
     background: #266a3d;
-
     border-radius: 20px;
   }
 
   .iti__country {
     color: #222 !important;
-
     padding: 10px 12px !important;
   }
 
@@ -1440,32 +1472,11 @@ ENDIF
   }
   .iti__search-input {
     background: #ffffff !important;
-
     color: #000 !important;
   }
 
   .iti__country:hover {
     background: #f2f6f3 !important;
-  }
-
-  dialog.iti__dropdown,
-  .iti__dropdown {
-    position: fixed !important;
-    z-index: 10005 !important;
-  }
-
-  .iti--container {
-    z-index: 10005 !important;
-  }
-
-  .iti__dropdown-content,
-  .iti__country-list,
-  [class*="iti__dropdown"] {
-    z-index: 10005 !important;
-  }
-
-  .iti--container[style*="position"] {
-    position: fixed !important;
   }
 
   /* -------------------- Success Modal -------------------- */
@@ -1938,6 +1949,22 @@ ENDIF
     .schedule-box span {
       font-size: 14px;
     }
+
+    .registration-box {
+      overflow-x: hidden;
+    }
+
+    .iti__country-selector {
+      width: 100% !important;
+      min-width: 0 !important;
+      max-width: 100%;
+      left: 0 !important;
+      right: 0 !important;
+    }
+
+    .iti__country-list {
+      width: 100% !important;
+    }
   }
 </style>
 
@@ -1949,7 +1976,10 @@ ENDIF
 <section class="navbar-section">
   <div class="navbar-container">
     <div class="navbar-logo">
-      <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e15059bf-d81e-4f31-b7bd-1b5ad3d67906.png" alt="Logo">
+      <img
+        src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e15059bf-d81e-4f31-b7bd-1b5ad3d67906.png"
+        alt="Logo"
+      />
     </div>
 
     <div class="navbar-action">
@@ -1967,7 +1997,7 @@ ENDIF
     <div class="hero-content">
       <h1>
         Live Ayurveda Webinar
-        <br>
+        <br />
         on <span>%%=v(Field(@topicRow,"var1"))=%% Health</span>
       </h1>
 
@@ -1988,7 +2018,11 @@ ENDIF
   </div>
 
   <!-- Doctor Group Image -->
-  <img class="doctor-group" src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/900de63d-60c1-4df6-989d-1e07ce20bf3a.png" alt="Doctors Group">
+  <img
+    class="doctor-group"
+    src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/900de63d-60c1-4df6-989d-1e07ce20bf3a.png"
+    alt="Doctors Group"
+  />
 </section>
 <section class="countdown-section">
   <div class="container countdown-wrapper">
@@ -2075,7 +2109,10 @@ ENDIF
     <!-- Left -->
 
     <div class="learn-left">
-      <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/4f347f69-5c8e-4b96-abdc-52d7fb08ecc6.png" alt="Acharya Manish Ji">
+      <img
+        src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/4f347f69-5c8e-4b96-abdc-52d7fb08ecc6.png"
+        alt="Acharya Manish Ji"
+      />
     </div>
 
     <!-- Right -->
@@ -2091,7 +2128,9 @@ ENDIF
 
       <div class="learn-cards">
         <div class="learn-card">
-          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e4d92b33-7a02-467e-9d03-5416b4894137.png">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e4d92b33-7a02-467e-9d03-5416b4894137.png"
+          />
 
           <p>
             Understand the root causes of %%=v(Field(@topicRow,"var2"))=%%,
@@ -2101,7 +2140,9 @@ ENDIF
         </div>
 
         <div class="learn-card">
-          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/0c287ff8-e766-4609-b57c-7340a85209bc.png">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/0c287ff8-e766-4609-b57c-7340a85209bc.png"
+          />
 
           <p>
             Learn how %%=v(Field(@topicRow,"var1"))=%% conditions can be
@@ -2111,7 +2152,9 @@ ENDIF
         </div>
 
         <div class="learn-card">
-          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/5a6a09aa-17b4-42f6-b876-b6315112c42e.png">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/5a6a09aa-17b4-42f6-b876-b6315112c42e.png"
+          />
 
           <p>
             Discover the daily habits that may be silently damaging your
@@ -2120,7 +2163,9 @@ ENDIF
         </div>
 
         <div class="learn-card">
-          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/a8077317-f4fc-4cac-975c-662e85d37dc3.png">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/a8077317-f4fc-4cac-975c-662e85d37dc3.png"
+          />
 
           <p>
             Live Q&A session with <strong>Acharya Manish Ji</strong> and his
@@ -2142,7 +2187,9 @@ ENDIF
 
       <div class="attend-left">
         <div class="attend-item">
-          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png"
+          />
 
           <p>
             Expert insights from Acharya Manish Ji and his team of 600+ senior
@@ -2151,7 +2198,9 @@ ENDIF
         </div>
 
         <div class="attend-item">
-          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png"
+          />
 
           <p>
             Live Q&A session to discuss your personal health concerns with
@@ -2160,7 +2209,9 @@ ENDIF
         </div>
 
         <div class="attend-item">
-          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png"
+          />
 
           <p>
             Natural Ayurvedic guidance to improve
@@ -2169,7 +2220,9 @@ ENDIF
         </div>
 
         <div class="attend-item">
-          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png"
+          />
 
           <p>
             Better understanding of early symptoms and their possible root
@@ -2178,7 +2231,9 @@ ENDIF
         </div>
 
         <div class="attend-item">
-          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e8f5f586-075e-404f-ab1c-d866868d0a41.png"
+          />
 
           <p>
             Practical lifestyle tips you can start applying from the very next
@@ -2192,7 +2247,7 @@ ENDIF
       <div class="attend-right">
         <div class="doctor-card">
           <div class="doctor-image">
-            <img src="%%=v(Field(@doctorRow,'ImageUrl'))=%%">
+            <img src="%%=v(Field(@doctorRow,'ImageUrl'))=%%" />
           </div>
 
           <p class="connect-text">Connect with</p>
@@ -2228,7 +2283,10 @@ ENDIF
 
       <div class="join-video">
         <div class="video-card" id="videoContainer">
-          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/0fc6efdf-7564-471a-b929-74369664f3fc.png" alt="Video Thumbnail">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/0fc6efdf-7564-471a-b929-74369664f3fc.png"
+            alt="Video Thumbnail"
+          />
         </div>
       </div>
 
@@ -2236,7 +2294,9 @@ ENDIF
 
       <div class="join-steps">
         <div class="step-card">
-          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f725a19c-c4d3-4996-9e79-97be3bd17d6c.png">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f725a19c-c4d3-4996-9e79-97be3bd17d6c.png"
+          />
 
           <div>
             <h3>Register</h3>
@@ -2249,7 +2309,9 @@ ENDIF
         </div>
 
         <div class="step-card">
-          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/057036d6-c64a-4720-81a0-07c4a609351b.png">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/057036d6-c64a-4720-81a0-07c4a609351b.png"
+          />
 
           <div>
             <h3>Install the Zoom Meeting App</h3>
@@ -2262,7 +2324,9 @@ ENDIF
         </div>
 
         <div class="step-card">
-          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/880bbc14-d597-4448-8f3f-f70baba2bafb.png">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/880bbc14-d597-4448-8f3f-f70baba2bafb.png"
+          />
 
           <div>
             <h3>Click the Webinar Link</h3>
@@ -2275,7 +2339,9 @@ ENDIF
         </div>
 
         <div class="step-card">
-          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6183c01b-7122-4b5d-a3bd-7a51f9deff41.png">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/6183c01b-7122-4b5d-a3bd-7a51f9deff41.png"
+          />
 
           <div>
             <h3>Enter Your Details</h3>
@@ -2288,7 +2354,9 @@ ENDIF
         </div>
 
         <div class="step-card">
-          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/b6141ddf-bd32-4221-8c1e-4ea0f3087690.png">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/b6141ddf-bd32-4221-8c1e-4ea0f3087690.png"
+          />
 
           <div>
             <h3>Join and Learn</h3>
@@ -2311,12 +2379,13 @@ ENDIF
       <!-- Card 1 -->
 
       <div class="testimonial-card">
-        <p class="testimonial-text">
-          %%=v(Field(@topicRow,"Testimonial1"))=%%
-        </p>
+        <p class="testimonial-text">%%=v(Field(@topicRow,"Testimonial1"))=%%</p>
 
         <div class="testimonial-user">
-          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png" alt="Tanu">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
+            alt="Tanu"
+          />
 
           <div>
             <div class="testimonial-stars">★★★★★</div>
@@ -2331,12 +2400,13 @@ ENDIF
       <!-- Card 2 -->
 
       <div class="testimonial-card">
-        <p class="testimonial-text">
-          %%=v(Field(@topicRow,"Testimonial2"))=%%
-        </p>
+        <p class="testimonial-text">%%=v(Field(@topicRow,"Testimonial2"))=%%</p>
 
         <div class="testimonial-user">
-          <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png" alt="Rakesh M.">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
+            alt="Rakesh M."
+          />
 
           <div>
             <div class="testimonial-stars">★★★★★</div>
@@ -2453,14 +2523,18 @@ ENDIF
 
   <div class="footer-main">
     <div class="container">
-      <img class="footer-logo" src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e15059bf-d81e-4f31-b7bd-1b5ad3d67906.png" alt="Jeena Sikho">
+      <img
+        class="footer-logo"
+        src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e15059bf-d81e-4f31-b7bd-1b5ad3d67906.png"
+        alt="Jeena Sikho"
+      />
 
       <h2>
         <span>Jeena Sikho HiiMS</span>
 
         – India's Largest Integrated
 
-        <br>
+        <br />
 
         Ayurvedic Healthcare System
       </h2>
@@ -2487,35 +2561,50 @@ ENDIF
 
     <h2>Register for the Webinar</h2>
 
-    <form id="registrationForm" action="%%=RequestParameter('PAGEURL')=%%" method="post">
-      <input type="hidden" name="submitted" value="true">
-      <input type="hidden" name="id" value="%%=RequestParameter('id')=%%">
+    <form
+      id="registrationForm"
+      action="%%=RequestParameter('PAGEURL')=%%"
+      method="post"
+    >
+      <input type="hidden" name="submitted" value="true" />
+      <input type="hidden" name="id" value="%%=RequestParameter('id')=%%" />
 
       <!-- Hidden fields populated by intl-tel-input JS on submit -->
-      <input type="hidden" id="countryCode" name="countryCode">
-      <input type="hidden" id="initialCountry" name="initialCountry">
+      <input type="hidden" id="countryCode" name="countryCode" />
+      <input type="hidden" id="initialCountry" name="initialCountry" />
 
       <!-- Name -->
       <div class="form-group">
         <label>Full Name <span>*</span></label>
-        <input type="text" name="name" placeholder="Enter your full name" required="">
+        <input
+          type="text"
+          name="name"
+          placeholder="Enter your full name"
+          required=""
+        />
       </div>
 
       <!-- Phone -->
       <div class="form-group">
         <label>Mobile Number <span>*</span></label>
-        <input type="tel" id="phone" name="phone" placeholder="8270482704" required="">
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          placeholder="8270482704"
+          required=""
+        />
       </div>
 
       <!-- Bottom Row -->
       <div class="form-row">
         <div class="form-group">
           <label>City</label>
-          <input type="text" name="city" placeholder="Enter City">
+          <input type="text" name="city" placeholder="Enter City" />
         </div>
         <div class="form-group">
           <label>Age</label>
-          <input type="number" name="age" placeholder="Enter Age">
+          <input type="number" name="age" placeholder="Enter Age" />
         </div>
       </div>
 
@@ -2534,9 +2623,7 @@ ENDIF
 
 <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@29.1.0/dist/js/intlTelInput.min.js"></script>
 
-
 <script>
-
   const targetDate = new Date("%%=v(@startDT)=%%").getTime();
   // const targetDate = new Date("2026-07-01T16:30:00").getTime();
 
@@ -2735,7 +2822,7 @@ ENDIF
       // store globally as window.iti
       initialCountry: country,
       countrySearch: false,
-      dropdownParent: document.body,
+      countrySelectorMode: "DROPDOWN",
       loadUtils: () =>
         import("https://cdn.jsdelivr.net/npm/intl-tel-input@29.1.0/dist/js/utils.js"),
     });
