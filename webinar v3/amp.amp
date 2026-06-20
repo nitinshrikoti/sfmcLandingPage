@@ -131,7 +131,7 @@ IF RequestParameter("submitted") == "true" THEN
 
   /* Atomic Upsert — old columns kept, new ones (City, Age) added */
   UpsertDE(
-    "Free_Webinar_Registration_Raw",
+    "Testt_Free_Webinar_Registration_Raw",
     1,
     "Id", @recordId,
 

@@ -131,7 +131,7 @@ IF RequestParameter("submitted") == "true" THEN
 
   /* Atomic Upsert — old columns kept, new ones (City, Age) added */
   UpsertDE(
-    "Free_Webinar_Registration_Raw",
+    "Testt_Free_Webinar_Registration_Raw",
     1,
     "Id", @recordId,
 
@@ -263,6 +263,12 @@ ENDIF
   /* -------------------- mc-default -------------------- */
   .layout-canvas-g > .section {
     margin: 0px;
+  }
+
+  html,
+  body {
+    width: 100%;
+    overflow-x: hidden;
   }
 
   .announcement-bar {
@@ -438,10 +444,6 @@ ENDIF
 
   /* LEFT */
 
-  .countdown-left {
-    width: 30%;
-  }
-
   .small-text {
     color: #47a564;
     font-size: 14px;
@@ -458,14 +460,22 @@ ENDIF
 
   /* MIDDLE */
 
-  .countdown-middle {
-    width: 30%;
-  }
-
   .timer-box {
     display: flex;
     justify-content: center;
-    gap: 14px;
+    gap: 15px;
+  }
+
+  .digit {
+    width: 38px;
+
+    height: 62px;
+
+    font-size: 40px;
+  }
+
+  .time-item span {
+    font-size: 11px;
   }
 
   .time-item {
@@ -473,16 +483,91 @@ ENDIF
   }
 
   .time-value {
-    width: 68px;
-    height: 68px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 8px;
-    background: #0e6b38;
+    background: #ffffff;
     color: #ffffff;
     font-size: 34px;
     font-weight: 700;
+    gap: 1.5px;
+  }
+
+  .digit {
+    position: relative;
+
+    width: 54px;
+
+    height: 82px;
+
+    background: linear-gradient(180deg, #0e6b38 0%, #0a5a2f 100%);
+
+    border-radius: 8px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #fff;
+
+    font-size: 56px;
+
+    font-weight: 800;
+
+    overflow: hidden;
+
+    box-shadow:
+      inset 0 2px 0 rgba(255, 255, 255, 0.2),
+      0 3px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .digit::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    top: 50%;
+
+    width: 100%;
+
+    height: 2px;
+
+    background: rgba(255, 255, 255, 0.45);
+  }
+
+  .digit::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+
+    top: 50%;
+
+    width: 100%;
+
+    height: 18px;
+
+    transform: translateY(-50%);
+
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .time-item span {
+    display: block;
+
+    margin-top: 10px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #333;
   }
 
   .time-item span {
@@ -493,10 +578,6 @@ ENDIF
   }
 
   /* RIGHT */
-
-  .countdown-right {
-    width: 30%;
-  }
 
   .countdown-btn {
     width: 220px;
@@ -1746,12 +1827,6 @@ ENDIF
       font-size: 26px;
     }
 
-    .time-value {
-      width: 56px;
-      height: 56px;
-      font-size: 26px;
-    }
-
     .timer-box {
       gap: 10px;
     }
@@ -1850,6 +1925,15 @@ ENDIF
     .registration-box {
       padding: 22px 18px;
     }
+
+    .countdown-wrapper,
+    .learn-wrapper,
+    .why-attend-section .container,
+    .join-webinar-section .container,
+    .testimonial-section .container,
+    .faq-section .container {
+      padding: 0 16px;
+    }
   }
 
   /* -------------------- Small Mobile: <= 480px -------------------- */
@@ -1870,8 +1954,22 @@ ENDIF
       padding-bottom: 145px;
     }
 
+    .countdown-wrapper {
+      gap: 0px;
+    }
+
     .timer-box {
-      gap: 6px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: nowrap;
+    }
+
+    .digit {
+      width: 28px;
+      height: 42px;
+      font-size: 28px;
     }
 
     .time-value {
@@ -1946,6 +2044,10 @@ ENDIF
       font-size: 12.5px;
     }
 
+    .why-attend-wrapper {
+      gap: 20px;
+    }
+
     .testimonial-text {
       font-size: 15px;
     }
@@ -1990,13 +2092,13 @@ ENDIF
       />
     </div>
 
-    <div class="navbar-action">
+    <!-- <div class="navbar-action">
       <button class="register-btn">
         <span class="pulse-dot"></span>
 
         Live Webinar
       </button>
-    </div>
+    </div> -->
   </div>
 </section>
 <section class="webinar-hero">
@@ -2047,25 +2149,41 @@ ENDIF
     <div class="countdown-middle">
       <div class="timer-box">
         <div class="time-item">
-          <div class="time-value" id="days">05</div>
+          <div class="time-value" id="days">
+            <div class="digit">0</div>
+
+            <div class="digit">5</div>
+          </div>
 
           <span>Days</span>
         </div>
 
         <div class="time-item">
-          <div class="time-value" id="hours">12</div>
+          <div class="time-value" id="hours">
+            <div class="digit">1</div>
+
+            <div class="digit">2</div>
+          </div>
 
           <span>Hours</span>
         </div>
 
         <div class="time-item">
-          <div class="time-value" id="minutes">36</div>
+          <div class="time-value" id="minutes">
+            <div class="digit">3</div>
+
+            <div class="digit">6</div>
+          </div>
 
           <span>Minutes</span>
         </div>
 
         <div class="time-item">
-          <div class="time-value" id="seconds">36</div>
+          <div class="time-value" id="seconds">
+            <div class="digit">3</div>
+
+            <div class="digit">6</div>
+          </div>
 
           <span>Seconds</span>
         </div>
@@ -2182,7 +2300,13 @@ ENDIF
         </div>
       </div>
 
-      <a href="#" class="play-btn"> ▶ Play Video </a>
+      <a
+        href="https://www.youtube.com/watch?v=xAYufd85eHg&t=2s"
+        target="_blank"
+        class="play-btn"
+      >
+        ▶ Play Video
+      </a>
     </div>
   </div>
 </section>
@@ -2633,7 +2757,7 @@ ENDIF
 
 <script>
   const targetDate = new Date("%%=v(@startDT)=%%").getTime();
-  // const targetDate = new Date("2026-07-01T16:30:00").getTime();
+  // const targetDate = new Date("2026-06-22T16:30:00").getTime();
 
   const webDateEl = document.getElementById("webDate");
   const webTimeEl = document.getElementById("webTime");
@@ -2663,19 +2787,27 @@ ENDIF
 
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    document.getElementById("days").innerHTML = String(days).padStart(2, "0");
+    setDigits("days", days);
 
-    document.getElementById("hours").innerHTML = String(hours).padStart(2, "0");
+    setDigits("hours", hours);
 
-    document.getElementById("minutes").innerHTML = String(minutes).padStart(
-      2,
-      "0",
-    );
+    setDigits("minutes", minutes);
 
-    document.getElementById("seconds").innerHTML = String(seconds).padStart(
-      2,
-      "0",
-    );
+    setDigits("seconds", seconds);
+  }
+
+  function setDigits(id, value) {
+    const element = document.getElementById(id);
+
+    const formatted = String(value).padStart(2, "0");
+
+    element.innerHTML = `
+
+    <div class="digit">${formatted[0]}</div>
+
+    <div class="digit">${formatted[1]}</div>
+
+  `;
   }
 
   // -------------------- How to youtube video --------------------
@@ -2844,7 +2976,7 @@ ENDIF
       ? window.iti.getSelectedCountry()
       : window.iti.getSelectedCountryData();
 
-    document.getElementById("countryCode").value = "+" + countryData.dialCode;
+    document.getElementById("countryCode").value = countryData.dialCode;
     document.getElementById("initialCountry").value = countryData.iso2;
   });
 
