@@ -14,6 +14,10 @@ VAR @rawPhone, @digitsOnly, @countryCode, @locale
 VAR @phone, @webinarId, @recordId, @BookingDate
 VAR @char, @i
 
+VAR @t1Name, @t2Name, @t3Name
+VAR @t1Text, @t2Text, @t3Text
+VAR @sectionTitle
+
 /* ===============================
    GET URL PARAMETER
 ================================ */
@@ -62,6 +66,13 @@ SET @topicRow = Row(
     @topicId
   ),
 1)
+
+SET @t1Name  = Trim(Field(@topicRow, "TestimonialName1"))
+SET @t2Name  = Trim(Field(@topicRow, "TestimonialName2"))
+SET @t3Name  = Trim(Field(@topicRow, "TestimonialName3"))
+SET @t1Text  = Trim(Field(@topicRow, "Testimonial1"))
+SET @t2Text  = Trim(Field(@topicRow, "Testimonial2"))
+SET @t3Text  = Trim(Field(@topicRow, "Testimonial3"))
 
 IF Empty(@topicRow) THEN
   RaiseError("Invalid Topic Mapping", true)
@@ -1051,98 +1062,186 @@ ENDIF
     color: #666;
   }
 
-  .testimonial-section {
-    padding: 70px 0;
+  /* ---------- Reset / base ---------- */
+  .tws-section *,
+  .tws-section *::before,
+  .tws-section *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* ---------- Section wrapper ---------- */
+  .tws-section {
+    position: relative;
+    padding: 64px 0 56px;
+    overflow: hidden;
+    font-family: "Segoe UI", Arial, sans-serif;
+  }
+
+  /* ---------- Background ---------- */
+  .tws-bg {
+    position: absolute;
+    inset: 0;
     background-image: url("https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/ffe72f4e-d6b9-479c-a647-a4c3e967bddd.png");
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.55;
+    z-index: 0;
   }
 
-  .testimonial-section .container {
-    max-width: 1200px;
-    margin: auto;
+  /* Light wash so cards pop */
+  .tws-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(240, 248, 240, 0.6);
+    z-index: 0;
+  }
+
+  /* All direct children above bg */
+  .tws-heading-wrap,
+  .tws-viewport,
+  .tws-dots {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ---------- Heading ---------- */
+  .tws-heading-wrap {
+    text-align: center;
+    padding: 0 16px 40px;
+  }
+
+  .tws-heading {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .tws-heading-accent {
+    color: #3d9c3d;
+  }
+
+  /* ---------- Viewport (clips overflow) ---------- */
+  .tws-viewport {
+    width: 100%;
+    overflow: hidden;
+    /* Slight horizontal padding so the partial next card peeks in */
     padding: 0 40px;
   }
 
-  /* HEADING */
-
-  .testimonial-heading {
-    color: #000000;
-    text-align: center;
-    font-size: 36px;
-    font-weight: 800;
-    margin-bottom: 50px;
-  }
-
-  .testimonial-heading span {
-    color: #000000;
-  }
-
-  /* CARDS */
-
-  .testimonial-wrapper {
+  /* ---------- Sliding track ---------- */
+  .tws-track {
     display: flex;
-    justify-content: center;
-    gap: 24px;
-    flex-wrap: wrap;
+    gap: 20px;
+    /* width set dynamically by JS */
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    align-items: stretch;
   }
 
-  .testimonial-card {
-    width: 540px;
+  /* ---------- Individual card ---------- */
+  .tws-card {
+    /* 2.5 cards visible: each card = (100% - paddings - gaps) / 2.5 */
+    flex: 0 0 calc((100vw - 80px - 40px) / 2.5);
+    max-width: 380px;
     background: #ffffff;
-    border-radius: 12px;
-    padding: 34px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
+    border-radius: 16px;
+    box-shadow:
+      0 2px 16px rgba(0, 0, 0, 0.09),
+      0 1px 4px rgba(0, 0, 0, 0.06);
+    padding: 28px 24px 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 200px;
+    transition:
+      box-shadow 0.25s ease,
+      transform 0.25s ease;
   }
 
-  /* TEXT */
-
-  .testimonial-text {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #555;
-    margin-bottom: 28px;
+  .tws-card:hover {
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.14);
+    transform: translateY(-2px);
   }
 
-  /* USER */
+  /* ---------- Card text ---------- */
+  .tws-card-text {
+    font-size: 0.94rem;
+    line-height: 1.65;
+    color: #333333;
+    flex-grow: 1;
+    margin-bottom: 20px;
+  }
 
-  .testimonial-user {
+  /* ---------- Card footer ---------- */
+  .tws-card-footer {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
   }
 
-  .testimonial-user img {
-    width: 54px;
-    height: 54px;
-    object-fit: cover;
+  .tws-avatar {
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    -ms-border-radius: 50%;
-    -o-border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 2px solid #e8f5e8;
   }
 
-  .testimonial-stars {
-    color: #ffc107;
-    font-size: 14px;
-    letter-spacing: 2px;
-    margin-bottom: 4px;
+  .tws-card-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
   }
 
-  .testimonial-user h3 {
-    font-size: 18px;
+  .tws-stars {
+    color: #f5a623;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+
+  .tws-card-name {
+    font-size: 0.9rem;
     font-weight: 700;
-    margin: 0;
+    color: #1a1a1a;
   }
 
-  .testimonial-user span {
-    font-size: 14px;
-    color: #777;
+  /* ---------- Dot indicators ---------- */
+  .tws-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 28px;
+    padding: 0 16px;
+  }
+
+  .tws-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #c8dfc8;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition:
+      background 0.3s ease,
+      transform 0.3s ease,
+      width 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  .tws-dot.tws-dot--active {
+    background: #3d9c3d;
+    width: 24px;
+    border-radius: 4px;
+    transform: none;
   }
 
   .faq-section {
@@ -1741,11 +1840,6 @@ ENDIF
       width: 100%;
       max-width: 500px;
     }
-
-    .testimonial-card {
-      width: 100%;
-      max-width: 540px;
-    }
   }
 
   /* -------------------- Large Mobile: <= 768px -------------------- */
@@ -1887,15 +1981,6 @@ ENDIF
 
     .step-card {
       padding: 10px 14px;
-    }
-
-    /* Testimonials */
-    .testimonial-heading {
-      font-size: 28px;
-    }
-
-    .testimonial-card {
-      padding: 24px;
     }
 
     /* FAQ */
@@ -2048,10 +2133,6 @@ ENDIF
       gap: 20px;
     }
 
-    .testimonial-text {
-      font-size: 15px;
-    }
-
     .form-row {
       flex-direction: column;
       gap: 0;
@@ -2074,6 +2155,48 @@ ENDIF
 
     .iti__country-list {
       width: 100% !important;
+    }
+
+    .tws-section,
+    .tws-viewport,
+    .tws-track {
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .tws-section {
+      padding: 48px 0 44px;
+      width: 350px;
+      overflow: hidden; /* already on desktop, but re-assert */
+    }
+
+    .tws-heading {
+      font-size: 1.45rem;
+    }
+
+    .tws-heading-wrap {
+      padding-bottom: 28px;
+    }
+
+    /* Tighter horizontal padding so partial next card is visible */
+    .tws-viewport {
+      padding: 0 16px;
+    }
+
+    /* 1 full card + peek of next */
+    .tws-card {
+      flex: 0 0 calc(100% - 48px); /* instead of 100vw */
+      max-width: none;
+      min-height: 180px;
+      padding: 22px 18px 18px;
+    }
+
+    .tws-card-text {
+      font-size: 0.88rem;
+    }
+
+    .tws-track {
+      gap: 14px;
     }
   }
 </style>
@@ -2503,55 +2626,93 @@ ENDIF
     </div>
   </div>
 </section>
-<section class="testimonial-section">
-  <div class="container">
-    <h2 class="testimonial-heading">What Our <span>Participants Say</span></h2>
 
-    <div class="testimonial-wrapper">
-      <!-- Card 1 -->
+<section class="tws-section">
+  <!-- Background image layer -->
+  <div class="tws-bg" aria-hidden="true"></div>
 
-      <div class="testimonial-card">
-        <p class="testimonial-text">%%=v(Field(@topicRow,"Testimonial1"))=%%</p>
-
-        <div class="testimonial-user">
-          <img
-            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
-            alt="Tanu"
-          />
-
-          <div>
-            <div class="testimonial-stars">★★★★★</div>
-
-            <h3>%%=v(Field(@topicRow,"TestimonialName1"))=%%</h3>
-
-            <span> Delhi, India </span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 2 -->
-
-      <div class="testimonial-card">
-        <p class="testimonial-text">%%=v(Field(@topicRow,"Testimonial2"))=%%</p>
-
-        <div class="testimonial-user">
-          <img
-            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
-            alt="Rakesh M."
-          />
-
-          <div>
-            <div class="testimonial-stars">★★★★★</div>
-
-            <h3>%%=v(Field(@topicRow,"TestimonialName2"))=%%</h3>
-
-            <span> Chandigarh, India </span>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- Heading -->
+  <div class="tws-heading-wrap">
+    <h2 class="tws-heading">
+      What Our <span class="tws-heading-accent">Participants Say</span>
+    </h2>
   </div>
+
+  <!-- Track wrapper (clips overflow) -->
+  <div class="tws-viewport" aria-label="Participant testimonials" role="region">
+    <div class="tws-track" id="twsTrack">
+      %%[ IF NOT Empty(@t1Text) AND NOT Empty(@t1Name) THEN ]%%
+      <article class="tws-card">
+        <p class="tws-card-text">%%=V(@t1Text)=%%</p>
+        <div class="tws-card-footer">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
+            alt="%%=V(@t1Name)=%% photo"
+            class="tws-avatar"
+            loading="lazy"
+          />
+          <div class="tws-card-meta">
+            <div class="tws-stars" aria-label="5 out of 5 stars">
+              <span>★</span><span>★</span><span>★</span><span>★</span
+              ><span>★</span>
+            </div>
+            <strong class="tws-card-name">%%=V(@t1Name)=%%</strong>
+          </div>
+        </div>
+      </article>
+      %%[ ENDIF ]%% %%[ IF NOT Empty(@t2Text) AND NOT Empty(@t2Name) THEN ]%%
+      <article class="tws-card">
+        <p class="tws-card-text">%%=V(@t2Text)=%%</p>
+        <div class="tws-card-footer">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
+            alt="%%=V(@t2Name)=%% photo"
+            class="tws-avatar"
+            loading="lazy"
+          />
+          <div class="tws-card-meta">
+            <div class="tws-stars" aria-label="5 out of 5 stars">
+              <span>★</span><span>★</span><span>★</span><span>★</span
+              ><span>★</span>
+            </div>
+            <strong class="tws-card-name">%%=V(@t2Name)=%%</strong>
+          </div>
+        </div>
+      </article>
+      %%[ ENDIF ]%% %%[ IF NOT Empty(@t3Text) AND NOT Empty(@t3Name) THEN ]%%
+      <article class="tws-card">
+        <p class="tws-card-text">%%=V(@t3Text)=%%</p>
+        <div class="tws-card-footer">
+          <img
+            src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/9d02de7b-e2fa-49bb-a25a-9185deb64748.png"
+            alt="%%=V(@t3Name)=%% photo"
+            class="tws-avatar"
+            loading="lazy"
+          />
+          <div class="tws-card-meta">
+            <div class="tws-stars" aria-label="5 out of 5 stars">
+              <span>★</span><span>★</span><span>★</span><span>★</span
+              ><span>★</span>
+            </div>
+            <strong class="tws-card-name">%%=V(@t3Name)=%%</strong>
+          </div>
+        </div>
+      </article>
+      %%[ ENDIF ]%%
+    </div>
+    <!-- /.tws-track -->
+  </div>
+  <!-- /.tws-viewport -->
+
+  <!-- Dot indicators -->
+  <div
+    class="tws-dots"
+    id="twsDots"
+    role="tablist"
+    aria-label="Testimonial navigation"
+  ></div>
 </section>
+
 <section class="faq-section">
   <div class="container">
     <h2 class="faq-heading">Frequently <span>Asked Questions</span></h2>
@@ -2998,4 +3159,142 @@ ENDIF
     successModal.classList.remove("active");
     document.body.style.overflow = "auto";
   });
+
+  (function () {
+    "use strict";
+
+    var SLIDE_INTERVAL = 3800; // ms between auto-slides
+    var PEEK_MOBILE_PX = 32; // how many px of next card show on mobile
+
+    var track = document.getElementById("twsTrack");
+    var dotsWrap = document.getElementById("twsDots");
+
+    if (!track) return;
+
+    var cards = track.querySelectorAll(".tws-card");
+    var total = cards.length;
+
+    if (total === 0) return;
+
+    /* ── Build dot buttons ───────────────────────── */
+    var dots = [];
+    for (var d = 0; d < total; d++) {
+      var btn = document.createElement("button");
+      btn.className = "tws-dot";
+      btn.setAttribute("role", "tab");
+      btn.setAttribute("aria-label", "Go to testimonial " + (d + 1));
+      btn.setAttribute("data-index", d);
+      dotsWrap.appendChild(btn);
+      dots.push(btn);
+    }
+
+    /* ── State ───────────────────────────────────── */
+    var current = 0;
+    var timer = null;
+    var isMobile = false;
+    var cardWidth = 0;
+    var gap = 0;
+
+    /* ── Measure card dimensions ─────────────────── */
+    function measure() {
+      isMobile = window.innerWidth <= 425;
+      var style = window.getComputedStyle(track);
+      gap = parseFloat(style.gap) || (isMobile ? 14 : 20);
+      cardWidth = cards[0].getBoundingClientRect().width;
+    }
+
+    /* ── Move to a specific index ────────────────── */
+    function goTo(index) {
+      /* Clamp */
+      if (index < 0) index = total - 1;
+      if (index >= total) index = 0;
+
+      current = index;
+
+      measure();
+
+      var offset = current * (cardWidth + gap);
+      track.style.transform = "translateX(-" + offset + "px)";
+
+      /* Update dots */
+      for (var i = 0; i < dots.length; i++) {
+        dots[i].className =
+          "tws-dot" + (i === current ? " tws-dot--active" : "");
+        dots[i].setAttribute("aria-selected", i === current ? "true" : "false");
+      }
+    }
+
+    /* ── Auto-advance ────────────────────────────── */
+    function startTimer() {
+      stopTimer();
+      timer = setInterval(function () {
+        goTo(current + 1);
+      }, SLIDE_INTERVAL);
+    }
+
+    function stopTimer() {
+      if (timer) {
+        clearInterval(timer);
+        timer = null;
+      }
+    }
+
+    /* ── Dot click ───────────────────────────────── */
+    dotsWrap.addEventListener("click", function (e) {
+      var btn = e.target.closest(".tws-dot");
+      if (!btn) return;
+      stopTimer();
+      goTo(parseInt(btn.getAttribute("data-index"), 10));
+      startTimer();
+    });
+
+    /* ── Touch / swipe support ───────────────────── */
+    var touchStartX = 0;
+    var touchDeltaX = 0;
+
+    track.addEventListener(
+      "touchstart",
+      function (e) {
+        touchStartX = e.touches[0].clientX;
+        stopTimer();
+      },
+      { passive: true },
+    );
+
+    track.addEventListener(
+      "touchmove",
+      function (e) {
+        touchDeltaX = e.touches[0].clientX - touchStartX;
+      },
+      { passive: true },
+    );
+
+    track.addEventListener("touchend", function () {
+      if (Math.abs(touchDeltaX) > 40) {
+        goTo(touchDeltaX < 0 ? current + 1 : current - 1);
+      }
+      touchDeltaX = 0;
+      startTimer();
+    });
+
+    /* ── Pause on hover (desktop) ────────────────── */
+    var section = track.closest(".tws-section");
+    if (section) {
+      section.addEventListener("mouseenter", stopTimer);
+      section.addEventListener("mouseleave", startTimer);
+    }
+
+    /* ── Resize ──────────────────────────────────── */
+    var resizeTimer;
+    window.addEventListener("resize", function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        goTo(current); /* recalculate offset after resize */
+      }, 150);
+    });
+
+    /* ── Kick off ────────────────────────────────── */
+    goTo(0);
+    startTimer();
+  })();
 </script>

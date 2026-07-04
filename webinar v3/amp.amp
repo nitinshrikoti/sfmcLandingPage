@@ -14,6 +14,10 @@ VAR @rawPhone, @digitsOnly, @countryCode, @locale
 VAR @phone, @webinarId, @recordId, @BookingDate
 VAR @char, @i
 
+VAR @t1Name, @t2Name, @t3Name
+VAR @t1Text, @t2Text, @t3Text
+VAR @sectionTitle
+
 /* ===============================
    GET URL PARAMETER
 ================================ */
@@ -62,6 +66,13 @@ SET @topicRow = Row(
     @topicId
   ),
 1)
+
+SET @t1Name  = Trim(Field(@topicRow, "TestimonialName1"))
+SET @t2Name  = Trim(Field(@topicRow, "TestimonialName2"))
+SET @t3Name  = Trim(Field(@topicRow, "TestimonialName3"))
+SET @t1Text  = Trim(Field(@topicRow, "Testimonial1"))
+SET @t2Text  = Trim(Field(@topicRow, "Testimonial2"))
+SET @t3Text  = Trim(Field(@topicRow, "Testimonial3"))
 
 IF Empty(@topicRow) THEN
   RaiseError("Invalid Topic Mapping", true)
