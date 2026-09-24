@@ -1,3 +1,89 @@
+%%[
+/* =====================================================================
+   WEBINAR LANDING PAGE: DATA LOAD ONLY
+   (form fields, validation and UpsertDE removed)
+   ===================================================================== */
+
+VAR @webinarId, @wRows, @wRow
+VAR @topicId, @tRows, @tRow
+VAR @expertId, @dRows, @dRow
+VAR @startDT
+VAR @pageOk, @pageError
+
+SET @pageOk    = true
+SET @pageError = ""
+
+/* ---------------------------------------------------------------
+   1. READ URL PARAM
+   Preview by opening the CloudPage with ?id=<real id>
+   --------------------------------------------------------------- */
+SET @webinarId = Trim(RequestParameter("id"))
+
+IF EMPTY(@webinarId) THEN
+  SET @pageOk    = false
+  SET @pageError = "Missing webinar id"
+ENDIF
+
+/* ---------------------------------------------------------------
+   2. LOOKUP WEBINAR (PRIMARY DE)
+   Field(row, col, 0) returns "" instead of throwing if a column
+   is missing or renamed.
+   --------------------------------------------------------------- */
+IF @pageOk == true THEN
+  SET @wRows = LookupRows("Webinar_Landing_Pages", "Id", @webinarId)
+
+  IF RowCount(@wRows) == 0 THEN
+    SET @pageOk    = false
+    SET @pageError = "Invalid webinar id"
+  ELSE
+    SET @wRow     = Row(@wRows, 1)
+    SET @topicId  = Field(@wRow, "Webinar_Topic__c", 0)
+    SET @expertId = Field(@wRow, "Expert_Name__c", 0)
+    SET @startDT  = Field(@wRow, "Start_Datetime__c", 0)
+  ENDIF
+ENDIF
+
+/* ---------------------------------------------------------------
+   3. VALIDATE REQUIRED CONFIG ON THE WEBINAR ROW
+   --------------------------------------------------------------- */
+IF @pageOk == true THEN
+  IF EMPTY(@topicId) OR EMPTY(@expertId) OR EMPTY(@startDT) THEN
+    SET @pageOk    = false
+    SET @pageError = "Webinar configuration incomplete"
+  ENDIF
+ENDIF
+
+/* ---------------------------------------------------------------
+   4. LOOKUP TOPIC + DOCTOR
+   --------------------------------------------------------------- */
+IF @pageOk == true THEN
+  SET @tRows = LookupRows("Webinar_Topic_Data", "Id", @topicId)
+  SET @dRows = LookupRows("Webinar_Doctors_List", "Id", @expertId)
+
+  IF RowCount(@tRows) == 0 THEN
+    SET @pageOk    = false
+    SET @pageError = "Invalid topic mapping"
+  ELSEIF RowCount(@dRows) == 0 THEN
+    SET @pageOk    = false
+    SET @pageError = "Invalid doctor mapping"
+  ELSE
+    SET @tRow = Row(@tRows, 1)
+    SET @dRow = Row(@dRows, 1)
+  ENDIF
+ENDIF
+]%%
+
+<!-- =====================================================================
+     HTML USAGE EXAMPLE
+     ===================================================================== -->
+%%[ IF @pageOk != true THEN ]%%
+
+  <h2>Sorry, this webinar page isn't available.</h2>
+  <!-- @pageError is for debugging; avoid showing it to visitors -->
+
+%%[ ELSE ]%%
+
+
 
 
 <!DOCTYPE html>
@@ -15431,7 +15517,7 @@ header{
                   </br>
                   on
                 </span>
-               Cancer Care
+               %%=v(Field(@tRow, "var1", 0))=%% Care 
               </h1>
               <p>
                 Learn about breast cancer, lung cancer, prostate cancer, leukemia, lymphoma, tumors, and natural Ayurvedic protocols to boost cellular health and immunity—guided by Acharya Manish Ji and his team of specialists. 
@@ -28615,7 +28701,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 <script>
 
-
 const initialCountryLookup = async () => {
   const res = await fetch("https://ipapi.co/json");
   const data = await res.json();
@@ -28637,3 +28722,8 @@ const iti = intlTelInput(input, {
 </body>
 
 </html>
+
+
+  
+
+%%[ ENDIF ]%%
