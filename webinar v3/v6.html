@@ -15520,7 +15520,7 @@ header{
                %%=v(Field(@tRow, "var1", 0))=%% Care 
               </h1>
               <p>
-                Learn about breast cancer, lung cancer, prostate cancer, leukemia, lymphoma, tumors, and natural Ayurvedic protocols to boost cellular health and immunity—guided by Acharya Manish Ji and his team of specialists. 
+                Learn about %%=v(Field(@tRow, "var2", 0))=%%, %%=v(Field(@tRow, "var3", 0))=%%, %%=v(Field(@tRow, "var4", 0))=%%, and natural Ayurvedic protocols to boost cellular health and immunity guided by Acharya Manish Ji and his team of specialists. 
               </p>
               <div class="call-content">
                 <a href="#" class="header-btn" data-bs-toggle="modal" data-bs-target="#register_webinar">
@@ -15817,7 +15817,8 @@ header{
             <div class="register-content">
               <h2 class="main-sec-heading">What Will You Learn?</h2>
               <p>
-               Join this exclusive live session and understand the Ayurvedic perspective on cancer care, tumor management, and cellular healing—directly from experts. 
+               Join this exclusive live session and understand the Ayurvedic
+            perspective on %%=v(Field(@tRow,"var1"))=%% health directly from experts
               </p>
               <div class="feature-box">
                 <div class="icon">
@@ -15825,7 +15826,7 @@ header{
                 </div>
                 <div class="text">
                   <h4>
-                      Understand the root causes of cell degeneration, immune deficiencies, tumor growth, tissue damage, and other cancer-related concerns. 
+                      Understand the root causes of %%=v(Field(@tRow,"var2", 0))=%%, %%=v(Field(@tRow,"var3", 0))=%%, %%=v(Field(@tRow,"var4" ,0))=%%, and other %%=v(Field(@tRow,"var1", 0))=%% problems
                   </h4>
                 </div>
               </div>
@@ -15835,7 +15836,7 @@ header{
                 </div>
                 <div class="text">
                   <h4>
-                     Learn how the healing process can be naturally supported through the right lifestyle, a specialized pH-balanced diet, and Ayurvedic guidance. 
+                     Learn how %%=v(Field(@tRow,"var1", 0))=%% conditions can be reversed naturally through the right lifestyle, pH-balanced diet, and Ayurvedic guidance
                   </h4>
                 </div>
               </div>
@@ -15845,7 +15846,7 @@ header{
                 </div>
                 <div class="text">
                   <h4>
-                    Discover the daily habits that may be silently affecting your cellular health, immunity, and overall vitality. 
+                    Discover the daily habits that may be silently damaging your %%=v(Field(@tRow,"var1", 0))=%% health 
                   </h4>
                 </div>
               </div>
@@ -15855,9 +15856,7 @@ header{
                 </div>
                 <div class="text">
                   <h4>
-                    Live Q&A session with
-                    <span>Acharya Manish Ji</span>
-                    and his team of Ayurvedic experts
+                    Live Q&A session with <span>Acharya Manish Ji</span> and his team of Ayurvedic experts
                   </h4>
                 </div>
               </div>
@@ -16500,7 +16499,8 @@ header{
     </div>
   </div>
     <script>
-    const targetDate = new Date("September 24, 2026 23:59:59").getTime();
+    // const targetDate = new Date("September 24, 2026 23:59:59").getTime();
+    const targetDate = new Date("%%=v(Field(@wRow,'Start_Datetime__c'))=%%").getTime();
 
 function updateCountdown(){
 
