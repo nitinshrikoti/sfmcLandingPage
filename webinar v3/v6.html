@@ -20,7 +20,7 @@ SET @pageError = ""
 SET @webinarId = Trim(RequestParameter("id"))
 
 IF EMPTY(@webinarId) THEN
-  SET @pageOk    = false
+  SET @pageOk    = false```
   SET @pageError = "Missing webinar id"
 ENDIF
 
@@ -71,6 +71,14 @@ IF @pageOk == true THEN
     SET @dRow = Row(@dRows, 1)
   ENDIF
 ENDIF
+
+/* ---------------------------------------------------------------
+   5. UPCOMING WEBINARS FOR THE SLIDER
+   --------------------------------------------------------------- */
+VAR @upRows, @upCount, @i, @upRow, @upTopic, @upExpert
+
+SET @upRows  = LookupOrderedRows("Webinar_Landing_Pages", 0, "Start_Datetime__c ASC", "Status__c", "Active")
+SET @upCount = RowCount(@upRows)
 ]%%
 
 <!-- =====================================================================
@@ -15632,160 +15640,59 @@ header{
 
         <div class="row">
           <div class="swiper upcomingWebinarSlider">
-            <div class="swiper-wrapper">
+<div class="swiper-wrapper">
 
+%%[ IF @upCount > 0 THEN
+      FOR @i = 1 TO @upCount DO
+        SET @upRow      = Row(@upRows, @i)
+        SET @upTopic    = Field(@upRow, "Webinar_Topic__c", 0)
+        SET @upExpert   = Field(@upRow, "Expert_Name__c", 0)
+        SET @upStartDT  = Field(@upRow, "Start_Datetime__c", 0)
 
-              <div class="swiper-slide">
-                <div class="appointment-card">
-                  <div class="doctor-info">
-                    <div class="upcoming-doctorImg">
-                      <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/28a12aaa-9a0e-4783-82e9-153f43384503.png" alt="">
-                    </div>
-                    <div class="doctor-content">
-                      <h4>Kidney Disorder</h4>
-                      <span>Dr. Aarti Neema</span>
-                    </div>
-                  </div>
+        /* Doctor image, looked up by Id in Webinar_Doctors_List */
+        SET @upDocImg   = Lookup("Webinar_Doctors_List", "ImageUrl", "Id", @upExpert)
+        IF EMPTY(@upDocImg) THEN
+          SET @upDocImg = "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/28a12aaa-9a0e-4783-82e9-153f43384503.png"
+        ENDIF
 
-                  <div class="schedule">
-                    <div class="item">
-                      <small>Date</small>
-                      <p>16 June 2026</p>
-                    </div>
+        /* Split start datetime into display date + time */
+        SET @upDateDisp = FormatDate(@upStartDT, "dd MMM yyyy")
+        SET @upTimeDisp = FormatDate(@upStartDT, "hh:mm tt")
+]%%
 
-                    <div class="line"></div>
+  <div class="swiper-slide">
+    <div class="appointment-card">
+      <div class="doctor-info">
+        <div class="upcoming-doctorImg">
+          <img src="%%=v(@upDocImg)=%%" alt="">
+        </div>
+        <div class="doctor-content">
+          <h4>%%=v(@upTopic)=%%</h4>
+          <span>%%=v(@upExpert)=%%</span>
+        </div>
+      </div>
 
-                    <div class="item">
-                      <small>Time</small>
-                      <p>10:00 AM</p>
-                    </div>
-                  </div>
+      <div class="schedule">
+        <div class="item">
+          <small>Date</small>
+          <p>%%=v(@upDateDisp)=%%</p>
+        </div>
+        <div class="line"></div>
+        <div class="item">
+          <small>Time</small>
+          <p>%%=v(@upTimeDisp)=%%</p>
+        </div>
+      </div>
 
-                  <a href="#" class="book-btn">Book a Spot</a>
-                </div>
-              </div>
+      <a href="#" class="book-btn">Book a Spot</a>
+    </div>
+  </div>
 
-              <div class="swiper-slide">
-                <div class="appointment-card">
-                  <div class="doctor-info">
-                    <div class="upcoming-doctorImg">
-                      <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/28a12aaa-9a0e-4783-82e9-153f43384503.png" alt="">
-                    </div>
-                    <div class="doctor-content">
-                      <h4>Liver Disorder</h4>
-                      <span>Dr. Aarti Neema</span>
-                    </div>
-                  </div>
+%%[   NEXT @i
+    ENDIF
+]%%
 
-                  <div class="schedule">
-                    <div class="item">
-                      <small>Date</small>
-                      <p>16 June 2026</p>
-                    </div>
-
-                    <div class="line"></div>
-
-                    <div class="item">
-                      <small>Time</small>
-                      <p>10:00 AM</p>
-                    </div>
-                  </div>
-
-                  <a href="#" class="book-btn">Book a Spot</a>
-                </div>
-              </div>
-
-
-              <div class="swiper-slide">
-                <div class="appointment-card">
-                  <div class="doctor-info">
-                    <div class="upcoming-doctorImg">
-                      <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/28a12aaa-9a0e-4783-82e9-153f43384503.png" alt="">
-                    </div>
-                    <div class="doctor-content">
-                      <h4>Lungs Disorder</h4>
-                      <span>Dr. Aarti Neema</span>
-                    </div>
-                  </div>
-
-                  <div class="schedule">
-                    <div class="item">
-                      <small>Date</small>
-                      <p>16 June 2026</p>
-                    </div>
-
-                    <div class="line"></div>
-
-                    <div class="item">
-                      <small>Time</small>
-                      <p>10:00 AM</p>
-                    </div>
-                  </div>
-
-                  <a href="#" class="book-btn">Book a Spot</a>
-                </div>
-              </div>
-
-              <div class="swiper-slide">
-                <div class="appointment-card">
-                  <div class="doctor-info">
-                    <div class="upcoming-doctorImg">
-                      <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/28a12aaa-9a0e-4783-82e9-153f43384503.png" alt="">
-                    </div>
-                    <div class="doctor-content">
-                      <h4>Cancer Disorder</h4>
-                      <span>Dr. Aarti Neema</span>
-                    </div>
-                  </div>
-
-                  <div class="schedule">
-                    <div class="item">
-                      <small>Date</small>
-                      <p>16 June 2026</p>
-                    </div>
-
-                    <div class="line"></div>
-
-                    <div class="item">
-                      <small>Time</small>
-                      <p>10:00 AM</p>
-                    </div>
-                  </div>
-
-                  <a href="#" class="book-btn">Book a Spot</a>
-                </div>
-              </div>
-              <div class="swiper-slide">
-                <div class="appointment-card">
-                  <div class="doctor-info">
-                    <div class="upcoming-doctorImg">
-                      <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/28a12aaa-9a0e-4783-82e9-153f43384503.png" alt="">
-                    </div>
-                    <div class="doctor-content">
-                      <h4>Cancer Disorder</h4>
-                      <span>Dr. Aarti Neema</span>
-                    </div>
-                  </div>
-
-                  <div class="schedule">
-                    <div class="item">
-                      <small>Date</small>
-                      <p>16 June 2026</p>
-                    </div>
-
-                    <div class="line"></div>
-
-                    <div class="item">
-                      <small>Time</small>
-                      <p>10:00 AM</p>
-                    </div>
-                  </div>
-
-                  <a href="#" class="book-btn">Book a Spot</a>
-                </div>
-              </div>
-
-            </div>
+</div>
 
             <div class="swiper-pagination upcoming-pagination"></div>
             <div class="attend-arrow-wrap">
@@ -16013,12 +15920,12 @@ header{
                 <div class="swiper-slide">
                   <div class="testimonial-card">
                     <p class="testimonial-text">
-                        I had zero strength and constant nausea after my heavy cancer treatments. The simple diet changes and therapies from Hiims helped me regain my appetite and brought my energy back completely. Thank you, Hiims.
+                        %%=v(Field(@tRow,"Testimonial1"))=%%
                     </p>
 
                     <div class="testimonial-user">
 
-                      <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/fd8d5dc8-b0d3-4157-906f-41702f232f19.png" alt="">
+                      <img src="%%=v(Field(@tRow,'Img1'))=%%" alt="">
 
                       <div class="user-info">
 
@@ -16026,7 +15933,7 @@ header{
                           ★★★★★
                         </div>
 
-                        <h4>Satish Khanna</h4>
+                        <h4>%%=v(Field(@tRow,"TestimonialName1"))=%%</h4>
 
                         <span>Jaipur, India</span>
 
@@ -16039,12 +15946,12 @@ header{
                 <div class="swiper-slide">
                   <div class="testimonial-card">
                     <p class="testimonial-text">
-                     We were terrified when my cancer reports came back. Consulting the hiims doctors gave us immense hope, their natural remedies helped reduce my painful tumor swelling and made me feel stable again. Thanks to hiims.
+                     %%=v(Field(@tRow,"Testimonial2"))=%%
                     </p>
 
                     <div class="testimonial-user">
 
-                      <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/023220ed-f518-4a10-b475-e73383db6c67.png" alt="">
+                      <img src="%%=v(Field(@tRow,'Img2'))=%%" alt="">
 
                       <div class="user-info">
 
@@ -16052,7 +15959,7 @@ header{
                           ★★★★★
                         </div>
 
-                        <h4>Baldev Raj</h4>
+                        <h4>%%=v(Field(@tRow,"TestimonialName2"))=%%</h4>
 
                         <span>Goa, India</span>
 
@@ -16062,41 +15969,17 @@ header{
 
                   </div>
                 </div>
+
+
                 <div class="swiper-slide">
                   <div class="testimonial-card">
                     <p class="testimonial-text">
-                     My immunity was very low during my cancer fight, and I caught infections constantly. After starting the Ayurvedic care plan from HIIMS, my body feels much stronger, and my blood reports have vastly improved.
+                          %%=v(Field(@tRow,"Testimonial3"))=%%
                     </p>
 
                     <div class="testimonial-user">
 
-                      <img src="webinar-assets/images/testi-86.png" alt="">
-
-                      <div class="user-info">
-
-                        <div class="stars">
-                          ★★★★★
-                        </div>
-
-                        <h4>Vinod Joshi</h4>
-
-                        <span>Mumbai, India</span>
-
-                      </div>
-
-                    </div>
-
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="testimonial-card">
-                    <p class="testimonial-text">
-                      Side effects of my cancer treatments were making me miserable every day. The guidance from Acharya Manish Ji's team truly saved me, the intense pain and body aches are finally under control.
-                    </p>
-
-                    <div class="testimonial-user">
-
-                      <img src="webinar-assets/images/testi-87.png" alt="">
+                      <img src="%%=v(Field(@tRow,'Img3'))=%%" alt="">
 
                       <div class="user-info">
 
@@ -16104,59 +15987,7 @@ header{
                           ★★★★
                         </div>
 
-                        <h4>Harpreet Singh</h4>
-
-                        <span>Chandigarh, India</span>
-
-                      </div>
-
-                    </div>
-
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="testimonial-card">
-                    <p class="testimonial-text">
-                        My mother was too weak to even stand up because of her advanced cancer. We followed the personalized routine from hiims strictly, and now she walks on her own and eats comfortably.
-                    </p>
-
-                    <div class="testimonial-user">
-
-                      <img src="webinar-assets/images/testi-88.png" alt="">
-
-                      <div class="user-info">
-
-                        <div class="stars">
-                          ★★★★★
-                        </div>
-
-                        <h4>Kamlesh</h4>
-
-                        <span>Raipur, India</span>
-
-                      </div>
-
-                    </div>
-
-                  </div>
-                </div>
-                <div class="swiper-slide">
-                  <div class="testimonial-card">
-                    <p class="testimonial-text">
-                          I felt completely lost and broken after my cancer diagnosis. The doctors at HIIMS didn't just treat my body, they gave me the mental strength and natural tools to fight this disease. Thanks to the entire HiiMS team.
-                    </p>
-
-                    <div class="testimonial-user">
-
-                      <img src="webinar-assets/images/testi-89.png" alt="">
-
-                      <div class="user-info">
-
-                        <div class="stars">
-                          ★★★★
-                        </div>
-
-                        <h4>Rajesh Mehta</h4>
+                        <h4>%%=v(Field(@tRow,"TestimonialName3"))=%%</h4>
 
                         <span>Indore, India</span>
 
@@ -16180,6 +16011,7 @@ header{
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
