@@ -1,175 +1,135 @@
 %%[
-/* ===============================
-   VARIABLES
-================================ */
-VAR @id
-VAR @webinarRow
-VAR @topicRow
-VAR @doctorRow
-VAR @topicId
-VAR @doctorId
+/* =====================================================================
+   WEBINAR LANDING PAGE: DATA LOAD ONLY
+   (form fields, validation and UpsertDE removed)
+   ===================================================================== */
+
+VAR @webinarId, @wRows, @wRow
+VAR @topicId, @tRows, @tRow
+VAR @expertId, @dRows, @dRow
 VAR @startDT
+VAR @pageOk, @pageError
 
-VAR @rawPhone, @digitsOnly, @countryCode, @locale
-VAR @phone, @webinarId, @recordId, @BookingDate
-VAR @char, @i
+SET @pageOk    = true
+SET @pageError = ""
 
-VAR @t1Name, @t2Name, @t3Name
-VAR @t1Text, @t2Text, @t3Text
-VAR @sectionTitle
+/* ---------------------------------------------------------------
+   1. READ URL PARAM
+   Preview by opening the CloudPage with ?id=real id
+   --------------------------------------------------------------- */
+SET @webinarId = Trim(RequestParameter("id"))
+IF EMPTY(@webinarId) THEN
+  SET @webinarId = Trim(RequestParameter("webinarId"))
+ENDIF
 
-/* ===============================
-   GET URL PARAMETER
-================================ */
-SET @id = Trim(RequestParameter("id"))
+IF EMPTY(@webinarId) THEN
+  SET @pageOk    = false
+  SET @pageError = "Missing webinar id"
+ENDIF
 
-IF Empty(@id) THEN
-  IF _messagecontext == "PREVIEW" THEN
-    SET @id = "PUT-A-VALID-ID-HERE"
+/* ---------------------------------------------------------------
+   2. LOOKUP WEBINAR (PRIMARY DE)
+   Field(row, col, 0) returns "" instead of throwing if a column
+   is missing or renamed.
+   --------------------------------------------------------------- */
+IF @pageOk == true THEN
+  SET @wRows = LookupRows("Webinar_Landing_Pages", "Id", @webinarId)
+
+  IF RowCount(@wRows) == 0 THEN
+    SET @pageOk    = false
+    SET @pageError = "Invalid webinar id"
   ELSE
-    RaiseError("Missing Webinar Id", true)
+    SET @wRow     = Row(@wRows, 1)
+    SET @topicId  = Field(@wRow, "Webinar_Topic__c", 0)
+    SET @expertId = Field(@wRow, "Expert_Name__c", 0)
+    SET @startDT  = Field(@wRow, "Start_Datetime__c", 0)
   ENDIF
 ENDIF
 
-/* ===============================
-   WEBINAR LOOKUP
-================================ */
-SET @webinarRow = Row(
-  LookupOrderedRows(
-    "Webinar_Landing_Pages",
-    1,
-    "Id ASC",
-    "Id",
-    @id
-  ),
-1)
-
-IF Empty(@webinarRow) THEN
-  RaiseError("Invalid Webinar Id", true)
+/* ---------------------------------------------------------------
+   3. VALIDATE REQUIRED CONFIG ON THE WEBINAR ROW
+   --------------------------------------------------------------- */
+IF @pageOk == true THEN
+  IF EMPTY(@topicId) OR EMPTY(@expertId) OR EMPTY(@startDT) THEN
+    SET @pageOk    = false
+    SET @pageError = "Webinar configuration incomplete"
+  ENDIF
 ENDIF
 
-/* ===============================
-   TOPIC LOOKUP
-================================ */
-SET @topicId = Trim(Field(@webinarRow,"Webinar_Topic__c"))
+/* ---------------------------------------------------------------
+   4. LOOKUP TOPIC + DOCTOR
+   --------------------------------------------------------------- */
+IF @pageOk == true THEN
+  SET @tRows = LookupRows("Webinar_Topic_Data", "Id", @topicId)
+  SET @dRows = LookupRows("Webinar_Doctors_List", "Id", @expertId)
 
-IF Empty(@topicId) THEN
-  RaiseError("Webinar topic missing", true)
+  IF RowCount(@tRows) == 0 THEN
+    SET @pageOk    = false
+    SET @pageError = "Invalid topic mapping"
+  ELSEIF RowCount(@dRows) == 0 THEN
+    SET @pageOk    = false
+    SET @pageError = "Invalid doctor mapping"
+  ELSE
+    SET @tRow = Row(@tRows, 1)
+    SET @dRow = Row(@dRows, 1)
+  ENDIF
 ENDIF
 
-SET @topicRow = Row(
-  LookupOrderedRows(
-    "Webinar_Topic_Data",
-    1,
-    "Id ASC",
-    "Id",
-    @topicId
-  ),
-1)
+/* ---------------------------------------------------------------
+   5. UPCOMING WEBINARS FOR THE SLIDER
+   --------------------------------------------------------------- */
+VAR @upRows, @upCount, @i, @upRow, @upTopic, @upExpert
 
-SET @t1Name  = Trim(Field(@topicRow, "TestimonialName1"))
-SET @t2Name  = Trim(Field(@topicRow, "TestimonialName2"))
-SET @t3Name  = Trim(Field(@topicRow, "TestimonialName3"))
-SET @t1Text  = Trim(Field(@topicRow, "Testimonial1"))
-SET @t2Text  = Trim(Field(@topicRow, "Testimonial2"))
-SET @t3Text  = Trim(Field(@topicRow, "Testimonial3"))
-
-IF Empty(@topicRow) THEN
-  RaiseError("Invalid Topic Mapping", true)
-ENDIF
-
-/* ===============================
-   DOCTOR LOOKUP
-================================ */
-SET @doctorId = Field(@webinarRow,"Expert_Name__c")
-
-IF Empty(@doctorId) THEN
-  RaiseError("Doctor Id missing", true)
-ENDIF
-
-SET @doctorRow = Row(
-  LookupOrderedRows(
-    "Webinar_Doctors_List",
-    1,
-    "Id ASC",
-    "Id",
-    @doctorId
-  ),
-1)
-
-IF Empty(@doctorRow) THEN
-  RaiseError("Invalid Doctor Mapping", true)
-ENDIF
-
-/* ===============================
-   START DATETIME
-================================ */
-SET @startDT = Field(@webinarRow,"Start_Datetime__c")
-
-IF Empty(@startDT) THEN
-  RaiseError("Start Datetime missing", true)
-ENDIF
-
-/* ===============================
-   SUBMISSION LOGIC
-================================ */
-IF RequestParameter("submitted") == "true" THEN
-
-  /* Read inputs from the new form */
-  SET @rawPhone    = RequestParameter("phone")
-  SET @countryCode = RequestParameter("countryCode")
-  SET @locale      = RequestParameter("initialCountry")
-
-  /* Sanitize phone (digits only) */
-  SET @digitsOnly = ""
-  FOR @i = 1 TO Length(@rawPhone) DO
-    SET @char = Substring(@rawPhone, @i, 1)
-    IF IndexOf("0123456789", @char) > 0 THEN
-      SET @digitsOnly = Concat(@digitsOnly, @char)
-    ENDIF
-  NEXT @i
-
-  SET @phone = Concat(@countryCode, @digitsOnly)
-
-  /* Webinar id from master row */
-  SET @webinarId = Field(@webinarRow, "Id")
-
-  /* Deterministic Primary Key */
-  SET @recordId = Concat(@phone, "_", @webinarId)
-
-  /* Booking timestamp */
-  SET @BookingDate = Format(Now(), "yyyy-MM-dd HH:mm:ss")
-
-  /* Atomic Upsert — old columns kept, new ones (City, Age) added */
-  UpsertDE(
-    "Testt_Free_Webinar_Registration_Raw",
-    1,
-    "Id", @recordId,
-
-    "Name", RequestParameter("name"),
-    "Locale", @locale,
-    "Phone", @phone,
-    "Email", RequestParameter("Email"),
-    "Country", RequestParameter("Country"),
-    "City", RequestParameter("city"),
-    "Age", RequestParameter("age"),
-
-    "Booking_Date", @BookingDate,
-
-    "Webinar_Id", @webinarId,
-    "Webinar_Topic", Field(@webinarRow,"Webinar_Topic__c"),
-    "Webinar_DateTime", @startDT
-  )
-
-ENDIF
+SET @upRows  = LookupOrderedRows("Webinar_Landing_Pages", 0, "Start_Datetime__c ASC", "Status__c", "Active")
+SET @upCount = RowCount(@upRows)
 ]%%
 
-%%[ IF RequestParameter("submitted") == "true" THEN ]%%
-<script>
-  var isSubmitted = true;
-</script>
-%%[ ELSE ]%%
-<script>
-  var isSubmitted = false;
-</script>
-%%[ ENDIF ]%%
+%%[
+VAR @submitted, @firstName, @phone, @email, @city, @countryCode, @initialCountry
+VAR @regId, @saveOk, @saveError, @dupRows
+
+SET @saveOk    = false
+SET @saveError = ""
+SET @submitted = RequestParameter("formSubmitted")
+
+IF @pageOk == true AND @submitted == "1" THEN
+
+  SET @firstName   = Trim(RequestParameter("firstName"))
+  SET @phone       = Trim(RequestParameter("phone"))
+  SET @email       = Trim(RequestParameter("email"))
+  SET @city        = Trim(RequestParameter("city"))
+  SET @countryCode = Trim(RequestParameter("countryCode"))
+  SET @initialCountry = Trim(RequestParameter("initialCountry"))
+  SET @fullPhone      = Trim(RequestParameter("fullPhone"))
+  
+
+  /* server-side validation (browser 'required' can be bypassed) */
+  IF EMPTY(@firstName) OR EMPTY(@phone) OR EMPTY(@city) THEN
+    SET @saveError = "Please fill all required fields."
+  ELSEIF NOT EMPTY(@email) AND IsEmailAddress(@email) == false THEN
+    SET @saveError = "Please enter a valid email."
+  ELSE
+
+    IF RowCount(@dupRows) > 0 THEN
+      SET @saveError = "You are already registered for this webinar."
+    ELSE
+      SET @regId = CreateSalesforceObject(
+        "Free_Webinar_Registration__c", 6,
+        "Name__c",             @firstName,
+        "Phone__c",            @fullPhone,
+        "Email__c",            @email,
+        "Country__c",          @city,
+        "Webinar_Topic__c",    @topicId,
+        "Webinar_Id__c",       @webinarId,
+      )
+
+      IF NOT EMPTY(@regId) AND @regId != "0" THEN
+        SET @saveOk = true
+      ELSE
+        SET @saveError = "Something went wrong. Please try again."
+      ENDIF
+    ENDIF
+
+  ENDIF
+ENDIF
+]%%
