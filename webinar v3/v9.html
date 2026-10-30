@@ -14681,6 +14681,11 @@
     .swiper-vertical > .swiper-wrapper {
       flex-direction: column;
     }
+
+    .upcomming-webinar-wrapper {
+      justify-content: center;
+    }
+
     .swiper-wrapper {
       box-sizing: initial;
       display: flex;
@@ -15596,6 +15601,7 @@
     <!-- webinar counter end here  -->
 
      <!-- doctor sec start here  -->
+    %%[ IF @shown > 0 THEN ]%%
     <section class="doctor-card-sec inner-pages-upcoming sec-p">
       <div class="container">
         <div class="row">
@@ -15614,61 +15620,62 @@
 
         <div class="row">
           <div class="swiper upcomingWebinarSlider">
-<div class="swiper-wrapper">
+            <div class="swiper-wrapper upcomming-webinar-wrapper">
 
-%%[ IF @upCount > 0 THEN
-      FOR @i = 1 TO @upCount DO
-        SET @upRow      = Row(@upRows, @i)
-        SET @upTopic    = Field(@upRow, "Webinar_Topic__c", 0)
-        SET @upExpert   = Field(@upRow, "Expert_Name__c", 0)
-        SET @upStartDT  = Field(@upRow, "Start_Datetime__c", 0)
-        SET @upId       = Field(@upRow, "Id", 0)
+              %%[ IF @upCount > 0 THEN
+                    FOR @i = 1 TO @upCount DO
+                      SET @upRow = Row(@upRows, @i)
+                      SET @upId  = Field(@upRow, "Id", 0)
 
-        /* Doctor image, looked up by Id in Webinar_Doctors_List */
-        SET @upDocImg   = Lookup("Webinar_Doctors_List", "ImageUrl", "Id", @upExpert)
-        IF EMPTY(@upDocImg) THEN
-          SET @upDocImg = "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/28a12aaa-9a0e-4783-82e9-153f43384503.png"
-        ENDIF
+                      IF @upId != @webinarId AND Trim(Field(@upRow, "TopicName", 0)) == @myTopic THEN
+                        SET @upStartDT  = Field(@upRow, "Start_Datetime__c", 0)
+                        SET @upTopic    = Field(@upRow, "Webinar_Topic__c", 0)
+                        SET @upExpert   = Field(@upRow, "Expert_Name__c", 0)
+                        SET @upDocImg   = Lookup("Webinar_Doctors_List", "ImageUrl", "Id", @upExpert)
+                        IF EMPTY(@upDocImg) THEN
+                          SET @upDocImg = "https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/28a12aaa-9a0e-4783-82e9-153f43384503.png"
+                        ENDIF
+                        SET @upDateDisp   = FormatDate(@upStartDT, "dd MMM yyyy")
+                        SET @upTimeDisphh = FormatDate(@upStartDT, "hh")
+                        SET @upTimeDisptt = FormatDate(@upStartDT, "tt")
+              ]%%
 
-        /* Split start datetime into display date + time */
-        SET @upDateDisp = FormatDate(@upStartDT, "dd MMM yyyy")
-        SET @upTimeDisphh = FormatDate(@upStartDT, "hh")
-        SET @upTimeDisptt = FormatDate(@upStartDT, "tt")
-]%%
+                           
 
-  <div class="swiper-slide">
-    <div class="appointment-card">
-      <div class="doctor-info">
-        <div class="upcoming-doctorImg">
-          <img src="%%=v(@upDocImg)=%%" alt="">
-        </div>
-        <div class="doctor-content">
-          <h4>%%=v(@upTopic)=%%</h4>
-          <span>%%=v(@upExpert)=%%</span>
-        </div>
-      </div>
+              <div class="swiper-slide">
+                <div class="appointment-card">
+                  <div class="doctor-info">
+                    <div class="upcoming-doctorImg">
+                      <img src="%%=v(@upDocImg)=%%" alt="">
+                    </div>
+                    <div class="doctor-content">
+                      <h4>%%=v(@upTopic)=%%</h4>
+                      <span>%%=v(@upExpert)=%%</span>
+                    </div>
+                  </div>
 
-      <div class="schedule">
-        <div class="item">
-          <small>Date</small>
-          <p>%%=v(@upDateDisp)=%%</p>
-        </div>
-        <div class="line"></div>
-        <div class="item">
-          <small>Time</small>
-          <p>%%=v(@upTimeDisphh)=%%:00 %%=v(@upTimeDisptt)=%%</p>
-        </div>
-      </div>
+                  <div class="schedule">
+                    <div class="item">
+                      <small>Date</small>
+                      <p>%%=v(@upDateDisp)=%%</p>
+                    </div>
+                    <div class="line"></div>
+                    <div class="item">
+                      <small>Time</small>
+                      <p>%%=v(@upTimeDisphh)=%%:00 %%=v(@upTimeDisptt)=%%</p>
+                    </div>
+                  </div>
 
-      <a href="https://cloud.marketing.jeenasikho.com/webv4?id=%%=v(@upId)=%%" class="book-btn">Book a Spot</a>
-    </div>
-  </div>
+                  <a href="https://cloud.marketing.jeenasikho.com/webv4?id=%%=v(@upId)=%%" class="book-btn">Book a Spot</a>
+                </div>
+              </div>
 
-%%[   NEXT @i
-    ENDIF
-]%%
+                %%[     ENDIF
+                      NEXT @i
+                    ENDIF
+                ]%% 
 
-</div>
+            </div>
 
             <div class="swiper-pagination upcoming-pagination"></div>
             <div class="attend-arrow-wrap">
@@ -15690,6 +15697,7 @@
 
       </div>
     </section>
+    %%[ ENDIF ]%%
     <!-- doctor sec end here  -->
     <!-- register sec start here  -->
     <section class="register-section sec-p">

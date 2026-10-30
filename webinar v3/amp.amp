@@ -78,13 +78,33 @@ ENDIF
 /* ---------------------------------------------------------------
    5. UPCOMING WEBINARS FOR THE SLIDER
    --------------------------------------------------------------- */
-VAR @upRows, @upCount, @i, @upRow, @upTopic, @upExpert
+VAR @upRows, @upCount, @i, @upRow, @upTopic, @upExpert, @shown
 
-SET @upRows  = LookupOrderedRows("Webinar_Landing_Pages", 0, "Start_Datetime__c ASC", "Status__c", "Active")
+VAR @myTopic
+SET @myTopic = Trim(Field(@wRow, "TopicName", 0))
+IF EMPTY(@myTopic) THEN SET @myTopic = Trim(@topicId) ENDIF
+
+SET @upRows  = LookupOrderedRows("Webinar_Landing_Pages", 0, "Start_Datetime__c ASC",
+                                 "Status__c", "Active",
+                                 "ShowInSlider", "true")
 SET @upCount = RowCount(@upRows)
+
+SET @shown = 0
+IF @upCount > 0 THEN
+  FOR @i = 1 TO @upCount DO
+    SET @upRow = Row(@upRows, @i)
+    IF Field(@upRow, "Id", 0) != @webinarId AND Trim(Field(@upRow, "TopicName", 0)) == @myTopic THEN
+      SET @shown = Add(@shown, 1)
+    ENDIF
+  NEXT @i
+ENDIF
+
 ]%%
 
 %%[
+
+/* Seprate amp for saveing the lead record in sf object */
+
 VAR @submitted, @firstName, @phone, @email, @city, @countryCode, @initialCountry
 VAR @regId, @saveOk, @saveError, @dupRows
 
@@ -120,7 +140,7 @@ IF @pageOk == true AND @submitted == "1" THEN
         "Email__c",            @email,
         "Country__c",          @city,
         "Webinar_Topic__c",    @topicId,
-        "Webinar_Id__c",       @webinarId,
+        "Webinar_Id__c",       @webinarId
       )
 
       IF NOT EMPTY(@regId) AND @regId != "0" THEN
