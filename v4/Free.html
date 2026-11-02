@@ -1,30 +1,166 @@
 
 
-%%=contentblockbyid("124922")=%%
+%%[
+/* =====================================================================
+   WEBINAR LANDING PAGE: DATA LOAD ONLY
+   (form fields, validation and UpsertDE removed)
+   ===================================================================== */
 
-<!-- =====================================================================
-     HTML USAGE EXAMPLE
-     ===================================================================== -->
+VAR @webinarId, @wRows, @wRow
+VAR @topicId, @tRows, @tRow
+VAR @expertId, @dRows, @dRow
+VAR @startDT
+VAR @pageOk, @pageError
+
+SET @pageOk    = true
+SET @pageError = ""
+
+/* ---------------------------------------------------------------
+   1. READ URL PARAM
+   Preview by opening the CloudPage with ?id=real id
+   --------------------------------------------------------------- */
+SET @webinarId = Trim(RequestParameter("id"))
+IF EMPTY(@webinarId) THEN
+  SET @webinarId = Trim(RequestParameter("webinarId"))
+ENDIF
+
+IF EMPTY(@webinarId) THEN
+  SET @pageOk    = false
+  SET @pageError = "Missing webinar id"
+ENDIF
+
+/* ---------------------------------------------------------------
+   2. LOOKUP WEBINAR (PRIMARY DE)
+   Field(row, col, 0) returns "" instead of throwing if a column
+   is missing or renamed.
+   --------------------------------------------------------------- */
+IF @pageOk == true THEN
+  SET @wRows = LookupRows("Webinar_Landing_Pages", "Id", @webinarId)
+
+  IF RowCount(@wRows) == 0 THEN
+    SET @pageOk    = false
+    SET @pageError = "Invalid webinar id"
+  ELSE
+    SET @wRow     = Row(@wRows, 1)
+    SET @topicId  = Field(@wRow, "Webinar_Topic__c", 0)
+    SET @expertId = Field(@wRow, "Expert_Name__c", 0)
+    SET @startDT  = Field(@wRow, "Start_Datetime__c", 0)
+  ENDIF
+ENDIF
+
+/* ---------------------------------------------------------------
+   3. VALIDATE REQUIRED CONFIG ON THE WEBINAR ROW
+   --------------------------------------------------------------- */
+IF @pageOk == true THEN
+  IF EMPTY(@topicId) OR EMPTY(@expertId) OR EMPTY(@startDT) THEN
+    SET @pageOk    = false
+    SET @pageError = "Webinar configuration incomplete"
+  ENDIF
+ENDIF
+
+/* ---------------------------------------------------------------
+   4. LOOKUP TOPIC + DOCTOR
+   --------------------------------------------------------------- */
+IF @pageOk == true THEN
+  SET @tRows = LookupRows("Webinar_Topic_Data", "Id", @topicId)
+  SET @dRows = LookupRows("Webinar_Doctors_List", "Id", @expertId)
+
+  IF RowCount(@tRows) == 0 THEN
+    SET @pageOk    = false
+    SET @pageError = "Invalid topic mapping"
+  ELSEIF RowCount(@dRows) == 0 THEN
+    SET @pageOk    = false
+    SET @pageError = "Invalid doctor mapping"
+  ELSE
+    SET @tRow = Row(@tRows, 1)
+    SET @dRow = Row(@dRows, 1)
+  ENDIF
+ENDIF
+
+/* ---------------------------------------------------------------
+   5. UPCOMING WEBINARS FOR THE SLIDER
+   --------------------------------------------------------------- */
+VAR @upRows, @upCount, @i, @upRow, @upTopic, @upExpert, @shown
+
+VAR @myTopic
+SET @myTopic = Trim(Field(@wRow, "TopicName", 0))
+IF EMPTY(@myTopic) THEN SET @myTopic = Trim(@topicId) ENDIF
+
+SET @upRows  = LookupOrderedRows("Webinar_Landing_Pages", 0, "Start_Datetime__c ASC",
+                                 "Status__c", "Active",
+                                 "ShowInSlider", "true")
+SET @upCount = RowCount(@upRows)
+
+SET @shown = 0
+IF @upCount > 0 THEN
+  FOR @i = 1 TO @upCount DO
+    SET @upRow = Row(@upRows, @i)
+    IF Field(@upRow, "Id", 0) != @webinarId AND Trim(Field(@upRow, "TopicName", 0)) == @myTopic THEN
+      SET @shown = Add(@shown, 1)
+    ENDIF
+  NEXT @i
+ENDIF
+
+]%%
+
+%%[
+
+/* Seprate amp for saveing the lead record in sf object */
+
+VAR @submitted, @firstName, @phone, @email, @city, @countryCode, @initialCountry
+VAR @regId, @saveOk, @saveError, @dupRows
+
+SET @saveOk    = false
+SET @saveError = ""
+SET @submitted = RequestParameter("formSubmitted")
+
+IF @pageOk == true AND @submitted == "1" THEN
+
+  SET @firstName   = Trim(RequestParameter("firstName"))
+  SET @phone       = Trim(RequestParameter("phone"))
+  SET @email       = Trim(RequestParameter("email"))
+  SET @city        = Trim(RequestParameter("city"))
+  SET @countryCode = Trim(RequestParameter("countryCode"))
+  SET @initialCountry = Trim(RequestParameter("initialCountry"))
+  SET @fullPhone      = Trim(RequestParameter("fullPhone"))
+  
+
+  /* server-side validation (browser 'required' can be bypassed) */
+  IF EMPTY(@firstName) OR EMPTY(@phone) OR EMPTY(@city) THEN
+    SET @saveError = "Please fill all required fields."
+  ELSEIF NOT EMPTY(@email) AND IsEmailAddress(@email) == false THEN
+    SET @saveError = "Please enter a valid email."
+  ELSE
+
+    IF RowCount(@dupRows) > 0 THEN
+      SET @saveError = "You are already registered for this webinar."
+    ELSE
+      SET @regId = CreateSalesforceObject(
+        "Free_Webinar_Registration__c", 6,
+        "Name__c",             @firstName,
+        "Phone__c",            @fullPhone,
+        "Email__c",            @email,
+        "Country__c",          @city,
+        "Webinar_Topic__c",    @topicId,
+        "Webinar_Id__c",       @webinarId
+      )
+
+      IF NOT EMPTY(@regId) AND @regId != "0" THEN
+        SET @saveOk = true
+      ELSE
+        SET @saveError = "Something went wrong. Please try again."
+      ENDIF
+    ENDIF
+
+  ENDIF
+ENDIF
+]%%
+
 %%[ IF @pageOk != true THEN ]%%
 
   <h2>Sorry, this webinar page isn't available.</h2>
-  <!-- @pageError is for debugging; avoid showing it to visitors -->
 
 %%[ ELSE ]%%
-
-%%[ IF @pageOk != true THEN ]%%
-  <h2>Sorry, this webinar page isn't available.</h2>
-
-%%[ ELSEIF @saveOk == true THEN ]%%
-  <h2>Thank you, %%=v(@firstName)=%%! You're registered.</h2>
-
-%%[ ELSE ]%%
-  %%[ IF NOT EMPTY(@saveError) THEN ]%%
-    <p class="error">%%=v(@saveError)=%%</p>
-  %%[ ENDIF ]%%
-
-  <!-- your <form> here, optionally prefilled: value="%%=v(@firstName)=%%" -->
-%%[ ENDIF ]%%
 
 
 
@@ -38,12 +174,8 @@
   <!-- Meta Description -->
   <meta name="description" content="">
   <meta name="robots" content="noindex, nofollow">
-  <!-- Bootstrap Local CSS -->
-  <!-- Custom CSS -->
-
-  <!-- swiper cdn  -->
   
-
+  <!-- Bootstrap Local CSS -->
   <style>
   :root,
   [data-bs-theme="light"] {
@@ -11875,6 +12007,7 @@
   }
   </style>
 
+  <!-- Custom CSS -->
   <style>
     * {
       box-sizing: border-box;
@@ -12503,7 +12636,6 @@
       font-size: 18px;
       color: #000000;
       margin: 0;
-      font-weight: 600;
     }
 
     .faq-icon {
@@ -12918,8 +13050,6 @@
       font-size: 16px;
       line-height: 1.45;
       color: #555555;
-      font-weight: 600;
-      margin-bottom: 28px;
     }
 
     .testimonial-user {
@@ -13760,6 +13890,11 @@
   </style>
 
   <style>
+    @media (min-width: 768px) {
+      .upcomming-webinar-wrapper {
+      justify-content: center;
+    }
+    }
     @media (max-width: 1399px) {
       .content-box {
         margin-bottom: 10px;
@@ -13779,6 +13914,7 @@
       .join-content-column {
         padding: 16px 16px 13px;
       }
+      
     }
     @media (max-width: 1299px) {
     }
@@ -14657,6 +14793,7 @@
     }
   </style>
 
+  <!-- swiper cdn  -->
   <style>
     :root {
       --swiper-theme-color: #007aff;
@@ -14680,10 +14817,6 @@
     }
     .swiper-vertical > .swiper-wrapper {
       flex-direction: column;
-    }
-
-    .upcomming-webinar-wrapper {
-      justify-content: center;
     }
 
     .swiper-wrapper {
@@ -15538,11 +15671,11 @@
               <div class="digits">
                 <div>
                   <div class="digit" id="d1">1</div>
-                  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f97757dc-a269-4c1a-a1fb-ca545dc9bae9.png" class="img-fluid" alt="vector">
+                  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f97757dc-a269-4c1a-a1fb-ca545dc9bae9.png" loading="lazy" decoding="async" class="img-fluid" alt="vector">
                 </div>
                 <div>
                   <div class="digit" id="d2">3</div>
-                  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f97757dc-a269-4c1a-a1fb-ca545dc9bae9.png" class="img-fluid" alt="vector">
+                  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f97757dc-a269-4c1a-a1fb-ca545dc9bae9.png" loading="lazy" decoding="async" class="img-fluid" alt="vector">
                 </div>
               </div>
               <h4>Days</h4>
@@ -15551,11 +15684,11 @@
               <div class="digits">
                 <div>
                   <div class="digit" id="h1">1</div>
-                  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f97757dc-a269-4c1a-a1fb-ca545dc9bae9.png" class="img-fluid" alt="vector">
+                  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f97757dc-a269-4c1a-a1fb-ca545dc9bae9.png" loading="lazy" decoding="async" class="img-fluid" alt="vector">
                 </div>
                 <div>
                   <div class="digit" id="h2">2</div>
-                  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f97757dc-a269-4c1a-a1fb-ca545dc9bae9.png" class="img-fluid" alt="vector">
+                  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f97757dc-a269-4c1a-a1fb-ca545dc9bae9.png" loading="lazy" decoding="async" class="img-fluid" alt="vector">
                 </div>
               </div>
               <h4>Hours</h4>
@@ -15564,11 +15697,11 @@
               <div class="digits">
                 <div>
                   <div class="digit" id="m1">3</div>
-                  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f97757dc-a269-4c1a-a1fb-ca545dc9bae9.png" class="img-fluid" alt="vector">
+                  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f97757dc-a269-4c1a-a1fb-ca545dc9bae9.png" loading="lazy" decoding="async" class="img-fluid" alt="vector">
                 </div>
                 <div>
                   <div class="digit" id="m2">6</div>
-                  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f97757dc-a269-4c1a-a1fb-ca545dc9bae9.png" class="img-fluid" alt="vector">
+                  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f97757dc-a269-4c1a-a1fb-ca545dc9bae9.png" loading="lazy" decoding="async" class="img-fluid" alt="vector">
                 </div>
               </div>
               <h4>Minutes</h4>
@@ -15577,11 +15710,11 @@
               <div class="digits">
                 <div>
                   <div class="digit" id="s1">3</div>
-                  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f97757dc-a269-4c1a-a1fb-ca545dc9bae9.png" class="img-fluid" alt="vector">
+                  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f97757dc-a269-4c1a-a1fb-ca545dc9bae9.png" loading="lazy" decoding="async" class="img-fluid" alt="vector">
                 </div>
                 <div>
                   <div class="digit" id="s2">6</div>
-                  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f97757dc-a269-4c1a-a1fb-ca545dc9bae9.png" class="img-fluid" alt="vector">
+                  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f97757dc-a269-4c1a-a1fb-ca545dc9bae9.png" loading="lazy" decoding="async" class="img-fluid" alt="vector">
                 </div>
               </div>
               <h4>Seconds</h4>
@@ -15646,7 +15779,7 @@
                 <div class="appointment-card">
                   <div class="doctor-info">
                     <div class="upcoming-doctorImg">
-                      <img src="%%=v(@upDocImg)=%%" alt="">
+                      <img src="%%=v(@upDocImg)=%%" loading="lazy" decoding="async"alt="">
                     </div>
                     <div class="doctor-content">
                       <h4>%%=v(@upTopic)=%%</h4>
@@ -15713,7 +15846,7 @@
               </p>
               <div class="feature-box">
                 <div class="icon">
-                  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/99eccec3-e029-4bda-8feb-aa848772bbf3.png">
+                  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/99eccec3-e029-4bda-8feb-aa848772bbf3.png" loading="lazy" decoding="async">
                 </div>
                 <div class="text">
                   <h4>
@@ -15723,7 +15856,7 @@
               </div>
               <div class="feature-box">
                 <div class="icon">
-                  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/0b51272d-53cc-4c09-898d-01e42a2759fe.png">
+                  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/0b51272d-53cc-4c09-898d-01e42a2759fe.png" loading="lazy" decoding="async">
                 </div>
                 <div class="text">
                   <h4>
@@ -15733,7 +15866,7 @@
               </div>
               <div class="feature-box">
                 <div class="icon">
-                  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/8cc16ce5-61f9-40b2-bbc2-ea1ec5665685.png">
+                  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/8cc16ce5-61f9-40b2-bbc2-ea1ec5665685.png" loading="lazy" decoding="async">
                 </div>
                 <div class="text">
                   <h4>
@@ -15743,7 +15876,7 @@
               </div>
               <div class="feature-box">
                 <div class="icon">
-                  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2fc0f02a-9287-4566-9152-b02770079a94.png">
+                  <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/2fc0f02a-9287-4566-9152-b02770079a94.png" loading="lazy" decoding="async">
                 </div>
                 <div class="text">
                   <h4>
@@ -15765,7 +15898,7 @@
           </div>
           <div class="col-md-6 col-12">
             <div class="you-willlearn-column text-center">
-              <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e0bfeeb0-e207-4fa3-ad87-d745c7376e92.png" class="img-fluid" alt="amj">
+              <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/e0bfeeb0-e207-4fa3-ad87-d745c7376e92.png" loading="lazy" decoding="async"class="img-fluid" alt="amj">
             </div>
           </div>
         </div>
@@ -15775,7 +15908,7 @@
     <!-- how to join webinar sec start here  -->
     <section class="how-join-webinar sec-p">
       <div class="container">
-        <h2 class="main-sec-heading text-center mb-3">
+        <h2 class="main-sec-heading text-center mb-4">
           How to Join
           <span>
             This Webinar
@@ -15783,11 +15916,11 @@
         </h2>
         <div class="row align-items-center">
           <div class="col-md-6 col-12">
-            <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/99cf86e4-ec77-46b0-9776-f67cfdbc99f0.png" class="img-fluid join-bg-vector" alt="">
+            <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/99cf86e4-ec77-46b0-9776-f67cfdbc99f0.png" loading="lazy" decoding="async" class="img-fluid join-bg-vector" alt="">
             <div class="joint-webinar-video">
-              <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/edea8d51-8db4-4588-8583-1bf8fe51f461.png" class="img-fluid" alt="how to join">
+              <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/edea8d51-8db4-4588-8583-1bf8fe51f461.png" class="img-fluid" loading="lazy" decoding="async" alt="how to join">
               <span data-bs-toggle="modal" data-bs-target="#attend_webinar">
-                <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f5306740-74d1-4555-85f0-bbf55a0022ec.png" class="img-fluid" alt="">
+                <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/f5306740-74d1-4555-85f0-bbf55a0022ec.png" loading="lazy" decoding="async" class="img-fluid" alt="">
               </span>
             </div>
           </div>
@@ -15909,7 +16042,7 @@
 
                     <div class="testimonial-user">
 
-                      <img src="%%=v(Field(@tRow,'Img1'))=%%" alt="">
+                      <img src="%%=v(Field(@tRow,'Img1'))=%%" loading="lazy" decoding="async" alt="">
 
                       <div class="user-info">
 
@@ -15935,7 +16068,7 @@
 
                     <div class="testimonial-user">
 
-                      <img src="%%=v(Field(@tRow,'Img2'))=%%" alt="">
+                      <img src="%%=v(Field(@tRow,'Img2'))=%%" loading="lazy" decoding="async" alt="">
 
                       <div class="user-info">
 
@@ -15963,7 +16096,7 @@
 
                     <div class="testimonial-user">
 
-                      <img src="%%=v(Field(@tRow,'Img3'))=%%" alt="">
+                      <img src="%%=v(Field(@tRow,'Img3'))=%%" loading="lazy" decoding="async" alt="">
 
                       <div class="user-info">
 
@@ -16133,7 +16266,7 @@
         <div class="row">
           <div class="col-12 text-center">
             <a href="#">
-              <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/47da0ced-b886-4025-9b50-c3c505bf2bed.png" class="img-fluid" alt="logo">
+              <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/47da0ced-b886-4025-9b50-c3c505bf2bed.png" loading="lazy" decoding="async"class="img-fluid" alt="logo">
             </a>
             <h2 class="section-title">
               Jeena Sikho HiiMS
@@ -16297,7 +16430,7 @@
        <div class="fixed-booking-bar-main">
     <div class="fixed-booking-bar">
       <div class="booking-left">
-        <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/78b847b3-f895-4586-825f-fe7704d2008c.png" alt="">
+        <img src="https://image.marketing.jeenasikho.com/lib/fe2d117473640474771173/m/1/78b847b3-f895-4586-825f-fe7704d2008c.png" alt="" loading="lazy" decoding="async">
         <div>
           <h4 class="booking-text">
             Book Your Consultation
@@ -16311,7 +16444,7 @@
       <div class="booking-bottom-fixed">
         <div class="price-box">
           <span class="old-price">₹300</span>
-          <span class="new-price">₹33</span>
+          <span class="new-price">₹0</span>
           <span class="only-text"><sub>Only</sub></span>
         </div>
 
@@ -16322,6 +16455,34 @@
     </div>
   </div>
 
+
+%%[ IF @submitted == "1" THEN ]%%
+<div class="modal main-modal fade" id="registrationStatus" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center">
+      <div class="modal-header border-0">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body pb-4">
+
+        %%[ IF @saveOk == true THEN ]%%
+          <div style="font-size:56px;color:#2e9e4f;line-height:1;">✔</div>
+          <h2 class="mt-3">Registration Complete!</h2>
+          <p>Thank you, %%=v(@firstName)=%%! You're registered for the webinar.
+             You'll receive the joining link on WhatsApp and SMS.</p>
+          <button type="button" class="header-btn" data-bs-dismiss="modal">Close</button>
+        %%[ ELSE ]%%
+          <div style="font-size:56px;color:#d9534f;line-height:1;">!</div>
+          <h2 class="mt-3">Registration Failed</h2>
+          <p>%%=v(@saveError)=%%</p>
+          <button type="button" class="header-btn" id="retryRegister">Try Again</button>
+        %%[ ENDIF ]%%
+
+      </div>
+    </div>
+  </div>
+</div>
+%%[ ENDIF ]%%
 
   <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@29.5.5/dist/js/intlTelInput.min.js"></script>
 
@@ -28717,6 +28878,29 @@
 
     form.submit();
   });
+
+
+  // Registration Done modal
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    var statusEl = document.getElementById("registrationStatus");
+    if (!statusEl) return;
+
+    var statusModal = new bootstrap.Modal(statusEl);
+    statusModal.show();
+
+    // "Try Again" reopens the form modal
+    var retry = document.getElementById("retryRegister");
+    if (retry) {
+      retry.addEventListener("click", function () {
+        statusModal.hide();
+        statusEl.addEventListener("hidden.bs.modal", function () {
+          new bootstrap.Modal(document.getElementById("register_webinar")).show();
+        }, { once: true });
+      });
+    }
+  });
+
   </script>
 
 </body>
