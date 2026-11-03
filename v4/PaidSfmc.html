@@ -1,30 +1,115 @@
 
 
-%%=contentblockbyid("125964")=%%
+%%[
+/* =====================================================================
+   WEBINAR LANDING PAGE: DATA LOAD ONLY
+   (form fields, validation and UpsertDE removed)
+   ===================================================================== */
 
-<!-- =====================================================================
-     HTML USAGE EXAMPLE
-     ===================================================================== -->
-%%[ IF @pageOk != true THEN ]%%
+VAR @webinarId, @wRows, @wRow
+VAR @topicId, @tRows, @tRow
+VAR @expertId, @dRows, @dRow
+VAR @startDT
+VAR @pageOk, @pageError
 
-  <h2>Sorry, this webinar page isn't available.</h2>
-  <!-- @pageError is for debugging; avoid showing it to visitors -->
+SET @pageOk    = true
+SET @pageError = ""
 
-%%[ ELSE ]%%
+/* ---------------------------------------------------------------
+   1. READ URL PARAM
+   Preview by opening the CloudPage with ?id=real id
+   --------------------------------------------------------------- */
+SET @webinarId = Trim(RequestParameter("id"))
+IF EMPTY(@webinarId) THEN
+  SET @webinarId = Trim(RequestParameter("webinarId"))
+ENDIF
 
-%%[ IF @pageOk != true THEN ]%%
-  <h2>Sorry, this webinar page isn't available.</h2>
+IF EMPTY(@webinarId) THEN
+  SET @pageOk    = false
+  SET @pageError = "Missing webinar id"
+ENDIF
 
-%%[ ELSEIF @saveOk == true THEN ]%%
-  <h2>Thank you, %%=v(@firstName)=%%! You're registered.</h2>
+/* ---------------------------------------------------------------
+   2. LOOKUP WEBINAR (PRIMARY DE)
+   Field(row, col, 0) returns "" instead of throwing if a column
+   is missing or renamed.
+   --------------------------------------------------------------- */
+IF @pageOk == true THEN
+  SET @wRows = LookupRows("Webinar_Landing_Pages", "Id", @webinarId)
 
-%%[ ELSE ]%%
-  %%[ IF NOT EMPTY(@saveError) THEN ]%%
-    <p class="error">%%=v(@saveError)=%%</p>
-  %%[ ENDIF ]%%
+  IF RowCount(@wRows) == 0 THEN
+    SET @pageOk    = false
+    SET @pageError = "Invalid webinar id"
+  ELSE
+    SET @wRow     = Row(@wRows, 1)
+    SET @topicId  = Field(@wRow, "Webinar_Topic__c", 0)
+    SET @expertId = Field(@wRow, "Expert_Name__c", 0)
+    SET @startDT  = Field(@wRow, "Start_Datetime__c", 0)
+  ENDIF
+ENDIF
 
-  <!-- your <form> here, optionally prefilled: value="%%=v(@firstName)=%%" -->
-%%[ ENDIF ]%%
+/* ---------------------------------------------------------------
+   3. VALIDATE REQUIRED CONFIG ON THE WEBINAR ROW
+   --------------------------------------------------------------- */
+IF @pageOk == true THEN
+  IF EMPTY(@topicId) OR EMPTY(@expertId) OR EMPTY(@startDT) THEN
+    SET @pageOk    = false
+    SET @pageError = "Webinar configuration incomplete"
+  ENDIF
+ENDIF
+
+/* ---------------------------------------------------------------
+   4. LOOKUP TOPIC + DOCTOR
+   --------------------------------------------------------------- */
+IF @pageOk == true THEN
+  SET @tRows = LookupRows("Webinar_Topic_Data", "Id", @topicId)
+  SET @dRows = LookupRows("Webinar_Doctors_List", "Id", @expertId)
+
+  IF RowCount(@tRows) == 0 THEN
+    SET @pageOk    = false
+    SET @pageError = "Invalid topic mapping"
+  ELSEIF RowCount(@dRows) == 0 THEN
+    SET @pageOk    = false
+    SET @pageError = "Invalid doctor mapping"
+  ELSE
+    SET @tRow = Row(@tRows, 1)
+    SET @dRow = Row(@dRows, 1)
+  ENDIF
+ENDIF
+
+/* ---------------------------------------------------------------
+   5. UPCOMING PAID WEBINARS FOR THE SLIDER
+   Only rows with a non-empty SfmcPayUrl are shown
+   --------------------------------------------------------------- */
+VAR @upRows, @upCount, @i, @upRow, @upTopic, @upExpert, @shown, @upPayUrl
+VAR @myTopic
+
+SET @shown = 0
+
+IF @pageOk == true THEN
+  SET @myTopic = Trim(Field(@wRow, "TopicName", 0))
+  IF EMPTY(@myTopic) THEN SET @myTopic = Trim(@topicId) ENDIF
+
+  SET @upRows  = LookupOrderedRows("Webinar_Landing_Pages", 0, "Start_Datetime__c ASC",
+                                   "Status__c", "Active",
+                                   "ShowInSlider", "true")
+  SET @upCount = RowCount(@upRows)
+
+  IF @upCount > 0 THEN
+    FOR @i = 1 TO @upCount DO
+      SET @upRow    = Row(@upRows, @i)
+      SET @upPayUrl = Trim(Field(@upRow, "SfmcPayUrl", 0))
+
+      IF Field(@upRow, "Id", 0) != @webinarId
+         AND Trim(Field(@upRow, "TopicName", 0)) == @myTopic
+         AND NOT EMPTY(@upPayUrl) THEN
+        SET @shown = Add(@shown, 1)
+      ENDIF
+    NEXT @i
+  ENDIF
+ENDIF
+
+]%%
 
 
 
@@ -38,12 +123,8 @@
   <!-- Meta Description -->
   <meta name="description" content="">
   <meta name="robots" content="noindex, nofollow">
-  <!-- Bootstrap Local CSS -->
-  <!-- Custom CSS -->
-
-  <!-- swiper cdn  -->
-  
-
+ 
+    <!-- Bootstrap Local CSS -->
   <style>
   :root,
   [data-bs-theme="light"] {
@@ -11875,6 +11956,7 @@
   }
   </style>
 
+  <!-- Custom CSS -->
   <style>
     * {
       box-sizing: border-box;
@@ -12503,7 +12585,6 @@
       font-size: 18px;
       color: #000000;
       margin: 0;
-      font-weight: 600;
     }
 
     .faq-icon {
@@ -12918,8 +12999,6 @@
       font-size: 16px;
       line-height: 1.45;
       color: #555555;
-      font-weight: 600;
-      margin-bottom: 28px;
     }
 
     .testimonial-user {
@@ -13760,6 +13839,11 @@
   </style>
 
   <style>
+    @media (min-width: 768px) {
+      .upcomming-webinar-wrapper {
+      justify-content: center;
+    }
+    }
     @media (max-width: 1399px) {
       .content-box {
         margin-bottom: 10px;
@@ -13779,6 +13863,7 @@
       .join-content-column {
         padding: 16px 16px 13px;
       }
+      
     }
     @media (max-width: 1299px) {
     }
@@ -14657,6 +14742,7 @@
     }
   </style>
 
+  <!-- swiper cdn  -->
   <style>
     :root {
       --swiper-theme-color: #007aff;
@@ -14681,11 +14767,7 @@
     .swiper-vertical > .swiper-wrapper {
       flex-direction: column;
     }
-    
-    .upcomming-webinar-wrapper {
-      justify-content: center;
-    }
-    
+
     .swiper-wrapper {
       box-sizing: initial;
       display: flex;
@@ -15624,10 +15706,14 @@
 
               %%[ IF @upCount > 0 THEN
                     FOR @i = 1 TO @upCount DO
-                      SET @upRow = Row(@upRows, @i)
-                      SET @upId  = Field(@upRow, "Id", 0)
+                      SET @upRow    = Row(@upRows, @i)
+                      SET @upId     = Field(@upRow, "Id", 0)
+                      SET @upPayUrl = Trim(Field(@upRow, "SfmcPayUrl", 0))
 
-                      IF @upId != @webinarId AND Trim(Field(@upRow, "TopicName", 0)) == @myTopic THEN
+                      IF @upId != @webinarId
+                        AND Trim(Field(@upRow, "TopicName", 0)) == @myTopic
+                        AND NOT EMPTY(@upPayUrl) THEN
+
                         SET @upStartDT  = Field(@upRow, "Start_Datetime__c", 0)
                         SET @upTopic    = Field(@upRow, "Webinar_Topic__c", 0)
                         SET @upExpert   = Field(@upRow, "Expert_Name__c", 0)
@@ -15666,7 +15752,7 @@
                     </div>
                   </div>
 
-                  <a href="https://cloud.marketing.jeenasikho.com/webv4?id=%%=v(@upId)=%%" class="book-btn">Book a Spot</a>
+                  <a href="https://cloud.marketing.jeenasikho.com/webv5?id=%%=v(@upId)=%%" class="book-btn">Book a Spot</a>
                 </div>
               </div>
 
@@ -15775,7 +15861,7 @@
     <!-- how to join webinar sec start here  -->
     <section class="how-join-webinar sec-p">
       <div class="container">
-        <h2 class="main-sec-heading text-center mb-3">
+        <h2 class="main-sec-heading text-center mb-4">
           How to Join
           <span>
             This Webinar
